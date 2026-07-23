@@ -1,65 +1,108 @@
-import Image from "next/image";
+import { getLandscapeProjects } from "@/lib/landscape-data";
+
+import LandscapeExplorer from "./components/landscape-explorer";
+import styles from "./page.module.css";
 
 export default function Home() {
+  const projects = getLandscapeProjects();
+  const totalStars = projects.reduce((sum, project) => sum + project.stars, 0);
+  const categoryCount = new Set(projects.flatMap((project) => project.categories)).size;
+  const compactNumber = new Intl.NumberFormat("en", {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  });
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className={styles.page}>
+      <header className={styles.siteHeader}>
+        <a className={styles.brand} href="#" aria-label="Agent Atlas home">
+          <span aria-hidden="true">A∕A</span>
+          <strong>Agent Atlas</strong>
+        </a>
+        <div className={styles.headerMeta}>
+          <span>Data snapshot · Apr 2026</span>
+          <a
+            href="https://github.com/antgroup/agentic-ai-landscape"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Source repository <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </header>
+
+      <section className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <span className={styles.eyebrow}>Agent Infra Landscape / interactive study</span>
+          <h1>
+            Agent infra,
+            <br />
+            <em>in motion.</em>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p>
+            A static ecosystem map becomes a living interface: trace the path from the
+            products people touch to the frameworks and runtime systems that let agents act.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a className={styles.heroAction} href="#explore">
+            Enter the landscape
+            <span aria-hidden="true">↓</span>
           </a>
         </div>
-      </main>
-    </div>
+
+        <div className={styles.heroDiagram} aria-label="Agent infrastructure execution flow">
+          <span className={styles.orbit} aria-hidden="true" />
+          <div className={styles.heroNode}>
+            <span>01</span>
+            <strong>Delegate</strong>
+            <small>Application</small>
+          </div>
+          <div className={styles.heroNode}>
+            <span>02</span>
+            <strong>Orchestrate</strong>
+            <small>Framework</small>
+          </div>
+          <div className={styles.heroNode}>
+            <span>03</span>
+            <strong>Execute</strong>
+            <small>Runtime</small>
+          </div>
+        </div>
+
+        <dl className={styles.heroStats}>
+          <div>
+            <dt>Mapped projects</dt>
+            <dd>{projects.length}</dd>
+          </div>
+          <div>
+            <dt>Category signals</dt>
+            <dd>{categoryCount}</dd>
+          </div>
+          <div>
+            <dt>Combined stars</dt>
+            <dd>{compactNumber.format(totalStars)}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <LandscapeExplorer projects={projects} />
+
+      <footer className={styles.footer}>
+        <div>
+          <span>A∕A</span>
+          <p>Agent Atlas — a dynamic reading of the Agent Infra Landscape 2026.</p>
+        </div>
+        <p>
+          Data from{" "}
+          <a
+            href="https://github.com/antgroup/agentic-ai-landscape"
+            target="_blank"
+            rel="noreferrer"
+          >
+            antgroup/agentic-ai-landscape
+          </a>
+          . Multi-label categories overlap by design.
+        </p>
+      </footer>
+    </main>
   );
 }
