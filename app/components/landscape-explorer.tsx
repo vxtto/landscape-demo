@@ -1,9 +1,47 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowUpRightIcon, SearchIcon, XIcon } from "lucide-react";
 import { useMemo, useState } from "react";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+} from "recharts";
 
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+  type ChartConfig,
+} from "@/components/ui/chart";
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyTitle,
+} from "@/components/ui/empty";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/components/ui/toggle-group";
 import type { LandscapeProject, StageId } from "@/lib/landscape-types";
+
 import styles from "../page.module.css";
 
 type Metric = "stars" | "openrank";
@@ -21,23 +59,56 @@ const STAGES: Array<{
     index: "01",
     title: "Agent Application",
     shortTitle: "Applications",
-    summary: "The surfaces where people delegate work: coding agents, personal assistants, and chat workspaces.",
+    summary:
+      "The surfaces where people delegate work: coding agents, personal assistants, and chat workspaces.",
   },
   {
     id: "framework",
     index: "02",
     title: "Agent Framework",
     shortTitle: "Frameworks",
-    summary: "The orchestration layer for assembling agents, workflows, teams, and production interfaces.",
+    summary:
+      "The orchestration layer for assembling agents, workflows, teams, and production interfaces.",
   },
   {
     id: "runtime",
     index: "03",
     title: "Agent Runtime Infra",
     shortTitle: "Runtime",
-    summary: "The execution substrate: context, protocols, tools, observability, gateways, and sandboxes.",
+    summary:
+      "The execution substrate: context, protocols, tools, observability, gateways, and sandboxes.",
   },
 ];
+
+const MONTHS = [
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+];
+
+const CHART_CONFIG = {
+  application: {
+    label: "Applications",
+    color: "var(--chart-1)",
+  },
+  framework: {
+    label: "Frameworks",
+    color: "var(--chart-2)",
+  },
+  runtime: {
+    label: "Runtime infra",
+    color: "var(--chart-3)",
+  },
+} satisfies ChartConfig;
 
 const NUMBER_FORMAT = new Intl.NumberFormat("en", {
   notation: "compact",
@@ -48,7 +119,9 @@ function formatMetric(project: LandscapeProject, metric: Metric) {
   if (metric === "openrank") {
     return project.openrank === null
       ? "—"
-      : project.openrank.toLocaleString("en", { maximumFractionDigits: 1 });
+      : project.openrank.toLocaleString("en", {
+          maximumFractionDigits: 1,
+        });
   }
   return NUMBER_FORMAT.format(project.stars);
 }
@@ -56,7 +129,10 @@ function formatMetric(project: LandscapeProject, metric: Metric) {
 function Sparkline({ values }: { values: Array<number | null> }) {
   const points = values
     .map((value, index) => ({ value, index }))
-    .filter((point): point is { value: number; index: number } => point.value !== null);
+    .filter(
+      (point): point is { value: number; index: number } =>
+        point.value !== null,
+    );
 
   if (points.length < 2) {
     return <div className={styles.sparklineEmpty}>Not enough history</div>;
@@ -107,7 +183,9 @@ function ProjectCard({
 }) {
   return (
     <button
-      className={`${styles.projectCard} ${selected ? styles.projectCardSelected : ""}`}
+      className={`${styles.projectCard} ${
+        selected ? styles.projectCardSelected : ""
+      }`}
       type="button"
       onClick={onSelect}
       aria-pressed={selected}
@@ -136,17 +214,24 @@ function ProjectCard({
   );
 }
 
-export default function LandscapeExplorer({ projects }: { projects: LandscapeProject[] }) {
+export default function LandscapeExplorer({
+  projects,
+}: {
+  projects: LandscapeProject[];
+}) {
   const [stageFilter, setStageFilter] = useState<StageFilter>("all");
   const [metric, setMetric] = useState<Metric>("stars");
   const [query, setQuery] = useState("");
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
 
-  const selectedProject = projects.find((project) => project.repo === selectedRepo) ?? null;
+  const selectedProject =
+    projects.find((project) => project.repo === selectedRepo) ?? null;
+
   const filteredProjects = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return projects.filter((project) => {
-      const matchesStage = stageFilter === "all" || project.stage === stageFilter;
+      const matchesStage =
+        stageFilter === "all" || project.stage === stageFilter;
       const searchable = [
         project.name,
         project.repo,
@@ -158,73 +243,205 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
       ]
         .join(" ")
         .toLowerCase();
-      return matchesStage && (!normalizedQuery || searchable.includes(normalizedQuery));
+      return (
+        matchesStage &&
+        (!normalizedQuery || searchable.includes(normalizedQuery))
+      );
     });
   }, [projects, query, stageFilter]);
+
+  const chartData = useMemo(
+    () =>
+      MONTHS.map((month, index) => ({
+        month,
+        application: Math.round(
+          projects
+            .filter((project) => project.stage === "application")
+            .reduce(
+              (sum, project) => sum + (project.trend[index] ?? 0),
+              0,
+            ),
+        ),
+        framework: Math.round(
+          projects
+            .filter((project) => project.stage === "framework")
+            .reduce(
+              (sum, project) => sum + (project.trend[index] ?? 0),
+              0,
+            ),
+        ),
+        runtime: Math.round(
+          projects
+            .filter((project) => project.stage === "runtime")
+            .reduce(
+              (sum, project) => sum + (project.trend[index] ?? 0),
+              0,
+            ),
+        ),
+      })),
+    [projects],
+  );
 
   const visibleStages = STAGES.filter(
     (stage) => stageFilter === "all" || stage.id === stageFilter,
   );
 
+  const visibleOpenRank = filteredProjects.reduce(
+    (sum, project) => sum + (project.openrank ?? 0),
+    0,
+  );
+
   return (
-    <section className={styles.explorer} id="explore" aria-label="Interactive Agent Infra landscape">
+    <section
+      className={styles.explorer}
+      id="explore"
+      aria-label="Interactive Agent Infra landscape"
+    >
       <div className={styles.explorerTopline}>
         <div>
-          <span className={styles.eyebrow}>Living landscape / 2026</span>
+          <Badge variant="outline">Living landscape · 2026</Badge>
           <h2>Explore the execution stack</h2>
+          <p>
+            Filter the ecosystem, compare activity signals, and open any
+            project for context.
+          </p>
         </div>
-        <p>{filteredProjects.length} projects in view</p>
+        <div className={styles.viewSignal}>
+          <span>Projects in view</span>
+          <strong>{filteredProjects.length}</strong>
+        </div>
       </div>
+
+      <Card className={styles.signalCard}>
+        <CardHeader>
+          <CardTitle>Ecosystem signal over time</CardTitle>
+          <CardDescription>
+            Aggregated monthly OpenRank across the three execution layers
+          </CardDescription>
+          <CardAction>
+            <Badge variant="secondary">
+              {NUMBER_FORMAT.format(visibleOpenRank)} OpenRank in view
+            </Badge>
+          </CardAction>
+        </CardHeader>
+        <CardContent>
+          <div className={styles.chartLegend} aria-hidden="true">
+            {STAGES.map((stage) => (
+              <span key={stage.id} data-stage={stage.id}>
+                <i />
+                {stage.shortTitle}
+              </span>
+            ))}
+          </div>
+          <ChartContainer
+            config={CHART_CONFIG}
+            className={styles.signalChart}
+          >
+            <BarChart accessibilityLayer data={chartData} barCategoryGap="22%">
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                tickMargin={12}
+                axisLine={false}
+              />
+              <YAxis
+                tickLine={false}
+                axisLine={false}
+                width={46}
+                tickFormatter={(value) => NUMBER_FORMAT.format(value)}
+              />
+              <ChartTooltip
+                cursor={{ fill: "var(--muted)", opacity: 0.55 }}
+                content={
+                  <ChartTooltipContent
+                    indicator="dot"
+                    formatter={(value, name) => (
+                      <>
+                        <span className={styles.tooltipName}>
+                          {CHART_CONFIG[name as keyof typeof CHART_CONFIG]
+                            ?.label ?? name}
+                        </span>
+                        <span className={styles.tooltipValue}>
+                          {Number(value).toLocaleString()}
+                        </span>
+                      </>
+                    )}
+                  />
+                }
+              />
+              <Bar
+                dataKey="application"
+                stackId="signal"
+                fill="var(--color-application)"
+              />
+              <Bar
+                dataKey="framework"
+                stackId="signal"
+                fill="var(--color-framework)"
+              />
+              <Bar
+                dataKey="runtime"
+                stackId="signal"
+                fill="var(--color-runtime)"
+                radius={[5, 5, 0, 0]}
+              />
+            </BarChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
 
       <div className={styles.toolbar}>
         <label className={styles.search}>
+          <SearchIcon aria-hidden="true" />
           <span className={styles.srOnly}>Search projects</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="6.5" />
-            <path d="m16 16 4 4" />
-          </svg>
-          <input
+          <Input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search a project, category, or language"
           />
           {query ? (
-            <button type="button" onClick={() => setQuery("")} aria-label="Clear search">
-              ×
-            </button>
+            <Button
+              variant="ghost"
+              size="icon-sm"
+              type="button"
+              onClick={() => setQuery("")}
+              aria-label="Clear search"
+            >
+              <XIcon />
+            </Button>
           ) : null}
         </label>
 
-        <div className={styles.filterGroup} aria-label="Filter by layer">
-          {[
-            ["all", "All layers"],
-            ["application", "Applications"],
-            ["framework", "Frameworks"],
-            ["runtime", "Runtime"],
-          ].map(([id, label]) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setStageFilter(id as StageFilter)}
-              aria-pressed={stageFilter === id}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <ToggleGroup
+          value={[stageFilter]}
+          onValueChange={(value) => {
+            if (value[0]) setStageFilter(value[0] as StageFilter);
+          }}
+          variant="outline"
+          spacing={0}
+          aria-label="Filter by layer"
+        >
+          <ToggleGroupItem value="all">All layers</ToggleGroupItem>
+          <ToggleGroupItem value="application">Applications</ToggleGroupItem>
+          <ToggleGroupItem value="framework">Frameworks</ToggleGroupItem>
+          <ToggleGroupItem value="runtime">Runtime</ToggleGroupItem>
+        </ToggleGroup>
 
-        <div className={styles.metricToggle} aria-label="Choose card metric">
-          <span>Size by</span>
-          <button type="button" onClick={() => setMetric("stars")} aria-pressed={metric === "stars"}>
-            Stars
-          </button>
-          <button
-            type="button"
-            onClick={() => setMetric("openrank")}
-            aria-pressed={metric === "openrank"}
+        <div className={styles.metricControl}>
+          <span>Project metric</span>
+          <ToggleGroup
+            value={[metric]}
+            onValueChange={(value) => {
+              if (value[0]) setMetric(value[0] as Metric);
+            }}
+            variant="outline"
+            spacing={0}
+            aria-label="Choose project metric"
           >
-            OpenRank
-          </button>
+            <ToggleGroupItem value="stars">Stars</ToggleGroupItem>
+            <ToggleGroupItem value="openrank">OpenRank</ToggleGroupItem>
+          </ToggleGroup>
         </div>
       </div>
 
@@ -235,8 +452,14 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
             <button
               key={stage.id}
               type="button"
-              onClick={() => setStageFilter(stageFilter === stage.id ? "all" : stage.id)}
-              className={stageFilter === stage.id ? styles.spineActive : ""}
+              onClick={() =>
+                setStageFilter(
+                  stageFilter === stage.id ? "all" : stage.id,
+                )
+              }
+              className={
+                stageFilter === stage.id ? styles.spineActive : ""
+              }
               aria-pressed={stageFilter === stage.id}
             >
               <span>{stage.index}</span>
@@ -251,16 +474,23 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
               const stageProjects = filteredProjects.filter(
                 (project) => project.stage === stage.id,
               );
-              const zones = [...new Set(stageProjects.map((project) => project.zone))];
+              const zones = [
+                ...new Set(stageProjects.map((project) => project.zone)),
+              ];
               if (!stageProjects.length) return null;
 
               return (
                 <article
                   key={stage.id}
-                  className={`${styles.layer} ${styles[`layer_${stage.id}`]}`}
+                  className={`${styles.layer} ${
+                    styles[`layer_${stage.id}`]
+                  }`}
                 >
                   <header className={styles.layerHeader}>
-                    <span>{stage.index}</span>
+                    <div>
+                      <span>{stage.index}</span>
+                      <Badge variant="secondary">{stage.shortTitle}</Badge>
+                    </div>
                     <div>
                       <h3>{stage.title}</h3>
                       <p>{stage.summary}</p>
@@ -277,7 +507,9 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
                         <section key={zone} className={styles.zone}>
                           <header>
                             <h4>{zone}</h4>
-                            <span>{zoneProjects.length}</span>
+                            <Badge variant="outline">
+                              {zoneProjects.length}
+                            </Badge>
                           </header>
                           <div className={styles.projectGrid}>
                             {zoneProjects.map((project) => (
@@ -288,7 +520,9 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
                                 selected={selectedRepo === project.repo}
                                 onSelect={() =>
                                   setSelectedRepo(
-                                    selectedRepo === project.repo ? null : project.repo,
+                                    selectedRepo === project.repo
+                                      ? null
+                                      : project.repo,
                                   )
                                 }
                               />
@@ -303,14 +537,19 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
             })}
 
             {!filteredProjects.length ? (
-              <div className={styles.emptyState}>
-                <span>0 results</span>
-                <h3>No project matches “{query}”</h3>
-                <p>Try a repository name, category, or programming language.</p>
-                <button type="button" onClick={() => setQuery("")}>
-                  Clear search
-                </button>
-              </div>
+              <Empty className={styles.emptyState}>
+                <EmptyHeader>
+                  <EmptyTitle>No project matches “{query}”</EmptyTitle>
+                  <EmptyDescription>
+                    Try a repository name, category, or programming language.
+                  </EmptyDescription>
+                </EmptyHeader>
+                <EmptyContent>
+                  <Button type="button" onClick={() => setQuery("")}>
+                    Clear search
+                  </Button>
+                </EmptyContent>
+              </Empty>
             ) : null}
           </div>
 
@@ -327,15 +566,17 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
                       unoptimized
                     />
                   </span>
-                  <button
+                  <Button
+                    variant="ghost"
+                    size="icon"
                     type="button"
                     onClick={() => setSelectedRepo(null)}
                     aria-label="Close project details"
                   >
-                    ×
-                  </button>
+                    <XIcon />
+                  </Button>
                 </div>
-                <span className={styles.detailStage}>{selectedProject.zone}</span>
+                <Badge variant="secondary">{selectedProject.zone}</Badge>
                 <h3>{selectedProject.name}</h3>
                 <a
                   className={styles.repoLink}
@@ -344,9 +585,13 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
                   rel="noreferrer"
                 >
                   {selectedProject.repo}
-                  <span aria-hidden="true">↗</span>
+                  <ArrowUpRightIcon aria-hidden="true" />
                 </a>
-                <p className={styles.detailDescription}>{selectedProject.description}</p>
+                <p className={styles.detailDescription}>
+                  {selectedProject.description}
+                </p>
+
+                <Separator />
 
                 <dl className={styles.detailStats}>
                   <div>
@@ -363,7 +608,9 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
                   </div>
                   <div>
                     <dt>Participants</dt>
-                    <dd>{NUMBER_FORMAT.format(selectedProject.participants)}</dd>
+                    <dd>
+                      {NUMBER_FORMAT.format(selectedProject.participants)}
+                    </dd>
                   </div>
                   <div>
                     <dt>Language</dt>
@@ -380,9 +627,13 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
                 </div>
 
                 <div className={styles.tagList}>
-                  {selectedProject.categories.slice(0, 5).map((category) => (
-                    <span key={category}>{category}</span>
-                  ))}
+                  {selectedProject.categories
+                    .slice(0, 5)
+                    .map((category) => (
+                      <Badge key={category} variant="outline">
+                        {category}
+                      </Badge>
+                    ))}
                 </div>
               </>
             ) : (
@@ -390,20 +641,20 @@ export default function LandscapeExplorer({ projects }: { projects: LandscapePro
                 <span className={styles.detailGlyph} aria-hidden="true">
                   ↗
                 </span>
-                <span className={styles.eyebrow}>Project signal</span>
+                <Badge variant="outline">Project signal</Badge>
                 <h3>Pick any project</h3>
                 <p>
-                  Open its GitHub context, activity signal, category overlap, and twelve-month
-                  OpenRank trace.
+                  Open its GitHub context, activity signal, category overlap,
+                  and twelve-month OpenRank trace.
                 </p>
                 <div className={styles.detailLegend}>
-                  <span>
+                  <span data-stage="application">
                     <i /> Applications
                   </span>
-                  <span>
+                  <span data-stage="framework">
                     <i /> Frameworks
                   </span>
-                  <span>
+                  <span data-stage="runtime">
                     <i /> Runtime infra
                   </span>
                 </div>
