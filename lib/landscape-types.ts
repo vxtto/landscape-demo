@@ -1,4 +1,4 @@
-export type StageId = "application" | "framework" | "runtime";
+export type StageId = "application" | "framework" | "runtime" | "model";
 
 export type LandscapeProject = {
   id: string;
