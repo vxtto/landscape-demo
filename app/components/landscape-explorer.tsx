@@ -200,6 +200,7 @@ type RankStyle = CSSProperties & {
   "--logo-size": string;
   "--name-size": string;
   "--mark-basis": string;
+  "--rank-grow": string;
 };
 
 function ProjectMark({
@@ -216,10 +217,12 @@ function ProjectMark({
   onSelect: () => void;
 }) {
   const stableScale = Number(rankScale.toFixed(6));
+  const visualScale = Number(Math.pow(stableScale, 1.15).toFixed(6));
   const style: RankStyle = {
-    "--logo-size": `${(25 + stableScale * 20).toFixed(3)}px`,
-    "--name-size": `${(10.5 + stableScale * 3.5).toFixed(3)}px`,
-    "--mark-basis": `${(96 + stableScale * 54).toFixed(3)}px`,
+    "--logo-size": `${(22 + visualScale * 42).toFixed(3)}px`,
+    "--name-size": `${(9.5 + visualScale * 5.2).toFixed(3)}px`,
+    "--mark-basis": `${(76 + visualScale * 70).toFixed(3)}px`,
+    "--rank-grow": (0.45 + visualScale * 2.8).toFixed(3),
   };
 
   return (
@@ -433,8 +436,22 @@ function StageSection({
               )}
             >
               <header className={styles.zoneHeader}>
-                <h4>{zone}</h4>
-                <span>{zoneProjects.length}</span>
+                <span aria-hidden="true" />
+                <h4>
+                  <Badge
+                    className={styles.zoneTitleBadge}
+                    variant="outline"
+                  >
+                    {zone}
+                  </Badge>
+                </h4>
+                <Badge
+                  className={styles.zoneCountBadge}
+                  variant="secondary"
+                >
+                  {zoneProjects.length}
+                </Badge>
+                <span aria-hidden="true" />
               </header>
               <div className={styles.projectCloud}>
                 {zoneProjects.map((zoneProject) => (
@@ -643,26 +660,37 @@ export default function LandscapeExplorer({
           className={styles.landscapeBoard}
           style={{ zoom: zoom / 100 }}
         >
-          <header className={styles.boardMasthead}>
-            <div className={styles.boardTitleLockup}>
-              <span aria-hidden="true">A∕A</span>
-              <div>
-                <h2>Agent & Model Infra Landscape 2026</h2>
-                <p>Interactive ecosystem map · sorted by OpenRank</p>
+          <section className={styles.landscapeSlide}>
+            <header className={styles.boardMasthead}>
+              <div className={styles.boardTitleLockup}>
+                <span aria-hidden="true">A∕A</span>
+                <div>
+                  <h2>Agent Infra Landscape 2026</h2>
+                  <p>Interactive ecosystem map · sorted by OpenRank</p>
+                </div>
               </div>
-            </div>
-            <div className={styles.boardSource}>
-              <strong>ANT OPEN SOURCE</strong>
-              <span>Data-driven edition</span>
-            </div>
-          </header>
+              <div className={styles.boardSource}>
+                <strong>ANT OPEN SOURCE</strong>
+                <span>
+                  {
+                    projects.filter((project) => project.stage !== "model")
+                      .length
+                  }{" "}
+                  projects · OpenRank weighted
+                </span>
+              </div>
+            </header>
 
-          <div className={styles.boardBody}>
-            <section className={styles.landscapeBand}>
+            <div className={styles.landscapeBand}>
               <aside className={styles.infraRail} aria-hidden="true">
                 <span>Agent Infra</span>
               </aside>
-              <div className={styles.stageStack}>
+              <div
+                className={cn(
+                  styles.stageStack,
+                  styles.agentStageStack,
+                )}
+              >
                 {STAGES.filter((stage) => stage.id !== "model").map((stage) => (
                   <StageSection
                     key={stage.id}
@@ -675,9 +703,36 @@ export default function LandscapeExplorer({
                   />
                 ))}
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section className={styles.landscapeBand}>
+          <section
+            className={cn(
+              styles.landscapeSlide,
+              styles.modelLandscapeSlide,
+            )}
+          >
+            <header className={styles.boardMasthead}>
+              <div className={styles.boardTitleLockup}>
+                <span aria-hidden="true">M∕I</span>
+                <div>
+                  <h2>Model Infra Landscape 2026</h2>
+                  <p>Interactive ecosystem map · sorted by OpenRank</p>
+                </div>
+              </div>
+              <div className={styles.boardSource}>
+                <strong>ANT OPEN SOURCE</strong>
+                <span>
+                  {
+                    projects.filter((project) => project.stage === "model")
+                      .length
+                  }{" "}
+                  projects · OpenRank weighted
+                </span>
+              </div>
+            </header>
+
+            <div className={styles.landscapeBand}>
               <aside
                 className={cn(styles.infraRail, styles.modelInfraRail)}
                 aria-hidden="true"
@@ -697,15 +752,16 @@ export default function LandscapeExplorer({
                   />
                 ))}
               </div>
-            </section>
-          </div>
+            </div>
+          </section>
         </div>
       </div>
 
       <p className={styles.boardCaption}>
-        Ecosystem placement follows the repository taxonomy. OpenRank uses a
-        logarithmic scale so leaders stand out without hiding emerging
-        projects. Select any logo for project context.
+        Each landscape is composed as an independent 16:9 canvas. Ecosystem
+        placement follows the repository taxonomy; OpenRank uses a logarithmic
+        scale so leaders stand out without hiding emerging projects. Select any
+        logo for project context.
       </p>
 
       {selectedProject ? (
