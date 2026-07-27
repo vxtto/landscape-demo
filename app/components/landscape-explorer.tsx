@@ -19,11 +19,6 @@ import {
 } from "recharts";
 
 import { Badge } from "@/components/ui/badge";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -39,19 +34,13 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import type { LandscapeProject, StageId } from "@/lib/landscape-types";
 import { cn } from "@/lib/utils";
 
 import styles from "../page.module.css";
+import { ProjectInsightDialog } from "./project-insight-dialog";
 
 type StageDefinition = {
   id: StageId;
@@ -152,50 +141,6 @@ function formatOpenRank(project: LandscapeProject) {
   }) ?? "—";
 }
 
-function Sparkline({ values }: { values: Array<number | null> }) {
-  const points = values
-    .map((value, index) => ({ value, index }))
-    .filter(
-      (point): point is { value: number; index: number } =>
-        point.value !== null,
-    );
-
-  if (points.length < 2) {
-    return <div className={styles.sparklineEmpty}>Not enough history</div>;
-  }
-
-  const min = Math.min(...points.map((point) => point.value));
-  const max = Math.max(...points.map((point) => point.value));
-  const range = max - min || 1;
-  const denominator = Math.max(values.length - 1, 1);
-  const line = points
-    .map((point) => {
-      const x = (point.index / denominator) * 100;
-      const y = 40 - ((point.value - min) / range) * 34;
-      return `${x},${y}`;
-    })
-    .join(" ");
-  const latest = points.at(-1)!;
-
-  return (
-    <svg
-      className={styles.sparkline}
-      viewBox="0 0 100 44"
-      role="img"
-      aria-label="12 month OpenRank trend"
-    >
-      <path d="M0 40H100" className={styles.sparklineBase} />
-      <polyline points={line} className={styles.sparklineLine} />
-      <circle
-        cx={(latest.index / denominator) * 100}
-        cy={40 - ((latest.value - min) / range) * 34}
-        r="2.7"
-        className={styles.sparklineDot}
-      />
-    </svg>
-  );
-}
-
 type RankStyle = CSSProperties & {
   "--logo-size": string;
   "--name-size": string;
@@ -253,138 +198,6 @@ function ProjectMark({
         <small>OpenRank</small>
       </span>
     </button>
-  );
-}
-
-function projectInitials(project: LandscapeProject) {
-  return project.name
-    .split(/[\s.-]+/)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
-}
-
-function ProjectDialog({
-  project,
-  neighbors,
-  onClose,
-  onSelect,
-}: {
-  project: LandscapeProject;
-  neighbors: LandscapeProject[];
-  onClose: () => void;
-  onSelect: (repo: string) => void;
-}) {
-  return (
-    <Dialog open onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className={styles.projectDialog}>
-        <DialogHeader className={styles.dialogHeader}>
-          <div className={styles.detailIdentity}>
-            <Avatar className={styles.detailAvatar}>
-              <AvatarImage
-                src={`https://github.com/${project.owner}.png?size=160`}
-                alt={`${project.name} logo`}
-              />
-              <AvatarFallback>{projectInitials(project)}</AvatarFallback>
-            </Avatar>
-            <div>
-              <div className={styles.detailBadges}>
-                <Badge variant="secondary">{project.zone}</Badge>
-                <Badge variant="outline">{project.stage} layer</Badge>
-              </div>
-              <DialogTitle className={styles.detailTitle}>
-                {project.name}
-              </DialogTitle>
-              <a
-                className={styles.repoLink}
-                href={`https://github.com/${project.repo}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {project.repo}
-                <ArrowUpRightIcon aria-hidden="true" />
-              </a>
-            </div>
-          </div>
-          <DialogDescription className={styles.detailDescription}>
-            {project.description}
-          </DialogDescription>
-        </DialogHeader>
-
-        <dl className={styles.detailStats}>
-          <div>
-            <dt>OpenRank</dt>
-            <dd>{formatOpenRank(project)}</dd>
-          </div>
-          <div>
-            <dt>Stars</dt>
-            <dd>{NUMBER_FORMAT.format(project.stars)}</dd>
-          </div>
-          <div>
-            <dt>Participants</dt>
-            <dd>{NUMBER_FORMAT.format(project.participants)}</dd>
-          </div>
-          <div>
-            <dt>Language</dt>
-            <dd>{project.language}</dd>
-          </div>
-        </dl>
-
-        <div className={styles.dialogWorkspace}>
-          <section className={styles.trendBlock}>
-            <div>
-              <span>OpenRank signal</span>
-              <small>May 2025 — Apr 2026</small>
-            </div>
-            <Sparkline values={project.trend} />
-          </section>
-
-          <section className={styles.categoryBlock}>
-            <header>
-              <span>Taxonomy signals</span>
-              <small>{project.categories.length} categories</small>
-            </header>
-            <div>
-              {project.categories.slice(0, 7).map((category) => (
-                <Badge key={category} variant="outline">
-                  {category}
-                </Badge>
-              ))}
-            </div>
-          </section>
-
-          <section className={styles.neighborBlock}>
-            <header>
-              <span>Same ecosystem zone</span>
-              <small>Switch context without closing</small>
-            </header>
-            <div>
-              {neighbors.slice(0, 6).map((neighbor) => (
-                <button
-                  key={neighbor.repo}
-                  type="button"
-                  onClick={() => onSelect(neighbor.repo)}
-                  aria-label={`View ${neighbor.name}`}
-                >
-                  <Avatar size="sm">
-                    <AvatarImage
-                      src={`https://github.com/${neighbor.owner}.png?size=64`}
-                      alt=""
-                    />
-                    <AvatarFallback>
-                      {projectInitials(neighbor)}
-                    </AvatarFallback>
-                  </Avatar>
-                  <span>{neighbor.name}</span>
-                  <small>{formatOpenRank(neighbor)}</small>
-                </button>
-              ))}
-            </div>
-          </section>
-        </div>
-      </DialogContent>
-    </Dialog>
   );
 }
 
@@ -765,7 +578,8 @@ export default function LandscapeExplorer({
       </p>
 
       {selectedProject ? (
-        <ProjectDialog
+        <ProjectInsightDialog
+          key={selectedProject.repo}
           project={selectedProject}
           neighbors={selectedNeighbors}
           onClose={() => setSelectedRepo(null)}

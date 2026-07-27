@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Agent & Model Infra Landscape
 
-## Getting Started
+An interactive, OpenRank-weighted landscape for Agent Infra and Model Infra.
+Projects keep their ecosystem placement while their detail cards load current
+repository and contributor signals from a protected server-side data service.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application expects these private environment variables in `.env`:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+CLICKHOUSE_HOST
+CLICKHOUSE_USER
+CLICKHOUSE_PASSWORD
+GITHUB_TOKEN
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+For production, prefer a full `CLICKHOUSE_URL` that begins with `https://`.
+`CLICKHOUSE_PROTOCOL` and `CLICKHOUSE_PORT` are optional for local development;
+ports default to `8123` for HTTP and `8443` for HTTPS.
 
-## Learn More
+Never prefix these variables with `NEXT_PUBLIC_`. All `.env*` files are ignored
+by Git and the data access modules import `server-only`.
 
-To learn more about Next.js, take a look at the following resources:
+## Project insights service
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`GET /api/projects/[owner]/[repo]/insights` returns:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- the latest monthly OpenRank
+- GitHub stars and primary language
+- the latest monthly unique participant count
+- current-year OpenRank and participant trends
+- a monthly contributor Arena ranked by normalized OpenRank
+- public contributor profile fields and yearly OpenRank trends
 
-## Deploy on Vercel
+The route only accepts repositories already present in the local landscape
+taxonomy. SQL statements are fixed in server code and repository values are
+passed to ClickHouse as typed query parameters. Browser responses never include
+database hostnames, credentials, SQL, GitHub tokens, email addresses, or other
+private connection details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The Next.js data cache revalidates project insights every seven days. The API
+also emits a one-week shared-cache policy, with a one-day stale-while-revalidate
+window.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Vercel
+
+Configure the four private environment variables above for the Production
+environment in the long-lived Vercel project. They should remain server-only.
+After configuration, a normal push to `main` deploys the static landscape and
+the Node.js insights route together.
+
+Production refuses to send credentials over plain HTTP. The ClickHouse endpoint
+must be reachable from Vercel's serverless runtime over HTTPS. If the database
+is restricted to a private network or only exposes port `8123`, place a private
+read-only HTTPS gateway in front of it rather than exposing ClickHouse directly.
+
+## Validation
+
+```bash
+npm run lint
+npm run build
+```
