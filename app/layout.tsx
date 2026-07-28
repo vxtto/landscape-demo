@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Agent Atlas — Agent Infra Landscape 2026",
+  title: "Agentic AI Open Source Landscape 2026",
   description:
-    "An interactive, data-driven exploration of the Agent Infra Landscape 2026.",
+    "Explore Agent Infra, Model Infra, and ecosystem signals across the open-source Agentic AI landscape.",
 };
 
 export default function RootLayout({

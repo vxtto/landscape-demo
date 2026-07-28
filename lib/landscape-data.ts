@@ -1,162 +1,220 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 
 import type { LandscapeProject, StageId } from "./landscape-types";
 
-type Placement = {
-  repo: string;
+type SectionDefinition = {
+  layer: "Agent Infra" | "Model Infra";
   stage: StageId;
   zone: string;
-  name?: string;
 };
 
-const PLACEMENTS: Placement[] = [
-  { repo: "anthropics/claude-code", stage: "application", zone: "Agentic coding", name: "Claude Code" },
-  { repo: "openai/codex", stage: "application", zone: "Agentic coding", name: "Codex" },
-  { repo: "anomalyco/opencode", stage: "application", zone: "Agentic coding", name: "OpenCode" },
-  { repo: "google-gemini/gemini-cli", stage: "application", zone: "Agentic coding", name: "Gemini CLI" },
-  { repo: "earendil-works/pi", stage: "application", zone: "Agentic coding", name: "Pi" },
-  { repo: "Kilo-Org/kilocode", stage: "application", zone: "Agentic coding", name: "Kilo Code" },
-  { repo: "aaif-goose/goose", stage: "application", zone: "Agentic coding", name: "Goose" },
-  { repo: "QwenLM/qwen-code", stage: "application", zone: "Agentic coding", name: "Qwen Code" },
-  { repo: "warpdotdev/warp", stage: "application", zone: "Agentic coding", name: "Warp" },
-  { repo: "cline/cline", stage: "application", zone: "Agentic coding", name: "Cline" },
-  { repo: "github/copilot-cli", stage: "application", zone: "Agentic coding", name: "Copilot CLI" },
-  { repo: "OpenHands/OpenHands", stage: "application", zone: "Agentic coding", name: "OpenHands" },
-  { repo: "continuedev/continue", stage: "application", zone: "Agentic coding", name: "Continue" },
-  { repo: "charmbracelet/crush", stage: "application", zone: "Agentic coding", name: "Crush" },
-  { repo: "Gitlawb/openclaude", stage: "application", zone: "Agentic coding", name: "OpenClaude" },
-  { repo: "obra/superpowers", stage: "application", zone: "Coding harnesses", name: "Superpowers" },
+const LANDSCAPE_SECTIONS: SectionDefinition[] = [
+  { layer: "Agent Infra", stage: "application", zone: "Agentic coding" },
+  { layer: "Agent Infra", stage: "application", zone: "Coding harnesses" },
   {
-    repo: "affaan-m/everything-claude-code",
+    layer: "Agent Infra",
     stage: "application",
-    zone: "Coding harnesses",
-    name: "Everything Claude Code",
+    zone: "Personal AI assistants",
   },
   {
-    repo: "code-yeongyu/oh-my-openagent",
+    layer: "Agent Infra",
     stage: "application",
-    zone: "Coding harnesses",
-    name: "Oh My OpenAgent",
+    zone: "Chatbot workspaces",
   },
-  { repo: "Yeachan-Heo/oh-my-codex", stage: "application", zone: "Coding harnesses", name: "Oh My Codex" },
-  { repo: "openclaw/openclaw", stage: "application", zone: "Personal AI assistants", name: "OpenClaw" },
-  { repo: "NousResearch/hermes-agent", stage: "application", zone: "Personal AI assistants", name: "Hermes Agent" },
-  { repo: "agentscope-ai/QwenPaw", stage: "application", zone: "Personal AI assistants", name: "QwenPaw" },
-  { repo: "HKUDS/nanobot", stage: "application", zone: "Personal AI assistants", name: "nanobot" },
-  { repo: "zeroclaw-labs/zeroclaw", stage: "application", zone: "Personal AI assistants", name: "ZeroClaw" },
-  { repo: "AstrBotDevs/AstrBot", stage: "application", zone: "Personal AI assistants", name: "AstrBot" },
-  { repo: "CherryHQ/cherry-studio", stage: "application", zone: "Chatbot workspaces", name: "Cherry Studio" },
-  { repo: "open-webui/open-webui", stage: "application", zone: "Chatbot workspaces", name: "Open WebUI" },
-  { repo: "danny-avila/LibreChat", stage: "application", zone: "Chatbot workspaces", name: "LibreChat" },
-
-  { repo: "bytedance/deer-flow", stage: "framework", zone: "Multi-agent orchestration", name: "DeerFlow" },
-  { repo: "mastra-ai/mastra", stage: "framework", zone: "Multi-agent orchestration", name: "Mastra" },
-  { repo: "paperclipai/paperclip", stage: "framework", zone: "Multi-agent orchestration", name: "Paperclip" },
-  { repo: "multica-ai/multica", stage: "framework", zone: "Multi-agent orchestration", name: "Multica" },
-  { repo: "n8n-io/n8n", stage: "framework", zone: "Workflow & agent builders", name: "n8n" },
-  { repo: "langgenius/dify", stage: "framework", zone: "Workflow & agent builders", name: "Dify" },
   {
-    repo: "activepieces/activepieces",
+    layer: "Agent Infra",
+    stage: "framework",
+    zone: "Multi-agent orchestration",
+  },
+  {
+    layer: "Agent Infra",
     stage: "framework",
     zone: "Workflow & agent builders",
-    name: "Activepieces",
   },
-  { repo: "langflow-ai/langflow", stage: "framework", zone: "Workflow & agent builders", name: "Langflow" },
-  { repo: "Comfy-Org/ComfyUI", stage: "framework", zone: "Workflow & agent builders", name: "ComfyUI" },
-  { repo: "vercel/ai", stage: "framework", zone: "Code-first frameworks", name: "AI SDK" },
-  { repo: "pydantic/pydantic-ai", stage: "framework", zone: "Code-first frameworks", name: "Pydantic AI" },
-  { repo: "livekit/agents", stage: "framework", zone: "Code-first frameworks", name: "LiveKit Agents" },
-  { repo: "pipecat-ai/pipecat", stage: "framework", zone: "Code-first frameworks", name: "Pipecat" },
-  { repo: "google/adk-python", stage: "framework", zone: "Code-first frameworks", name: "Google ADK" },
-  { repo: "langchain-ai/langchain", stage: "framework", zone: "Code-first frameworks", name: "LangChain" },
-  { repo: "CopilotKit/CopilotKit", stage: "framework", zone: "Code-first frameworks", name: "CopilotKit" },
-  { repo: "crewAIInc/crewAI", stage: "framework", zone: "Code-first frameworks", name: "crewAI" },
-  { repo: "RightNow-AI/openfang", stage: "framework", zone: "Code-first frameworks", name: "OpenFang" },
-
-  { repo: "infiniflow/ragflow", stage: "runtime", zone: "Memory, knowledge & context", name: "RAGFlow" },
-  { repo: "MemPalace/mempalace", stage: "runtime", zone: "Memory, knowledge & context", name: "MemPalace" },
-  { repo: "mem0ai/mem0", stage: "runtime", zone: "Memory, knowledge & context", name: "mem0" },
-  { repo: "supabase/supabase", stage: "runtime", zone: "Memory, knowledge & context", name: "Supabase" },
-  { repo: "oceanbase/seekdb", stage: "runtime", zone: "Memory, knowledge & context", name: "seekdb" },
-  { repo: "NevaMind-AI/memU", stage: "runtime", zone: "Memory, knowledge & context", name: "memU" },
-  { repo: "vectorize-io/hindsight", stage: "runtime", zone: "Memory, knowledge & context", name: "Hindsight" },
   {
-    repo: "modelcontextprotocol/servers",
+    layer: "Agent Infra",
+    stage: "framework",
+    zone: "Code-first frameworks",
+  },
+  {
+    layer: "Agent Infra",
+    stage: "runtime",
+    zone: "Memory, knowledge & context",
+  },
+  {
+    layer: "Agent Infra",
     stage: "runtime",
     zone: "Protocols & interoperability",
-    name: "Model Context Protocol",
   },
-  { repo: "anthropics/skills", stage: "runtime", zone: "Protocols & interoperability", name: "Agent Skills" },
-  { repo: "a2aproject/A2A", stage: "runtime", zone: "Protocols & interoperability", name: "A2A" },
-  { repo: "vercel-labs/agent-browser", stage: "runtime", zone: "Tool & browser use", name: "Agent Browser" },
-  { repo: "browser-use/browser-use", stage: "runtime", zone: "Tool & browser use", name: "Browser Use" },
-  { repo: "alibaba/page-agent", stage: "runtime", zone: "Tool & browser use", name: "page-agent" },
-  { repo: "browser-use/browser-harness", stage: "runtime", zone: "Tool & browser use", name: "Browser Harness" },
-  { repo: "comet-ml/opik", stage: "runtime", zone: "Observability & evaluation", name: "Opik" },
-  { repo: "langfuse/langfuse", stage: "runtime", zone: "Observability & evaluation", name: "Langfuse" },
-  { repo: "Arize-ai/phoenix", stage: "runtime", zone: "Observability & evaluation", name: "Arize Phoenix" },
-  { repo: "promptfoo/promptfoo", stage: "runtime", zone: "Observability & evaluation", name: "promptfoo" },
-  { repo: "BerriAI/litellm", stage: "runtime", zone: "Model API gateways", name: "LiteLLM" },
-  { repo: "higress-group/higress", stage: "runtime", zone: "Model API gateways", name: "Higress" },
-  { repo: "QuantumNous/new-api", stage: "runtime", zone: "Model API gateways", name: "New API" },
-  { repo: "songquanpeng/one-api", stage: "runtime", zone: "Model API gateways", name: "One API" },
-  { repo: "rtk-ai/rtk", stage: "runtime", zone: "Model API gateways", name: "rtk" },
-  { repo: "farion1231/cc-switch", stage: "runtime", zone: "Model API gateways", name: "cc-switch" },
-  { repo: "coder/coder", stage: "runtime", zone: "Development sandboxes", name: "Coder" },
-  { repo: "alibaba/OpenSandbox", stage: "runtime", zone: "Development sandboxes", name: "OpenSandbox" },
-  { repo: "daytonaio/daytona", stage: "runtime", zone: "Development sandboxes", name: "Daytona" },
-
-  { repo: "ollama/ollama", stage: "model", zone: "Serving · Deploy", name: "Ollama" },
-  { repo: "ai-dynamo/dynamo", stage: "model", zone: "Serving · Deploy", name: "NVIDIA Dynamo" },
-  { repo: "xorbitsai/inference", stage: "model", zone: "Serving · Deploy", name: "Xorbits Inference" },
-  { repo: "llm-d/llm-d", stage: "model", zone: "Serving · Deploy", name: "llm-d" },
-  { repo: "vllm-project/vllm", stage: "model", zone: "Serving · Inference", name: "vLLM" },
-  { repo: "sgl-project/sglang", stage: "model", zone: "Serving · Inference", name: "SGLang" },
-  { repo: "ggml-org/llama.cpp", stage: "model", zone: "Serving · Inference", name: "llama.cpp" },
-  { repo: "NVIDIA/TensorRT-LLM", stage: "model", zone: "Serving · Inference", name: "TensorRT-LLM" },
-  { repo: "openvinotoolkit/openvino", stage: "model", zone: "Serving · Inference", name: "OpenVINO" },
-  { repo: "kvcache-ai/Mooncake", stage: "model", zone: "Serving · Inference", name: "Mooncake" },
-  { repo: "verl-project/verl", stage: "model", zone: "Post-Train · Reinforcement learning", name: "verl" },
-  { repo: "areal-project/AReaL", stage: "model", zone: "Post-Train · Reinforcement learning", name: "AReaL" },
-  { repo: "OpenRLHF/OpenRLHF", stage: "model", zone: "Post-Train · Reinforcement learning", name: "OpenRLHF" },
-  { repo: "RLinf/RLinf", stage: "model", zone: "Post-Train · Reinforcement learning", name: "RLinf" },
-  { repo: "modelscope/ms-swift", stage: "model", zone: "Post-Train · Supervised fine-tuning", name: "ms-swift" },
-  { repo: "unslothai/unsloth", stage: "model", zone: "Post-Train · Supervised fine-tuning", name: "Unsloth" },
-  { repo: "hiyouga/LlamaFactory", stage: "model", zone: "Post-Train · Supervised fine-tuning", name: "LLaMA-Factory" },
-  { repo: "pytorch/pytorch", stage: "model", zone: "Pre-Train · Framework & parallel", name: "PyTorch" },
-  { repo: "NVIDIA/Megatron-LM", stage: "model", zone: "Pre-Train · Framework & parallel", name: "Megatron-LM" },
-  { repo: "deepspeedai/DeepSpeed", stage: "model", zone: "Pre-Train · Framework & parallel", name: "DeepSpeed" },
-  { repo: "PaddlePaddle/Paddle", stage: "model", zone: "Pre-Train · Framework & parallel", name: "Paddle" },
-  { repo: "jax-ml/jax", stage: "model", zone: "Pre-Train · Framework & parallel", name: "JAX" },
-  { repo: "NVIDIA-NeMo/NeMo", stage: "model", zone: "Pre-Train · Framework & parallel", name: "NeMo" },
-  { repo: "mlflow/mlflow", stage: "model", zone: "Pre-Train · Evaluation & observability", name: "MLflow" },
-  { repo: "wandb/wandb", stage: "model", zone: "Pre-Train · Evaluation & observability", name: "Weights & Biases" },
-  { repo: "huggingface/lerobot", stage: "model", zone: "Pre-Train · Robotics infra", name: "LeRobot" },
-  { repo: "OpenMind/OM1", stage: "model", zone: "Pre-Train · Robotics infra", name: "OpenMind OM1" },
-  { repo: "triton-lang/triton", stage: "model", zone: "Pre-Train · Compiler & accelerator", name: "Triton" },
-  { repo: "NVIDIA/TransformerEngine", stage: "model", zone: "Pre-Train · Compiler & accelerator", name: "TransformerEngine" },
-  { repo: "NVIDIA/cutlass", stage: "model", zone: "Pre-Train · Compiler & accelerator", name: "CUTLASS" },
-  { repo: "Dao-AILab/flash-attention", stage: "model", zone: "Pre-Train · Compiler & accelerator", name: "FlashAttention" },
-  { repo: "flashinfer-ai/flashinfer", stage: "model", zone: "Pre-Train · Compiler & accelerator", name: "FlashInfer" },
-  { repo: "rapidsai/cudf", stage: "model", zone: "Pre-Train · Compiler & accelerator", name: "RAPIDS cuDF" },
-  { repo: "deepseek-ai/DeepEP", stage: "model", zone: "Pre-Train · Compiler & accelerator", name: "DeepEP" },
-  { repo: "HumanSignal/label-studio", stage: "model", zone: "Data · Labeling", name: "Label Studio" },
-  { repo: "cvat-ai/cvat", stage: "model", zone: "Data · Labeling", name: "CVAT" },
-  { repo: "apache/airflow", stage: "model", zone: "Data · Integration", name: "Apache Airflow" },
-  { repo: "airbytehq/airbyte", stage: "model", zone: "Data · Integration", name: "Airbyte" },
-  { repo: "open-metadata/OpenMetadata", stage: "model", zone: "Data · Governance", name: "OpenMetadata" },
-  { repo: "datahub-project/datahub", stage: "model", zone: "Data · Governance", name: "DataHub" },
-  { repo: "apache/iceberg", stage: "model", zone: "Data · Governance", name: "Apache Iceberg" },
-  { repo: "apache/paimon", stage: "model", zone: "Data · Governance", name: "Apache Paimon" },
-  { repo: "apache/hudi", stage: "model", zone: "Data · Governance", name: "Apache Hudi" },
-  { repo: "delta-io/delta", stage: "model", zone: "Data · Governance", name: "Delta Lake" },
-  { repo: "apache/gravitino", stage: "model", zone: "Data · Governance", name: "Apache Gravitino" },
-  { repo: "ray-project/ray", stage: "model", zone: "Compute & scheduling", name: "Ray" },
-  { repo: "apache/spark", stage: "model", zone: "Compute & scheduling", name: "Apache Spark" },
-  { repo: "volcano-sh/volcano", stage: "model", zone: "Compute & scheduling", name: "Volcano" },
-  { repo: "kserve/kserve", stage: "model", zone: "Compute & scheduling", name: "KServe" },
+  {
+    layer: "Agent Infra",
+    stage: "runtime",
+    zone: "Tool & browser use",
+  },
+  {
+    layer: "Agent Infra",
+    stage: "runtime",
+    zone: "Observability & evaluation",
+  },
+  {
+    layer: "Agent Infra",
+    stage: "runtime",
+    zone: "Development sandboxes",
+  },
+  {
+    layer: "Model Infra",
+    stage: "model",
+    zone: "Model API gateways",
+  },
+  { layer: "Model Infra", stage: "model", zone: "Serving · Deploy" },
+  { layer: "Model Infra", stage: "model", zone: "Serving · Inference" },
+  {
+    layer: "Model Infra",
+    stage: "model",
+    zone: "Post-Train · Reinforcement learning",
+  },
+  {
+    layer: "Model Infra",
+    stage: "model",
+    zone: "Post-Train · Supervised fine-tuning",
+  },
+  {
+    layer: "Model Infra",
+    stage: "model",
+    zone: "Pre-Train · Framework & parallel",
+  },
+  {
+    layer: "Model Infra",
+    stage: "model",
+    zone: "Pre-Train · Evaluation & observability",
+  },
+  {
+    layer: "Model Infra",
+    stage: "model",
+    zone: "Pre-Train · Robotics infra",
+  },
+  {
+    layer: "Model Infra",
+    stage: "model",
+    zone: "Pre-Train · Compiler & accelerator",
+  },
+  { layer: "Model Infra", stage: "model", zone: "Data · Labeling" },
+  { layer: "Model Infra", stage: "model", zone: "Data · Integration" },
+  { layer: "Model Infra", stage: "model", zone: "Data · Governance" },
+  {
+    layer: "Model Infra",
+    stage: "model",
+    zone: "Compute & scheduling",
+  },
 ];
+
+const PROJECT_NAME_OVERRIDES: Record<string, string> = {
+  "aaif-goose/goose": "Goose",
+  "a2aproject/a2a": "A2A",
+  "a2ui-project/a2ui": "A2UI",
+  "affaan-m/ecc": "Everything Claude Code",
+  "ag-ui-protocol/ag-ui": "AG-UI",
+  "agentscope-ai/qwenpaw": "QwenPaw",
+  "agentgateway/agentgateway": "AgentGateway",
+  "ai-dynamo/dynamo": "NVIDIA Dynamo",
+  "alibaba/page-agent": "page-agent",
+  "anthropics/claude-code": "Claude Code",
+  "anthropics/skills": "Agent Skills",
+  "anomalyco/opencode": "OpenCode",
+  "apache/airflow": "Apache Airflow",
+  "apache/gravitino": "Apache Gravitino",
+  "apache/hudi": "Apache Hudi",
+  "apache/iceberg": "Apache Iceberg",
+  "apache/paimon": "Apache Paimon",
+  "apache/spark": "Apache Spark",
+  "areal-project/areal": "AReaL",
+  "arize-ai/phoenix": "Arize Phoenix",
+  "astrbotdevs/astrbot": "AstrBot",
+  "berriai/litellm": "LiteLLM",
+  "browser-use/browser-use": "Browser Use",
+  "cherryhq/cherry-studio": "Cherry Studio",
+  "code-yeongyu/oh-my-openagent": "Oh My OpenAgent",
+  "comet-ml/opik": "Opik",
+  "copilotkit/copilotkit": "CopilotKit",
+  "crewaiinc/crewai": "crewAI",
+  "cvat-ai/cvat": "CVAT",
+  "danny-avila/librechat": "LibreChat",
+  "dao-ailab/flash-attention": "FlashAttention",
+  "datahub-project/datahub": "DataHub",
+  "deepspeedai/deepspeed": "DeepSpeed",
+  "deepseek-ai/deepep": "DeepEP",
+  "delta-io/delta": "Delta Lake",
+  "earendil-works/pi": "Pi",
+  "farion1231/cc-switch": "cc-switch",
+  "flowiseai/flowise": "Flowise",
+  "github/copilot-cli": "Copilot CLI",
+  "google/adk-python": "Google ADK",
+  "google-gemini/gemini-cli": "Gemini CLI",
+  "ggml-org/llama.cpp": "llama.cpp",
+  "hiyouga/llamafactory": "LLaMA Factory",
+  "hkuds/nanobot": "nanobot",
+  "huggingface/lerobot": "LeRobot",
+  "huggingface/trl": "TRL",
+  "humansignal/label-studio": "Label Studio",
+  "ibm/mcp-context-forge": "MCP Context Forge",
+  "infiniflow/ragflow": "RAGFlow",
+  "jax-ml/jax": "JAX",
+  "jetbrains/koog": "Koog",
+  "kilo-org/kilocode": "Kilo Code",
+  "langchain-ai/langchain": "LangChain",
+  "langflow-ai/langflow": "Langflow",
+  "langfuse/langfuse": "Langfuse",
+  "langgenius/dify": "Dify",
+  "livekit/agents": "LiveKit Agents",
+  "llm-d/llm-d": "llm-d",
+  "lobehub/lobehub": "LobeHub",
+  "mastra-ai/mastra": "Mastra",
+  "mem0ai/mem0": "mem0",
+  "microsoft/agent-framework": "Microsoft Agent Framework",
+  "microsoft/onnxruntime": "ONNX Runtime",
+  "milvus-io/milvus": "Milvus",
+  "mlflow/mlflow": "MLflow",
+  "modelcontextprotocol/servers": "MCP",
+  "modelscope/ms-swift": "ms-swift",
+  "n8n-io/n8n": "n8n",
+  "nousresearch/hermes-agent": "Hermes Agent",
+  "nvidia/cutlass": "CUTLASS",
+  "nvidia/megatron-lm": "Megatron-LM",
+  "nvidia/model-optimizer": "NVIDIA Model Optimizer",
+  "nvidia/tensorrt-llm": "TensorRT-LLM",
+  "nvidia/transformerengine": "Transformer Engine",
+  "oceanbase/seekdb": "seekdb",
+  "open-metadata/openmetadata": "OpenMetadata",
+  "open-webui/open-webui": "Open WebUI",
+  "openai/codex": "Codex",
+  "openclaw/openclaw": "OpenClaw",
+  "openmind/om1": "OpenMind OM1",
+  "opensandbox-group/opensandbox": "OpenSandbox",
+  "openvinotoolkit/openvino": "OpenVINO",
+  "openxla/xla": "OpenXLA",
+  "paddlepaddle/paddle": "PaddlePaddle",
+  "paperclipai/paperclip": "Paperclip",
+  "pipecat-ai/pipecat": "Pipecat",
+  "promptfoo/promptfoo": "promptfoo",
+  "pydantic/pydantic-ai": "Pydantic AI",
+  "pytorch/pytorch": "PyTorch",
+  "qwenlm/qwen-code": "Qwen Code",
+  "quantumnous/new-api": "New API",
+  "rlinf/rlinf": "RLinf",
+  "sgl-project/sglang": "SGLang",
+  "topoteretes/cognee": "Cognee",
+  "trycua/cua": "CUA",
+  "unslothai/unsloth": "Unsloth",
+  "vercel/ai": "Vercel AI SDK",
+  "vercel-labs/agent-browser": "Agent Browser",
+  "vllm-project/vllm": "vLLM",
+  "vllm-project/vllm-omni": "vLLM Omni",
+  "volcengine/openviking": "OpenViking",
+  "wandb/wandb": "Weights & Biases",
+  "warpdotdev/warp": "Warp",
+  "zeroclaw-labs/zeroclaw": "ZeroClaw",
+};
 
 function parseCsv(source: string) {
   const rows: string[][] = [];
@@ -196,8 +254,27 @@ function parseCsv(source: string) {
 
   const [headers, ...records] = rows;
   return records.map((record) =>
-    Object.fromEntries(headers.map((header, index) => [header, record[index] ?? ""])),
+    Object.fromEntries(
+      headers.map((header, index) => [header, record[index] ?? ""]),
+    ),
   );
+}
+
+function resolveLandscapeDataPath() {
+  const candidates = [
+    process.env.LANDSCAPE_DATA_PATH,
+    path.join(process.cwd(), "data", "agentic-ai-projects.csv"),
+    path.resolve(process.cwd(), "../../data/agentic-ai-projects.csv"),
+  ].filter((candidate): candidate is string => Boolean(candidate));
+  const resolved = candidates.find((candidate) => existsSync(candidate));
+
+  if (!resolved) {
+    throw new Error(
+      `Landscape data not found. Checked: ${candidates.join(", ")}`,
+    );
+  }
+
+  return resolved;
 }
 
 function numberOrZero(value: string) {
@@ -220,33 +297,116 @@ function parseTrend(value: string): Array<number | null> {
   }
 }
 
+function displayName(repo: string) {
+  const override = PROJECT_NAME_OVERRIDES[repo.toLowerCase()];
+  if (override) return override;
+
+  const repoName = repo.split("/").at(-1) ?? repo;
+  const spaced = repoName.replaceAll(/[-_]+/g, " ");
+  if (/[A-Z]/.test(spaced)) return spaced;
+
+  return spaced.replaceAll(/\b[a-z]/g, (letter) => letter.toUpperCase());
+}
+
+function readSelectedRecords() {
+  const records = parseCsv(
+    readFileSync(resolveLandscapeDataPath(), "utf8").replace(/^\uFEFF/, ""),
+  );
+  const selected = records.filter((record) =>
+    ["keep", "add"].includes(record.landscape_action.trim().toLowerCase()),
+  );
+  const sectionByZone = new Map(
+    LANDSCAPE_SECTIONS.map((section, index) => [
+      section.zone,
+      { ...section, index },
+    ]),
+  );
+  const unknownSections = [
+    ...new Set(
+      selected
+        .filter(
+          (record) =>
+            !sectionByZone.has(record.landscape_section) ||
+            sectionByZone.get(record.landscape_section)?.layer !==
+              record.landscape_layer,
+        )
+        .map(
+          (record) =>
+            `${record.landscape_layer || "missing layer"} / ${
+              record.landscape_section || "missing section"
+            }`,
+        ),
+    ),
+  ];
+
+  if (unknownSections.length) {
+    throw new Error(
+      `Selected landscape projects use unknown sections: ${unknownSections.join(
+        ", ",
+      )}`,
+    );
+  }
+
+  const duplicates = selected
+    .map((record) => record.repo_name.toLowerCase())
+    .filter((repo, index, repos) => repos.indexOf(repo) !== index);
+
+  if (duplicates.length) {
+    throw new Error(
+      `Duplicate selected landscape repositories: ${[
+        ...new Set(duplicates),
+      ].join(", ")}`,
+    );
+  }
+
+  return selected
+    .map((record) => ({
+      record,
+      section: sectionByZone.get(record.landscape_section)!,
+    }))
+    .sort(
+      (a, b) =>
+        a.section.index - b.section.index ||
+        (nullableNumber(b.record.openrank_2606) ?? -1) -
+          (nullableNumber(a.record.openrank_2606) ?? -1) ||
+        a.record.repo_name.localeCompare(b.record.repo_name),
+    );
+}
+
+export function getLandscapeRepositories() {
+  return readSelectedRecords().map(({ record }) => record.repo_name);
+}
+
 export function getLandscapeProjects(): LandscapeProject[] {
-  const csvPath = path.join(process.cwd(), "data", "agentic-ai-projects.csv");
-  const records = parseCsv(readFileSync(csvPath, "utf8"));
-  const byRepo = new Map(records.map((record) => [record.repo_name.toLowerCase(), record]));
+  return readSelectedRecords().map(({ record, section }) => {
+    const [owner] = record.repo_name.split("/");
 
-  return PLACEMENTS.flatMap((placement) => {
-    const record = byRepo.get(placement.repo.toLowerCase());
-    if (!record) return [];
-
-    const [owner, repoName] = record.repo_name.split("/");
-    return [
-      {
-        id: record.repo_id,
-        repo: record.repo_name,
-        owner,
-        name: placement.name ?? repoName,
-        description: record.description,
-        stars: numberOrZero(record.stars),
-        openrank: nullableNumber(record.openrank_2604),
-        participants: numberOrZero(record.participants_2604),
-        language: record.language || "—",
-        topics: record.topics.split(",").filter(Boolean),
-        categories: record.categories.split("|").filter(Boolean),
-        trend: parseTrend(record.openrank_trend),
-        stage: placement.stage,
-        zone: placement.zone,
-      },
-    ];
+    return {
+      id: record.repo_id,
+      repo: record.repo_name,
+      owner,
+      name: displayName(record.repo_name),
+      description: record.description,
+      stars: numberOrZero(record.stars),
+      forks: numberOrZero(record.forks),
+      openIssues: numberOrZero(record.open_issues),
+      license: record.license || "—",
+      openrank: nullableNumber(record.openrank_2606),
+      participants: numberOrZero(record.participants_2607),
+      language: record.language || "—",
+      createdAt: record.created_at,
+      pushedAt: record.pushed_at,
+      selectionReason: record.selection_reason,
+      selectionCaveat: record.selection_caveat,
+      landscapeAction:
+        record.landscape_action.trim().toLowerCase() === "add"
+          ? "add"
+          : "keep",
+      topics: record.topics.split(",").filter(Boolean),
+      categories: [record.landscape_layer, record.landscape_section],
+      trend: parseTrend(record.openrank_trend_2508_2607),
+      stage: section.stage,
+      zone: section.zone,
+    };
   });
 }
