@@ -1968,3 +1968,143 @@
     grid-template-columns: 1fr;
   }
 }
+
+.tourLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.tourHighlight {
+  position: fixed;
+  border-radius: 18px;
+  border: 1.5px solid color-mix(in srgb, var(--signal-pink) 65%, white);
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, var(--signal-pink) 18%, transparent),
+    0 0 44px color-mix(in srgb, var(--signal-pink) 38%, transparent),
+    0 0 0 9999px rgb(20 20 20 / 32%);
+  transition:
+    top 240ms ease,
+    left 240ms ease,
+    width 240ms ease,
+    height 240ms ease;
+}
+
+.tourCloud {
+  position: fixed;
+  width: min(380px, calc(100vw - 36px));
+  padding: 18px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: color-mix(in srgb, var(--paper) 92%, var(--signal-pink-soft));
+  border: 1px solid color-mix(in srgb, var(--signal-pink) 34%, white);
+  border-radius: 20px;
+  box-shadow:
+    0 0 34px color-mix(in srgb, var(--signal-pink) 26%, transparent),
+    0 24px 60px rgb(23 23 23 / 18%);
+  pointer-events: auto;
+  outline: none;
+  transition:
+    top 240ms ease,
+    left 240ms ease;
+}
+
+.tourCloud header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tourStepBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--signal-violet);
+  font-family: var(--font-code);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+}
+
+.tourStepBadge svg {
+  width: 13px;
+  height: 13px;
+  color: var(--signal-pink);
+}
+
+.tourCloud strong {
+  font-size: 17px;
+  font-weight: 740;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.tourCloud p {
+  margin: 0;
+  color: var(--quiet);
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+
+.tourCloud footer {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.tourDots {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.tourDots i {
+  width: 6px;
+  height: 6px;
+  background: #ddd9d4;
+  border-radius: 50%;
+  transition: background 160ms ease;
+}
+
+.tourDots i.tourDotActive {
+  background: var(--signal-pink);
+}
+
+.tourActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tourHighlight,
+  .tourCloud {
+    transition: none;
+  }
+}
+
+.tourVeil {
+  position: fixed;
+  inset: 0;
+  background: rgb(20 20 20 / 32%);
+}
+
+.tourCloudCentered {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(440px, calc(100vw - 36px));
+  text-align: center;
+  box-shadow:
+    0 0 54px color-mix(in srgb, var(--signal-pink) 34%, transparent),
+    0 24px 60px rgb(23 23 23 / 22%);
+}
+
+.tourCloudCentered p {
+  margin: 0 auto;
+  max-width: 360px;
+}

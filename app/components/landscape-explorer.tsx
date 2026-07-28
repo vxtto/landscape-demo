@@ -41,6 +41,7 @@ import { cn } from "@/lib/utils";
 
 import styles from "../page.module.css";
 import { ProjectInsightDialog } from "./project-insight-dialog";
+import WelcomeTour from "./welcome-tour";
 
 type StageDefinition = {
   id: StageId;
@@ -179,6 +180,7 @@ function ProjectMark({
       )}
       type="button"
       style={style}
+      data-tour-candidate={project.stage !== "model" ? "" : undefined}
       onClick={onSelect}
       aria-pressed={selected}
       aria-label={`${project.name}, OpenRank ${formatOpenRank(project)}`}
@@ -223,7 +225,10 @@ function StageSection({
 
   return (
     <article className={cn(styles.stage, styles[`stage_${stage.id}`])}>
-      <header className={styles.stageLabel}>
+      <header
+        className={styles.stageLabel}
+        data-tour={stage.id === "application" ? "stages" : undefined}
+      >
         <h3>{stage.label}</h3>
         <span>{stage.description}</span>
       </header>
@@ -388,8 +393,10 @@ export default function LandscapeExplorer({
       id="landscape"
       aria-label="Interactive Agent Infra landscape"
     >
+      <WelcomeTour />
+
       <div className={styles.landscapeLead}>
-        <div>
+        <div data-tour="hero">
           <Badge variant="secondary">Living landscape · Apr 2026</Badge>
           <h1>See the ecosystem before the metrics.</h1>
           <p>
