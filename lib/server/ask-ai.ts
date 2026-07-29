@@ -5,6 +5,8 @@ import path from "node:path";
 
 import type { AskCandidate, AskExchange, AskVerdict } from "@/lib/ask-ai-types";
 
+import { getLandscapeRoster } from "./landscape-roster";
+
 const BASE_URL = (
   process.env.OPENROUTER_BASE_URL ?? "https://openrouter.ai/api/v1"
 ).replace(/\/$/, "");
@@ -71,24 +73,75 @@ async function chatCompletion(
   return response;
 }
 
+export type CatalogEntry = {
+  repo: string;
+  description: string;
+  categories: string[];
+  card: CapabilityCard["card"] | null;
+  readmeExcerpt: string | null;
+  stars: number | null;
+  openrank: number | null;
+};
+
+let entriesCache: CatalogEntry[] | null = null;
+
+/**
+ * Joins the roster to the cards. The roster decides who is in the landscape,
+ * so a project added by a data refresh is still answerable from its CSV facts
+ * before anyone regenerates cards, and a card left behind by a project that
+ * departed is never consulted — the failure modes drift would otherwise cause
+ * are being invisible and recommending something that no longer exists.
+ */
+export function getCatalogEntries(): CatalogEntry[] {
+  if (entriesCache) return entriesCache;
+
+  const cards = new Map(
+    getCapabilityCards().map((card) => [card.repo_name.toLowerCase(), card]),
+  );
+
+  entriesCache = getLandscapeRoster().map((project) => {
+    const card = cards.get(project.repo.toLowerCase());
+    return {
+      repo: project.repo,
+      description: card?.description || project.description,
+      categories: card?.categories?.length
+        ? card.categories
+        : project.categories,
+      card: card?.card ?? null,
+      readmeExcerpt: card?.readme_excerpt ?? null,
+      stars: card?.stars ?? project.stars,
+      openrank: card?.openrank ?? null,
+    };
+  });
+
+  return entriesCache;
+}
+
+export function getCatalogCoverage() {
+  const entries = getCatalogEntries();
+  const carded = entries.filter((entry) => entry.card).length;
+  return { total: entries.length, carded, uncarded: entries.length - carded };
+}
+
 // The catalog is a stable prompt prefix across every question, so OpenRouter's
 // prompt caching applies as long as it stays byte-identical between requests.
 let catalogCache: string | null = null;
 
 function buildCatalog(): string {
   if (!catalogCache) {
-    catalogCache = getCapabilityCards()
+    catalogCache = getCatalogEntries()
       .map((entry) => {
-        const card = entry.card;
-        const parts = [
-          `${entry.repo_name} [${entry.categories.join(", ")}]`,
-          card.summary,
-          `does: ${card.capabilities.join("; ")}`,
-        ];
-        if (card.not_capabilities.length > 0) {
-          parts.push(`does NOT: ${card.not_capabilities.join("; ")}`);
+        const header = `${entry.repo} [${entry.categories.join(", ")}]`;
+        if (!entry.card) {
+          // No card yet: the description still makes the project findable.
+          return `${header} | ${entry.description}`;
         }
-        parts.push(`keywords: ${card.keywords.join(", ")}`);
+        const parts = [header, entry.card.summary];
+        parts.push(`does: ${entry.card.capabilities.join("; ")}`);
+        if (entry.card.not_capabilities.length > 0) {
+          parts.push(`does NOT: ${entry.card.not_capabilities.join("; ")}`);
+        }
+        parts.push(`keywords: ${entry.card.keywords.join(", ")}`);
         return parts.join(" | ");
       })
       .join("\n");
@@ -201,7 +254,7 @@ export async function triageQuestion(
   const parsed = extractJsonObject(content) as TriageResult;
 
   const known = new Map(
-    getCapabilityCards().map((entry) => [entry.repo_name.toLowerCase(), entry.repo_name]),
+    getCatalogEntries().map((entry) => [entry.repo.toLowerCase(), entry.repo]),
   );
   // Models repeat themselves, and a repeated repo would collide as a React
   // key and read as two separate recommendations.
@@ -245,19 +298,33 @@ export async function streamAnswer(
   history: AskExchange[] = [],
   signal?: AbortSignal,
 ): Promise<ReadableStream<Uint8Array>> {
-  const cards = getCapabilityCards();
+  const entries = getCatalogEntries();
   const sections = triage.candidates.map((candidate) => {
-    const entry = cards.find((card) => card.repo_name === candidate.repo);
+    const entry = entries.find((item) => item.repo === candidate.repo);
     if (!entry) return `## ${candidate.repo}\n(no data)`;
-    return [
-      `## ${entry.repo_name}`,
+
+    const header = [
+      `## ${entry.repo}`,
       `Categories: ${entry.categories.join(", ")} | Stars: ${entry.stars ?? "?"} | OpenRank: ${entry.openrank ?? "?"}`,
+    ];
+    if (!entry.card) {
+      // Listed in the landscape but not yet described. Saying so keeps the
+      // answer honest instead of inviting the model to fill the gap.
+      return [
+        ...header,
+        `Description: ${entry.description}`,
+        "No capability card has been generated for this project yet, so only the",
+        "one-line description above is known. Do not infer further detail.",
+      ].join("\n");
+    }
+    return [
+      ...header,
       `Summary: ${entry.card.summary}`,
       `Capabilities: ${entry.card.capabilities.join("; ")}`,
       entry.card.not_capabilities.length > 0
         ? `Not capabilities: ${entry.card.not_capabilities.join("; ")}`
         : "",
-      `README excerpt:\n${entry.readme_excerpt}`,
+      `README excerpt:\n${entry.readmeExcerpt ?? ""}`,
     ]
       .filter(Boolean)
       .join("\n");
