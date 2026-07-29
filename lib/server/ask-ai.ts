@@ -187,21 +187,31 @@ export async function triageQuestion(
         { role: "user", content: withHistory(question, history) },
       ],
       temperature: 0.1,
-      max_tokens: 400,
+      max_tokens: 600,
+      // Reasoning models otherwise spend the whole budget thinking and
+      // return a null content, and chain-of-thought buys nothing when the
+      // task is picking repos out of a catalog.
+      reasoning: { enabled: false },
     },
     signal,
   );
   const data = await response.json();
-  const content: string = data.choices?.[0]?.message?.content ?? "";
+  const message = data.choices?.[0]?.message;
+  const content: string = message?.content || message?.reasoning || "";
   const parsed = extractJsonObject(content) as TriageResult;
 
   const known = new Map(
     getCapabilityCards().map((entry) => [entry.repo_name.toLowerCase(), entry.repo_name]),
   );
+  // Models repeat themselves, and a repeated repo would collide as a React
+  // key and read as two separate recommendations.
+  const seen = new Set<string>();
   const candidates = (parsed.candidates ?? [])
     .flatMap((candidate) => {
       const repo = known.get(String(candidate.repo).toLowerCase());
-      return repo ? [{ repo, reason: String(candidate.reason ?? "") }] : [];
+      if (!repo || seen.has(repo)) return [];
+      seen.add(repo);
+      return [{ repo, reason: String(candidate.reason ?? "") }];
     })
     .slice(0, MAX_CANDIDATES);
 
@@ -267,6 +277,9 @@ export async function streamAnswer(
       temperature: 0.3,
       max_tokens: MAX_ANSWER_TOKENS,
       stream: true,
+      // Thinking would stream as reasoning deltas the panel never renders,
+      // leaving the reader watching nothing until the budget is spent.
+      reasoning: { enabled: false },
     },
     signal,
   );
