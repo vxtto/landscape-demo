@@ -1,12 +1,5 @@
 import { ArrowUpRightIcon } from "lucide-react";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { getLandscapeProjects } from "@/lib/landscape-data";
 
 import LandscapeExplorer from "./components/landscape-explorer";
@@ -14,42 +7,6 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const projects = getLandscapeProjects();
-  const totalStars = projects.reduce(
-    (sum, project) => sum + project.stars,
-    0,
-  );
-  const totalOpenRank = projects.reduce(
-    (sum, project) => sum + (project.openrank ?? 0),
-    0,
-  );
-  const zoneCount = new Set(projects.map((project) => project.zone)).size;
-  const compactNumber = new Intl.NumberFormat("en", {
-    notation: "compact",
-    maximumFractionDigits: 1,
-  });
-
-  const metrics = [
-    {
-      label: "Mapped projects",
-      value: projects.length.toLocaleString(),
-      note: "Curated across 4 architecture layers",
-    },
-    {
-      label: "Ecosystem zones",
-      value: zoneCount.toLocaleString(),
-      note: "Stable placement, data-driven contents",
-    },
-    {
-      label: "Combined stars",
-      value: compactNumber.format(totalStars),
-      note: "GitHub community signal",
-    },
-    {
-      label: "OpenRank signal",
-      value: compactNumber.format(totalOpenRank),
-      note: "Latest monthly snapshot",
-    },
-  ];
 
   return (
     <main className={styles.page}>
@@ -58,13 +15,14 @@ export default function Home() {
           <a
             className={styles.brand}
             href="#landscape"
-            aria-label="Agent Infra Landscape home"
+            aria-label="Agentic AI Open Source Landscape home"
           >
-            <span aria-hidden="true">A∕A</span>
-            <strong>Agent Infra Landscape</strong>
+            <span aria-hidden="true">AI</span>
+            <strong>Agentic AI Landscape</strong>
           </a>
           <nav className={styles.headerNav} aria-label="Primary navigation">
-            <a href="#landscape">Landscape</a>
+            <a href="#agent-infra">Agent Infra</a>
+            <a href="#model-infra">Model Infra</a>
             <a href="#signals">Signals</a>
             <a
               href="https://github.com/antgroup/agentic-ai-landscape"
@@ -79,24 +37,12 @@ export default function Home() {
 
         <LandscapeExplorer projects={projects} />
 
-        <section className={styles.metricGrid} aria-label="Landscape summary">
-          {metrics.map((metric) => (
-            <Card key={metric.label} className={styles.metricCard}>
-              <CardHeader>
-                <CardDescription>{metric.label}</CardDescription>
-                <CardTitle>{metric.value}</CardTitle>
-              </CardHeader>
-              <CardContent>{metric.note}</CardContent>
-            </Card>
-          ))}
-        </section>
-
         <footer className={styles.footer}>
           <div>
-            <span>A∕A</span>
+            <span>AI</span>
             <p>
-              A living edition of the Agent Infra Landscape 2026 — structure
-              first, signals second.
+              A living map of the open-source Agentic AI ecosystem — Agent
+              Infra and Model Infra, viewed together.
             </p>
           </div>
           <p>

@@ -1,17 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowUpRightIcon } from "lucide-react";
 import {
-  ArrowUpRightIcon,
-  Building2Icon,
-  MapPinIcon,
-  RefreshCwIcon,
-  TriangleAlertIcon,
-} from "lucide-react";
-import { type CSSProperties, useEffect, useMemo, useState } from "react";
-import {
-  Area,
-  AreaChart,
   CartesianGrid,
   Line,
   LineChart,
@@ -19,12 +10,6 @@ import {
   YAxis,
 } from "recharts";
 
-import {
-  Alert,
-  AlertAction,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert";
 import {
   Avatar,
   AvatarFallback,
@@ -52,13 +37,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Skeleton } from "@/components/ui/skeleton";
 import type { LandscapeProject } from "@/lib/landscape-types";
-import type {
-  ProjectContributor,
-  ProjectInsights,
-} from "@/lib/project-insights-types";
-import { cn } from "@/lib/utils";
 
 import styles from "../page.module.css";
 
@@ -71,35 +50,27 @@ const PRECISE_NUMBER_FORMAT = new Intl.NumberFormat("en", {
   maximumFractionDigits: 2,
 });
 
+const TREND_MONTHS = [
+  "Aug 2025",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+  "Jan 2026",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+];
+
 const OPENRANK_CHART_CONFIG = {
   openrank: {
     label: "OpenRank",
     color: "var(--signal-violet)",
   },
 } satisfies ChartConfig;
-
-const PARTICIPANTS_CHART_CONFIG = {
-  participants: {
-    label: "Participants",
-    color: "var(--stage-runtime)",
-  },
-} satisfies ChartConfig;
-
-const CONTRIBUTOR_CHART_CONFIG = {
-  openrank: {
-    label: "Contributor OpenRank",
-    color: "var(--signal-pink)",
-  },
-} satisfies ChartConfig;
-
-type InsightState =
-  | { status: "loading" }
-  | { status: "ready"; data: ProjectInsights }
-  | { status: "error" };
-
-type ArenaStyle = CSSProperties & {
-  "--arena-width": string;
-};
 
 function initials(value: string) {
   return value
@@ -110,121 +81,77 @@ function initials(value: string) {
     .toUpperCase();
 }
 
-function formatMonth(value: string | null) {
-  if (!value) return "No month";
-  const [year, month] = value.split("-").map(Number);
+function formatDate(value: string) {
+  if (!value) return "—";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+
   return new Intl.DateTimeFormat("en", {
-    month: "short",
     year: "numeric",
-  }).format(new Date(Date.UTC(year, month - 1, 1)));
-}
-
-function formatMetric(value: number | null, precise = false) {
-  if (value === null) return "—";
-  return precise
-    ? PRECISE_NUMBER_FORMAT.format(value)
-    : NUMBER_FORMAT.format(value);
-}
-
-function InsightSkeleton() {
-  return (
-    <div className={styles.insightLoading} aria-label="Loading project data">
-      <div className={styles.insightMetricGrid}>
-        {Array.from({ length: 4 }, (_, index) => (
-          <Card key={index}>
-            <CardHeader>
-              <Skeleton className="h-3 w-20" />
-              <Skeleton className="h-8 w-28" />
-            </CardHeader>
-            <CardContent>
-              <Skeleton className="h-3 w-32" />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      <div className={styles.insightChartGrid}>
-        {Array.from({ length: 2 }, (_, index) => (
-          <Card key={index}>
-            <CardHeader>
-              <Skeleton className="h-4 w-36" />
-              <Skeleton className="h-3 w-48" />
-            </CardHeader>
-            <CardContent>
-              <Skeleton className="h-36 w-full" />
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-      <Skeleton className="h-72 w-full" />
-    </div>
-  );
+    month: "short",
+    day: "numeric",
+  }).format(date);
 }
 
 function MetricCard({
   label,
   value,
   context,
-  precise = false,
 }: {
   label: string;
   value: number | null | string;
   context: string;
-  precise?: boolean;
 }) {
+  const displayValue =
+    typeof value === "number"
+      ? NUMBER_FORMAT.format(value)
+      : value || "—";
+
   return (
     <Card className={styles.insightMetricCard}>
       <CardHeader>
         <CardDescription>{label}</CardDescription>
-        <CardTitle>
-          {typeof value === "number"
-            ? formatMetric(value, precise)
-            : value || "—"}
-        </CardTitle>
+        <CardTitle>{displayValue}</CardTitle>
       </CardHeader>
       <CardContent>{context}</CardContent>
     </Card>
   );
 }
 
-function OpenRankTrend({ insights }: { insights: ProjectInsights }) {
+function StaticOpenRankTrend({
+  project,
+}: {
+  project: LandscapeProject;
+}) {
+  const data = TREND_MONTHS.map((month, index) => ({
+    month,
+    openrank: project.trend[index],
+  }));
+
   return (
     <Card className={styles.insightTrendCard}>
       <CardHeader>
-        <CardTitle>{insights.dataYear} OpenRank trend</CardTitle>
+        <CardTitle>OpenRank trend</CardTitle>
         <CardDescription>
-          Repository influence, measured monthly
+          Aug 2025–Jul 2026 · values stored in agentic-ai-projects.csv
         </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer
           config={OPENRANK_CHART_CONFIG}
-          className={styles.insightChart}
-          initialDimension={{ width: 560, height: 180 }}
+          className={styles.staticInsightChart}
+          initialDimension={{ width: 760, height: 220 }}
         >
-          <AreaChart data={insights.trends} margin={{ left: 2, right: 10 }}>
-            <defs>
-              <linearGradient id="openrankFill" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="0%"
-                  stopColor="var(--color-openrank)"
-                  stopOpacity={0.26}
-                />
-                <stop
-                  offset="100%"
-                  stopColor="var(--color-openrank)"
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
+          <LineChart data={data} margin={{ left: 2, right: 12 }}>
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="monthLabel"
+              dataKey="month"
               axisLine={false}
               tickLine={false}
               tickMargin={8}
             />
             <YAxis
-              width={38}
+              width={42}
               axisLine={false}
               tickLine={false}
               tickFormatter={(value) => NUMBER_FORMAT.format(value)}
@@ -234,316 +161,77 @@ function OpenRankTrend({ insights }: { insights: ProjectInsights }) {
                 <ChartTooltipContent
                   indicator="line"
                   formatter={(value) => (
-                    <span>{PRECISE_NUMBER_FORMAT.format(Number(value))}</span>
+                    <span>
+                      {PRECISE_NUMBER_FORMAT.format(Number(value))}
+                    </span>
                   )}
                 />
               }
             />
-            <Area
+            <Line
               dataKey="openrank"
               type="monotone"
               connectNulls
-              fill="url(#openrankFill)"
               stroke="var(--color-openrank)"
-              strokeWidth={2.2}
+              strokeWidth={2.5}
+              dot={{ r: 2.5, fill: "var(--color-openrank)" }}
+              activeDot={{ r: 4 }}
             />
-          </AreaChart>
+          </LineChart>
         </ChartContainer>
       </CardContent>
     </Card>
   );
 }
 
-function ParticipantsTrend({ insights }: { insights: ProjectInsights }) {
+function RepositoryDetails({ project }: { project: LandscapeProject }) {
   return (
-    <Card className={styles.insightTrendCard}>
+    <Card className={styles.staticMetaCard}>
       <CardHeader>
-        <CardTitle>{insights.dataYear} participants trend</CardTitle>
+        <CardTitle>Repository snapshot</CardTitle>
         <CardDescription>
-          Unique monthly contributors with OpenRank activity
+          Static GitHub metadata included in the landscape CSV
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ChartContainer
-          config={PARTICIPANTS_CHART_CONFIG}
-          className={styles.insightChart}
-          initialDimension={{ width: 560, height: 180 }}
-        >
-          <AreaChart data={insights.trends} margin={{ left: 2, right: 10 }}>
-            <defs>
-              <linearGradient
-                id="participantsFill"
-                x1="0"
-                y1="0"
-                x2="0"
-                y2="1"
-              >
-                <stop
-                  offset="0%"
-                  stopColor="var(--color-participants)"
-                  stopOpacity={0.23}
-                />
-                <stop
-                  offset="100%"
-                  stopColor="var(--color-participants)"
-                  stopOpacity={0}
-                />
-              </linearGradient>
-            </defs>
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="monthLabel"
-              axisLine={false}
-              tickLine={false}
-              tickMargin={8}
-            />
-            <YAxis
-              width={38}
-              axisLine={false}
-              tickLine={false}
-              tickFormatter={(value) => NUMBER_FORMAT.format(value)}
-            />
-            <ChartTooltip
-              content={
-                <ChartTooltipContent
-                  indicator="line"
-                  formatter={(value) => (
-                    <span>{NUMBER_FORMAT.format(Number(value))}</span>
-                  )}
-                />
-              }
-            />
-            <Area
-              dataKey="participants"
-              type="monotone"
-              connectNulls
-              fill="url(#participantsFill)"
-              stroke="var(--color-participants)"
-              strokeWidth={2.2}
-            />
-          </AreaChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
-  );
-}
-
-function ContributorDetail({
-  contributor,
-}: {
-  contributor: ProjectContributor;
-}) {
-  return (
-    <section className={styles.contributorDetail}>
-      <header>
-        <Avatar className={styles.contributorAvatar}>
-          <AvatarImage
-            src={contributor.avatarUrl}
-            alt={`${contributor.login} avatar`}
-          />
-          <AvatarFallback>{initials(contributor.login)}</AvatarFallback>
-        </Avatar>
-        <div>
-          <div className={styles.contributorBadges}>
-            <Badge>#{contributor.rank} Arena</Badge>
-            <Badge variant="outline">{contributor.share}% share</Badge>
+        <dl className={styles.staticMetaGrid}>
+          <div>
+            <dt>Forks</dt>
+            <dd>{NUMBER_FORMAT.format(project.forks)}</dd>
           </div>
-          <h4>{contributor.name || contributor.login}</h4>
-          <a
-            href={`https://github.com/${contributor.login}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            @{contributor.login}
-            <ArrowUpRightIcon aria-hidden="true" />
-          </a>
-        </div>
-      </header>
+          <div>
+            <dt>Open issues</dt>
+            <dd>{NUMBER_FORMAT.format(project.openIssues)}</dd>
+          </div>
+          <div>
+            <dt>License</dt>
+            <dd>{project.license}</dd>
+          </div>
+          <div>
+            <dt>Created</dt>
+            <dd>{formatDate(project.createdAt)}</dd>
+          </div>
+          <div>
+            <dt>Last pushed</dt>
+            <dd>{formatDate(project.pushedAt)}</dd>
+          </div>
+          <div>
+            <dt>Landscape section</dt>
+            <dd>{project.zone}</dd>
+          </div>
+        </dl>
 
-      {contributor.company || contributor.location ? (
-        <div className={styles.contributorMeta}>
-          {contributor.company ? (
-            <span>
-              <Building2Icon aria-hidden="true" />
-              {contributor.company}
-            </span>
-          ) : null}
-          {contributor.location ? (
-            <span>
-              <MapPinIcon aria-hidden="true" />
-              {contributor.location}
-            </span>
-          ) : null}
-        </div>
-      ) : null}
-
-      <p className={styles.contributorBio}>
-        {contributor.bio || "Public GitHub profile has no biography."}
-      </p>
-
-      <div className={styles.contributorScore}>
-        <span>Monthly OpenRank</span>
-        <strong>{PRECISE_NUMBER_FORMAT.format(contributor.openrank)}</strong>
-      </div>
-
-      <ChartContainer
-        config={CONTRIBUTOR_CHART_CONFIG}
-        className={styles.contributorChart}
-        initialDimension={{ width: 420, height: 112 }}
-      >
-        <LineChart data={contributor.trend} margin={{ left: 2, right: 10 }}>
-          <CartesianGrid vertical={false} />
-          <XAxis
-            dataKey="monthLabel"
-            axisLine={false}
-            tickLine={false}
-            tickMargin={7}
-          />
-          <YAxis hide domain={["dataMin", "dataMax"]} />
-          <ChartTooltip
-            content={
-              <ChartTooltipContent
-                indicator="line"
-                formatter={(value) => (
-                  <span>{PRECISE_NUMBER_FORMAT.format(Number(value))}</span>
-                )}
-              />
-            }
-          />
-          <Line
-            dataKey="openrank"
-            type="monotone"
-            stroke="var(--color-openrank)"
-            strokeWidth={2.2}
-            dot={false}
-          />
-        </LineChart>
-      </ChartContainer>
-    </section>
-  );
-}
-
-function ContributorArena({ insights }: { insights: ProjectInsights }) {
-  const [selectedContributorId, setSelectedContributorId] = useState<
-    string | null
-  >(null);
-  const contributors = insights.arena.contributors;
-  const selectedContributor =
-    contributors.find(
-      (contributor) => contributor.id === selectedContributorId,
-    ) ??
-    contributors[0] ??
-    null;
-  const leaderOpenrank = contributors[0]?.openrank || 1;
-
-  return (
-    <Card className={styles.arenaCard}>
-      <CardHeader>
-        <CardTitle>Contributor Arena</CardTitle>
-        <CardDescription>
-          {formatMonth(insights.arena.month)} · ranked by normalized monthly
-          OpenRank
-        </CardDescription>
-      </CardHeader>
-      <CardContent className={styles.arenaWorkspace}>
-        {contributors.length ? (
-          <>
-            <div className={styles.arenaList}>
-              {contributors.map((contributor) => {
-                const style: ArenaStyle = {
-                  "--arena-width": `${Math.max(
-                    8,
-                    (contributor.openrank / leaderOpenrank) * 100,
-                  )}%`,
-                };
-
-                return (
-                  <button
-                    key={contributor.id}
-                    type="button"
-                    className={cn(
-                      styles.arenaRow,
-                      selectedContributor?.id === contributor.id &&
-                        styles.arenaRowActive,
-                    )}
-                    style={style}
-                    onClick={() => setSelectedContributorId(contributor.id)}
-                    aria-pressed={selectedContributor?.id === contributor.id}
-                  >
-                    <span className={styles.arenaRank}>
-                      {String(contributor.rank).padStart(2, "0")}
-                    </span>
-                    <Avatar size="sm">
-                      <AvatarImage src={contributor.avatarUrl} alt="" />
-                      <AvatarFallback>
-                        {initials(contributor.login)}
-                      </AvatarFallback>
-                    </Avatar>
-                    <span className={styles.arenaIdentity}>
-                      <strong>{contributor.name || contributor.login}</strong>
-                      <small>@{contributor.login}</small>
-                    </span>
-                    <span className={styles.arenaValue}>
-                      {PRECISE_NUMBER_FORMAT.format(contributor.openrank)}
-                    </span>
-                    <i aria-hidden="true" />
-                  </button>
-                );
-              })}
-            </div>
-
-            {selectedContributor ? (
-              <ContributorDetail contributor={selectedContributor} />
-            ) : null}
-          </>
-        ) : (
-          <Alert>
-            <AlertTitle>No contributor ranking yet</AlertTitle>
-            <AlertDescription>
-              This repository has no normalized contributor OpenRank records
-              for the latest available month.
-            </AlertDescription>
-          </Alert>
-        )}
+        {project.topics.length ? (
+          <div className={styles.staticTopics}>
+            {project.topics.slice(0, 10).map((topic) => (
+              <Badge key={topic} variant="outline">
+                {topic}
+              </Badge>
+            ))}
+          </div>
+        ) : null}
       </CardContent>
     </Card>
-  );
-}
-
-function InsightContent({ insights }: { insights: ProjectInsights }) {
-  return (
-    <div className={styles.insightContent}>
-      <div className={styles.insightMetricGrid}>
-        <MetricCard
-          label="OpenRank"
-          value={insights.metrics.openrank}
-          precise
-          context={`${formatMonth(insights.metrics.openrankMonth)} snapshot`}
-        />
-        <MetricCard
-          label="Stars"
-          value={insights.metrics.stars}
-          context="GitHub · refreshed weekly"
-        />
-        <MetricCard
-          label="Participants"
-          value={insights.metrics.participants}
-          context={`${formatMonth(insights.metrics.participantsMonth)} · unique`}
-        />
-        <MetricCard
-          label="Primary language"
-          value={insights.metrics.language}
-          context="Current GitHub repository metadata"
-        />
-      </div>
-
-      <div className={styles.insightChartGrid}>
-        <OpenRankTrend insights={insights} />
-        <ParticipantsTrend insights={insights} />
-      </div>
-
-      <ContributorArena insights={insights} />
-    </div>
   );
 }
 
@@ -558,33 +246,6 @@ export function ProjectInsightDialog({
   onClose: () => void;
   onSelect: (repo: string) => void;
 }) {
-  const [state, setState] = useState<InsightState>({ status: "loading" });
-  const [retryKey, setRetryKey] = useState(0);
-  const endpoint = useMemo(() => {
-    const [owner, repo] = project.repo.split("/");
-    return `/api/projects/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/insights`;
-  }, [project.repo]);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    fetch(endpoint, {
-      headers: { Accept: "application/json" },
-      signal: controller.signal,
-    })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("Insights request failed");
-        return (await response.json()) as ProjectInsights;
-      })
-      .then((data) => setState({ status: "ready", data }))
-      .catch((error: unknown) => {
-        if (error instanceof DOMException && error.name === "AbortError") return;
-        setState({ status: "error" });
-      });
-
-    return () => controller.abort();
-  }, [endpoint, retryKey]);
-
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
       <DialogContent className={styles.insightDialog}>
@@ -601,7 +262,7 @@ export function ProjectInsightDialog({
               <div className={styles.insightHeaderBadges}>
                 <Badge variant="secondary">{project.zone}</Badge>
                 <Badge variant="outline">{project.stage} layer</Badge>
-                <Badge variant="outline">Weekly data</Badge>
+                <Badge variant="outline">CSV snapshot</Badge>
               </div>
               <DialogTitle className={styles.insightTitle}>
                 {project.name}
@@ -623,38 +284,58 @@ export function ProjectInsightDialog({
         </DialogHeader>
 
         <div className={styles.insightBody}>
-          {state.status === "loading" ? <InsightSkeleton /> : null}
-          {state.status === "error" ? (
-            <Alert variant="destructive" className={styles.insightError}>
-              <TriangleAlertIcon aria-hidden="true" />
-              <AlertTitle>Project data is temporarily unavailable</AlertTitle>
-              <AlertDescription>
-                The landscape is still available. Retry the protected data
-                service when the connection recovers.
-              </AlertDescription>
-              <AlertAction>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  type="button"
-                  onClick={() => {
-                    setState({ status: "loading" });
-                    setRetryKey((value) => value + 1);
-                  }}
-                >
-                  <RefreshCwIcon data-icon="inline-start" />
-                  Retry
-                </Button>
-              </AlertAction>
-            </Alert>
-          ) : null}
-          {state.status === "ready" ? (
-            <InsightContent insights={state.data} />
-          ) : null}
+          <div className={styles.insightContent}>
+            <div className={styles.insightMetricGrid}>
+              <MetricCard
+                label="OpenRank"
+                value={project.openrank}
+                context="Jun 2026 · CSV snapshot"
+              />
+              <MetricCard
+                label="Stars"
+                value={project.stars}
+                context="GitHub metadata in CSV"
+              />
+              <MetricCard
+                label="Participants"
+                value={project.participants}
+                context="Jul 2026 · monthly contributors"
+              />
+              <MetricCard
+                label="Primary language"
+                value={project.language}
+                context="GitHub metadata in CSV"
+              />
+            </div>
+
+            <div className={styles.staticInsightGrid}>
+              <StaticOpenRankTrend project={project} />
+              <RepositoryDetails project={project} />
+            </div>
+
+            {project.selectionReason || project.selectionCaveat ? (
+              <Card className={styles.staticNotesCard}>
+                <CardHeader>
+                  <CardTitle>Landscape annotation</CardTitle>
+                  <CardDescription>
+                    Editorial notes stored with this repository
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {project.selectionReason ? (
+                    <p>{project.selectionReason}</p>
+                  ) : null}
+                  {project.selectionCaveat ? (
+                    <p>{project.selectionCaveat}</p>
+                  ) : null}
+                </CardContent>
+              </Card>
+            ) : null}
+          </div>
         </div>
 
         <footer className={styles.insightContextStrip}>
-          <span>Same ecosystem zone</span>
+          <span>Same ecosystem section</span>
           <div>
             {neighbors.slice(0, 6).map((neighbor) => (
               <Button
@@ -665,6 +346,7 @@ export function ProjectInsightDialog({
                 onClick={() => onSelect(neighbor.repo)}
               >
                 <Image
+                  className={styles.neighborLogo}
                   src={`https://github.com/${neighbor.owner}.png?size=48`}
                   alt=""
                   width={20}

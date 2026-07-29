@@ -23,9 +23,14 @@ const STEPS: TourStep[] = [
     body: "Projects rise and vanish in weeks, not years. This isn't a snapshot — it's a living map that updates as the ecosystem moves.",
   },
   {
-    anchor: "stages",
-    title: "Three layers, one stack",
-    body: "Where people delegate work, how agents get assembled, and what they need to run reliably. This architecture organizes everything below it.",
+    anchor: "agent-module",
+    title: "Start with Agent Infra",
+    body: "Applications, frameworks, runtime — the layers people reach for when they build something that acts. Each zone is sized by the attention its projects are getting.",
+  },
+  {
+    anchor: "model-module",
+    title: "Then what runs underneath",
+    body: "Serving, training, data and compute. Split out as its own block so you can read either half on its own, or scroll straight through both.",
   },
   {
     anchor: "project",
