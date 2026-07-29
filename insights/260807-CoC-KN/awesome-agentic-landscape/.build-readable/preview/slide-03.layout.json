@@ -1,0 +1,1598 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/hjyhi5",
+    "id": "hjyhi5",
+    "slide": 3,
+    "layoutId": "86a518ea-663f-4330-8b14-f08e92332804",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "8d534698-eb2b-4a48-9626-e03c911d875a",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "PingFang SC"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "86a518ea-663f-4330-8b14-f08e92332804",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "8d534698-eb2b-4a48-9626-e03c911d875a",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "8d534698-eb2b-4a48-9626-e03c911d875a",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/psvqtgr6",
+      "id": "1",
+      "name": "slide-title",
+      "bbox": [
+        54,
+        34,
+        1160,
+        58
+      ],
+      "geometry": "rect",
+      "text": "更进一步，仓库开始规定 agent 怎么工作",
+      "textPreview": "更进一步，仓库开始规定 agent 怎么工作",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 42,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "更进一步，仓库开始规定 agent 怎么工作"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "更进一步，仓库开始规定 agent 怎么工作",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "更进一步，仓库开始规定 agent 怎么工作",
+              "fontSize": 42,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2547yl8f",
+      "id": "2",
+      "name": "slide-subtitle",
+      "bbox": [
+        56,
+        94,
+        1148,
+        36
+      ],
+      "geometry": "rect",
+      "text": "安装器解决“怎么拿到”，方法库解决“拿到以后怎么做”。",
+      "textPreview": "安装器解决“怎么拿到”，方法库解决“拿到以后怎么做”。",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 21,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "安装器解决“怎么拿到”，方法库解决“拿到以后怎么做”。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "安装器解决“怎么拿到”，方法库解决“拿到以后怎么做”。",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "安装器解决“怎么拿到”，方法库解决“拿到以后怎么做”。",
+              "fontSize": 21,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n6d8rq90",
+      "id": "3",
+      "name": "rule",
+      "bbox": [
+        54,
+        135,
+        1172,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#101216",
+      "lineColor": "#101216",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cvmp4vqh",
+      "id": "4",
+      "name": "project-1-name",
+      "bbox": [
+        56,
+        159,
+        330,
+        36
+      ],
+      "geometry": "rect",
+      "text": "skills",
+      "textPreview": "skills",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 25,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "skills"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "skills",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "skills",
+              "fontSize": 25,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xwvqx0r2",
+      "id": "5",
+      "name": "project-1-owner",
+      "bbox": [
+        56,
+        195,
+        300,
+        22
+      ],
+      "geometry": "rect",
+      "text": "vercel-labs",
+      "textPreview": "vercel-labs",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "vercel-labs"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "vercel-labs",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "vercel-labs",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/at472l8r",
+      "id": "6",
+      "name": "project-1-tag",
+      "bbox": [
+        56,
+        225,
+        300,
+        26
+      ],
+      "geometry": "rect",
+      "text": "Skill 安装器",
+      "textPreview": "Skill 安装器",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "PingFang SC",
+        "color": "#C85A3A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Skill 安装器"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Skill 安装器",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "PingFang SC",
+            "color": "#C85A3A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Skill 安装器",
+              "fontSize": 17,
+              "typeface": "PingFang SC",
+              "color": "#C85A3A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bud8vq9c",
+      "id": "7",
+      "name": "project-1-what",
+      "bbox": [
+        420,
+        157,
+        790,
+        54
+      ],
+      "geometry": "rect",
+      "text": "它既是 skill 目录，也是命令行工具。npx skills 可以搜索、安装或运行 skill。",
+      "textPreview": "它既是 skill 目录，也是命令行工具。npx skills 可以搜索、安装或运行 skill。",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "它既是 skill 目录，也是命令行工具。npx skills 可以搜索、安装或运行 skill。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "它既是 skill 目录，也是命令行工具。npx skills 可以搜索、安装或运行 skill。",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "它既是 skill 目录，也是命令行工具。npx skills 可以搜索、安装或运行 skill。",
+              "fontSize": 22,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sz2psrad",
+      "id": "8",
+      "name": "project-1-use",
+      "bbox": [
+        420,
+        218,
+        790,
+        50
+      ],
+      "geometry": "rect",
+      "text": "清单开始有包管理器的感觉：找到以后，下一步可以交给工具完成。",
+      "textPreview": "清单开始有包管理器的感觉：找到以后，下一步可以交给工具完成。",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 19,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "清单开始有包管理器的感觉：找到以后，下一步可以交给工具完成。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "清单开始有包管理器的感觉：找到以后，下一步可以交给工具完成。",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "清单开始有包管理器的感觉：找到以后，下一步可以交给工具完成。",
+              "fontSize": 19,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d0b6lwry",
+      "id": "9",
+      "name": "rule",
+      "bbox": [
+        56,
+        273,
+        1154,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#E4E6E9",
+      "lineColor": "#E4E6E9",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lwnyxs32",
+      "id": "10",
+      "name": "project-2-name",
+      "bbox": [
+        56,
+        292,
+        330,
+        36
+      ],
+      "geometry": "rect",
+      "text": "skills",
+      "textPreview": "skills",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 25,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "skills"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "skills",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "skills",
+              "fontSize": 25,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0vexonmh",
+      "id": "11",
+      "name": "project-2-owner",
+      "bbox": [
+        56,
+        328,
+        300,
+        22
+      ],
+      "geometry": "rect",
+      "text": "anthropics",
+      "textPreview": "anthropics",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "anthropics"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "anthropics",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "anthropics",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zulgv2lw",
+      "id": "12",
+      "name": "project-2-tag",
+      "bbox": [
+        56,
+        358,
+        300,
+        26
+      ],
+      "geometry": "rect",
+      "text": "官方 Skill 范本",
+      "textPreview": "官方 Skill 范本",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "PingFang SC",
+        "color": "#C85A3A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "官方 Skill 范本"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "官方 Skill 范本",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "PingFang SC",
+            "color": "#C85A3A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "官方 Skill 范本",
+              "fontSize": 17,
+              "typeface": "PingFang SC",
+              "color": "#C85A3A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ytcfmx4b",
+      "id": "13",
+      "name": "project-2-what",
+      "bbox": [
+        420,
+        290,
+        790,
+        54
+      ],
+      "geometry": "rect",
+      "text": "它给出公开的 Agent Skills 样例。每项能力都是一个包含说明、脚本和资源的文件夹。",
+      "textPreview": "它给出公开的 Agent Skills 样例。每项能力都是一个包含说明、脚本和资源的文件夹。",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "它给出公开的 Agent Skills"
+          },
+          {
+            "index": 2,
+            "text": "样例。每项能力都是一个包含说明、脚本和资源的文件夹。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "它给出公开的 Agent Skills 样例。每项能力都是一个包含说明、脚本和资源的文件夹。",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "它给出公开的 Agent Skills 样例。每项能力都是一个包含说明、脚本和资源的文件夹。",
+              "fontSize": 22,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/90ny1c3y",
+      "id": "14",
+      "name": "project-2-use",
+      "bbox": [
+        420,
+        351,
+        790,
+        50
+      ],
+      "geometry": "rect",
+      "text": "这里最有价值的是文件结构：agent 知道先读什么、再执行什么。",
+      "textPreview": "这里最有价值的是文件结构：agent 知道先读什么、再执行什么。",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 19,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "这里最有价值的是文件结构：agent 知道先读什么、再执行什么。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "这里最有价值的是文件结构：agent 知道先读什么、再执行什么。",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "这里最有价值的是文件结构：agent 知道先读什么、再执行什么。",
+              "fontSize": 19,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8zexs7md",
+      "id": "15",
+      "name": "rule",
+      "bbox": [
+        56,
+        406,
+        1154,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#E4E6E9",
+      "lineColor": "#E4E6E9",
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ny5gz2l8",
+      "id": "16",
+      "name": "project-3-name",
+      "bbox": [
+        56,
+        425,
+        330,
+        36
+      ],
+      "geometry": "rect",
+      "text": "superpowers",
+      "textPreview": "superpowers",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 25,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "superpowers"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "superpowers",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "superpowers",
+              "fontSize": 25,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mxwfqx4n",
+      "id": "17",
+      "name": "project-3-owner",
+      "bbox": [
+        56,
+        461,
+        300,
+        22
+      ],
+      "geometry": "rect",
+      "text": "obra",
+      "textPreview": "obra",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "obra"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "obra",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "obra",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ho7y5c3a",
+      "id": "18",
+      "name": "project-3-tag",
+      "bbox": [
+        56,
+        491,
+        300,
+        26
+      ],
+      "geometry": "rect",
+      "text": "开发方法",
+      "textPreview": "开发方法",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "PingFang SC",
+        "color": "#C85A3A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "开发方法"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "开发方法",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "PingFang SC",
+            "color": "#C85A3A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "开发方法",
+              "fontSize": 17,
+              "typeface": "PingFang SC",
+              "color": "#C85A3A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wnyhw7mp",
+      "id": "19",
+      "name": "project-3-what",
+      "bbox": [
+        420,
+        423,
+        790,
+        54
+      ],
+      "geometry": "rect",
+      "text": "它把需求澄清、写计划、TDD 和代码评审整理成会自动触发的 skills。",
+      "textPreview": "它把需求澄清、写计划、TDD 和代码评审整理成会自动触发的 skills。",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "它把需求澄清、写计划、TDD 和代码评审整理成会自动触发的 skills。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "它把需求澄清、写计划、TDD 和代码评审整理成会自动触发的 skills。",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "它把需求澄清、写计划、TDD 和代码评审整理成会自动触发的 skills。",
+              "fontSize": 22,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/g369ofex",
+      "id": "20",
+      "name": "project-3-use",
+      "bbox": [
+        420,
+        484,
+        790,
+        50
+      ],
+      "geometry": "rect",
+      "text": "仓库交付的不是代码片段，而是一套 coding agent 的工作纪律。",
+      "textPreview": "仓库交付的不是代码片段，而是一套 coding agent 的工作纪律。",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 19,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "仓库交付的不是代码片段，而是一套 coding agent 的工作纪律。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "仓库交付的不是代码片段，而是一套 coding agent 的工作纪律。",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "仓库交付的不是代码片段，而是一套 coding agent 的工作纪律。",
+              "fontSize": 19,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/14zahkfi",
+      "id": "21",
+      "name": "rule",
+      "bbox": [
+        56,
+        539,
+        1154,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#E4E6E9",
+      "lineColor": "#E4E6E9",
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ehormpw7",
+      "id": "22",
+      "name": "project-4-name",
+      "bbox": [
+        56,
+        558,
+        330,
+        36
+      ],
+      "geometry": "rect",
+      "text": "spec-kit",
+      "textPreview": "spec-kit",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 25,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "spec-kit"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "spec-kit",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "spec-kit",
+              "fontSize": 25,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fix8faxc",
+      "id": "23",
+      "name": "project-4-owner",
+      "bbox": [
+        56,
+        594,
+        300,
+        22
+      ],
+      "geometry": "rect",
+      "text": "github",
+      "textPreview": "github",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "github"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "github",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "github",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o7q9sze9",
+      "id": "24",
+      "name": "project-4-tag",
+      "bbox": [
+        56,
+        624,
+        300,
+        26
+      ],
+      "geometry": "rect",
+      "text": "规格驱动开发",
+      "textPreview": "规格驱动开发",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "PingFang SC",
+        "color": "#C85A3A",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "规格驱动开发"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "规格驱动开发",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "PingFang SC",
+            "color": "#C85A3A",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "规格驱动开发",
+              "fontSize": 17,
+              "typeface": "PingFang SC",
+              "color": "#C85A3A",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p8zal4fu",
+      "id": "25",
+      "name": "project-4-what",
+      "bbox": [
+        420,
+        556,
+        790,
+        54
+      ],
+      "geometry": "rect",
+      "text": "它先保存规格、计划和验收条件，再让 agent 开始写代码。",
+      "textPreview": "它先保存规格、计划和验收条件，再让 agent 开始写代码。",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "它先保存规格、计划和验收条件，再让 agent 开始写代码。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "它先保存规格、计划和验收条件，再让 agent 开始写代码。",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "它先保存规格、计划和验收条件，再让 agent 开始写代码。",
+              "fontSize": 22,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/258rqpw3",
+      "id": "26",
+      "name": "project-4-use",
+      "bbox": [
+        420,
+        617,
+        790,
+        50
+      ],
+      "geometry": "rect",
+      "text": "代码可以快速重写，真正需要长期保留的是意图和判断标准。",
+      "textPreview": "代码可以快速重写，真正需要长期保留的是意图和判断标准。",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 19,
+        "typeface": "PingFang SC",
+        "color": "#59616C",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "代码可以快速重写，真正需要长期保留的是意图和判断标准。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "代码可以快速重写，真正需要长期保留的是意图和判断标准。",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "typeface": "PingFang SC",
+            "color": "#59616C",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "代码可以快速重写，真正需要长期保留的是意图和判断标准。",
+              "fontSize": 19,
+              "typeface": "PingFang SC",
+              "color": "#59616C",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

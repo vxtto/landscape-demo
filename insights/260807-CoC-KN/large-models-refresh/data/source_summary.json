@@ -1,0 +1,47 @@
+{
+  "effective_composite_weights": {
+    "hf_downloads_30d_score": 0.15,
+    "hf_likes_score": 0.05,
+    "openrouter_usage_score": 0.45,
+    "zenmux_usage_score": 0.35
+  },
+  "eligibility_rule": "Observed OpenRouter usage plus a resolved, non-private Hugging Face weight repository linked by OpenRouter.",
+  "generated_at": "2026-07-28T15:14:55.867400+00:00",
+  "huggingface": {
+    "caveat": "Downloads are repository downloads, not API calls or unique users.",
+    "metrics": "30-day downloads, all-time downloads, cumulative likes",
+    "requested_models": 165,
+    "resolved_models": 164,
+    "source_url": "https://huggingface.co/api/models/{model_id}",
+    "status": "partial"
+  },
+  "open_weight_caveat": "Open-weight means weights are obtainable from a public Hugging Face repository. License class must still be checked for commercial, redistribution, and use restrictions.",
+  "openrouter_usage": {
+    "as_of": "2026-07-28T15:14:21.411486+00:00",
+    "authenticated_daily_dataset": {
+      "caveat": "The documented dataset retains only each day's public Top 50, so it is used as a cross-check rather than the candidate universe.",
+      "source_url": "https://openrouter.ai/api/v1/datasets/rankings-daily",
+      "status": "complete",
+      "window_end": "2026-07-27",
+      "window_start": "2026-07-21"
+    },
+    "caveat": "The complete weekly rankings page is the primary signal. Cross-provider tokenizers differ.",
+    "metric": "weekly prompt + completion tokens; requests retained separately",
+    "source_type": "public_weekly_rankings_with_daily_crosscheck",
+    "source_url": "https://openrouter.ai/api/frontend/v1/rankings/models",
+    "status": "complete",
+    "window_end": "2026-07-27",
+    "window_start": "2026-07-21"
+  },
+  "ranking_status": "complete_three_sources",
+  "table_grain": "One OpenRouter model endpoint/release; free and paid variants merged.",
+  "zenmux_usage": {
+    "as_of": "2026-07-28T15:14:24.185203+00:00",
+    "caveat": "Platform-wide data is aggregated daily and fresh through T-1.",
+    "metric": "prompt + completion tokens",
+    "source_url": "https://zenmux.ai/api/v1/management/statistics/leaderboard",
+    "status": "complete",
+    "window_end": "2026-07-27",
+    "window_start": "2026-07-21"
+  }
+}

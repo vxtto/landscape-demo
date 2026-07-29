@@ -1,5 +1,5 @@
 import { getLandscapeProjects } from "@/lib/landscape-data";
-import { getProjectInsights } from "@/lib/server/project-insights";
+import { getProjectInsightsForWeb } from "@/lib/server/insights-api";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,11 +32,11 @@ export async function GET(
   }
 
   try {
-    const insights = await getProjectInsights(project.repo);
+    const insights = await getProjectInsightsForWeb(project.repo);
     return Response.json(insights, {
       headers: {
         "Cache-Control":
-          "public, s-maxage=604800, stale-while-revalidate=86400",
+          "public, s-maxage=86400, stale-while-revalidate=86400",
         "X-Content-Type-Options": "nosniff",
       },
     });

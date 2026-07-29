@@ -1,0 +1,109 @@
+{
+  "source_url": "https://artificialanalysis.ai/models",
+  "retrieved_at": "2026-07-28T16:20:32.841045+00:00",
+  "dataset_name": "Artificial Analysis Intelligence Index",
+  "description": "Artificial Analysis Intelligence Index v4.1 incorporates 9 evaluations: GDPval-AA v2, 𝜏³-Banking, Terminal-Bench v2.1, SciCode, Humanity's Last Exam, GPQA Diamond, CritPt, AA-Omniscience, AA-LCR · Evaluation results measured independently by Artificial Analysis",
+  "coverage_note": "Public page JSON-LD exposes the currently displayed leaderboard rows, not the full commercial data API.",
+  "data": [
+    {
+      "label": "Claude Opus 5 (max)",
+      "intelligenceIndex": 60.6918740157091,
+      "detailsUrl": "/models/claude-opus-5"
+    },
+    {
+      "label": "Claude Fable 5 (with fallback)",
+      "intelligenceIndex": 59.8606463217303,
+      "detailsUrl": "/models/claude-fable-5"
+    },
+    {
+      "label": "GPT-5.6 Sol (max)",
+      "intelligenceIndex": 58.889831189723,
+      "detailsUrl": "/models/gpt-5-6-sol"
+    },
+    {
+      "label": "Kimi K3",
+      "intelligenceIndex": 57.1123394372091,
+      "detailsUrl": "/models/kimi-k3"
+    },
+    {
+      "label": "Claude Opus 4.8 (max)",
+      "intelligenceIndex": 55.6920406995495,
+      "detailsUrl": "/models/claude-opus-4-8"
+    },
+    {
+      "label": "GPT-5.6 Terra (max)",
+      "intelligenceIndex": 54.9528567569231,
+      "detailsUrl": "/models/gpt-5-6-terra"
+    },
+    {
+      "label": "Grok 4.5 (high)",
+      "intelligenceIndex": 53.8265951657731,
+      "detailsUrl": "/models/grok-4-5"
+    },
+    {
+      "label": "Claude Sonnet 5 (max)",
+      "intelligenceIndex": 53.3500026989169,
+      "detailsUrl": "/models/claude-sonnet-5"
+    },
+    {
+      "label": "GPT-5.6 Luna (max)",
+      "intelligenceIndex": 51.2359331798034,
+      "detailsUrl": "/models/gpt-5-6-luna"
+    },
+    {
+      "label": "GLM-5.2 (max)",
+      "intelligenceIndex": 51.0858347714416,
+      "detailsUrl": "/models/glm-5-2"
+    },
+    {
+      "label": "Muse Spark 1.1 (xhigh)",
+      "intelligenceIndex": 50.6229899483333,
+      "detailsUrl": "/models/muse-spark-1-1"
+    },
+    {
+      "label": "Gemini 3.6 Flash",
+      "intelligenceIndex": 50.0675324362393,
+      "detailsUrl": "/models/gemini-3-6-flash"
+    },
+    {
+      "label": "Qwen3.7 Max",
+      "intelligenceIndex": 45.9937184770221,
+      "detailsUrl": "/models/qwen3-7-max"
+    },
+    {
+      "label": "MiniMax-M3",
+      "intelligenceIndex": 44.4372686326056,
+      "detailsUrl": "/models/minimax-m3"
+    },
+    {
+      "label": "DeepSeek V4 Pro (max)",
+      "intelligenceIndex": 44.2735554261611,
+      "detailsUrl": "/models/deepseek-v4-pro"
+    },
+    {
+      "label": "MiMo-V2.5-Pro",
+      "intelligenceIndex": 42.2394366693508,
+      "detailsUrl": "/models/mimo-v2-5-pro"
+    },
+    {
+      "label": "Inkling",
+      "intelligenceIndex": 40.736927521956,
+      "detailsUrl": "/models/inkling"
+    },
+    {
+      "label": "DeepSeek V4 Flash (max)",
+      "intelligenceIndex": 40.2825017625236,
+      "detailsUrl": "/models/deepseek-v4-flash"
+    },
+    {
+      "label": "Nemotron 3 Ultra",
+      "intelligenceIndex": 37.7619546243905,
+      "detailsUrl": "/models/nvidia-nemotron-3-ultra-550b-a55b"
+    },
+    {
+      "label": "Gemini 3.5 Flash-Lite",
+      "intelligenceIndex": 36.4776366072529,
+      "detailsUrl": "/models/gemini-3-5-flash-lite"
+    }
+  ]
+}

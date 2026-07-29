@@ -1,0 +1,12 @@
+.git
+.next
+.vercel
+.env
+.env.*
+!.env.example
+node_modules
+services/insights-api/node_modules
+services/insights-api/dist
+coverage
+*.log
+*.pem

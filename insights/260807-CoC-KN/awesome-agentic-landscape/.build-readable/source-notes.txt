@@ -1,0 +1,13 @@
+Local analysis:
+- outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv
+- outputs/awesome-agentic-landscape-260729/data/awesome_agentic_candidates.csv
+
+Repository sources:
+- https://github.com/sindresorhus/awesome
+- https://github.com/punkpeye/awesome-mcp-servers
+- https://github.com/VoltAgent/awesome-design-md
+- https://github.com/freestylefly/awesome-gpt-image-2
+- https://github.com/vercel-labs/skills
+- https://github.com/anthropics/skills
+- https://github.com/obra/superpowers
+- https://github.com/github/spec-kit

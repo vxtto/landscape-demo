@@ -1,0 +1,22 @@
+Local analysis
+- /Users/xiaoyawork/Desktop/src_code/agentic-ai-landscape/outputs/awesome-agentic-landscape-260729/data/awesome_agentic_candidates.csv
+- /Users/xiaoyawork/Desktop/src_code/agentic-ai-landscape/outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv
+- /Users/xiaoyawork/Desktop/src_code/agentic-ai-landscape/outputs/awesome-agentic-landscape-260729/data/validation_report.json
+- /Users/xiaoyawork/Desktop/src_code/agentic-ai-landscape/outputs/awesome-agentic-landscape-260729/landscape/awesome_agentic_landscape_2026.png
+
+Repository sources
+- https://github.com/sindresorhus/awesome
+- https://github.com/vercel-labs/skills
+- https://github.com/VoltAgent/awesome-design-md
+- https://github.com/freestylefly/awesome-gpt-image-2
+- https://github.com/obra/superpowers
+- https://github.com/anthropics/skills
+- https://github.com/openai/skills
+- https://github.com/google/skills
+
+Metric windows
+- GitHub metadata snapshot: 2026-07-29
+- Visible WatchEvents and participants: 2026-05-01 through 2026-07-28
+- OpenRank: 2026-04 through 2026-06
+- WatchEvents are a directional OpenDigger signal, not exact GitHub star growth.
+- 2026 OpenRank is coverage- and backfill-sensitive.

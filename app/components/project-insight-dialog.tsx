@@ -96,11 +96,9 @@ function formatDate(value: string) {
 function MetricCard({
   label,
   value,
-  context,
 }: {
   label: string;
   value: number | null | string;
-  context: string;
 }) {
   const displayValue =
     typeof value === "number"
@@ -113,7 +111,6 @@ function MetricCard({
         <CardDescription>{label}</CardDescription>
         <CardTitle>{displayValue}</CardTitle>
       </CardHeader>
-      <CardContent>{context}</CardContent>
     </Card>
   );
 }
@@ -132,9 +129,6 @@ function StaticOpenRankTrend({
     <Card className={styles.insightTrendCard}>
       <CardHeader>
         <CardTitle>OpenRank trend</CardTitle>
-        <CardDescription>
-          Aug 2025–Jul 2026 · values stored in agentic-ai-projects.csv
-        </CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer
@@ -188,10 +182,7 @@ function RepositoryDetails({ project }: { project: LandscapeProject }) {
   return (
     <Card className={styles.staticMetaCard}>
       <CardHeader>
-        <CardTitle>Repository snapshot</CardTitle>
-        <CardDescription>
-          Static GitHub metadata included in the landscape CSV
-        </CardDescription>
+        <CardTitle>Repository</CardTitle>
       </CardHeader>
       <CardContent>
         <dl className={styles.staticMetaGrid}>
@@ -262,7 +253,6 @@ export function ProjectInsightDialog({
               <div className={styles.insightHeaderBadges}>
                 <Badge variant="secondary">{project.zone}</Badge>
                 <Badge variant="outline">{project.stage} layer</Badge>
-                <Badge variant="outline">CSV snapshot</Badge>
               </div>
               <DialogTitle className={styles.insightTitle}>
                 {project.name}
@@ -287,24 +277,17 @@ export function ProjectInsightDialog({
           <div className={styles.insightContent}>
             <div className={styles.insightMetricGrid}>
               <MetricCard
-                label="OpenRank"
+                label="OpenRank · Jun 2026"
                 value={project.openrank}
-                context="Jun 2026 · CSV snapshot"
               />
+              <MetricCard label="Stars" value={project.stars} />
               <MetricCard
-                label="Stars"
-                value={project.stars}
-                context="GitHub metadata in CSV"
-              />
-              <MetricCard
-                label="Participants"
+                label="Participants · Jul 2026"
                 value={project.participants}
-                context="Jul 2026 · monthly contributors"
               />
               <MetricCard
                 label="Primary language"
                 value={project.language}
-                context="GitHub metadata in CSV"
               />
             </div>
 
@@ -317,9 +300,6 @@ export function ProjectInsightDialog({
               <Card className={styles.staticNotesCard}>
                 <CardHeader>
                   <CardTitle>Landscape annotation</CardTitle>
-                  <CardDescription>
-                    Editorial notes stored with this repository
-                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   {project.selectionReason ? (

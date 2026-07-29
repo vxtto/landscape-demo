@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-07-28T21:12:40.773469+08:00",
+  "existing_landscape_repositories": 227,
+  "raw_candidate_ids": 6118,
+  "auto_relevant_before_github_refresh": 878,
+  "github_refreshed_candidates": 227,
+  "final_candidate_pool": 222,
+  "exact_star_growth_checked": 0,
+  "date_windows": {
+    "visible_watch_events": [
+      "2026-05-01",
+      "2026-07-29"
+    ],
+    "openrank": [
+      "2026-04-01",
+      "2026-07-01"
+    ],
+    "github_snapshot": "2026-07-28"
+  },
+  "known_limitations": [
+    "OpenDigger GitHub event and OpenRank coverage declines materially after April 2026.",
+    "WatchEvent counts are discovery signals, not complete GitHub star growth.",
+    "Exact recent star growth is unavailable: GitHub's public stargazer-list endpoint is now restricted. Visible WatchEvent counts are retained only as an incomplete discovery signal.",
+    "Automated relevance screening still requires human review before landscape inclusion."
+  ]
+}

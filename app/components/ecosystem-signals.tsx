@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowUpRightIcon, GitForkIcon } from "lucide-react";
 import {
   Bar,
   BarChart,
@@ -13,10 +12,8 @@ import {
   ZAxis,
 } from "recharts";
 
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardHeader,
@@ -126,15 +123,6 @@ function sum(
   return projects.reduce((total, project) => total + selector(project), 0);
 }
 
-function median(values: number[]) {
-  if (!values.length) return 0;
-  const sorted = [...values].sort((a, b) => a - b);
-  const middle = Math.floor(sorted.length / 2);
-  return sorted.length % 2
-    ? sorted[middle]
-    : (sorted[middle - 1] + sorted[middle]) / 2;
-}
-
 export function EcosystemSignals({
   projects,
 }: {
@@ -156,28 +144,6 @@ export function EcosystemSignals({
   const newProjects = projects.filter(
     (project) => project.landscapeAction === "add",
   ).length;
-  const licenseCoverage = Math.round(
-    (projects.filter(
-      (project) =>
-        project.license &&
-        project.license !== "—" &&
-        project.license !== "NOASSERTION",
-    ).length /
-      projects.length) *
-      100,
-  );
-  const languageCount = new Set(
-    projects.map((project) => project.language).filter((value) => value !== "—"),
-  ).size;
-  const projectAges = projects
-    .map((project) => new Date(project.createdAt).getTime())
-    .filter(Number.isFinite)
-    .map(
-      (createdAt) =>
-        (Date.UTC(2026, 6, 29) - createdAt) /
-        (365.25 * 24 * 60 * 60 * 1000),
-    );
-  const medianAge = median(projectAges);
 
   const agentFieldTrend = MONTHS.map((month, index) => ({
     month,
@@ -227,15 +193,6 @@ export function EcosystemSignals({
       ),
     ),
   }));
-  const latestAgentOpenRank = sum(
-    agentProjects,
-    (project) => project.trend[MONTHS.length - 1] ?? 0,
-  );
-  const latestModelOpenRank = sum(
-    modelProjects,
-    (project) => project.trend[MONTHS.length - 1] ?? 0,
-  );
-
   const leaders = [...projects]
     .filter(
       (project): project is LandscapeProject & { openrank: number } =>
@@ -285,54 +242,31 @@ export function EcosystemSignals({
 
   const snapshotMetrics = [
     {
-      label: "Mapped projects",
+      label: "Projects",
       value: projects.length.toLocaleString(),
-      note: `${agentProjects.length} Agent Infra · ${modelProjects.length} Model Infra`,
     },
     {
-      label: "Combined stars",
+      label: "Stars",
       value: NUMBER_FORMAT.format(totalStars),
-      note: "Current GitHub metadata in CSV",
     },
     {
-      label: "Monthly participants",
+      label: "Participants · Jul 2026",
       value: NUMBER_FORMAT.format(totalParticipants),
-      note: "Jul 2026 · summed project snapshots",
     },
     {
-      label: "OpenRank",
+      label: "OpenRank · Jun 2026",
       value: NUMBER_FORMAT.format(totalOpenRank),
-      note: "Jun 2026 · summed project snapshots",
     },
     {
-      label: "New this edition",
+      label: "New",
       value: newProjects.toLocaleString(),
-      note: "landscape_action = add",
-    },
-    {
-      label: "Languages",
-      value: languageCount.toLocaleString(),
-      note: `${licenseCoverage}% have an asserted license`,
-    },
-    {
-      label: "Median project age",
-      value: `${medianAge.toFixed(1)}y`,
-      note: "Calculated from repository creation date",
     },
   ];
 
   return (
     <section className={styles.signals} id="signals">
       <div className={styles.signalsIntro}>
-        <div>
-          <Badge variant="outline">Ecosystem signals · CSV snapshot</Badge>
-          <h2>One ecosystem. Two infrastructure blocks. Many signals.</h2>
-        </div>
-        <p>
-          Every chart below covers the complete curated landscape: Agent Infra
-          and Model Infra together. OpenRank is the Jun 2026 snapshot;
-          participants are from Jul 2026.
-        </p>
+        <h2>Ecosystem signals</h2>
       </div>
 
       <div className={styles.signalMetricGrid}>
@@ -342,7 +276,6 @@ export function EcosystemSignals({
               <CardDescription>{metric.label}</CardDescription>
               <CardTitle>{metric.value}</CardTitle>
             </CardHeader>
-            <CardContent>{metric.note}</CardContent>
           </Card>
         ))}
       </div>
@@ -351,14 +284,6 @@ export function EcosystemSignals({
         <Card className={styles.signalStackedCard}>
           <CardHeader>
             <CardTitle>Agent Infra OpenRank by field</CardTitle>
-            <CardDescription>
-              Monthly stacked OpenRank · Aug 2025–Jun 2026
-            </CardDescription>
-            <CardAction>
-              <Badge variant="secondary">
-                {NUMBER_FORMAT.format(latestAgentOpenRank)} in Jun 2026
-              </Badge>
-            </CardAction>
           </CardHeader>
           <CardContent>
             <div className={styles.signalStackLegend} aria-hidden="true">
@@ -425,14 +350,6 @@ export function EcosystemSignals({
         <Card className={styles.signalStackedCard}>
           <CardHeader>
             <CardTitle>Model Infra OpenRank by field</CardTitle>
-            <CardDescription>
-              Monthly stacked OpenRank · Aug 2025–Jun 2026
-            </CardDescription>
-            <CardAction>
-              <Badge variant="secondary">
-                {NUMBER_FORMAT.format(latestModelOpenRank)} in Jun 2026
-              </Badge>
-            </CardAction>
           </CardHeader>
           <CardContent>
             <div className={styles.signalStackLegend} aria-hidden="true">
@@ -500,9 +417,6 @@ export function EcosystemSignals({
         <Card className={styles.signalTallCard}>
           <CardHeader>
             <CardTitle>OpenRank leaders</CardTitle>
-            <CardDescription>
-              Top 10 projects · Jun 2026 snapshot
-            </CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer
@@ -552,9 +466,6 @@ export function EcosystemSignals({
         <Card className={styles.signalLanguageCard}>
           <CardHeader>
             <CardTitle>Language composition</CardTitle>
-            <CardDescription>
-              Top eight primary languages · project count
-            </CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer
@@ -603,9 +514,6 @@ export function EcosystemSignals({
         <Card className={styles.signalScatterCard}>
           <CardHeader>
             <CardTitle>Stars and OpenRank by project</CardTitle>
-            <CardDescription>
-              Each dot is one repository · logarithmic axes
-            </CardDescription>
           </CardHeader>
           <CardContent>
             <ChartContainer
@@ -661,19 +569,6 @@ export function EcosystemSignals({
         </Card>
       </div>
 
-      <a
-        className={styles.sourceCallout}
-        href="https://github.com/antgroup/agentic-ai-landscape"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <GitForkIcon aria-hidden="true" />
-        <span>
-          <strong>Inspect the source taxonomy and project annotations</strong>
-          <small>antgroup/agentic-ai-landscape</small>
-        </span>
-        <ArrowUpRightIcon aria-hidden="true" />
-      </a>
     </section>
   );
 }

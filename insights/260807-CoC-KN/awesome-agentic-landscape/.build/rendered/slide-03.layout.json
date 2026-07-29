@@ -1,0 +1,1623 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/d4cvrv",
+    "id": "d4cvrv",
+    "slide": 3,
+    "layoutId": "31da445c-a124-4e0f-8507-ae86158d0b6c",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+    "masterLayoutName": "Master",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Helvetica Neue",
+      "PingFang SC"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "31da445c-a124-4e0f-8507-ae86158d0b6c",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/94nm10n2",
+      "id": "1",
+      "name": "Rounded-Rectangle-5-1",
+      "bbox": [
+        41.33,
+        317.33,
+        374.67,
+        312
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.0"
+      },
+      "geometry": "roundRect",
+      "fillColor": "#F2F2F2"
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m1w365ob",
+      "id": "2",
+      "name": "Rounded-Rectangle-6-2",
+      "bbox": [
+        452.67,
+        317.33,
+        374.67,
+        312
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.1"
+      },
+      "geometry": "roundRect",
+      "fillColor": "#F2F2F2"
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n254zq5w",
+      "id": "3",
+      "name": "Rounded-Rectangle-7-3",
+      "bbox": [
+        864.28,
+        317.33,
+        374.67,
+        312
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.2"
+      },
+      "geometry": "roundRect",
+      "fillColor": "#F2F2F2"
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0zel4v6l",
+      "id": "4",
+      "name": "Slide-Number-Placeholder-1-4",
+      "bbox": [
+        1184.18,
+        659.24,
+        54.48,
+        25.33
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.3"
+      },
+      "geometry": "rect",
+      "text": "3",
+      "textPreview": "3",
+      "resolvedFontSize": 13.33,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 13.33,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "right",
+        "verticalAlignment": "bottom",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "3"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "3",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "fontSize": 13.33,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "right",
+            "verticalAlignment": "bottom",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "3",
+              "fontSize": 13.33,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/10nmx0n6",
+      "id": "5",
+      "name": "Title-2-5",
+      "bbox": [
+        41.33,
+        36.12,
+        1197.33,
+        109.97
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.4"
+      },
+      "geometry": "rect",
+      "text": "真正有故事的项目，大多已经靠近 agent 运行时",
+      "textPreview": "真正有故事的项目，大多已经靠近 agent 运行时",
+      "resolvedFontSize": 38.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 38.67,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "真正有故事的项目，大多已经靠近 agent 运行时"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "真正有故事的项目，大多已经靠近 agent 运行时",
+          "lineSpacingPercent": 90000,
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "fontSize": 38.67,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "verticalAlignment": "top",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "真正有故事的项目，大多已经靠近 agent 运行时",
+              "fontSize": 38.67,
+              "typeface": "PingFang SC",
+              "color": "#111318",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/exc32lof",
+      "id": "6",
+      "name": "Content-Placeholder-9-6",
+      "bbox": [
+        73.74,
+        514.5,
+        309.67,
+        86
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.5"
+      },
+      "geometry": "rect",
+      "text": "进入首轮 landscape\n另有 2 个历史参照",
+      "textPreview": "进入首轮 landscape | 另有 2 个历史参照",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "进入首轮 landscape"
+          },
+          {
+            "index": 2,
+            "text": "另有 2 个历史参照"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "进入首轮 landscape\n另有 2 个历史参照",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "进入首轮 landscape\n另有 2 个历史参照",
+              "fontSize": 18,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zyl4vq50",
+      "id": "7",
+      "name": "Content-Placeholder-10-7",
+      "bbox": [
+        896.78,
+        514.5,
+        309.67,
+        86
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.6"
+      },
+      "geometry": "rect",
+      "text": "创建于 2025 年以后\n约 92%",
+      "textPreview": "创建于 2025 年以后 | 约 92%",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "创建于 2025 年以后"
+          },
+          {
+            "index": 2,
+            "text": "约 92%"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "创建于 2025 年以后\n约 92%",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "创建于 2025 年以后\n约 92%",
+              "fontSize": 18,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cvul0b69",
+      "id": "8",
+      "name": "Content-Placeholder-11-8",
+      "bbox": [
+        485.17,
+        514.5,
+        309.67,
+        86
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.7"
+      },
+      "geometry": "rect",
+      "text": "可直接交给 agent\n约 79%",
+      "textPreview": "可直接交给 agent | 约 79%",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "可直接交给 agent"
+          },
+          {
+            "index": 2,
+            "text": "约 79%"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "可直接交给 agent\n约 79%",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "可直接交给 agent\n约 79%",
+              "fontSize": 18,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dw3mtgnu",
+      "id": "9",
+      "name": "Content-Placeholder-9-9",
+      "bbox": [
+        73.74,
+        360,
+        308.67,
+        142.71
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.8"
+      },
+      "geometry": "rect",
+      "text": "24",
+      "textPreview": "24",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "24"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "24",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "verticalAlignment": "bottom",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "24",
+              "fontSize": 56,
+              "typeface": "PingFang SC",
+              "color": "#111318",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h4r2xgby",
+      "id": "10",
+      "name": "Content-Placeholder-9-10",
+      "bbox": [
+        484.3,
+        360,
+        308.67,
+        142.71
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.9"
+      },
+      "geometry": "rect",
+      "text": "19 / 24",
+      "textPreview": "19 / 24",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "19 / 24"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "19 / 24",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "verticalAlignment": "bottom",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "19 / 24",
+              "fontSize": 56,
+              "typeface": "PingFang SC",
+              "color": "#3D8DFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/w3i1obut",
+      "id": "11",
+      "name": "Content-Placeholder-9-11",
+      "bbox": [
+        898.94,
+        360,
+        308.67,
+        142.71
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.10"
+      },
+      "geometry": "rect",
+      "text": "22 / 24",
+      "textPreview": "22 / 24",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "22 / 24"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "22 / 24",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "verticalAlignment": "bottom",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "22 / 24",
+              "fontSize": 56,
+              "typeface": "PingFang SC",
+              "color": "#111318",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v29kv6d8",
+      "id": "12",
+      "name": "Content-Placeholder-15-12",
+      "bbox": [
+        41.33,
+        119.51,
+        1197.33,
+        167.92
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.11"
+      },
+      "geometry": "rect",
+      "text": "这是一份编辑样本，不是市场份额统计。它说明我们在 460 个候选里看到了什么。\n近三个月的活动信号负责发现项目；最终入选还要看内容能否被 agent 直接消费，以及它是否代表一种新的策展形态。",
+      "textPreview": "这是一份编辑样本，不是市场份额统计。它说明我们在 460 个候选里看到了什么。 | 近三个月的活动信号负责发现项目；最终入选还要看内容能否被 agent 直接消费，以及它是否代表一种新的策展形态。",
+      "resolvedFontSize": 21.33,
+      "resolvedTextStyle": {
+        "fontSize": 21.33,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "这是一份编辑样本，不是市场份额统计。它说明我们在 460 个候选里看到了什么。"
+          },
+          {
+            "index": 2,
+            "text": "近三个月的活动信号负责发现项目；最终入选还要看内容能否被 agent 直接消费，以及它是否代表一种新的策展形态。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "这是一份编辑样本，不是市场份额统计。它说明我们在 460 个候选里看到了什么。",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 21.33,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "这是一份编辑样本，不是市场份额统计。它说明我们在 460 个候选里看到了什么。",
+              "fontSize": 22,
+              "typeface": "PingFang SC",
+              "color": "#111318",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "近三个月的活动信号负责发现项目；最终入选还要看内容能否被 agent 直接消费，以及它是否代表一种新的策展形态。",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 21.33,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "近三个月的活动信号负责发现项目；最终入选还要看内容能否被 agent 直接消费，以及它是否代表一种新的策展形态。",
+              "fontSize": 19,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u10jm1cn",
+      "id": "13",
+      "name": "rule",
+      "bbox": [
+        41,
+        302,
+        1198,
+        4
+      ],
+      "geometry": "rect",
+      "fillColor": "#3D8DFF",
+      "lineColor": "#3D8DFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/90r2twv2",
+      "id": "14",
+      "name": "source-note",
+      "bbox": [
+        42,
+        650,
+        1100,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Snapshot 2026-07-29 · WatchEvents/participants: May 1–Jul 28 · OpenRank: Apr–Jun 2026",
+      "textPreview": "Snapshot 2026-07-29 · WatchEvents/participants: May 1–Jul 28 · OpenRank: Apr–Jun 2026",
+      "resolvedFontSize": 12,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 12,
+        "typeface": "PingFang SC",
+        "color": "#565D68",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Snapshot 2026-07-29 · WatchEvents/participants: May 1–Jul 28 · OpenRank: Apr–Jun 2026"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Snapshot 2026-07-29 · WatchEvents/participants: May 1–Jul 28 · OpenRank: Apr–Jun 2026",
+          "resolvedTextStyle": {
+            "fontSize": 12,
+            "typeface": "PingFang SC",
+            "color": "#565D68",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Snapshot 2026-07-29 · WatchEvents/participants: May 1–Jul 28 · OpenRank: Apr–Jun 2026",
+              "fontSize": 12,
+              "typeface": "PingFang SC",
+              "color": "#565D68",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": [
+    {
+      "index": 1,
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 1280,
+        "height": 720
+      },
+      "baseUnit": 1,
+      "root": {
+        "path": "0",
+        "kind": "layers",
+        "name": "codex-grid-layout-library#slide-19",
+        "requestedSize": {
+          "width": {
+            "mode": "fill",
+            "value": 1
+          },
+          "height": {
+            "mode": "fill",
+            "value": 1
+          }
+        },
+        "intrinsicSize": {
+          "width": 1238.95,
+          "height": 684.57
+        },
+        "frame": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "children": [
+          {
+            "path": "0.0",
+            "kind": "shape",
+            "name": "Rounded-Rectangle-5-1",
+            "position": {
+              "left": 41.33,
+              "top": 317.33
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 374.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 312
+              }
+            },
+            "intrinsicSize": {
+              "width": 374.67,
+              "height": 312
+            },
+            "frame": {
+              "left": 41.33,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            },
+            "snappedFrame": {
+              "left": 41.33,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            },
+            "children": [],
+            "geometry": "roundRect",
+            "element": {
+              "aid": "sh/94nm10n2",
+              "id": "1",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.1",
+            "kind": "shape",
+            "name": "Rounded-Rectangle-6-2",
+            "position": {
+              "left": 452.67,
+              "top": 317.33
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 374.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 312
+              }
+            },
+            "intrinsicSize": {
+              "width": 374.67,
+              "height": 312
+            },
+            "frame": {
+              "left": 452.67,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            },
+            "snappedFrame": {
+              "left": 452.67,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            },
+            "children": [],
+            "geometry": "roundRect",
+            "element": {
+              "aid": "sh/m1w365ob",
+              "id": "2",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.2",
+            "kind": "shape",
+            "name": "Rounded-Rectangle-7-3",
+            "position": {
+              "left": 864.28,
+              "top": 317.33
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 374.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 312
+              }
+            },
+            "intrinsicSize": {
+              "width": 374.67,
+              "height": 312
+            },
+            "frame": {
+              "left": 864.28,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            },
+            "snappedFrame": {
+              "left": 864.28,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            },
+            "children": [],
+            "geometry": "roundRect",
+            "element": {
+              "aid": "sh/n254zq5w",
+              "id": "3",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.3",
+            "kind": "text",
+            "name": "Slide-Number-Placeholder-1-4",
+            "position": {
+              "left": 1184.18,
+              "top": 659.24
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 54.48
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 25.33
+              }
+            },
+            "intrinsicSize": {
+              "width": 54.48,
+              "height": 25.33
+            },
+            "frame": {
+              "left": 1184.18,
+              "top": 659.24,
+              "width": 54.48,
+              "height": 25.33
+            },
+            "snappedFrame": {
+              "left": 1184.18,
+              "top": 659.24,
+              "width": 54.48,
+              "height": 25.33
+            },
+            "children": [],
+            "text": "3",
+            "transform": "none",
+            "element": {
+              "aid": "sh/0zel4v6l",
+              "id": "4",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.4",
+            "kind": "text",
+            "name": "Title-2-5",
+            "position": {
+              "left": 41.33,
+              "top": 36.12
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 1197.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 109.97
+              }
+            },
+            "intrinsicSize": {
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "frame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "snappedFrame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "children": [],
+            "text": "真正有故事的项目，大多已经靠近 agent 运行时",
+            "transform": "none",
+            "element": {
+              "aid": "sh/10nmx0n6",
+              "id": "5",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.5",
+            "kind": "text",
+            "name": "Content-Placeholder-9-6",
+            "position": {
+              "left": 73.74,
+              "top": 514.5
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 309.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 86
+              }
+            },
+            "intrinsicSize": {
+              "width": 309.67,
+              "height": 86
+            },
+            "frame": {
+              "left": 73.74,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            },
+            "snappedFrame": {
+              "left": 73.74,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            },
+            "children": [],
+            "text": "进入首轮 landscape\n另有 2 个历史参照",
+            "transform": "none",
+            "element": {
+              "aid": "sh/exc32lof",
+              "id": "6",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.6",
+            "kind": "text",
+            "name": "Content-Placeholder-10-7",
+            "position": {
+              "left": 896.78,
+              "top": 514.5
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 309.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 86
+              }
+            },
+            "intrinsicSize": {
+              "width": 309.67,
+              "height": 86
+            },
+            "frame": {
+              "left": 896.78,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            },
+            "snappedFrame": {
+              "left": 896.78,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            },
+            "children": [],
+            "text": "创建于 2025 年以后\n约 92%",
+            "transform": "none",
+            "element": {
+              "aid": "sh/zyl4vq50",
+              "id": "7",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.7",
+            "kind": "text",
+            "name": "Content-Placeholder-11-8",
+            "position": {
+              "left": 485.17,
+              "top": 514.5
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 309.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 86
+              }
+            },
+            "intrinsicSize": {
+              "width": 309.67,
+              "height": 86
+            },
+            "frame": {
+              "left": 485.17,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            },
+            "snappedFrame": {
+              "left": 485.17,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            },
+            "children": [],
+            "text": "可直接交给 agent\n约 79%",
+            "transform": "none",
+            "element": {
+              "aid": "sh/cvul0b69",
+              "id": "8",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.8",
+            "kind": "text",
+            "name": "Content-Placeholder-9-9",
+            "position": {
+              "left": 73.74,
+              "top": 360
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 308.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 142.71
+              }
+            },
+            "intrinsicSize": {
+              "width": 308.67,
+              "height": 142.71
+            },
+            "frame": {
+              "left": 73.74,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            },
+            "snappedFrame": {
+              "left": 73.74,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            },
+            "children": [],
+            "text": "24",
+            "transform": "none",
+            "element": {
+              "aid": "sh/dw3mtgnu",
+              "id": "9",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.9",
+            "kind": "text",
+            "name": "Content-Placeholder-9-10",
+            "position": {
+              "left": 484.3,
+              "top": 360
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 308.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 142.71
+              }
+            },
+            "intrinsicSize": {
+              "width": 308.67,
+              "height": 142.71
+            },
+            "frame": {
+              "left": 484.3,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            },
+            "snappedFrame": {
+              "left": 484.3,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            },
+            "children": [],
+            "text": "19 / 24",
+            "transform": "none",
+            "element": {
+              "aid": "sh/h4r2xgby",
+              "id": "10",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.10",
+            "kind": "text",
+            "name": "Content-Placeholder-9-11",
+            "position": {
+              "left": 898.94,
+              "top": 360
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 308.67
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 142.71
+              }
+            },
+            "intrinsicSize": {
+              "width": 308.67,
+              "height": 142.71
+            },
+            "frame": {
+              "left": 898.94,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            },
+            "snappedFrame": {
+              "left": 898.94,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            },
+            "children": [],
+            "text": "22 / 24",
+            "transform": "none",
+            "element": {
+              "aid": "sh/w3i1obut",
+              "id": "11",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.11",
+            "kind": "text",
+            "name": "Content-Placeholder-15-12",
+            "position": {
+              "left": 41.33,
+              "top": 119.51
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 1197.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 167.92
+              }
+            },
+            "intrinsicSize": {
+              "width": 1197.33,
+              "height": 167.92
+            },
+            "frame": {
+              "left": 41.33,
+              "top": 119.51,
+              "width": 1197.33,
+              "height": 167.92
+            },
+            "snappedFrame": {
+              "left": 41.33,
+              "top": 119.51,
+              "width": 1197.33,
+              "height": 167.92
+            },
+            "children": [],
+            "text": "这是一份编辑样本，不是市场份额统计。它说明我们在 460 个候选里看到了什么。\n近三个月的活动信号负责发现项目；最终入选还要看内容能否被 agent 直接消费，以及它是否代表一种新的策展形态。",
+            "transform": "none",
+            "element": {
+              "aid": "sh/v29kv6d8",
+              "id": "12",
+              "kind": "shape"
+            }
+          }
+        ],
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "alignItems": "stretch",
+        "justifyItems": "stretch",
+        "contentFrame": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "items": [
+          {
+            "path": "0.0",
+            "frame": {
+              "left": 41.33,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            }
+          },
+          {
+            "path": "0.1",
+            "frame": {
+              "left": 452.67,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            }
+          },
+          {
+            "path": "0.2",
+            "frame": {
+              "left": 864.28,
+              "top": 317.33,
+              "width": 374.67,
+              "height": 312
+            }
+          },
+          {
+            "path": "0.3",
+            "frame": {
+              "left": 1184.18,
+              "top": 659.24,
+              "width": 54.48,
+              "height": 25.33
+            }
+          },
+          {
+            "path": "0.4",
+            "frame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            }
+          },
+          {
+            "path": "0.5",
+            "frame": {
+              "left": 73.74,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            }
+          },
+          {
+            "path": "0.6",
+            "frame": {
+              "left": 896.78,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            }
+          },
+          {
+            "path": "0.7",
+            "frame": {
+              "left": 485.17,
+              "top": 514.5,
+              "width": 309.67,
+              "height": 86
+            }
+          },
+          {
+            "path": "0.8",
+            "frame": {
+              "left": 73.74,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            }
+          },
+          {
+            "path": "0.9",
+            "frame": {
+              "left": 484.3,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            }
+          },
+          {
+            "path": "0.10",
+            "frame": {
+              "left": 898.94,
+              "top": 360,
+              "width": 308.67,
+              "height": 142.71
+            }
+          },
+          {
+            "path": "0.11",
+            "frame": {
+              "left": 41.33,
+              "top": 119.51,
+              "width": 1197.33,
+              "height": 167.92
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

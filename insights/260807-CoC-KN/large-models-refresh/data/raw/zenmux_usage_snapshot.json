@@ -1,0 +1,410 @@
+[
+  {
+    "author": "deepseek",
+    "author_label": "DeepSeek",
+    "label": "DeepSeek V4 Pro",
+    "model": "deepseek/deepseek-v4-pro",
+    "rank": 1,
+    "value": 34945386797
+  },
+  {
+    "author": "z-ai",
+    "author_label": "Z.ai",
+    "label": "GLM 5.2",
+    "model": "z-ai/glm-5.2",
+    "rank": 2,
+    "value": 25533998027
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Opus 4.8",
+    "model": "anthropic/claude-opus-4.8",
+    "rank": 3,
+    "value": 19613090381
+  },
+  {
+    "author": "moonshotai",
+    "author_label": "MoonshotAI",
+    "label": "Kimi K3",
+    "model": "moonshotai/kimi-k3",
+    "rank": 4,
+    "value": 16490021919
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Sonnet 5",
+    "model": "anthropic/claude-sonnet-5",
+    "rank": 5,
+    "value": 14988081443
+  },
+  {
+    "author": "deepseek",
+    "author_label": "DeepSeek",
+    "label": "DeepSeek V4 Flash",
+    "model": "deepseek/deepseek-v4-flash",
+    "rank": 6,
+    "value": 13226576201
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-5.6 Sol",
+    "model": "openai/gpt-5.6-sol",
+    "rank": 7,
+    "value": 11906903075
+  },
+  {
+    "author": "bytedance",
+    "author_label": "ByteDance",
+    "label": "Doubao-Seed-Character",
+    "model": "bytedance/doubao-seed-character",
+    "rank": 8,
+    "value": 8023477051
+  },
+  {
+    "author": "google",
+    "author_label": "Google",
+    "label": "Gemini 2.5 Flash Lite",
+    "model": "google/gemini-2.5-flash-lite",
+    "rank": 9,
+    "value": 6571767953
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Opus 5",
+    "model": "anthropic/claude-opus-5",
+    "rank": 10,
+    "value": 5469679934
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Sonnet 4.6",
+    "model": "anthropic/claude-sonnet-4.6",
+    "rank": 11,
+    "value": 5224856703
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-5.6 Luna",
+    "model": "openai/gpt-5.6-luna",
+    "rank": 12,
+    "value": 4751918942
+  },
+  {
+    "author": "bytedance",
+    "author_label": "ByteDance",
+    "label": "Doubao-Seed-2.1-pro",
+    "model": "bytedance/doubao-seed-2.1-pro",
+    "rank": 13,
+    "value": 4735340931
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Fable 5",
+    "model": "anthropic/claude-fable-5",
+    "rank": 14,
+    "value": 4521336279
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-5.6 Terra",
+    "model": "openai/gpt-5.6-terra",
+    "rank": 15,
+    "value": 4386503642
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Opus 4.6",
+    "model": "anthropic/claude-opus-4.6",
+    "rank": 16,
+    "value": 3517991295
+  },
+  {
+    "author": "deepseek",
+    "author_label": "DeepSeek",
+    "label": "DeepSeek V3.2",
+    "model": "deepseek/deepseek-v3.2",
+    "rank": 17,
+    "value": 3442439559
+  },
+  {
+    "author": "qwen",
+    "author_label": "Qwen",
+    "label": "Qwen3.7-Max",
+    "model": "qwen/qwen3.7-max",
+    "rank": 18,
+    "value": 3310755967
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-5.5",
+    "model": "openai/gpt-5.5",
+    "rank": 19,
+    "value": 3022909371
+  },
+  {
+    "author": "minimax",
+    "author_label": "MiniMax",
+    "label": "MiniMax M3",
+    "model": "minimax/minimax-m3",
+    "rank": 20,
+    "value": 2924905626
+  },
+  {
+    "author": "google",
+    "author_label": "Google",
+    "label": "Gemini 3.1 Flash Lite",
+    "model": "google/gemini-3.1-flash-lite",
+    "rank": 21,
+    "value": 2719472719
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Opus 4.7",
+    "model": "anthropic/claude-opus-4.7",
+    "rank": 22,
+    "value": 2273937610
+  },
+  {
+    "author": "moonshotai",
+    "author_label": "MoonshotAI",
+    "label": "Kimi K2.7 Code",
+    "model": "moonshotai/kimi-k2.7-code",
+    "rank": 23,
+    "value": 1858179537
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-5.4",
+    "model": "openai/gpt-5.4",
+    "rank": 24,
+    "value": 1707314891
+  },
+  {
+    "author": "qwen",
+    "author_label": "Qwen",
+    "label": "Qwen3.7-Plus",
+    "model": "qwen/qwen3.7-plus",
+    "rank": 25,
+    "value": 1702643943
+  },
+  {
+    "author": "inclusionai",
+    "author_label": "inclusionAI",
+    "label": "Ling-3.0-flash",
+    "model": "inclusionai/ling-3.0-flash",
+    "rank": 26,
+    "value": 1547467705
+  },
+  {
+    "author": "x-ai",
+    "author_label": "xAI",
+    "label": "Grok 4.5",
+    "model": "x-ai/grok-4.5",
+    "rank": 27,
+    "value": 1404567218
+  },
+  {
+    "author": "google",
+    "author_label": "Google",
+    "label": "Gemini 3.1 Pro Preview",
+    "model": "google/gemini-3.1-pro-preview",
+    "rank": 28,
+    "value": 884116404
+  },
+  {
+    "author": "tencent",
+    "author_label": "Tencent",
+    "label": "Hy3",
+    "model": "tencent/hy3",
+    "rank": 29,
+    "value": 857985140
+  },
+  {
+    "author": "google",
+    "author_label": "Google",
+    "label": "Gemini 3 Flash Preview",
+    "model": "google/gemini-3-flash-preview",
+    "rank": 30,
+    "value": 823922237
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Haiku 4.5",
+    "model": "anthropic/claude-haiku-4.5",
+    "rank": 31,
+    "value": 776843022
+  },
+  {
+    "author": "xiaomi",
+    "author_label": "Xiaomi",
+    "label": "MiMo-V2.5",
+    "model": "xiaomi/mimo-v2.5",
+    "rank": 32,
+    "value": 690674342
+  },
+  {
+    "author": "z-ai",
+    "author_label": "Z.ai",
+    "label": "GLM 5.1",
+    "model": "z-ai/glm-5.1",
+    "rank": 33,
+    "value": 655745461
+  },
+  {
+    "author": "xiaomi",
+    "author_label": "Xiaomi",
+    "label": "MiMo-V2.5-Pro",
+    "model": "xiaomi/mimo-v2.5-pro",
+    "rank": 34,
+    "value": 626429258
+  },
+  {
+    "author": "google",
+    "author_label": "Google",
+    "label": "Gemini 3.5 Flash",
+    "model": "google/gemini-3.5-flash",
+    "rank": 35,
+    "value": 591476147
+  },
+  {
+    "author": "meituan",
+    "author_label": "Meituan",
+    "label": "LongCat-2.0",
+    "model": "meituan/longcat-2.0",
+    "rank": 36,
+    "value": 574296155
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-5.4 Mini",
+    "model": "openai/gpt-5.4-mini",
+    "rank": 37,
+    "value": 502107177
+  },
+  {
+    "author": "google",
+    "author_label": "Google",
+    "label": "Gemini 2.5 Flash",
+    "model": "google/gemini-2.5-flash",
+    "rank": 38,
+    "value": 459674323
+  },
+  {
+    "author": "z-ai",
+    "author_label": "Z.ai",
+    "label": "GLM 5",
+    "model": "z-ai/glm-5",
+    "rank": 39,
+    "value": 443142689
+  },
+  {
+    "author": "bytedance",
+    "author_label": "ByteDance",
+    "label": "Doubao-Seedance-2.0",
+    "model": "bytedance/doubao-seedance-2.0",
+    "rank": 40,
+    "value": 403045687
+  },
+  {
+    "author": "google",
+    "author_label": "Google",
+    "label": "Gemini 3.5 Flash Lite",
+    "model": "google/gemini-3.5-flash-lite",
+    "rank": 41,
+    "value": 318174207
+  },
+  {
+    "author": "anthropic",
+    "author_label": "Anthropic",
+    "label": "Claude Sonnet 4.5",
+    "model": "anthropic/claude-sonnet-4.5",
+    "rank": 42,
+    "value": 288863307
+  },
+  {
+    "author": "google",
+    "author_label": "Google",
+    "label": "Gemini 3.6 Flash",
+    "model": "google/gemini-3.6-flash",
+    "rank": 43,
+    "value": 216620428
+  },
+  {
+    "author": "z-ai",
+    "author_label": "Z.ai",
+    "label": "z-ai/glm-4.7-flash",
+    "model": "z-ai/glm-4.7-flash",
+    "rank": 44,
+    "value": 199105780
+  },
+  {
+    "author": "stepfun",
+    "author_label": "StepFun",
+    "label": "Step 3.7 Flash",
+    "model": "stepfun/step-3.7-flash",
+    "rank": 45,
+    "value": 176649127
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-5 Mini",
+    "model": "openai/gpt-5-mini",
+    "rank": 46,
+    "value": 162945953
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-Image-2",
+    "model": "openai/gpt-image-2",
+    "rank": 47,
+    "value": 139773197
+  },
+  {
+    "author": "openai",
+    "author_label": "OpenAI",
+    "label": "GPT-5.3-Codex",
+    "model": "openai/gpt-5.3-codex",
+    "rank": 48,
+    "value": 135142134
+  },
+  {
+    "author": "moonshotai",
+    "author_label": "MoonshotAI",
+    "label": "Kimi K2.6",
+    "model": "moonshotai/kimi-k2.6",
+    "rank": 49,
+    "value": 134165198
+  },
+  {
+    "author": "moonshotai",
+    "author_label": "MoonshotAI",
+    "label": "Kimi K2.5",
+    "model": "moonshotai/kimi-k2.5",
+    "rank": 50,
+    "value": 123057828
+  },
+  {
+    "author": "",
+    "author_label": "",
+    "label": "Others",
+    "model": "__others__",
+    "rank": 51,
+    "value": 1420358795
+  }
+]

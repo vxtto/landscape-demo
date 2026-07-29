@@ -1,0 +1,10 @@
+﻿check,value,rate,severity,interpretation
+openrouter_catalog_rows,443,,info,All model endpoints returned by OpenRouter.
+hf_metadata_resolution,164/165,99.4%,high,OpenRouter-linked Hugging Face repositories resolved through the official Hub API.
+eligible_open_weight_candidates,162,,info,Models with OpenRouter usage and a resolved public Hugging Face weight repository.
+top50_duplicate_huggingface_ids,0,0.0%,info,Free and paid variants should be merged.
+top50_missing_license,1,2.0%,high,"Missing license does not prove closed weights, but requires manual verification before publication."
+top50_custom_or_restricted_license,15,30.0%,medium,Open-weight is broader than OSI-approved open source. Keep this distinction visible in the final landscape.
+top50_missing_parameter_count,1,2.0%,medium,Parameter metadata is not complete on every Hub repo.
+top50_zenmux_catalog_match,22,44.0%,medium,"Catalog matching is exact first, then fuzzy within the same vendor. Fuzzy matches need review."
+zenmux_usage_status,complete,,info,Platform-wide ZenMux usage is included.

@@ -1,0 +1,35 @@
+{"kind":"deck","id":"pr/vcl8qf","name":"Deck"}
+{"kind":"layout","layoutId":"6ae957b5-8780-4922-8805-144699d48d66","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"595cbc20-ab33-4018-872e-6833f12ba319","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/3zetrj","slide":1,"title":"MODEL LANDSCAPE / JUNE 2026","textShapes":24}
+{"kind":"textbox","id":"sh/6dw3y1c3","slide":1,"text":"MODEL LANDSCAPE / JUNE 2026","textPreview":"MODEL LANDSCAPE / JUNE 2026","textChars":27,"textLines":1,"bbox":[72,38,360,24]}
+{"kind":"textbox","id":"sh/tg7m9gbu","slide":1,"text":"Open-weight models now win usage peaks.","textPreview":"Open-weight models now win usage peaks.","textChars":39,"textLines":1,"bbox":[72,72,1136,58]}
+{"kind":"textbox","id":"sh/sfyl0bu9","slide":1,"text":"Closed models still lead more of the field.","textPreview":"Closed models still lead more of the field.","textChars":43,"textLines":1,"bbox":[72,128,1136,34]}
+{"kind":"shape","id":"sh/ja5436ts","slide":1,"bbox":[72,178,1136,2]}
+{"kind":"textbox","id":"sh/i9w3u1c7","slide":1,"text":"#1 + #2","textPreview":"#1 + #2","textChars":7,"textLines":1,"bbox":[72,205,325,66]}
+{"kind":"textbox","id":"sh/5cnm5wby","slide":1,"text":"DeepSeek V4 Flash / Pro","textPreview":"DeepSeek V4 Flash / Pro","textChars":23,"textLines":1,"bbox":[72,279,325,32]}
+{"kind":"textbox","id":"sh/4belwbud","slide":1,"text":"Open-weight models lead monthly usage.","textPreview":"Open-weight models lead monthly usage.","textChars":38,"textLines":1,"bbox":[72,320,325,52]}
+{"kind":"shape","id":"sh/3694fqtw","slide":1,"bbox":[428,208,2,166]}
+{"kind":"textbox","id":"sh/25036lcb","slide":1,"text":"5 : 5","textPreview":"5 : 5","textChars":5,"textLines":1,"bbox":[466,205,320,66]}
+{"kind":"textbox","id":"sh/4fmxkni9","slide":1,"text":"Open vs API-only in Top 10","textPreview":"Open vs API-only in Top 10","textChars":26,"textLines":1,"bbox":[466,279,320,32]}
+{"kind":"textbox","id":"sh/pgvydszu","slide":1,"text":"The top of the market is no longer one-sided.","textPreview":"The top of the market is no longer one-sided.","textChars":45,"textLines":1,"bbox":[466,320,320,52]}
+{"kind":"shape","id":"sh/2d4fix03","slide":1,"bbox":[820,208,2,166]}
+{"kind":"textbox","id":"sh/3edgb2ho","slide":1,"text":"24 : 26","textPreview":"24 : 26","textChars":7,"textLines":1,"bbox":[858,205,350,66]}
+{"kind":"textbox","id":"sh/gbmxgnix","slide":1,"text":"Open vs API-only in Top 50","textPreview":"Open vs API-only in Top 50","textChars":26,"textLines":1,"bbox":[858,279,350,32]}
+{"kind":"textbox","id":"sh/hcvy9szi","slide":1,"text":"API-only models retain a slight breadth edge.","textPreview":"API-only models retain a slight breadth edge.","textChars":45,"textLines":1,"bbox":[858,320,350,52]}
+{"kind":"shape","id":"sh/u9kfed07","slide":1,"bbox":[72,406,1136,2]}
+{"kind":"textbox","id":"sh/vatg7ihc","slide":1,"text":"Usage is not capability.","textPreview":"Usage is not capability.","textChars":24,"textLines":1,"bbox":[72,434,350,40]}
+{"kind":"textbox","id":"sh/8n2xc3i1","slide":1,"text":"The most-used model is not the highest-scoring one.","textPreview":"The most-used model is not the highest-scoring one.","textChars":51,"textLines":1,"bbox":[72,484,340,54]}
+{"kind":"textbox","id":"sh/toby58jm","slide":1,"text":"MONTHLY USE","textPreview":"MONTHLY USE","textChars":11,"textLines":1,"bbox":[770,433,170,24]}
+{"kind":"textbox","id":"sh/9sjmt07y","slide":1,"text":"AAI","textPreview":"AAI","textChars":3,"textLines":1,"bbox":[982,433,100,24]}
+{"kind":"textbox","id":"sh/ora5kf6d","slide":1,"text":"DeepSeek V4 Flash","textPreview":"DeepSeek V4 Flash","textChars":17,"textLines":1,"bbox":[456,470,280,32]}
+{"kind":"textbox","id":"sh/n614rap8","slide":1,"text":"#1","textPreview":"#1","textChars":2,"textLines":1,"bbox":[770,470,120,36]}
+{"kind":"textbox","id":"sh/m5sni5on","slide":1,"text":"40.3","textPreview":"40.3","textChars":4,"textLines":1,"bbox":[982,470,120,36]}
+{"kind":"shape","id":"sh/14jmp072","slide":1,"bbox":[456,518,652,1]}
+{"kind":"textbox","id":"sh/03a5gv6h","slide":1,"text":"Claude Fable 5","textPreview":"Claude Fable 5","textChars":14,"textLines":1,"bbox":[456,538,280,32]}
+{"kind":"textbox","id":"sh/z214nqpw","slide":1,"text":"#25","textPreview":"#25","textChars":3,"textLines":1,"bbox":[770,538,120,36]}
+{"kind":"textbox","id":"sh/e18nelob","slide":1,"text":"59.9","textPreview":"59.9","textChars":4,"textLines":1,"bbox":[982,538,120,36]}
+{"kind":"shape","id":"sh/l0361k76","slide":1,"bbox":[72,610,6,42]}
+{"kind":"textbox","id":"sh/kzu5sz6l","slide":1,"text":"Open-weight models are competitive at the top; selection still depends on capability, cost and control.","textPreview":"Open-weight models are competitive at the top; selection still depends on capability, cost and control.","textChars":103,"textLines":1,"bbox":[94,614,1070,44]}
+{"kind":"textbox","id":"sh/25ojmh43","slide":1,"text":"Usage: OpenRouter + ZenMux, June 2026  |  AAI: public Artificial Analysis leaderboard matches","textPreview":"Usage: OpenRouter + ZenMux, June 2026  |  AAI: public Artificial Analysis leaderboard matches","textChars":93,"textLines":1,"bbox":[72,686,1136,18]}
+{"kind":"notes","id":"nt/3zetrj","slide":1,"text":"[Sources]\n- Monthly usage and open-weight classification: /Users/xiaoyawork/Desktop/src_code/agentic-ai-landscape/presentations/260807-CoC-KN/large-models-refresh/data/monthly_models_top50_open_closed.csv. June 1-30, 2026. Composite score = 50% OpenRouter monthly token percentile + 50% ZenMux monthly token percentile; raw token counts are not added across platforms.\n- Artificial Analysis Intelligence Index: https://artificialanalysis.ai/models. Local public-page snapshot: /Users/xiaoyawork/Desktop/src_code/agentic-ai-landscape/presentations/260807-CoC-KN/large-models-refresh/data/artificial_analysis_public_snapshot.json, retrieved 2026-07-29. Only matched models visible in the public leaderboard snapshot are compared.\n- 'API-only' means closed weights or no public weights in the source classification; it is an access label, not a legal conclusion.\n[/Sources]"}

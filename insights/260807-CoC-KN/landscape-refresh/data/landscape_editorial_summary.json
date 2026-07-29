@@ -1,0 +1,133 @@
+{
+  "generated_at": "2026-07-28T15:04:19.261933+00:00",
+  "source_landscape_url": "https://landscape-demo-omega.vercel.app/",
+  "current_landscape_projects": 122,
+  "current_layer_counts": {
+    "Agent Infra": 73,
+    "Model Infra": 49
+  },
+  "recommended_layer_counts": {
+    "Agent Infra": 74,
+    "Model Infra": 52
+  },
+  "action_counts": {
+    "add": 21,
+    "keep": 105,
+    "omit": 108,
+    "remove": 17
+  },
+  "metric_fields": {
+    "openrank": "openrank_2606",
+    "trend": "openrank_trend_2508_2607",
+    "participants": "participants_2607"
+  },
+  "current_section_counts": {
+    "Agent Infra / Agentic coding": 15,
+    "Agent Infra / Chatbot workspaces": 3,
+    "Agent Infra / Code-first frameworks": 9,
+    "Agent Infra / Coding harnesses": 4,
+    "Agent Infra / Development sandboxes": 3,
+    "Agent Infra / Memory, knowledge & context": 7,
+    "Agent Infra / Model API gateways": 6,
+    "Agent Infra / Multi-agent orchestration": 4,
+    "Agent Infra / Observability & evaluation": 4,
+    "Agent Infra / Personal AI assistants": 6,
+    "Agent Infra / Protocols & interoperability": 3,
+    "Agent Infra / Tool & browser use": 4,
+    "Agent Infra / Workflow & agent builders": 5,
+    "Model Infra / Compute & scheduling": 4,
+    "Model Infra / Data · Governance": 7,
+    "Model Infra / Data · Integration": 2,
+    "Model Infra / Data · Labeling": 2,
+    "Model Infra / Post-Train · Reinforcement learning": 4,
+    "Model Infra / Post-Train · Supervised fine-tuning": 3,
+    "Model Infra / Pre-Train · Compiler & accelerator": 7,
+    "Model Infra / Pre-Train · Evaluation & observability": 2,
+    "Model Infra / Pre-Train · Framework & parallel": 6,
+    "Model Infra / Pre-Train · Robotics infra": 2,
+    "Model Infra / Serving · Deploy": 4,
+    "Model Infra / Serving · Inference": 6
+  },
+  "section_counts": {
+    "Agent Infra / Agentic coding": 12,
+    "Agent Infra / Chatbot workspaces": 3,
+    "Agent Infra / Code-first frameworks": 10,
+    "Agent Infra / Coding harnesses": 4,
+    "Agent Infra / Development sandboxes": 4,
+    "Agent Infra / Memory, knowledge & context": 7,
+    "Agent Infra / Model API gateways": 5,
+    "Agent Infra / Multi-agent orchestration": 4,
+    "Agent Infra / Observability & evaluation": 4,
+    "Agent Infra / Personal AI assistants": 7,
+    "Agent Infra / Protocols & interoperability": 5,
+    "Agent Infra / Tool & browser use": 4,
+    "Agent Infra / Workflow & agent builders": 5,
+    "Model Infra / Compute & scheduling": 4,
+    "Model Infra / Data · Governance": 7,
+    "Model Infra / Data · Integration": 3,
+    "Model Infra / Data · Labeling": 2,
+    "Model Infra / Post-Train · Reinforcement learning": 4,
+    "Model Infra / Post-Train · Supervised fine-tuning": 3,
+    "Model Infra / Pre-Train · Compiler & accelerator": 8,
+    "Model Infra / Pre-Train · Evaluation & observability": 2,
+    "Model Infra / Pre-Train · Framework & parallel": 6,
+    "Model Infra / Pre-Train · Robotics infra": 2,
+    "Model Infra / Serving · Deploy": 3,
+    "Model Infra / Serving · Inference": 8
+  },
+  "add_projects": [
+    "lobehub/lobehub",
+    "FlowiseAI/Flowise",
+    "docling-project/docling",
+    "milvus-io/milvus",
+    "microsoft/onnxruntime",
+    "openxla/xla",
+    "tensorflow/tensorflow",
+    "IBM/mcp-context-forge",
+    "volcengine/OpenViking",
+    "microsoft/agent-framework",
+    "JetBrains/koog",
+    "trycua/cua",
+    "agentgateway/agentgateway",
+    "ag-ui-protocol/ag-ui",
+    "a2ui-project/a2ui",
+    "kubernetes-sigs/agent-sandbox",
+    "vllm-project/vllm-omni",
+    "LMCache/LMCache",
+    "huggingface/trl",
+    "topoteretes/cognee",
+    "NVIDIA/Model-Optimizer"
+  ],
+  "remove_projects": [
+    "Comfy-Org/ComfyUI",
+    "continuedev/continue",
+    "charmbracelet/crush",
+    "supabase/supabase",
+    "rapidsai/cudf",
+    "NVIDIA-NeMo/Speech",
+    "xorbitsai/inference",
+    "OpenRLHF/OpenRLHF",
+    "kvcache-ai/Mooncake",
+    "songquanpeng/one-api",
+    "browser-use/browser-harness",
+    "rtk-ai/rtk",
+    "Yeachan-Heo/oh-my-codex",
+    "MemPalace/mempalace",
+    "NevaMind-AI/memU",
+    "Gitlawb/openclaude",
+    "RightNow-AI/openfang"
+  ],
+  "category_adjustments": {
+    "farion1231/cc-switch": {
+      "from": "Model API gateways",
+      "to": "Coding harnesses"
+    }
+  },
+  "validation": {
+    "passed": true,
+    "failures": [],
+    "rows": 251,
+    "unique_repo_ids": 251,
+    "unique_repo_names": 251
+  }
+}

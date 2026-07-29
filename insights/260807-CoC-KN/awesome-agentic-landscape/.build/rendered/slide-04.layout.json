@@ -1,0 +1,1099 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/we6t70",
+    "id": "we6t70",
+    "slide": 4,
+    "layoutId": "31da445c-a124-4e0f-8507-ae86158d0b6c",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+    "masterLayoutName": "Master",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Helvetica Neue",
+      "PingFang SC"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "31da445c-a124-4e0f-8507-ae86158d0b6c",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xw7ep8nm",
+      "id": "1",
+      "name": "Slide-Number-Placeholder-1-2",
+      "bbox": [
+        1184.17,
+        659.17,
+        54.5,
+        25.33
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.0"
+      },
+      "geometry": "rect",
+      "text": "4",
+      "textPreview": "4",
+      "resolvedFontSize": 13.33,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 13.33,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "right",
+        "verticalAlignment": "bottom",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "4"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "4",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "fontSize": 13.33,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "right",
+            "verticalAlignment": "bottom",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "4",
+              "fontSize": 13.33,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/atgfut4v",
+      "id": "2",
+      "name": "Title-2-3",
+      "bbox": [
+        41.33,
+        36.12,
+        1197.33,
+        109.97
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.1"
+      },
+      "geometry": "rect",
+      "text": "“Awesome”正在长出四种消费方式",
+      "textPreview": "“Awesome”正在长出四种消费方式",
+      "resolvedFontSize": 38.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 38.67,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "“Awesome”正在长出四种消费方式"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "“Awesome”正在长出四种消费方式",
+          "lineSpacingPercent": 90000,
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "fontSize": 38.67,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "verticalAlignment": "top",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "“Awesome”正在长出四种消费方式",
+              "fontSize": 38.67,
+              "typeface": "PingFang SC",
+              "color": "#111318",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bupwny5g",
+      "id": "3",
+      "name": "Content-Placeholder-9-4",
+      "bbox": [
+        41.33,
+        213.33,
+        581.33,
+        172.5
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.2"
+      },
+      "geometry": "rect",
+      "text": "01  DISCOVER\n人来阅读、浏览、比较。\n代表：经典 awesome 列表、生态地图。",
+      "textPreview": "01  DISCOVER | 人来阅读、浏览、比较。 | 代表：经典 awesome 列表、生态地图。",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "01  DISCOVER"
+          },
+          {
+            "index": 2,
+            "text": "人来阅读、浏览、比较。"
+          },
+          {
+            "index": 3,
+            "text": "代表：经典 awesome 列表、生态地图。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "01  DISCOVER",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "01  DISCOVER",
+              "fontSize": 24,
+              "typeface": "PingFang SC",
+              "color": "#8A245F",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "人来阅读、浏览、比较。\n代表：经典 awesome 列表、生态地图。",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "人来阅读、浏览、比较。\n代表：经典 awesome 列表、生态地图。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kzix0nmx",
+      "id": "4",
+      "name": "Content-Placeholder-10-5",
+      "bbox": [
+        656.86,
+        213.33,
+        581.33,
+        172.5
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.3"
+      },
+      "geometry": "rect",
+      "text": "02  REUSE\n复制一份资产，再让 agent 使用。\n代表：prompt、DESIGN.md、工作流模板。",
+      "textPreview": "02  REUSE | 复制一份资产，再让 agent 使用。 | 代表：prompt、DESIGN.md、工作流模板。",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02  REUSE"
+          },
+          {
+            "index": 2,
+            "text": "复制一份资产，再让 agent 使用。"
+          },
+          {
+            "index": 3,
+            "text": "代表：prompt、DESIGN.md、工作流模板。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02  REUSE",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02  REUSE",
+              "fontSize": 24,
+              "typeface": "PingFang SC",
+              "color": "#70408C",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "复制一份资产，再让 agent 使用。\n代表：prompt、DESIGN.md、工作流模板。",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "insets": {
+              "top": 4.8,
+              "right": 9.6,
+              "bottom": 4.8,
+              "left": 9.6
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "复制一份资产，再让 agent 使用。\n代表：prompt、DESIGN.md、工作流模板。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lkrytsni",
+      "id": "5",
+      "name": "Content-Placeholder-9-6",
+      "bbox": [
+        41.33,
+        421.73,
+        581.33,
+        172.51
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.4"
+      },
+      "geometry": "rect",
+      "text": "03  INSTALL\n目录带有解析和安装语义。\n代表：skills、plugins、跨 agent catalog。",
+      "textPreview": "03  INSTALL | 目录带有解析和安装语义。 | 代表：skills、plugins、跨 agent catalog。",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "03  INSTALL"
+          },
+          {
+            "index": 2,
+            "text": "目录带有解析和安装语义。"
+          },
+          {
+            "index": 3,
+            "text": "代表：skills、plugins、跨 agent catalog。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "03  INSTALL",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "03  INSTALL",
+              "fontSize": 24,
+              "typeface": "PingFang SC",
+              "color": "#285D9E",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "目录带有解析和安装语义。\n代表：skills、plugins、跨 agent catalog。",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "目录带有解析和安装语义。\n代表：skills、plugins、跨 agent catalog。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yx0fyd47",
+      "id": "6",
+      "name": "Content-Placeholder-10-7",
+      "bbox": [
+        656.86,
+        421.73,
+        581.33,
+        172.51
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.5"
+      },
+      "geometry": "rect",
+      "text": "04  OPERATE\n内容开始规定 agent 如何计划、评审和收尾。\n代表：spec、TDD、角色与工程方法。",
+      "textPreview": "04  OPERATE | 内容开始规定 agent 如何计划、评审和收尾。 | 代表：spec、TDD、角色与工程方法。",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "04  OPERATE"
+          },
+          {
+            "index": 2,
+            "text": "内容开始规定 agent 如何计划、评审和收尾。"
+          },
+          {
+            "index": 3,
+            "text": "代表：spec、TDD、角色与工程方法。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "04  OPERATE",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "04  OPERATE",
+              "fontSize": 24,
+              "typeface": "PingFang SC",
+              "color": "#257653",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "内容开始规定 agent 如何计划、评审和收尾。\n代表：spec、TDD、角色与工程方法。",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "autoFit": "shrinkText",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "内容开始规定 agent 如何计划、评审和收尾。\n代表：spec、TDD、角色与工程方法。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jy9gri5s",
+      "id": "7",
+      "name": "rule",
+      "bbox": [
+        51,
+        199,
+        250,
+        7
+      ],
+      "geometry": "rect",
+      "fillColor": "#EAA7CE",
+      "lineColor": "#EAA7CE",
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8nix4nm9",
+      "id": "8",
+      "name": "rule",
+      "bbox": [
+        666,
+        199,
+        250,
+        7
+      ],
+      "geometry": "rect",
+      "fillColor": "#CFA8E8",
+      "lineColor": "#CFA8E8",
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tobyxs3u",
+      "id": "9",
+      "name": "rule",
+      "bbox": [
+        51,
+        408,
+        250,
+        7
+      ],
+      "geometry": "rect",
+      "fillColor": "#9EBDEB",
+      "lineColor": "#9EBDEB",
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/10j21cni",
+      "id": "10",
+      "name": "rule",
+      "bbox": [
+        666,
+        408,
+        250,
+        7
+      ],
+      "geometry": "rect",
+      "fillColor": "#98D5BD",
+      "lineColor": "#98D5BD",
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": [
+    {
+      "index": 1,
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 1280,
+        "height": 720
+      },
+      "baseUnit": 1,
+      "root": {
+        "path": "0",
+        "kind": "layers",
+        "name": "codex-grid-layout-library#slide-13",
+        "requestedSize": {
+          "width": {
+            "mode": "fill",
+            "value": 1
+          },
+          "height": {
+            "mode": "fill",
+            "value": 1
+          }
+        },
+        "intrinsicSize": {
+          "width": 1238.67,
+          "height": 684.5
+        },
+        "frame": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "children": [
+          {
+            "path": "0.0",
+            "kind": "text",
+            "name": "Slide-Number-Placeholder-1-2",
+            "position": {
+              "left": 1184.17,
+              "top": 659.17
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 54.5
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 25.33
+              }
+            },
+            "intrinsicSize": {
+              "width": 54.5,
+              "height": 25.33
+            },
+            "frame": {
+              "left": 1184.17,
+              "top": 659.17,
+              "width": 54.5,
+              "height": 25.33
+            },
+            "snappedFrame": {
+              "left": 1184.17,
+              "top": 659.17,
+              "width": 54.5,
+              "height": 25.33
+            },
+            "children": [],
+            "text": "4",
+            "transform": "none",
+            "element": {
+              "aid": "sh/xw7ep8nm",
+              "id": "1",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.1",
+            "kind": "text",
+            "name": "Title-2-3",
+            "position": {
+              "left": 41.33,
+              "top": 36.12
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 1197.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 109.97
+              }
+            },
+            "intrinsicSize": {
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "frame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "snappedFrame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "children": [],
+            "text": "“Awesome”正在长出四种消费方式",
+            "transform": "none",
+            "element": {
+              "aid": "sh/atgfut4v",
+              "id": "2",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.2",
+            "kind": "text",
+            "name": "Content-Placeholder-9-4",
+            "position": {
+              "left": 41.33,
+              "top": 213.33
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 581.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 172.5
+              }
+            },
+            "intrinsicSize": {
+              "width": 581.33,
+              "height": 172.5
+            },
+            "frame": {
+              "left": 41.33,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 172.5
+            },
+            "snappedFrame": {
+              "left": 41.33,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 172.5
+            },
+            "children": [],
+            "text": "01  DISCOVER\n人来阅读、浏览、比较。\n代表：经典 awesome 列表、生态地图。",
+            "transform": "none",
+            "element": {
+              "aid": "sh/bupwny5g",
+              "id": "3",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.3",
+            "kind": "text",
+            "name": "Content-Placeholder-10-5",
+            "position": {
+              "left": 656.86,
+              "top": 213.33
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 581.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 172.5
+              }
+            },
+            "intrinsicSize": {
+              "width": 581.33,
+              "height": 172.5
+            },
+            "frame": {
+              "left": 656.86,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 172.5
+            },
+            "snappedFrame": {
+              "left": 656.86,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 172.5
+            },
+            "children": [],
+            "text": "02  REUSE\n复制一份资产，再让 agent 使用。\n代表：prompt、DESIGN.md、工作流模板。",
+            "transform": "none",
+            "element": {
+              "aid": "sh/kzix0nmx",
+              "id": "4",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.4",
+            "kind": "text",
+            "name": "Content-Placeholder-9-6",
+            "position": {
+              "left": 41.33,
+              "top": 421.73
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 581.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 172.51
+              }
+            },
+            "intrinsicSize": {
+              "width": 581.33,
+              "height": 172.51
+            },
+            "frame": {
+              "left": 41.33,
+              "top": 421.73,
+              "width": 581.33,
+              "height": 172.51
+            },
+            "snappedFrame": {
+              "left": 41.33,
+              "top": 421.73,
+              "width": 581.33,
+              "height": 172.51
+            },
+            "children": [],
+            "text": "03  INSTALL\n目录带有解析和安装语义。\n代表：skills、plugins、跨 agent catalog。",
+            "transform": "none",
+            "element": {
+              "aid": "sh/lkrytsni",
+              "id": "5",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.5",
+            "kind": "text",
+            "name": "Content-Placeholder-10-7",
+            "position": {
+              "left": 656.86,
+              "top": 421.73
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 581.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 172.51
+              }
+            },
+            "intrinsicSize": {
+              "width": 581.33,
+              "height": 172.51
+            },
+            "frame": {
+              "left": 656.86,
+              "top": 421.73,
+              "width": 581.33,
+              "height": 172.51
+            },
+            "snappedFrame": {
+              "left": 656.86,
+              "top": 421.73,
+              "width": 581.33,
+              "height": 172.51
+            },
+            "children": [],
+            "text": "04  OPERATE\n内容开始规定 agent 如何计划、评审和收尾。\n代表：spec、TDD、角色与工程方法。",
+            "transform": "none",
+            "element": {
+              "aid": "sh/yx0fyd47",
+              "id": "6",
+              "kind": "shape"
+            }
+          }
+        ],
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "alignItems": "stretch",
+        "justifyItems": "stretch",
+        "contentFrame": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "items": [
+          {
+            "path": "0.0",
+            "frame": {
+              "left": 1184.17,
+              "top": 659.17,
+              "width": 54.5,
+              "height": 25.33
+            }
+          },
+          {
+            "path": "0.1",
+            "frame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            }
+          },
+          {
+            "path": "0.2",
+            "frame": {
+              "left": 41.33,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 172.5
+            }
+          },
+          {
+            "path": "0.3",
+            "frame": {
+              "left": 656.86,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 172.5
+            }
+          },
+          {
+            "path": "0.4",
+            "frame": {
+              "left": 41.33,
+              "top": 421.73,
+              "width": 581.33,
+              "height": 172.51
+            }
+          },
+          {
+            "path": "0.5",
+            "frame": {
+              "left": 656.86,
+              "top": 421.73,
+              "width": 581.33,
+              "height": 172.51
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

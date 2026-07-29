@@ -8,7 +8,6 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { LandscapeProject } from "@/lib/landscape-types";
 
@@ -98,12 +97,7 @@ export function ModuleOpenRankChart({
     >
       <header className={styles.moduleChartHeader}>
         <div>
-          <Badge variant="outline">OpenRank timeline</Badge>
           <h3>OpenRank by project</h3>
-          <p>
-            Monthly ranking · {month.label} · Top {leaders.length} of{" "}
-            {projects.length} projects
-          </p>
         </div>
         <div className={styles.moduleChartControls}>
           <span className={styles.moduleChartMonth}>

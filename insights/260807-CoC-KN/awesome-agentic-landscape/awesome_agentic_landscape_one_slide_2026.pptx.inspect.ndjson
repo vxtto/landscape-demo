@@ -1,0 +1,48 @@
+{"kind":"deck","id":"pr/rzc08q","name":"Deck"}
+{"kind":"layout","layoutId":"7b4881f8-8a61-41a0-96f3-1e91e6509c5c","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"cfec3726-72e3-470f-b768-486cbd6b6136","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/mzc0dq","slide":1,"title":"Awesome 仓库开始被 agent 直接使用","textShapes":34}
+{"kind":"textbox","id":"sh/zehs3258","slide":1,"name":"title","text":"Awesome 仓库开始被 agent 直接使用","textPreview":"Awesome 仓库开始被 agent 直接使用","textChars":24,"textLines":1,"bbox":[44,30,920,62]}
+{"kind":"textbox","id":"sh/kfqtwn6d","slide":1,"name":"subtitle","text":"8 个项目，看看一份“清单”怎样逐渐变成文件、安装入口和工作方法","textPreview":"8 个项目，看看一份“清单”怎样逐渐变成文件、安装入口和工作方法","textChars":32,"textLines":1,"bbox":[46,94,1020,34]}
+{"kind":"shape","id":"sh/lgzu5sny","slide":1,"name":"rule","bbox":[44,137,1192,3]}
+{"kind":"shape","id":"sh/a9obqdob","slide":1,"name":"stage-discover","bbox":[44,158,283,76]}
+{"kind":"textbox","id":"sh/bahszi5w","slide":1,"name":"DISCOVER-title","text":"01  DISCOVER","textPreview":"01  DISCOVER","textChars":12,"textLines":1,"bbox":[58,168,255,34]}
+{"kind":"textbox","id":"sh/cbqtsn6h","slide":1,"name":"DISCOVER-subtitle","text":"人来读，自己挑","textPreview":"人来读，自己挑","textChars":7,"textLines":1,"bbox":[58,203,255,23]}
+{"kind":"textbox","id":"sh/xcza1sn2","slide":1,"name":"project-DISCOVER-1","text":"awesome","textPreview":"awesome","textChars":7,"textLines":1,"bbox":[44,254,283,34]}
+{"kind":"textbox","id":"sh/25obmdof","slide":1,"name":"owner-DISCOVER-1","text":"sindresorhus","textPreview":"sindresorhus","textChars":12,"textLines":1,"bbox":[44,288,283,22]}
+{"kind":"textbox","id":"sh/n6xsvy50","slide":1,"name":"description-DISCOVER-1","text":"经典元目录。人按主题浏览，再进入下一份列表。","textPreview":"经典元目录。人按主题浏览，再进入下一份列表。","textChars":22,"textLines":1,"bbox":[44,321,283,96]}
+{"kind":"shape","id":"sh/r6xg7il0","slide":1,"name":"rule","bbox":[44,440,283,1.5]}
+{"kind":"textbox","id":"sh/q5ozyd4f","slide":1,"name":"project-DISCOVER-2","text":"awesome-mcp-servers","textPreview":"awesome-mcp-servers","textChars":19,"textLines":1,"bbox":[44,453,283,34]}
+{"kind":"textbox","id":"sh/dsfy9s36","slide":1,"name":"owner-DISCOVER-2","text":"punkpeye","textPreview":"punkpeye","textChars":8,"textLines":1,"bbox":[44,487,283,22]}
+{"kind":"textbox","id":"sh/cr6h0nml","slide":1,"name":"description-DISCOVER-2","text":"收集 MCP servers，帮人找到 agent 能调用的数据源和工具。","textPreview":"收集 MCP servers，帮人找到 agent 能调用的数据源和工具。","textChars":37,"textLines":1,"bbox":[44,520,283,96]}
+{"kind":"shape","id":"sh/zuhgbilc","slide":1,"name":"stage-reuse","bbox":[347,158,283,76]}
+{"kind":"textbox","id":"sh/etoz2d4r","slide":1,"name":"REUSE-title","text":"02  REUSE","textPreview":"02  REUSE","textChars":9,"textLines":1,"bbox":[361,168,255,34]}
+{"kind":"textbox","id":"sh/1wzyds32","slide":1,"name":"REUSE-subtitle","text":"拿走一份文件","textPreview":"拿走一份文件","textChars":6,"textLines":1,"bbox":[361,203,255,23]}
+{"kind":"textbox","id":"sh/0vqh4nmh","slide":1,"name":"project-REUSE-1","text":"awesome-design-md","textPreview":"awesome-design-md","textChars":17,"textLines":1,"bbox":[347,254,283,34]}
+{"kind":"textbox","id":"sh/fydgzyls","slide":1,"name":"owner-REUSE-1","text":"VoltAgent","textPreview":"VoltAgent","textChars":9,"textLines":1,"bbox":[347,288,283,22]}
+{"kind":"textbox","id":"sh/ux4fqt47","slide":1,"name":"description-REUSE-1","text":"把网站设计规则写进 DESIGN.md，coding agent 拿来就能做 UI。","textPreview":"把网站设计规则写进 DESIGN.md，coding agent 拿来就能做 UI。","textChars":42,"textLines":1,"bbox":[347,321,283,96]}
+{"kind":"shape","id":"sh/i5cbuls7","slide":1,"name":"rule","bbox":[347,440,283,1.5]}
+{"kind":"textbox","id":"sh/j65snq9s","slide":1,"name":"project-REUSE-2","text":"awesome-gpt-image-2","textPreview":"awesome-gpt-image-2","textChars":19,"textLines":1,"bbox":[347,453,283,34]}
+{"kind":"textbox","id":"sh/47etwvad","slide":1,"name":"owner-REUSE-2","text":"freestylefly","textPreview":"freestylefly","textChars":12,"textLines":1,"bbox":[347,487,283,22]}
+{"kind":"textbox","id":"sh/5snap0ry","slide":1,"name":"description-REUSE-2","text":"案例和模板共用一份 style library，并生成可安装的 agent skill。","textPreview":"案例和模板共用一份 style library，并生成可安装的 agent skill。","textChars":44,"textLines":1,"bbox":[347,520,283,96]}
+{"kind":"shape","id":"sh/a1cbqlsv","slide":1,"name":"stage-install","bbox":[650,158,283,76]}
+{"kind":"textbox","id":"sh/v2lsjq9g","slide":1,"name":"INSTALL-title","text":"03  INSTALL","textPreview":"03  INSTALL","textChars":11,"textLines":1,"bbox":[664,168,255,34]}
+{"kind":"textbox","id":"sh/w3utsva1","slide":1,"name":"INSTALL-subtitle","text":"交给工具安装","textPreview":"交给工具安装","textChars":6,"textLines":1,"bbox":[664,203,255,23]}
+{"kind":"textbox","id":"sh/x43al0rm","slide":1,"name":"project-INSTALL-1","text":"skills","textPreview":"skills","textChars":6,"textLines":1,"bbox":[650,254,283,34]}
+{"kind":"textbox","id":"sh/mxsrm1sz","slide":1,"name":"owner-INSTALL-1","text":"vercel-labs","textPreview":"vercel-labs","textChars":11,"textLines":1,"bbox":[650,288,283,22]}
+{"kind":"textbox","id":"sh/ny1sf69k","slide":1,"name":"description-INSTALL-1","text":"用 npx 搜索、安装或运行 skill。列表有了包管理语义。","textPreview":"用 npx 搜索、安装或运行 skill。列表有了包管理语义。","textChars":31,"textLines":1,"bbox":[650,321,283,96]}
+{"kind":"shape","id":"sh/psrel4b2","slide":1,"name":"rule","bbox":[650,440,283,1.5]}
+{"kind":"textbox","id":"sh/oridsjuh","slide":1,"name":"project-INSTALL-2","text":"anthropics/skills","textPreview":"anthropics/skills","textChars":17,"textLines":1,"bbox":[650,453,283,34]}
+{"kind":"textbox","id":"sh/3q9wjetw","slide":1,"name":"owner-INSTALL-2","text":"anthropics","textPreview":"anthropics","textChars":10,"textLines":1,"bbox":[650,487,283,22]}
+{"kind":"textbox","id":"sh/2p0vq9cb","slide":1,"name":"description-INSTALL-2","text":"官方样例与规范。每项能力都是含说明、脚本和资源的文件夹。","textPreview":"官方样例与规范。每项能力都是含说明、脚本和资源的文件夹。","textChars":28,"textLines":1,"bbox":[650,520,283,96]}
+{"kind":"shape","id":"sh/1o7eh4b6","slide":1,"name":"stage-operate","bbox":[953,158,283,76]}
+{"kind":"textbox","id":"sh/gnydozul","slide":1,"name":"OPERATE-title","text":"04  OPERATE","textPreview":"04  OPERATE","textChars":11,"textLines":1,"bbox":[967,168,255,34]}
+{"kind":"textbox","id":"sh/fmpwfut0","slide":1,"name":"OPERATE-subtitle","text":"规定 agent 怎么做","textPreview":"规定 agent 怎么做","textChars":12,"textLines":1,"bbox":[967,203,255,23]}
+{"kind":"textbox","id":"sh/e1gvmpcf","slide":1,"name":"project-OPERATE-1","text":"superpowers","textPreview":"superpowers","textChars":11,"textLines":1,"bbox":[953,254,283,34]}
+{"kind":"textbox","id":"sh/t07udkbu","slide":1,"name":"owner-OPERATE-1","text":"obra","textPreview":"obra","textChars":4,"textLines":1,"bbox":[953,288,283,22]}
+{"kind":"textbox","id":"sh/szydkzu9","slide":1,"name":"description-OPERATE-1","text":"把澄清需求、写计划、TDD 和评审做成自动触发的 skills。","textPreview":"把澄清需求、写计划、TDD 和评审做成自动触发的 skills。","textChars":32,"textLines":1,"bbox":[953,321,283,96]}
+{"kind":"shape","id":"sh/8r6d4z69","slide":1,"name":"rule","bbox":[953,440,283,1.5]}
+{"kind":"textbox","id":"sh/tsfux47u","slide":1,"name":"project-OPERATE-2","text":"spec-kit","textPreview":"spec-kit","textChars":8,"textLines":1,"bbox":[953,453,283,34]}
+{"kind":"textbox","id":"sh/6pov2po3","slide":1,"name":"owner-OPERATE-2","text":"github","textPreview":"github","textChars":6,"textLines":1,"bbox":[953,487,283,22]}
+{"kind":"textbox","id":"sh/7qxcvupo","slide":1,"name":"description-OPERATE-2","text":"先保存规格和验收条件，再让 agent 写代码。","textPreview":"先保存规格和验收条件，再让 agent 写代码。","textChars":24,"textLines":1,"bbox":[953,520,283,96]}
+{"kind":"notes","id":"nt/mzc0dq","slide":1,"text":"这一页只讲一个观察：awesome 的用途正在变化。\n左边的经典列表仍然主要给人看。越往右，整理出来的知识越接近 agent 可以直接使用的东西：一份 Markdown、一个 skill 文件夹、一条安装命令，或者一整套工程方法。\n不要逐项念指标。每列挑一个例子讲清楚它实际解决什么问题。\n\n[Sources]\n- Local analysis: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n- https://github.com/sindresorhus/awesome\n- https://github.com/punkpeye/awesome-mcp-servers\n- https://github.com/VoltAgent/awesome-design-md\n- https://github.com/freestylefly/awesome-gpt-image-2\n- https://github.com/vercel-labs/skills\n- https://github.com/anthropics/skills\n- https://github.com/obra/superpowers\n- https://github.com/github/spec-kit\n[/Sources]"}

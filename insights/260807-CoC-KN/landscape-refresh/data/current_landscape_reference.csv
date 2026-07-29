@@ -1,0 +1,123 @@
+repo_id,repo_name,display_name,current_landscape_layer,current_landscape_stage,current_landscape_section,current_openrank,source_url
+937253475,anthropics/claude-code,Claude Code,Agent Infra,application,Agentic coding,810.36,https://landscape-demo-omega.vercel.app/
+965415649,openai/codex,Codex,Agent Infra,application,Agentic coding,474.9,https://landscape-demo-omega.vercel.app/
+975734319,anomalyco/opencode,OpenCode,Agent Infra,application,Agentic coding,471.04,https://landscape-demo-omega.vercel.app/
+968197216,google-gemini/gemini-cli,Gemini CLI,Agent Infra,application,Agentic coding,355.52,https://landscape-demo-omega.vercel.app/
+1035029907,earendil-works/pi,Pi,Agent Infra,application,Agentic coding,92.71,https://landscape-demo-omega.vercel.app/
+946087422,Kilo-Org/kilocode,Kilo Code,Agent Infra,application,Agentic coding,76.58,https://landscape-demo-omega.vercel.app/
+846698999,aaif-goose/goose,Goose,Agent Infra,application,Agentic coding,72.82,https://landscape-demo-omega.vercel.app/
+1008713177,QwenLM/qwen-code,Qwen Code,Agent Infra,application,Agentic coding,58.71,https://landscape-demo-omega.vercel.app/
+384219990,warpdotdev/warp,Warp,Agent Infra,application,Agentic coding,57.98,https://landscape-demo-omega.vercel.app/
+824874689,cline/cline,Cline,Agent Infra,application,Agentic coding,54.24,https://landscape-demo-omega.vercel.app/
+585860664,github/copilot-cli,Copilot CLI,Agent Infra,application,Agentic coding,52.16,https://landscape-demo-omega.vercel.app/
+771302083,OpenHands/OpenHands,OpenHands,Agent Infra,application,Agentic coding,46.21,https://landscape-demo-omega.vercel.app/
+644686905,continuedev/continue,Continue,Agent Infra,application,Agentic coding,38.21,https://landscape-demo-omega.vercel.app/
+987670088,charmbracelet/crush,Crush,Agent Infra,application,Agentic coding,34.44,https://landscape-demo-omega.vercel.app/
+1197990888,Gitlawb/openclaude,OpenClaude,Agent Infra,application,Agentic coding,40.14,https://landscape-demo-omega.vercel.app/
+1073224795,obra/superpowers,Superpowers,Agent Infra,application,Coding harnesses,30.45,https://landscape-demo-omega.vercel.app/
+1136590548,affaan-m/everything-claude-code,Everything Claude Code,Agent Infra,application,Coding harnesses,23.67,https://landscape-demo-omega.vercel.app/
+1108837393,code-yeongyu/oh-my-openagent,Oh My OpenAgent,Agent Infra,application,Coding harnesses,71.37,https://landscape-demo-omega.vercel.app/
+1148052330,Yeachan-Heo/oh-my-codex,Oh My Codex,Agent Infra,application,Coding harnesses,27.31,https://landscape-demo-omega.vercel.app/
+1103012935,openclaw/openclaw,OpenClaw,Agent Infra,application,Personal AI assistants,1285.8,https://landscape-demo-omega.vercel.app/
+1024554267,NousResearch/hermes-agent,Hermes Agent,Agent Infra,application,Personal AI assistants,473.32,https://landscape-demo-omega.vercel.app/
+1165324947,agentscope-ai/QwenPaw,QwenPaw,Agent Infra,application,Personal AI assistants,95.07,https://landscape-demo-omega.vercel.app/
+1147094660,HKUDS/nanobot,nanobot,Agent Infra,application,Personal AI assistants,89.88,https://landscape-demo-omega.vercel.app/
+1156956890,zeroclaw-labs/zeroclaw,ZeroClaw,Agent Infra,application,Personal AI assistants,80.28,https://landscape-demo-omega.vercel.app/
+575865240,AstrBotDevs/AstrBot,AstrBot,Agent Infra,application,Personal AI assistants,70.61,https://landscape-demo-omega.vercel.app/
+805155266,CherryHQ/cherry-studio,Cherry Studio,Agent Infra,application,Chatbot workspaces,100.42,https://landscape-demo-omega.vercel.app/
+701547123,open-webui/open-webui,Open WebUI,Agent Infra,application,Chatbot workspaces,94.3,https://landscape-demo-omega.vercel.app/
+600596928,danny-avila/LibreChat,LibreChat,Agent Infra,application,Chatbot workspaces,38.24,https://landscape-demo-omega.vercel.app/
+979115477,bytedance/deer-flow,DeerFlow,Agent Infra,framework,Multi-agent orchestration,194.85,https://landscape-demo-omega.vercel.app/
+839037098,mastra-ai/mastra,Mastra,Agent Infra,framework,Multi-agent orchestration,132.68,https://landscape-demo-omega.vercel.app/
+1170821064,paperclipai/paperclip,Paperclip,Agent Infra,framework,Multi-agent orchestration,120.72,https://landscape-demo-omega.vercel.app/
+1133707766,multica-ai/multica,Multica,Agent Infra,framework,Multi-agent orchestration,38.64,https://landscape-demo-omega.vercel.app/
+193215554,n8n-io/n8n,n8n,Agent Infra,framework,Workflow & agent builders,237.6,https://landscape-demo-omega.vercel.app/
+626805178,langgenius/dify,Dify,Agent Infra,framework,Workflow & agent builders,146.73,https://landscape-demo-omega.vercel.app/
+573661753,activepieces/activepieces,Activepieces,Agent Infra,framework,Workflow & agent builders,77.37,https://landscape-demo-omega.vercel.app/
+599320067,langflow-ai/langflow,Langflow,Agent Infra,framework,Workflow & agent builders,74.99,https://landscape-demo-omega.vercel.app/
+589831718,Comfy-Org/ComfyUI,ComfyUI,Agent Infra,framework,Workflow & agent builders,63.65,https://landscape-demo-omega.vercel.app/
+644461337,vercel/ai,AI SDK,Agent Infra,framework,Code-first frameworks,83.12,https://landscape-demo-omega.vercel.app/
+818331198,pydantic/pydantic-ai,Pydantic AI,Agent Infra,framework,Code-first frameworks,65.56,https://landscape-demo-omega.vercel.app/
+707441527,livekit/agents,LiveKit Agents,Agent Infra,framework,Code-first frameworks,53.94,https://landscape-demo-omega.vercel.app/
+736272311,pipecat-ai/pipecat,Pipecat,Agent Infra,framework,Code-first frameworks,38.54,https://landscape-demo-omega.vercel.app/
+958830659,google/adk-python,Google ADK,Agent Infra,framework,Code-first frameworks,53.73,https://landscape-demo-omega.vercel.app/
+552661142,langchain-ai/langchain,LangChain,Agent Infra,framework,Code-first frameworks,51.55,https://landscape-demo-omega.vercel.app/
+655515393,CopilotKit/CopilotKit,CopilotKit,Agent Infra,framework,Code-first frameworks,40.43,https://landscape-demo-omega.vercel.app/
+710601088,crewAIInc/crewAI,crewAI,Agent Infra,framework,Code-first frameworks,38.01,https://landscape-demo-omega.vercel.app/
+1166139870,RightNow-AI/openfang,OpenFang,Agent Infra,framework,Code-first frameworks,27.51,https://landscape-demo-omega.vercel.app/
+730534580,infiniflow/ragflow,RAGFlow,Agent Infra,runtime,"Memory, knowledge & context",82.12,https://landscape-demo-omega.vercel.app/
+1201656210,MemPalace/mempalace,MemPalace,Agent Infra,runtime,"Memory, knowledge & context",53.86,https://landscape-demo-omega.vercel.app/
+656099147,mem0ai/mem0,mem0,Agent Infra,runtime,"Memory, knowledge & context",23.75,https://landscape-demo-omega.vercel.app/
+214587193,supabase/supabase,Supabase,Agent Infra,runtime,"Memory, knowledge & context",135.55,https://landscape-demo-omega.vercel.app/
+1080442728,oceanbase/seekdb,seekdb,Agent Infra,runtime,"Memory, knowledge & context",4.78,https://landscape-demo-omega.vercel.app/
+1028070615,NevaMind-AI/memU,memU,Agent Infra,runtime,"Memory, knowledge & context",3.56,https://landscape-demo-omega.vercel.app/
+1086419061,vectorize-io/hindsight,Hindsight,Agent Infra,runtime,"Memory, knowledge & context",21.74,https://landscape-demo-omega.vercel.app/
+890668799,modelcontextprotocol/servers,Model Context Protocol,Agent Infra,runtime,Protocols & interoperability,17.53,https://landscape-demo-omega.vercel.app/
+1061953414,anthropics/skills,Agent Skills,Agent Infra,runtime,Protocols & interoperability,14.87,https://landscape-demo-omega.vercel.app/
+954873280,a2aproject/A2A,A2A,Agent Infra,runtime,Protocols & interoperability,13.55,https://landscape-demo-omega.vercel.app/
+1132001614,vercel-labs/agent-browser,Agent Browser,Agent Infra,runtime,Tool & browser use,17.87,https://landscape-demo-omega.vercel.app/
+881458615,browser-use/browser-use,Browser Use,Agent Infra,runtime,Tool & browser use,17.48,https://landscape-demo-omega.vercel.app/
+1062458369,alibaba/page-agent,page-agent,Agent Infra,runtime,Tool & browser use,9.25,https://landscape-demo-omega.vercel.app/
+1213049020,browser-use/browser-harness,Browser Harness,Agent Infra,runtime,Tool & browser use,10.58,https://landscape-demo-omega.vercel.app/
+638951438,comet-ml/opik,Opik,Agent Infra,runtime,Observability & evaluation,73.49,https://landscape-demo-omega.vercel.app/
+642497346,langfuse/langfuse,Langfuse,Agent Infra,runtime,Observability & evaluation,53.47,https://landscape-demo-omega.vercel.app/
+564072810,Arize-ai/phoenix,Arize Phoenix,Agent Infra,runtime,Observability & evaluation,47.44,https://landscape-demo-omega.vercel.app/
+633927609,promptfoo/promptfoo,promptfoo,Agent Infra,runtime,Observability & evaluation,29.84,https://landscape-demo-omega.vercel.app/
+671269505,BerriAI/litellm,LiteLLM,Agent Infra,runtime,Model API gateways,176.72,https://landscape-demo-omega.vercel.app/
+558188628,higress-group/higress,Higress,Agent Infra,runtime,Model API gateways,44.35,https://landscape-demo-omega.vercel.app/
+717197250,QuantumNous/new-api,New API,Agent Infra,runtime,Model API gateways,54.66,https://landscape-demo-omega.vercel.app/
+631254164,songquanpeng/one-api,One API,Agent Infra,runtime,Model API gateways,1.16,https://landscape-demo-omega.vercel.app/
+1139971460,rtk-ai/rtk,rtk,Agent Infra,runtime,Model API gateways,37.48,https://landscape-demo-omega.vercel.app/
+1031912724,farion1231/cc-switch,cc-switch,Agent Infra,runtime,Model API gateways,64.9,https://landscape-demo-omega.vercel.app/
+440752086,coder/coder,Coder,Agent Infra,runtime,Development sandboxes,111.73,https://landscape-demo-omega.vercel.app/
+1118085970,alibaba/OpenSandbox,OpenSandbox,Agent Infra,runtime,Development sandboxes,15.82,https://landscape-demo-omega.vercel.app/
+753490180,daytonaio/daytona,Daytona,Agent Infra,runtime,Development sandboxes,43.37,https://landscape-demo-omega.vercel.app/
+658928958,ollama/ollama,Ollama,Model Infra,model,Serving · Deploy,115.23,https://landscape-demo-omega.vercel.app/
+942206898,ai-dynamo/dynamo,NVIDIA Dynamo,Model Infra,model,Serving · Deploy,206.77,https://landscape-demo-omega.vercel.app/
+653496050,xorbitsai/inference,Xorbits Inference,Model Infra,model,Serving · Deploy,15.2,https://landscape-demo-omega.vercel.app/
+975070903,llm-d/llm-d,llm-d,Model Infra,model,Serving · Deploy,34.47,https://landscape-demo-omega.vercel.app/
+599547518,vllm-project/vllm,vLLM,Model Infra,model,Serving · Inference,497.03,https://landscape-demo-omega.vercel.app/
+740303686,sgl-project/sglang,SGLang,Model Infra,model,Serving · Inference,414,https://landscape-demo-omega.vercel.app/
+612354784,ggml-org/llama.cpp,llama.cpp,Model Infra,model,Serving · Inference,227.96,https://landscape-demo-omega.vercel.app/
+679366051,NVIDIA/TensorRT-LLM,TensorRT-LLM,Model Infra,model,Serving · Inference,322.58,https://landscape-demo-omega.vercel.app/
+153097643,openvinotoolkit/openvino,OpenVINO,Model Infra,model,Serving · Inference,128.12,https://landscape-demo-omega.vercel.app/
+819733173,kvcache-ai/Mooncake,Mooncake,Model Infra,model,Serving · Inference,47.95,https://landscape-demo-omega.vercel.app/
+881221486,verl-project/verl,verl,Model Infra,model,Post-Train · Reinforcement learning,93.94,https://landscape-demo-omega.vercel.app/
+937952934,areal-project/AReaL,AReaL,Model Infra,model,Post-Train · Reinforcement learning,57.39,https://landscape-demo-omega.vercel.app/
+672415139,OpenRLHF/OpenRLHF,OpenRLHF,Model Infra,model,Post-Train · Reinforcement learning,6.22,https://landscape-demo-omega.vercel.app/
+1037741738,RLinf/RLinf,RLinf,Model Infra,model,Post-Train · Reinforcement learning,42.64,https://landscape-demo-omega.vercel.app/
+673412924,modelscope/ms-swift,ms-swift,Model Infra,model,Post-Train · Supervised fine-tuning,41.91,https://landscape-demo-omega.vercel.app/
+725205304,unslothai/unsloth,Unsloth,Model Infra,model,Post-Train · Supervised fine-tuning,46.77,https://landscape-demo-omega.vercel.app/
+646410686,hiyouga/LlamaFactory,LLaMA-Factory,Model Infra,model,Post-Train · Supervised fine-tuning,15.68,https://landscape-demo-omega.vercel.app/
+65600975,pytorch/pytorch,PyTorch,Model Infra,model,Pre-Train · Framework & parallel,620.96,https://landscape-demo-omega.vercel.app/
+176982014,NVIDIA/Megatron-LM,Megatron-LM,Model Infra,model,Pre-Train · Framework & parallel,79.3,https://landscape-demo-omega.vercel.app/
+235860204,deepspeedai/DeepSpeed,DeepSpeed,Model Infra,model,Pre-Train · Framework & parallel,16.22,https://landscape-demo-omega.vercel.app/
+65711522,PaddlePaddle/Paddle,Paddle,Model Infra,model,Pre-Train · Framework & parallel,79.85,https://landscape-demo-omega.vercel.app/
+154739597,jax-ml/jax,JAX,Model Infra,model,Pre-Train · Framework & parallel,36.98,https://landscape-demo-omega.vercel.app/
+200722670,NVIDIA-NeMo/NeMo,NeMo,Model Infra,model,Pre-Train · Framework & parallel,31.54,https://landscape-demo-omega.vercel.app/
+136202695,mlflow/mlflow,MLflow,Model Infra,model,Pre-Train · Evaluation & observability,81.03,https://landscape-demo-omega.vercel.app/
+86031674,wandb/wandb,Weights & Biases,Model Infra,model,Pre-Train · Evaluation & observability,43.5,https://landscape-demo-omega.vercel.app/
+748713144,huggingface/lerobot,LeRobot,Model Infra,model,Pre-Train · Robotics infra,45.61,https://landscape-demo-omega.vercel.app/
+914053359,OpenMind/OM1,OpenMind OM1,Model Infra,model,Pre-Train · Robotics infra,20.11,https://landscape-demo-omega.vercel.app/
+23496542,triton-lang/triton,Triton,Model Infra,model,Pre-Train · Compiler & accelerator,78.41,https://landscape-demo-omega.vercel.app/
+539057023,NVIDIA/TransformerEngine,TransformerEngine,Model Infra,model,Pre-Train · Compiler & accelerator,45.79,https://landscape-demo-omega.vercel.app/
+112542515,NVIDIA/cutlass,CUTLASS,Model Infra,model,Pre-Train · Compiler & accelerator,16.43,https://landscape-demo-omega.vercel.app/
+494232964,Dao-AILab/flash-attention,FlashAttention,Model Infra,model,Pre-Train · Compiler & accelerator,23.09,https://landscape-demo-omega.vercel.app/
+669331976,flashinfer-ai/flashinfer,FlashInfer,Model Infra,model,Pre-Train · Compiler & accelerator,65.94,https://landscape-demo-omega.vercel.app/
+90506918,rapidsai/cudf,RAPIDS cuDF,Model Infra,model,Pre-Train · Compiler & accelerator,54.43,https://landscape-demo-omega.vercel.app/
+933928679,deepseek-ai/DeepEP,DeepEP,Model Infra,model,Pre-Train · Compiler & accelerator,5.44,https://landscape-demo-omega.vercel.app/
+192640529,HumanSignal/label-studio,Label Studio,Model Infra,model,Data · Labeling,30.66,https://landscape-demo-omega.vercel.app/
+139156354,cvat-ai/cvat,CVAT,Model Infra,model,Data · Labeling,28.6,https://landscape-demo-omega.vercel.app/
+33884891,apache/airflow,Apache Airflow,Model Infra,model,Data · Integration,231.78,https://landscape-demo-omega.vercel.app/
+283046497,airbytehq/airbyte,Airbyte,Model Infra,model,Data · Integration,81.74,https://landscape-demo-omega.vercel.app/
+391740664,open-metadata/OpenMetadata,OpenMetadata,Model Infra,model,Data · Governance,127.45,https://landscape-demo-omega.vercel.app/
+46398090,datahub-project/datahub,DataHub,Model Infra,model,Data · Governance,96.24,https://landscape-demo-omega.vercel.app/
+158256479,apache/iceberg,Apache Iceberg,Model Infra,model,Data · Governance,88.86,https://landscape-demo-omega.vercel.app/
+447060287,apache/paimon,Apache Paimon,Model Infra,model,Data · Governance,29.86,https://landscape-demo-omega.vercel.app/
+76474200,apache/hudi,Apache Hudi,Model Infra,model,Data · Governance,52.83,https://landscape-demo-omega.vercel.app/
+182849188,delta-io/delta,Delta Lake,Model Infra,model,Data · Governance,38.69,https://landscape-demo-omega.vercel.app/
+631431061,apache/gravitino,Apache Gravitino,Model Infra,model,Data · Governance,45.93,https://landscape-demo-omega.vercel.app/
+71932349,ray-project/ray,Ray,Model Infra,model,Compute & scheduling,183.56,https://landscape-demo-omega.vercel.app/
+17165658,apache/spark,Apache Spark,Model Infra,model,Compute & scheduling,117.38,https://landscape-demo-omega.vercel.app/
+175592968,volcano-sh/volcano,Volcano,Model Infra,model,Compute & scheduling,23.84,https://landscape-demo-omega.vercel.app/
+178075572,kserve/kserve,KServe,Model Infra,model,Compute & scheduling,21.71,https://landscape-demo-omega.vercel.app/

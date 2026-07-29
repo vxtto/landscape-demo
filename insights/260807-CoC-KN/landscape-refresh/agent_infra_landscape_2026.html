@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=3840, initial-scale=1">
+  <title>Agent Infra Landscape 2026</title>
+  <style>
+
+    * { box-sizing: border-box; }
+    html, body {
+      width: 3840px;
+      height: 2160px;
+      margin: 0;
+      overflow: hidden;
+      background: #ffffff;
+      color: #111318;
+      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    .canvas {
+      position: relative;
+      width: 3840px;
+      height: 2160px;
+      padding: 40px 58px 34px 172px;
+      display: grid;
+      grid-template-rows: 148px 106px 1fr 48px;
+      gap: 18px;
+    }
+    .side-label {
+      position: absolute;
+      left: 54px;
+      top: 280px;
+      bottom: 88px;
+      width: 88px;
+      border: 4px solid #111318;
+      border-radius: 28px;
+      background: #f5a2d6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 38px;
+      font-weight: 900;
+    }
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      border-bottom: 3px solid #111318;
+    }
+    h1 {
+      margin: 0;
+      font-size: 76px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .subtitle {
+      margin-top: 12px;
+      color: #505660;
+      font-size: 23px;
+      font-weight: 650;
+    }
+    .brands {
+      display: flex;
+      gap: 28px;
+      font-size: 23px;
+      font-weight: 900;
+    }
+    .brands .ant { color: #126ed0; }
+    .brands .inclusion { color: #4867df; }
+    .summary {
+      display: grid;
+      grid-template-columns: 1.2fr .9fr .9fr 1.25fr;
+      gap: 16px;
+    }
+    .summary-item {
+      min-width: 0;
+      padding: 14px 20px;
+      border: 3px solid #111318;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: #ffffff;
+    }
+    .summary-item.primary {
+      background: #111318;
+      color: white;
+    }
+    .summary-item strong {
+      font-size: 32px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .summary-item span {
+      color: #555b64;
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 650;
+    }
+    .summary-item.primary span { color: #d7dae0; }
+    .content {
+      min-height: 0;
+      display: grid;
+      gap: 18px;
+    }
+    .major-group {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      padding: 62px 16px 15px;
+      border: 4px solid #111318;
+      border-radius: 10px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .major-heading {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      top: -2px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .major-heading h2 {
+      margin: 0;
+      padding: 7px 17px 8px;
+      border: 3px solid #111318;
+      border-top: 0;
+      border-radius: 0 0 8px 8px;
+      background: var(--accent);
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .major-heading span {
+      color: #555b64;
+      font-size: 16px;
+      font-weight: 800;
+    }
+    .subsections {
+      height: 100%;
+      display: grid;
+      gap: 12px;
+    }
+    .subsection {
+      min-width: 0;
+      min-height: 0;
+      padding: 47px 10px 10px;
+      border: 2px solid #727780;
+      border-radius: 7px;
+      background: #fbfbfc;
+      position: relative;
+      overflow: hidden;
+    }
+    .subsection-title {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 39px;
+      padding: 0 10px;
+      border-bottom: 2px solid #b2b6bd;
+      background: #f0f1f3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .subsection-title h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1;
+      font-weight: 900;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .subsection-title span {
+      color: #5f6570;
+      font-size: 12px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--card-columns), minmax(0, 1fr));
+      grid-auto-rows: 68px;
+      gap: 8px;
+      align-content: start;
+    }
+    .project-card {
+      min-width: 0;
+      min-height: 0;
+      padding: 7px 8px;
+      border: 2px solid #2a2e34;
+      border-radius: 7px;
+      background: #ffffff;
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 8px;
+    }
+    .project-card.new-project {
+      border-color: #168a55;
+      background: #e9f8ef;
+    }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #c7cbd1;
+      border-radius: 7px;
+      background: #ffffff;
+      object-fit: contain;
+    }
+    .project-copy {
+      min-width: 0;
+      display: grid;
+      gap: 3px;
+    }
+    .project-copy strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 16px;
+      line-height: 1;
+    }
+    .project-copy span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #676d77;
+      font-size: 11px;
+      font-weight: 650;
+    }
+    .project-signals {
+      display: grid;
+      justify-items: end;
+      gap: 4px;
+    }
+    .new-badge {
+      padding: 3px 5px;
+      border-radius: 3px;
+      background: #168a55;
+      color: white;
+      font-size: 9px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .openrank {
+      padding: 4px 6px;
+      border-radius: 4px;
+      background: #24282e;
+      color: white;
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      color: #5a606a;
+      font-size: 16px;
+      font-weight: 650;
+    }
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      white-space: nowrap;
+    }
+    .legend i {
+      display: inline-block;
+      width: 27px;
+      height: 17px;
+      margin-right: 6px;
+      border: 2px solid #2a2e34;
+      border-radius: 4px;
+      vertical-align: middle;
+      background: #ffffff;
+    }
+    .legend i.new {
+      border-color: #168a55;
+      background: #e9f8ef;
+    }
+
+    .content { grid-template-rows: 1.00fr 0.82fr 1.18fr; }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <div class="side-label">Agent Infra</div>
+    <header>
+      <div>
+        <h1>Agent Infra Landscape 2026</h1>
+        <div class="subtitle">Selected from the refreshed 2026 Agentic AI project inventory</div>
+      </div>
+      <div class="brands">
+        <span class="ant">ANT OPEN SOURCE</span>
+        <span class="inclusion">INCLUSION AI</span>
+      </div>
+    </header>
+    <section class="summary">
+      <div class="summary-item primary">
+        <strong>JULY 2026</strong>
+        <span>editorial selection snapshot</span>
+      </div>
+      <div class="summary-item">
+        <strong>69 PROJECTS</strong>
+        <span>kept or newly added</span>
+      </div>
+      <div class="summary-item">
+        <strong>12 SECTIONS</strong>
+        <span>ecosystem capability areas</span>
+      </div>
+      <div class="summary-item">
+        <strong>11 NEW</strong>
+        <span>68/69 projects have June OpenRank</span>
+      </div>
+    </section>
+    <section class="content">
+      <section class="major-group" style="--accent:#f48ac6">
+        <div class="major-heading">
+          <h2>Agentic Applications</h2>
+          <span>26 projects</span>
+        </div>
+        <div class="subsections" style="grid-template-columns:1.9fr 1.15fr 0.75fr 0.80fr">
+
+      <section class="subsection" style="--card-columns:3">
+        <div class="subsection-title">
+          <h3>Agentic coding</h3>
+          <span>12 projects</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/openai.png" alt="">
+        <div class="project-copy">
+          <strong>codex</strong>
+          <span>openai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 374</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/anomalyco.png" alt="">
+        <div class="project-copy">
+          <strong>opencode</strong>
+          <span>anomalyco</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 271</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/anthropics.png" alt="">
+        <div class="project-copy">
+          <strong>claude-code</strong>
+          <span>anthropics</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 269</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/google-gemini.png" alt="">
+        <div class="project-copy">
+          <strong>gemini-cli</strong>
+          <span>google-gemini</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 93.6</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/warpdotdev.png" alt="">
+        <div class="project-copy">
+          <strong>warp</strong>
+          <span>warpdotdev</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 80.5</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/earendil-works.png" alt="">
+        <div class="project-copy">
+          <strong>pi</strong>
+          <span>earendil-works</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 69.6</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/qwenlm.png" alt="">
+        <div class="project-copy">
+          <strong>qwen-code</strong>
+          <span>QwenLM</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 60.2</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/kilo-org.png" alt="">
+        <div class="project-copy">
+          <strong>kilocode</strong>
+          <span>Kilo-Org</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 58.4</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/cline.png" alt="">
+        <div class="project-copy">
+          <strong>cline</strong>
+          <span>cline</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 49.3</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/aaif-goose.png" alt="">
+        <div class="project-copy">
+          <strong>goose</strong>
+          <span>aaif-goose</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 30.4</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/github.png" alt="">
+        <div class="project-copy">
+          <strong>copilot-cli</strong>
+          <span>github</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 21.0</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/openhands.png" alt="">
+        <div class="project-copy">
+          <strong>OpenHands</strong>
+          <span>OpenHands</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 18.4</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:2">
+        <div class="subsection-title">
+          <h3>Personal AI assistants</h3>
+          <span>7 projects / 1 new</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/openclaw.png" alt="">
+        <div class="project-copy">
+          <strong>openclaw</strong>
+          <span>openclaw</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 632</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/nousresearch.png" alt="">
+        <div class="project-copy">
+          <strong>hermes-agent</strong>
+          <span>NousResearch</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 504</span>
+        </div>
+      </article>
+
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/lobehub.png" alt="">
+        <div class="project-copy">
+          <strong>lobehub</strong>
+          <span>lobehub</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 60.6</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/agentscope-ai.png" alt="">
+        <div class="project-copy">
+          <strong>QwenPaw</strong>
+          <span>agentscope-ai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 57.6</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/zeroclaw-labs.png" alt="">
+        <div class="project-copy">
+          <strong>zeroclaw</strong>
+          <span>zeroclaw-labs</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 54.2</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/hkuds.png" alt="">
+        <div class="project-copy">
+          <strong>nanobot</strong>
+          <span>HKUDS</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 44.7</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/astrbotdevs.png" alt="">
+        <div class="project-copy">
+          <strong>AstrBot</strong>
+          <span>AstrBotDevs</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 42.2</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:1">
+        <div class="subsection-title">
+          <h3>Chatbot workspaces</h3>
+          <span>3 projects</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/cherryhq.png" alt="">
+        <div class="project-copy">
+          <strong>cherry-studio</strong>
+          <span>CherryHQ</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 68.8</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/open-webui.png" alt="">
+        <div class="project-copy">
+          <strong>open-webui</strong>
+          <span>open-webui</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 43.7</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/danny-avila.png" alt="">
+        <div class="project-copy">
+          <strong>LibreChat</strong>
+          <span>danny-avila</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 29.1</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:1">
+        <div class="subsection-title">
+          <h3>Coding harnesses</h3>
+          <span>4 projects</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/code-yeongyu.png" alt="">
+        <div class="project-copy">
+          <strong>oh-my-openagent</strong>
+          <span>code-yeongyu</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 46.2</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/farion1231.png" alt="">
+        <div class="project-copy">
+          <strong>cc-switch</strong>
+          <span>farion1231</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 42.9</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/affaan-m.png" alt="">
+        <div class="project-copy">
+          <strong>ECC</strong>
+          <span>affaan-m</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 18.2</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/obra.png" alt="">
+        <div class="project-copy">
+          <strong>superpowers</strong>
+          <span>obra</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 12.6</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+        </div>
+      </section>
+
+      <section class="major-group" style="--accent:#d99be7">
+        <div class="major-heading">
+          <h2>Agent Frameworks</h2>
+          <span>19 projects</span>
+        </div>
+        <div class="subsections" style="grid-template-columns:1.8fr 1.05fr 0.80fr">
+
+      <section class="subsection" style="--card-columns:3">
+        <div class="subsection-title">
+          <h3>Code-first frameworks</h3>
+          <span>10 projects / 2 new</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/vercel.png" alt="">
+        <div class="project-copy">
+          <strong>Vercel AI SDK</strong>
+          <span>vercel</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 56.0</span>
+        </div>
+      </article>
+
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/microsoft.png" alt="">
+        <div class="project-copy">
+          <strong>Agent Framework</strong>
+          <span>microsoft</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 48.0</span>
+        </div>
+      </article>
+
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/jetbrains.png" alt="">
+        <div class="project-copy">
+          <strong>koog</strong>
+          <span>JetBrains</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 37.5</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/pydantic.png" alt="">
+        <div class="project-copy">
+          <strong>pydantic-ai</strong>
+          <span>pydantic</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 36.5</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/livekit.png" alt="">
+        <div class="project-copy">
+          <strong>agents</strong>
+          <span>livekit</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 36.5</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/copilotkit.png" alt="">
+        <div class="project-copy">
+          <strong>CopilotKit</strong>
+          <span>CopilotKit</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 35.8</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/pipecat-ai.png" alt="">
+        <div class="project-copy">
+          <strong>pipecat</strong>
+          <span>pipecat-ai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 25.9</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/google.png" alt="">
+        <div class="project-copy">
+          <strong>Google ADK</strong>
+          <span>google</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 25.2</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/langchain-ai.png" alt="">
+        <div class="project-copy">
+          <strong>langchain</strong>
+          <span>langchain-ai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 21.5</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/crewaiinc.png" alt="">
+        <div class="project-copy">
+          <strong>crewAI</strong>
+          <span>crewAIInc</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 20.2</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:2">
+        <div class="subsection-title">
+          <h3>Workflow &amp; agent builders</h3>
+          <span>5 projects / 1 new</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/n8n-io.png" alt="">
+        <div class="project-copy">
+          <strong>n8n</strong>
+          <span>n8n-io</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 156</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/langgenius.png" alt="">
+        <div class="project-copy">
+          <strong>dify</strong>
+          <span>langgenius</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 85.6</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/activepieces.png" alt="">
+        <div class="project-copy">
+          <strong>activepieces</strong>
+          <span>activepieces</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 61.6</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/langflow-ai.png" alt="">
+        <div class="project-copy">
+          <strong>langflow</strong>
+          <span>langflow-ai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 43.8</span>
+        </div>
+      </article>
+
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/flowiseai.png" alt="">
+        <div class="project-copy">
+          <strong>Flowise</strong>
+          <span>FlowiseAI</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 11.5</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:1">
+        <div class="subsection-title">
+          <h3>Multi-agent orchestration</h3>
+          <span>4 projects</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/bytedance.png" alt="">
+        <div class="project-copy">
+          <strong>deer-flow</strong>
+          <span>bytedance</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 172</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/mastra-ai.png" alt="">
+        <div class="project-copy">
+          <strong>mastra</strong>
+          <span>mastra-ai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 92.7</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/paperclipai.png" alt="">
+        <div class="project-copy">
+          <strong>paperclip</strong>
+          <span>paperclipai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 67.5</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/multica-ai.png" alt="">
+        <div class="project-copy">
+          <strong>multica</strong>
+          <span>multica-ai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 38.7</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+        </div>
+      </section>
+
+      <section class="major-group" style="--accent:#ee86bd">
+        <div class="major-heading">
+          <h2>Agent Runtime Infrastructure</h2>
+          <span>24 projects</span>
+        </div>
+        <div class="subsections" style="grid-template-columns:1.35fr 0.95fr 0.85fr 0.85fr 0.90fr">
+
+      <section class="subsection" style="--card-columns:2">
+        <div class="subsection-title">
+          <h3>Memory, knowledge &amp; context</h3>
+          <span>7 projects / 3 new</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/volcengine.png" alt="">
+        <div class="project-copy">
+          <strong>OpenViking</strong>
+          <span>volcengine</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 140</span>
+        </div>
+      </article>
+
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/milvus-io.png" alt="">
+        <div class="project-copy">
+          <strong>milvus</strong>
+          <span>milvus-io</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 68.3</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/infiniflow.png" alt="">
+        <div class="project-copy">
+          <strong>ragflow</strong>
+          <span>infiniflow</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 62.5</span>
+        </div>
+      </article>
+
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/topoteretes.png" alt="">
+        <div class="project-copy">
+          <strong>cognee</strong>
+          <span>topoteretes</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 25.7</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/vectorize-io.png" alt="">
+        <div class="project-copy">
+          <strong>hindsight</strong>
+          <span>vectorize-io</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 22.3</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/mem0ai.png" alt="">
+        <div class="project-copy">
+          <strong>mem0</strong>
+          <span>mem0ai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 17.8</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/oceanbase.png" alt="">
+        <div class="project-copy">
+          <strong>seekdb</strong>
+          <span>oceanbase</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 6.25</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:1">
+        <div class="subsection-title">
+          <h3>Protocols &amp; interoperability</h3>
+          <span>5 projects / 2 new</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/a2ui-project.png" alt="">
+        <div class="project-copy">
+          <strong>a2ui</strong>
+          <span>a2ui-project</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 36.0</span>
+        </div>
+      </article>
+
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/ag-ui-protocol.png" alt="">
+        <div class="project-copy">
+          <strong>ag-ui</strong>
+          <span>ag-ui-protocol</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 12.7</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/modelcontextprotocol.png" alt="">
+        <div class="project-copy">
+          <strong>MCP</strong>
+          <span>modelcontextprotocol</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 7.99</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/a2aproject.png" alt="">
+        <div class="project-copy">
+          <strong>A2A</strong>
+          <span>a2aproject</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 6.98</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/anthropics.png" alt="">
+        <div class="project-copy">
+          <strong>Agent Skills</strong>
+          <span>anthropics</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 4.95</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:1">
+        <div class="subsection-title">
+          <h3>Tool &amp; browser use</h3>
+          <span>4 projects / 1 new</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/trycua.png" alt="">
+        <div class="project-copy">
+          <strong>cua</strong>
+          <span>trycua</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 14.2</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/browser-use.png" alt="">
+        <div class="project-copy">
+          <strong>browser-use</strong>
+          <span>browser-use</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 9.58</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/vercel-labs.png" alt="">
+        <div class="project-copy">
+          <strong>agent-browser</strong>
+          <span>vercel-labs</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 3.54</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/alibaba.png" alt="">
+        <div class="project-copy">
+          <strong>page-agent</strong>
+          <span>alibaba</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR -</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:1">
+        <div class="subsection-title">
+          <h3>Observability &amp; evaluation</h3>
+          <span>4 projects</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/comet-ml.png" alt="">
+        <div class="project-copy">
+          <strong>opik</strong>
+          <span>comet-ml</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 45.1</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/langfuse.png" alt="">
+        <div class="project-copy">
+          <strong>langfuse</strong>
+          <span>langfuse</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 38.8</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/arize-ai.png" alt="">
+        <div class="project-copy">
+          <strong>phoenix</strong>
+          <span>Arize-ai</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 37.4</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/promptfoo.png" alt="">
+        <div class="project-copy">
+          <strong>promptfoo</strong>
+          <span>promptfoo</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 17.3</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+      <section class="subsection" style="--card-columns:1">
+        <div class="subsection-title">
+          <h3>Development sandboxes</h3>
+          <span>4 projects / 1 new</span>
+        </div>
+        <div class="project-grid">
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/coder.png" alt="">
+        <div class="project-copy">
+          <strong>coder</strong>
+          <span>coder</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 90.0</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/daytonaio.png" alt="">
+        <div class="project-copy">
+          <strong>daytona</strong>
+          <span>daytonaio</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 26.8</span>
+        </div>
+      </article>
+
+      <article class="project-card new-project">
+        <img class="avatar" src="assets/github-avatars/kubernetes-sigs.png" alt="">
+        <div class="project-copy">
+          <strong>Agent Sandbox</strong>
+          <span>kubernetes-sigs</span>
+        </div>
+        <div class="project-signals">
+          <span class="new-badge">NEW</span>
+          <span class="openrank">OR 21.6</span>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img class="avatar" src="assets/github-avatars/opensandbox-group.png" alt="">
+        <div class="project-copy">
+          <strong>OpenSandbox</strong>
+          <span>opensandbox-group</span>
+        </div>
+        <div class="project-signals">
+
+          <span class="openrank">OR 16.1</span>
+        </div>
+      </article>
+    </div>
+      </section>
+
+        </div>
+      </section>
+    </section>
+    <footer>
+      <div>
+        Source: data/agentic-ai-projects.csv. OR = OpenRank for 2026-06; a missing value is shown as "-".
+      </div>
+      <div class="legend">
+        <span><i class="new"></i>New in this refresh</span>
+        <span><i></i>Retained project</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

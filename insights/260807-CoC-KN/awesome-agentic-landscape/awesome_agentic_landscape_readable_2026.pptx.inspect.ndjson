@@ -1,0 +1,90 @@
+{"kind":"deck","id":"pr/c39wic","name":"Deck"}
+{"kind":"layout","layoutId":"8d534698-eb2b-4a48-9626-e03c911d875a","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"86a518ea-663f-4330-8b14-f08e92332804","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/t6krdc","slide":1,"title":"同样叫 awesome，用法已经分成四种","textShapes":23}
+{"kind":"textbox","id":"sh/sbm98fah","slide":1,"name":"deck-title","text":"同样叫 awesome，用法已经分成四种","textPreview":"同样叫 awesome，用法已经分成四种","textChars":20,"textLines":1,"bbox":[54,38,1130,66]}
+{"kind":"textbox","id":"sh/radszu9c","slide":1,"name":"deck-subtitle","text":"有些仍然给人浏览，有些已经提供文件、安装入口和工程方法。","textPreview":"有些仍然给人浏览，有些已经提供文件、安装入口和工程方法。","textChars":28,"textLines":1,"bbox":[56,112,1120,40]}
+{"kind":"shape","id":"sh/694r6psr","slide":1,"name":"rule","bbox":[54,168,1172,3]}
+{"kind":"textbox","id":"sh/1gva54re","slide":1,"name":"stage-1-number","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[54,205,44,28]}
+{"kind":"textbox","id":"sh/gfmtczat","slide":1,"name":"stage-1-title","text":"发现","textPreview":"发现","textChars":2,"textLines":1,"bbox":[54,236,270.5,48]}
+{"kind":"textbox","id":"sh/feds3u98","slide":1,"name":"stage-1-line","text":"人来读，自己挑","textPreview":"人来读，自己挑","textChars":7,"textLines":1,"bbox":[54,286,270.5,32]}
+{"kind":"shape","id":"sh/ed4rapsn","slide":1,"name":"rule","bbox":[54,335,270.5,4]}
+{"kind":"textbox","id":"sh/hkbat0ru","slide":1,"name":"stage-1-repo-1","text":"awesome","textPreview":"awesome","textChars":7,"textLines":1,"bbox":[54,365,270.5,46]}
+{"kind":"textbox","id":"sh/wj290vap","slide":1,"name":"stage-1-repo-2","text":"awesome-mcp-servers","textPreview":"awesome-mcp-servers","textChars":19,"textLines":1,"bbox":[54,438,270.5,58]}
+{"kind":"textbox","id":"sh/ydcjep83","slide":1,"name":"stage-2-number","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[354.5,205,44,28]}
+{"kind":"textbox","id":"sh/zelk7upo","slide":1,"name":"stage-2-title","text":"复用","textPreview":"复用","textChars":2,"textLines":1,"bbox":[354.5,236,270.5,48]}
+{"kind":"textbox","id":"sh/kfu1gfq9","slide":1,"name":"stage-2-line","text":"拿走一份文件","textPreview":"拿走一份文件","textChars":6,"textLines":1,"bbox":[354.5,286,270.5,32]}
+{"kind":"shape","id":"sh/lg329k7u","slide":1,"name":"rule","bbox":[354.5,335,270.5,4]}
+{"kind":"textbox","id":"sh/m1wjip8z","slide":1,"name":"stage-2-repo-1","text":"awesome-design-md","textPreview":"awesome-design-md","textChars":17,"textLines":1,"bbox":[354.5,365,270.5,46]}
+{"kind":"textbox","id":"sh/725kbupk","slide":1,"name":"stage-2-repo-2","text":"awesome-gpt-image-2","textPreview":"awesome-gpt-image-2","textChars":19,"textLines":1,"bbox":[354.5,438,270.5,58]}
+{"kind":"textbox","id":"sh/83e1kzq5","slide":1,"name":"stage-3-number","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[655,205,44,28]}
+{"kind":"textbox","id":"sh/94n2d47q","slide":1,"name":"stage-3-title","text":"安装","textPreview":"安装","textChars":2,"textLines":1,"bbox":[655,236,270.5,48]}
+{"kind":"textbox","id":"sh/u5wjm98b","slide":1,"name":"stage-3-line","text":"交给工具安装","textPreview":"交给工具安装","textChars":6,"textLines":1,"bbox":[655,286,270.5,32]}
+{"kind":"shape","id":"sh/v65kfepw","slide":1,"name":"rule","bbox":[655,335,270.5,4]}
+{"kind":"textbox","id":"sh/rap03e5o","slide":1,"name":"stage-3-repo-1","text":"vercel-labs/skills","textPreview":"vercel-labs/skills","textChars":18,"textLines":1,"bbox":[655,365,270.5,46]}
+{"kind":"textbox","id":"sh/69gja94j","slide":1,"name":"stage-3-repo-2","text":"anthropics/skills","textPreview":"anthropics/skills","textChars":17,"textLines":1,"bbox":[655,438,270.5,58]}
+{"kind":"textbox","id":"sh/tc7i5onu","slide":1,"name":"stage-4-number","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[955.5,205,44,28]}
+{"kind":"textbox","id":"sh/sby1cjm9","slide":1,"name":"stage-4-title","text":"工作方法","textPreview":"工作方法","textChars":4,"textLines":1,"bbox":[955.5,236,270.5,48]}
+{"kind":"textbox","id":"sh/j650zu5s","slide":1,"name":"stage-4-line","text":"规定 agent 怎么做","textPreview":"规定 agent 怎么做","textChars":12,"textLines":1,"bbox":[955.5,286,270.5,32]}
+{"kind":"shape","id":"sh/i5wj6p47","slide":1,"name":"rule","bbox":[955.5,335,270.5,4]}
+{"kind":"textbox","id":"sh/587i14ny","slide":1,"name":"stage-4-repo-1","text":"obra/superpowers","textPreview":"obra/superpowers","textChars":16,"textLines":1,"bbox":[955.5,365,270.5,46]}
+{"kind":"textbox","id":"sh/47e18zmd","slide":1,"name":"stage-4-repo-2","text":"github/spec-kit","textPreview":"github/spec-kit","textChars":15,"textLines":1,"bbox":[955.5,438,270.5,58]}
+{"kind":"shape","id":"sh/vi50vu5w","slide":1,"name":"rule","bbox":[54,557,1172,2]}
+{"kind":"textbox","id":"sh/uhwz2p4b","slide":1,"name":"overview-takeaway","text":"越靠右，agent 可以直接使用的内容越多。","textPreview":"越靠右，agent 可以直接使用的内容越多。","textChars":22,"textLines":1,"bbox":[54,588,1030,48]}
+{"kind":"notes","id":"nt/t6krdc","slide":1,"text":"这一页先看结构，不逐个念项目。\n经典 awesome 主要帮人发现信息。后面的项目开始交付可复制文件、安装命令和工作方法。\n\n[Sources]\n- Local analysis: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n- https://github.com/sindresorhus/awesome\n- https://github.com/punkpeye/awesome-mcp-servers\n- https://github.com/VoltAgent/awesome-design-md\n- https://github.com/freestylefly/awesome-gpt-image-2\n- https://github.com/vercel-labs/skills\n- https://github.com/anthropics/skills\n- https://github.com/obra/superpowers\n- https://github.com/github/spec-kit\n[/Sources]"}
+{"kind":"slide","id":"sl/j09rmk","slide":2,"title":"目录还在，内容已经可以直接放进项目里","textShapes":22}
+{"kind":"textbox","id":"sh/tgjetgz6","slide":2,"name":"slide-title","text":"目录还在，内容已经可以直接放进项目里","textPreview":"目录还在，内容已经可以直接放进项目里","textChars":18,"textLines":1,"bbox":[54,34,1160,58]}
+{"kind":"textbox","id":"sh/6dsvylgv","slide":2,"name":"slide-subtitle","text":"这四个项目分别交付入口、工具接口、设计规则和生图方法。","textPreview":"这四个项目分别交付入口、工具接口、设计规则和生图方法。","textChars":27,"textLines":1,"bbox":[56,94,1148,36]}
+{"kind":"shape","id":"sh/7e1crqh0","slide":2,"name":"rule","bbox":[54,135,1172,3]}
+{"kind":"textbox","id":"sh/g3ad4vyx","slide":2,"name":"project-1-name","text":"awesome","textPreview":"awesome","textChars":7,"textLines":1,"bbox":[56,159,330,36]}
+{"kind":"textbox","id":"sh/h43ex0zi","slide":2,"name":"project-1-owner","text":"sindresorhus","textPreview":"sindresorhus","textChars":12,"textLines":1,"bbox":[56,195,300,22]}
+{"kind":"textbox","id":"sh/uhsv2lgr","slide":2,"name":"project-1-tag","text":"经典元目录","textPreview":"经典元目录","textChars":5,"textLines":1,"bbox":[56,225,300,26]}
+{"kind":"textbox","id":"sh/f21wvqhc","slide":2,"name":"project-1-what","text":"它是一份“列表的列表”。主题从命令行工具到设计资源，先帮人找到下一份清单。","textPreview":"它是一份“列表的列表”。主题从命令行工具到设计资源，先帮人找到下一份清单。","textChars":37,"textLines":1,"bbox":[420,157,790,54]}
+{"kind":"textbox","id":"sh/47ud8fyt","slide":2,"name":"project-1-use","text":"使用者自己浏览、判断，再把需要的项目摘出来。","textPreview":"使用者自己浏览、判断，再把需要的项目摘出来。","textChars":22,"textLines":1,"bbox":[420,218,790,50]}
+{"kind":"shape","id":"sh/p83e10ze","slide":2,"name":"rule","bbox":[56,273,1154,1.5]}
+{"kind":"textbox","id":"sh/d4r61sbm","slide":2,"name":"project-2-name","text":"awesome-mcp-servers","textPreview":"awesome-mcp-servers","textChars":19,"textLines":1,"bbox":[56,292,330,36]}
+{"kind":"textbox","id":"sh/c3i58nuh","slide":2,"name":"project-2-owner","text":"punkpeye","textPreview":"punkpeye","textChars":8,"textLines":1,"bbox":[56,328,300,22]}
+{"kind":"textbox","id":"sh/bi9oz2tw","slide":2,"name":"project-2-tag","text":"工具目录","textPreview":"工具目录","textChars":4,"textLines":1,"bbox":[56,358,300,26]}
+{"kind":"textbox","id":"sh/qh0n6xcb","slide":2,"name":"project-2-what","text":"它收集 MCP servers：搜索、数据库、浏览器、文件系统等可供 agent 调用的外部能力。","textPreview":"它收集 MCP servers：搜索、数据库、浏览器、文件系统等可供 agent 调用的外部能力。","textChars":49,"textLines":1,"bbox":[420,290,790,54]}
+{"kind":"textbox","id":"sh/l8b65cby","slide":2,"name":"project-2-use","text":"人仍然负责挑选，但清单里的条目已经接近 agent 的工具接口。","textPreview":"人仍然负责挑选，但清单里的条目已经接近 agent 的工具接口。","textChars":32,"textLines":1,"bbox":[420,351,790,50]}
+{"kind":"shape","id":"sh/07i5c7ud","slide":2,"name":"rule","bbox":[56,406,1154,1.5]}
+{"kind":"textbox","id":"sh/z69o32ts","slide":2,"name":"project-3-name","text":"awesome-design-md","textPreview":"awesome-design-md","textChars":17,"textLines":1,"bbox":[56,425,330,36]}
+{"kind":"textbox","id":"sh/y50naxc7","slide":2,"name":"project-3-owner","text":"VoltAgent","textPreview":"VoltAgent","textChars":9,"textLines":1,"bbox":[56,461,300,22]}
+{"kind":"textbox","id":"sh/1c76t8be","slide":2,"name":"project-3-tag","text":"设计规则文件","textPreview":"设计规则文件","textChars":6,"textLines":1,"bbox":[56,491,300,26]}
+{"kind":"textbox","id":"sh/gby503u9","slide":2,"name":"project-3-what","text":"它把品牌网站的颜色、字体、组件和禁区整理成 DESIGN.md。","textPreview":"它把品牌网站的颜色、字体、组件和禁区整理成 DESIGN.md。","textChars":32,"textLines":1,"bbox":[420,423,790,54]}
+{"kind":"textbox","id":"sh/sv25gn25","slide":2,"name":"project-3-use","text":"把文件放进项目，coding agent 就能按这套设计规则生成 UI。","textPreview":"把文件放进项目，coding agent 就能按这套设计规则生成 UI。","textChars":36,"textLines":1,"bbox":[420,484,790,50]}
+{"kind":"shape","id":"sh/twb6p8ja","slide":2,"name":"rule","bbox":[56,539,1154,1.5]}
+{"kind":"textbox","id":"sh/6t0nedkz","slide":2,"name":"project-4-name","text":"awesome-gpt-image-2","textPreview":"awesome-gpt-image-2","textChars":19,"textLines":1,"bbox":[56,558,330,36]}
+{"kind":"textbox","id":"sh/7u9oni1k","slide":2,"name":"project-4-owner","text":"freestylefly","textPreview":"freestylefly","textChars":12,"textLines":1,"bbox":[56,594,300,22]}
+{"kind":"textbox","id":"sh/gj2pkn21","slide":2,"name":"project-4-tag","text":"生图方法库","textPreview":"生图方法库","textChars":5,"textLines":1,"bbox":[56,624,300,26]}
+{"kind":"textbox","id":"sh/hkb6tsjm","slide":2,"name":"project-4-what","text":"它把生图案例、模板和 style library 放在一起，并把常用做法提炼成 skill。","textPreview":"它把生图案例、模板和 style library 放在一起，并把常用做法提炼成 skill。","textChars":46,"textLines":1,"bbox":[420,556,790,54]}
+{"kind":"textbox","id":"sh/uxknidkv","slide":2,"name":"project-4-use","text":"人可以看案例，agent 也可以直接复用模板和操作步骤。","textPreview":"人可以看案例，agent 也可以直接复用模板和操作步骤。","textChars":28,"textLines":1,"bbox":[420,617,790,50]}
+{"kind":"notes","id":"nt/j09rmk","slide":2,"text":"这里的关键区别是交付物。\n前两个项目仍然以浏览和发现为主。DESIGN.md 和生图 skill 已经可以直接放进 agent 的工作上下文。\n\n[Sources]\n- Local analysis: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n- https://github.com/sindresorhus/awesome\n- https://github.com/punkpeye/awesome-mcp-servers\n- https://github.com/VoltAgent/awesome-design-md\n- https://github.com/freestylefly/awesome-gpt-image-2\n[/Sources]"}
+{"kind":"slide","id":"sl/hjyhi5","slide":3,"title":"更进一步，仓库开始规定 agent 怎么工作","textShapes":22}
+{"kind":"textbox","id":"sh/psvqtgr6","slide":3,"name":"slide-title","text":"更进一步，仓库开始规定 agent 怎么工作","textPreview":"更进一步，仓库开始规定 agent 怎么工作","textChars":22,"textLines":1,"bbox":[54,34,1160,58]}
+{"kind":"textbox","id":"sh/2547yl8f","slide":3,"name":"slide-subtitle","text":"安装器解决“怎么拿到”，方法库解决“拿到以后怎么做”。","textPreview":"安装器解决“怎么拿到”，方法库解决“拿到以后怎么做”。","textChars":27,"textLines":1,"bbox":[56,94,1148,36]}
+{"kind":"shape","id":"sh/n6d8rq90","slide":3,"name":"rule","bbox":[54,135,1172,3]}
+{"kind":"textbox","id":"sh/cvmp4vqh","slide":3,"name":"project-1-name","text":"skills","textPreview":"skills","textChars":6,"textLines":1,"bbox":[56,159,330,36]}
+{"kind":"textbox","id":"sh/xwvqx0r2","slide":3,"name":"project-1-owner","text":"vercel-labs","textPreview":"vercel-labs","textChars":11,"textLines":1,"bbox":[56,195,300,22]}
+{"kind":"textbox","id":"sh/at472l8r","slide":3,"name":"project-1-tag","text":"Skill 安装器","textPreview":"Skill 安装器","textChars":9,"textLines":1,"bbox":[56,225,300,26]}
+{"kind":"textbox","id":"sh/bud8vq9c","slide":3,"name":"project-1-what","text":"它既是 skill 目录，也是命令行工具。npx skills 可以搜索、安装或运行 skill。","textPreview":"它既是 skill 目录，也是命令行工具。npx skills 可以搜索、安装或运行 skill。","textChars":49,"textLines":1,"bbox":[420,157,790,54]}
+{"kind":"textbox","id":"sh/sz2psrad","slide":3,"name":"project-1-use","text":"清单开始有包管理器的感觉：找到以后，下一步可以交给工具完成。","textPreview":"清单开始有包管理器的感觉：找到以后，下一步可以交给工具完成。","textChars":30,"textLines":1,"bbox":[420,218,790,50]}
+{"kind":"shape","id":"sh/d0b6lwry","slide":3,"name":"rule","bbox":[56,273,1154,1.5]}
+{"kind":"textbox","id":"sh/lwnyxs32","slide":3,"name":"project-2-name","text":"skills","textPreview":"skills","textChars":6,"textLines":1,"bbox":[56,292,330,36]}
+{"kind":"textbox","id":"sh/0vexonmh","slide":3,"name":"project-2-owner","text":"anthropics","textPreview":"anthropics","textChars":10,"textLines":1,"bbox":[56,328,300,22]}
+{"kind":"textbox","id":"sh/zulgv2lw","slide":3,"name":"project-2-tag","text":"官方 Skill 范本","textPreview":"官方 Skill 范本","textChars":11,"textLines":1,"bbox":[56,358,300,26]}
+{"kind":"textbox","id":"sh/ytcfmx4b","slide":3,"name":"project-2-what","text":"它给出公开的 Agent Skills 样例。每项能力都是一个包含说明、脚本和资源的文件夹。","textPreview":"它给出公开的 Agent Skills 样例。每项能力都是一个包含说明、脚本和资源的文件夹。","textChars":46,"textLines":1,"bbox":[420,290,790,54]}
+{"kind":"textbox","id":"sh/90ny1c3y","slide":3,"name":"project-2-use","text":"这里最有价值的是文件结构：agent 知道先读什么、再执行什么。","textPreview":"这里最有价值的是文件结构：agent 知道先读什么、再执行什么。","textChars":32,"textLines":1,"bbox":[420,351,790,50]}
+{"kind":"shape","id":"sh/8zexs7md","slide":3,"name":"rule","bbox":[56,406,1154,1.5]}
+{"kind":"textbox","id":"sh/ny5gz2l8","slide":3,"name":"project-3-name","text":"superpowers","textPreview":"superpowers","textChars":11,"textLines":1,"bbox":[56,425,330,36]}
+{"kind":"textbox","id":"sh/mxwfqx4n","slide":3,"name":"project-3-owner","text":"obra","textPreview":"obra","textChars":4,"textLines":1,"bbox":[56,461,300,22]}
+{"kind":"textbox","id":"sh/ho7y5c3a","slide":3,"name":"project-3-tag","text":"开发方法","textPreview":"开发方法","textChars":4,"textLines":1,"bbox":[56,491,300,26]}
+{"kind":"textbox","id":"sh/wnyhw7mp","slide":3,"name":"project-3-what","text":"它把需求澄清、写计划、TDD 和代码评审整理成会自动触发的 skills。","textPreview":"它把需求澄清、写计划、TDD 和代码评审整理成会自动触发的 skills。","textChars":37,"textLines":1,"bbox":[420,423,790,54]}
+{"kind":"textbox","id":"sh/g369ofex","slide":3,"name":"project-3-use","text":"仓库交付的不是代码片段，而是一套 coding agent 的工作纪律。","textPreview":"仓库交付的不是代码片段，而是一套 coding agent 的工作纪律。","textChars":36,"textLines":1,"bbox":[420,484,790,50]}
+{"kind":"shape","id":"sh/14zahkfi","slide":3,"name":"rule","bbox":[56,539,1154,1.5]}
+{"kind":"textbox","id":"sh/ehormpw7","slide":3,"name":"project-4-name","text":"spec-kit","textPreview":"spec-kit","textChars":8,"textLines":1,"bbox":[56,558,330,36]}
+{"kind":"textbox","id":"sh/fix8faxc","slide":3,"name":"project-4-owner","text":"github","textPreview":"github","textChars":6,"textLines":1,"bbox":[56,594,300,22]}
+{"kind":"textbox","id":"sh/o7q9sze9","slide":3,"name":"project-4-tag","text":"规格驱动开发","textPreview":"规格驱动开发","textChars":6,"textLines":1,"bbox":[56,624,300,26]}
+{"kind":"textbox","id":"sh/p8zal4fu","slide":3,"name":"project-4-what","text":"它先保存规格、计划和验收条件，再让 agent 开始写代码。","textPreview":"它先保存规格、计划和验收条件，再让 agent 开始写代码。","textChars":30,"textLines":1,"bbox":[420,556,790,54]}
+{"kind":"textbox","id":"sh/258rqpw3","slide":3,"name":"project-4-use","text":"代码可以快速重写，真正需要长期保留的是意图和判断标准。","textPreview":"代码可以快速重写，真正需要长期保留的是意图和判断标准。","textChars":27,"textLines":1,"bbox":[420,617,790,50]}
+{"kind":"notes","id":"nt/hjyhi5","slide":3,"text":"这四个项目更接近 agent-native 的形态。\nskills 和 anthropics/skills 把能力做成可安装的目录结构。superpowers 和 spec-kit 进一步保存工程方法和判断标准。\n\n[Sources]\n- Local analysis: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n- https://github.com/vercel-labs/skills\n- https://github.com/anthropics/skills\n- https://github.com/obra/superpowers\n- https://github.com/github/spec-kit\n[/Sources]"}

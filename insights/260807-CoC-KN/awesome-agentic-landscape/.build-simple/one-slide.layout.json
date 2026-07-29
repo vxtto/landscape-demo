@@ -1,0 +1,2528 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/mzc0dq",
+    "id": "mzc0dq",
+    "slide": 1,
+    "layoutId": "cfec3726-72e3-470f-b768-486cbd6b6136",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "7b4881f8-8a61-41a0-96f3-1e91e6509c5c",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "PingFang SC"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "cfec3726-72e3-470f-b768-486cbd6b6136",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "7b4881f8-8a61-41a0-96f3-1e91e6509c5c",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "7b4881f8-8a61-41a0-96f3-1e91e6509c5c",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zehs3258",
+      "id": "1",
+      "name": "title",
+      "bbox": [
+        44,
+        30,
+        920,
+        62
+      ],
+      "geometry": "rect",
+      "text": "Awesome 仓库开始被 agent 直接使用",
+      "textPreview": "Awesome 仓库开始被 agent 直接使用",
+      "resolvedFontSize": 48,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 48,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Awesome 仓库开始被 agent 直接使用"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Awesome 仓库开始被 agent 直接使用",
+          "resolvedTextStyle": {
+            "fontSize": 48,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Awesome 仓库开始被 agent 直接使用",
+              "fontSize": 48,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kfqtwn6d",
+      "id": "2",
+      "name": "subtitle",
+      "bbox": [
+        46,
+        94,
+        1020,
+        34
+      ],
+      "geometry": "rect",
+      "text": "8 个项目，看看一份“清单”怎样逐渐变成文件、安装入口和工作方法",
+      "textPreview": "8 个项目，看看一份“清单”怎样逐渐变成文件、安装入口和工作方法",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 21,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "8 个项目，看看一份“清单”怎样逐渐变成文件、安装入口和工作方法"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "8 个项目，看看一份“清单”怎样逐渐变成文件、安装入口和工作方法",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "8 个项目，看看一份“清单”怎样逐渐变成文件、安装入口和工作方法",
+              "fontSize": 21,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lgzu5sny",
+      "id": "3",
+      "name": "rule",
+      "bbox": [
+        44,
+        137,
+        1192,
+        3
+      ],
+      "geometry": "rect",
+      "fillColor": "#101216",
+      "lineColor": "#101216",
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a9obqdob",
+      "id": "4",
+      "name": "stage-discover",
+      "bbox": [
+        44,
+        158,
+        283,
+        76
+      ],
+      "geometry": "rect",
+      "fillColor": "#E9A8CC",
+      "lineColor": "#E9A8CC",
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bahszi5w",
+      "id": "5",
+      "name": "DISCOVER-title",
+      "bbox": [
+        58,
+        168,
+        255,
+        34
+      ],
+      "geometry": "rect",
+      "text": "01  DISCOVER",
+      "textPreview": "01  DISCOVER",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "01  DISCOVER"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "01  DISCOVER",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "01  DISCOVER",
+              "fontSize": 27,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cbqtsn6h",
+      "id": "6",
+      "name": "DISCOVER-subtitle",
+      "bbox": [
+        58,
+        203,
+        255,
+        23
+      ],
+      "geometry": "rect",
+      "text": "人来读，自己挑",
+      "textPreview": "人来读，自己挑",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "人来读，自己挑"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "人来读，自己挑",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "人来读，自己挑",
+              "fontSize": 18,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xcza1sn2",
+      "id": "7",
+      "name": "project-DISCOVER-1",
+      "bbox": [
+        44,
+        254,
+        283,
+        34
+      ],
+      "geometry": "rect",
+      "text": "awesome",
+      "textPreview": "awesome",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 26,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "awesome"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "awesome",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "awesome",
+              "fontSize": 26,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/25obmdof",
+      "id": "8",
+      "name": "owner-DISCOVER-1",
+      "bbox": [
+        44,
+        288,
+        283,
+        22
+      ],
+      "geometry": "rect",
+      "text": "sindresorhus",
+      "textPreview": "sindresorhus",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "sindresorhus"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "sindresorhus",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "sindresorhus",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n6xsvy50",
+      "id": "9",
+      "name": "description-DISCOVER-1",
+      "bbox": [
+        44,
+        321,
+        283,
+        96
+      ],
+      "geometry": "rect",
+      "text": "经典元目录。人按主题浏览，再进入下一份列表。",
+      "textPreview": "经典元目录。人按主题浏览，再进入下一份列表。",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "经典元目录。人按主题浏览，"
+          },
+          {
+            "index": 2,
+            "text": "再进入下一份列表。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "经典元目录。人按主题浏览，再进入下一份列表。",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "经典元目录。人按主题浏览，再进入下一份列表。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r6xg7il0",
+      "id": "10",
+      "name": "rule",
+      "bbox": [
+        44,
+        440,
+        283,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#C4C8CE",
+      "lineColor": "#C4C8CE",
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q5ozyd4f",
+      "id": "11",
+      "name": "project-DISCOVER-2",
+      "bbox": [
+        44,
+        453,
+        283,
+        34
+      ],
+      "geometry": "rect",
+      "text": "awesome-mcp-servers",
+      "textPreview": "awesome-mcp-servers",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 21,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "awesome-mcp-servers"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "awesome-mcp-servers",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "awesome-mcp-servers",
+              "fontSize": 21,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dsfy9s36",
+      "id": "12",
+      "name": "owner-DISCOVER-2",
+      "bbox": [
+        44,
+        487,
+        283,
+        22
+      ],
+      "geometry": "rect",
+      "text": "punkpeye",
+      "textPreview": "punkpeye",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "punkpeye"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "punkpeye",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "punkpeye",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cr6h0nml",
+      "id": "13",
+      "name": "description-DISCOVER-2",
+      "bbox": [
+        44,
+        520,
+        283,
+        96
+      ],
+      "geometry": "rect",
+      "text": "收集 MCP servers，帮人找到 agent 能调用的数据源和工具。",
+      "textPreview": "收集 MCP servers，帮人找到 agent 能调用的数据源和工具。",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "收集 MCP"
+          },
+          {
+            "index": 2,
+            "text": "servers，帮人找到 agent"
+          },
+          {
+            "index": 3,
+            "text": "能调用的数据源和工具。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "收集 MCP servers，帮人找到 agent 能调用的数据源和工具。",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "收集 MCP servers，帮人找到 agent 能调用的数据源和工具。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zuhgbilc",
+      "id": "14",
+      "name": "stage-reuse",
+      "bbox": [
+        347,
+        158,
+        283,
+        76
+      ],
+      "geometry": "rect",
+      "fillColor": "#CDA9E5",
+      "lineColor": "#CDA9E5",
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/etoz2d4r",
+      "id": "15",
+      "name": "REUSE-title",
+      "bbox": [
+        361,
+        168,
+        255,
+        34
+      ],
+      "geometry": "rect",
+      "text": "02  REUSE",
+      "textPreview": "02  REUSE",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02  REUSE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02  REUSE",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02  REUSE",
+              "fontSize": 27,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1wzyds32",
+      "id": "16",
+      "name": "REUSE-subtitle",
+      "bbox": [
+        361,
+        203,
+        255,
+        23
+      ],
+      "geometry": "rect",
+      "text": "拿走一份文件",
+      "textPreview": "拿走一份文件",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "拿走一份文件"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "拿走一份文件",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "拿走一份文件",
+              "fontSize": 18,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0vqh4nmh",
+      "id": "17",
+      "name": "project-REUSE-1",
+      "bbox": [
+        347,
+        254,
+        283,
+        34
+      ],
+      "geometry": "rect",
+      "text": "awesome-design-md",
+      "textPreview": "awesome-design-md",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "awesome-design-md"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "awesome-design-md",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "awesome-design-md",
+              "fontSize": 22,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fydgzyls",
+      "id": "18",
+      "name": "owner-REUSE-1",
+      "bbox": [
+        347,
+        288,
+        283,
+        22
+      ],
+      "geometry": "rect",
+      "text": "VoltAgent",
+      "textPreview": "VoltAgent",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "VoltAgent"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "VoltAgent",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "VoltAgent",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ux4fqt47",
+      "id": "19",
+      "name": "description-REUSE-1",
+      "bbox": [
+        347,
+        321,
+        283,
+        96
+      ],
+      "geometry": "rect",
+      "text": "把网站设计规则写进 DESIGN.md，coding agent 拿来就能做 UI。",
+      "textPreview": "把网站设计规则写进 DESIGN.md，coding agent 拿来就能做 UI。",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "把网站设计规则写进"
+          },
+          {
+            "index": 2,
+            "text": "DESIGN.md，coding agent"
+          },
+          {
+            "index": 3,
+            "text": "拿来就能做 UI。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "把网站设计规则写进 DESIGN.md，coding agent 拿来就能做 UI。",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "把网站设计规则写进 DESIGN.md，coding agent 拿来就能做 UI。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i5cbuls7",
+      "id": "20",
+      "name": "rule",
+      "bbox": [
+        347,
+        440,
+        283,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#C4C8CE",
+      "lineColor": "#C4C8CE",
+      "lineWidth": 0
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/j65snq9s",
+      "id": "21",
+      "name": "project-REUSE-2",
+      "bbox": [
+        347,
+        453,
+        283,
+        34
+      ],
+      "geometry": "rect",
+      "text": "awesome-gpt-image-2",
+      "textPreview": "awesome-gpt-image-2",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 21,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "awesome-gpt-image-2"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "awesome-gpt-image-2",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "awesome-gpt-image-2",
+              "fontSize": 21,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/47etwvad",
+      "id": "22",
+      "name": "owner-REUSE-2",
+      "bbox": [
+        347,
+        487,
+        283,
+        22
+      ],
+      "geometry": "rect",
+      "text": "freestylefly",
+      "textPreview": "freestylefly",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "freestylefly"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "freestylefly",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "freestylefly",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5snap0ry",
+      "id": "23",
+      "name": "description-REUSE-2",
+      "bbox": [
+        347,
+        520,
+        283,
+        96
+      ],
+      "geometry": "rect",
+      "text": "案例和模板共用一份 style library，并生成可安装的 agent skill。",
+      "textPreview": "案例和模板共用一份 style library，并生成可安装的 agent skill。",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "案例和模板共用一份 style"
+          },
+          {
+            "index": 2,
+            "text": "library，并生成可安装的"
+          },
+          {
+            "index": 3,
+            "text": "agent skill。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "案例和模板共用一份 style library，并生成可安装的 agent skill。",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "案例和模板共用一份 style library，并生成可安装的 agent skill。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a1cbqlsv",
+      "id": "24",
+      "name": "stage-install",
+      "bbox": [
+        650,
+        158,
+        283,
+        76
+      ],
+      "geometry": "rect",
+      "fillColor": "#A6C2EA",
+      "lineColor": "#A6C2EA",
+      "lineWidth": 0
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v2lsjq9g",
+      "id": "25",
+      "name": "INSTALL-title",
+      "bbox": [
+        664,
+        168,
+        255,
+        34
+      ],
+      "geometry": "rect",
+      "text": "03  INSTALL",
+      "textPreview": "03  INSTALL",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "03  INSTALL"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "03  INSTALL",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "03  INSTALL",
+              "fontSize": 27,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/w3utsva1",
+      "id": "26",
+      "name": "INSTALL-subtitle",
+      "bbox": [
+        664,
+        203,
+        255,
+        23
+      ],
+      "geometry": "rect",
+      "text": "交给工具安装",
+      "textPreview": "交给工具安装",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "交给工具安装"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "交给工具安装",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "交给工具安装",
+              "fontSize": 18,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x43al0rm",
+      "id": "27",
+      "name": "project-INSTALL-1",
+      "bbox": [
+        650,
+        254,
+        283,
+        34
+      ],
+      "geometry": "rect",
+      "text": "skills",
+      "textPreview": "skills",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 26,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "skills"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "skills",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "skills",
+              "fontSize": 26,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mxsrm1sz",
+      "id": "28",
+      "name": "owner-INSTALL-1",
+      "bbox": [
+        650,
+        288,
+        283,
+        22
+      ],
+      "geometry": "rect",
+      "text": "vercel-labs",
+      "textPreview": "vercel-labs",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "vercel-labs"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "vercel-labs",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "vercel-labs",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ny1sf69k",
+      "id": "29",
+      "name": "description-INSTALL-1",
+      "bbox": [
+        650,
+        321,
+        283,
+        96
+      ],
+      "geometry": "rect",
+      "text": "用 npx 搜索、安装或运行 skill。列表有了包管理语义。",
+      "textPreview": "用 npx 搜索、安装或运行 skill。列表有了包管理语义。",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "用 npx 搜索、安装或运行"
+          },
+          {
+            "index": 2,
+            "text": "skill。列表有了包管理语义。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "用 npx 搜索、安装或运行 skill。列表有了包管理语义。",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "用 npx 搜索、安装或运行 skill。列表有了包管理语义。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/psrel4b2",
+      "id": "30",
+      "name": "rule",
+      "bbox": [
+        650,
+        440,
+        283,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#C4C8CE",
+      "lineColor": "#C4C8CE",
+      "lineWidth": 0
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/oridsjuh",
+      "id": "31",
+      "name": "project-INSTALL-2",
+      "bbox": [
+        650,
+        453,
+        283,
+        34
+      ],
+      "geometry": "rect",
+      "text": "anthropics/skills",
+      "textPreview": "anthropics/skills",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 22,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "anthropics/skills"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "anthropics/skills",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "anthropics/skills",
+              "fontSize": 22,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3q9wjetw",
+      "id": "32",
+      "name": "owner-INSTALL-2",
+      "bbox": [
+        650,
+        487,
+        283,
+        22
+      ],
+      "geometry": "rect",
+      "text": "anthropics",
+      "textPreview": "anthropics",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "anthropics"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "anthropics",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "anthropics",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 33,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2p0vq9cb",
+      "id": "33",
+      "name": "description-INSTALL-2",
+      "bbox": [
+        650,
+        520,
+        283,
+        96
+      ],
+      "geometry": "rect",
+      "text": "官方样例与规范。每项能力都是含说明、脚本和资源的文件夹。",
+      "textPreview": "官方样例与规范。每项能力都是含说明、脚本和资源的文件夹。",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "官方样例与规范。每项能力都"
+          },
+          {
+            "index": 2,
+            "text": "是含说明、脚本和资源的文件"
+          },
+          {
+            "index": 3,
+            "text": "夹。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "官方样例与规范。每项能力都是含说明、脚本和资源的文件夹。",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "官方样例与规范。每项能力都是含说明、脚本和资源的文件夹。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 34,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1o7eh4b6",
+      "id": "34",
+      "name": "stage-operate",
+      "bbox": [
+        953,
+        158,
+        283,
+        76
+      ],
+      "geometry": "rect",
+      "fillColor": "#9DD3BC",
+      "lineColor": "#9DD3BC",
+      "lineWidth": 0
+    },
+    {
+      "order": 35,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gnydozul",
+      "id": "35",
+      "name": "OPERATE-title",
+      "bbox": [
+        967,
+        168,
+        255,
+        34
+      ],
+      "geometry": "rect",
+      "text": "04  OPERATE",
+      "textPreview": "04  OPERATE",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 27,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "04  OPERATE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "04  OPERATE",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "04  OPERATE",
+              "fontSize": 27,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 36,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fmpwfut0",
+      "id": "36",
+      "name": "OPERATE-subtitle",
+      "bbox": [
+        967,
+        203,
+        255,
+        23
+      ],
+      "geometry": "rect",
+      "text": "规定 agent 怎么做",
+      "textPreview": "规定 agent 怎么做",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "规定 agent 怎么做"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "规定 agent 怎么做",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "规定 agent 怎么做",
+              "fontSize": 18,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 37,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/e1gvmpcf",
+      "id": "37",
+      "name": "project-OPERATE-1",
+      "bbox": [
+        953,
+        254,
+        283,
+        34
+      ],
+      "geometry": "rect",
+      "text": "superpowers",
+      "textPreview": "superpowers",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 26,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "superpowers"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "superpowers",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "superpowers",
+              "fontSize": 26,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 38,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t07udkbu",
+      "id": "38",
+      "name": "owner-OPERATE-1",
+      "bbox": [
+        953,
+        288,
+        283,
+        22
+      ],
+      "geometry": "rect",
+      "text": "obra",
+      "textPreview": "obra",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "obra"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "obra",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "obra",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 39,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/szydkzu9",
+      "id": "39",
+      "name": "description-OPERATE-1",
+      "bbox": [
+        953,
+        321,
+        283,
+        96
+      ],
+      "geometry": "rect",
+      "text": "把澄清需求、写计划、TDD 和评审做成自动触发的 skills。",
+      "textPreview": "把澄清需求、写计划、TDD 和评审做成自动触发的 skills。",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "把澄清需求、写计划、TDD"
+          },
+          {
+            "index": 2,
+            "text": "和评审做成自动触发的"
+          },
+          {
+            "index": 3,
+            "text": "skills。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "把澄清需求、写计划、TDD 和评审做成自动触发的 skills。",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "把澄清需求、写计划、TDD 和评审做成自动触发的 skills。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 40,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8r6d4z69",
+      "id": "40",
+      "name": "rule",
+      "bbox": [
+        953,
+        440,
+        283,
+        1.5
+      ],
+      "geometry": "rect",
+      "fillColor": "#C4C8CE",
+      "lineColor": "#C4C8CE",
+      "lineWidth": 0
+    },
+    {
+      "order": 41,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tsfux47u",
+      "id": "41",
+      "name": "project-OPERATE-2",
+      "bbox": [
+        953,
+        453,
+        283,
+        34
+      ],
+      "geometry": "rect",
+      "text": "spec-kit",
+      "textPreview": "spec-kit",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 26,
+        "typeface": "PingFang SC",
+        "color": "#101216",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "spec-kit"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "spec-kit",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "PingFang SC",
+            "color": "#101216",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "spec-kit",
+              "fontSize": 26,
+              "typeface": "PingFang SC",
+              "color": "#101216",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 42,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6pov2po3",
+      "id": "42",
+      "name": "owner-OPERATE-2",
+      "bbox": [
+        953,
+        487,
+        283,
+        22
+      ],
+      "geometry": "rect",
+      "text": "github",
+      "textPreview": "github",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 15,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "github"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "github",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "github",
+              "fontSize": 15,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 43,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7qxcvupo",
+      "id": "43",
+      "name": "description-OPERATE-2",
+      "bbox": [
+        953,
+        520,
+        283,
+        96
+      ],
+      "geometry": "rect",
+      "text": "先保存规格和验收条件，再让 agent 写代码。",
+      "textPreview": "先保存规格和验收条件，再让 agent 写代码。",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "PingFang SC",
+        "color": "#545B65",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "先保存规格和验收条件，再让"
+          },
+          {
+            "index": 2,
+            "text": "agent 写代码。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "先保存规格和验收条件，再让 agent 写代码。",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "PingFang SC",
+            "color": "#545B65",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "先保存规格和验收条件，再让 agent 写代码。",
+              "fontSize": 20,
+              "typeface": "PingFang SC",
+              "color": "#545B65",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

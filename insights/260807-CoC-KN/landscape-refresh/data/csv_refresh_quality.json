@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-07-28T14:58:24.293234+00:00",
+  "input_columns": [
+    "repo_id",
+    "repo_name",
+    "description",
+    "stars",
+    "forks",
+    "open_issues",
+    "license",
+    "archived",
+    "pushed_at",
+    "openrank_2606",
+    "openrank_trend",
+    "participants_2606",
+    "language",
+    "created_at",
+    "topics",
+    "categories",
+    "landscape_layer",
+    "landscape_section",
+    "review_tier",
+    "selection_reason",
+    "selection_caveat",
+    "github_status",
+    "snapshot_date",
+    "metrics_month",
+    "metrics_status"
+  ],
+  "output_columns": [
+    "repo_id",
+    "repo_name",
+    "description",
+    "stars",
+    "forks",
+    "open_issues",
+    "license",
+    "archived",
+    "pushed_at",
+    "openrank_2606",
+    "openrank_trend_2508_2607",
+    "participants_2607",
+    "language",
+    "created_at",
+    "topics",
+    "landscape_action",
+    "landscape_layer",
+    "landscape_section",
+    "selection_reason",
+    "selection_caveat",
+    "github_status"
+  ],
+  "latest_openrank_month": "2026-06",
+  "participant_month": "2026-07",
+  "trend_months": [
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11",
+    "2025-12",
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07"
+  ],
+  "validation": {
+    "passed": true,
+    "failures": [],
+    "row_count": 251,
+    "expected_row_count": 251,
+    "duplicate_repo_ids": 0,
+    "duplicate_repo_names": 0,
+    "blank_required": {
+      "repo_id": 0,
+      "repo_name": 0,
+      "description": 0,
+      "license": 0
+    },
+    "blank_description_projects": [],
+    "github_status_counts": {
+      "ok": 251
+    }
+  },
+  "initial_refresh_summary": {
+    "baseline_projects": 227,
+    "reviewed_shortlist_projects": 24,
+    "canonical_projects_after_refresh": 251
+  },
+  "reviewed_shortlist": [
+    "volcengine/OpenViking",
+    "microsoft/agent-framework",
+    "JetBrains/koog",
+    "trycua/cua",
+    "agentgateway/agentgateway",
+    "ag-ui-protocol/ag-ui",
+    "a2ui-project/a2ui",
+    "kubernetes-sigs/agent-sandbox",
+    "vllm-project/vllm-omni",
+    "LMCache/LMCache",
+    "vllm-project/vllm-ascend",
+    "huggingface/trl",
+    "NVIDIA/OpenShell",
+    "topoteretes/cognee",
+    "googleapis/mcp-toolbox",
+    "coze-dev/coze-loop",
+    "microsoft/agent-lightning",
+    "NVIDIA/Model-Optimizer",
+    "NVIDIA-NeMo/RL",
+    "jundot/omlx",
+    "stacklok/toolhive",
+    "OpenHands/software-agent-sdk",
+    "microsoft/fara",
+    "NVIDIA/Isaac-GR00T"
+  ],
+  "initial_refresh_renames": [
+    {
+      "repo_id": "200722670",
+      "old_name": "NVIDIA-NeMo/NeMo",
+      "new_name": "NVIDIA-NeMo/Speech"
+    },
+    {
+      "repo_id": "1136590548",
+      "old_name": "affaan-m/everything-claude-code",
+      "new_name": "affaan-m/ECC"
+    },
+    {
+      "repo_id": "1118085970",
+      "old_name": "alibaba/OpenSandbox",
+      "new_name": "opensandbox-group/OpenSandbox"
+    }
+  ],
+  "renames": [],
+  "github_metadata_ok": 251,
+  "github_readmes_found": 251,
+  "openrank_latest_non_null": 228,
+  "participants_nonzero": 229,
+  "openrank_global_coverage": [
+    {
+      "month": "202605",
+      "rows": 481308,
+      "repos": 481308,
+      "total_openrank": 668560.07
+    },
+    {
+      "month": "202606",
+      "rows": 246364,
+      "repos": 246364,
+      "total_openrank": 393298.43
+    }
+  ],
+  "known_limitations": [
+    "Repo OpenRank is only available through 2026-06; the 2026-07 point remains null in the 12-month trend.",
+    "participants_2607 uses visible GitHub issue and pull-request events through the current month and is also backfill-sensitive.",
+    "GitHub stars are a 2026-07-28 attention snapshot, not a community-health measure.",
+    "Landscape placement is an editorial decision and is not derived from OpenRank alone."
+  ]
+}

@@ -1,0 +1,13 @@
+check,period,rows,repos,metric_value,note
+events_context,all,,,2026-07-28 12:58:08+08:00,"ClickHouse 25.3.6.1, timezone Asia/Shanghai"
+global_openrank_coverage,202601,755696,755696,1039126.1,Recent months show material coverage loss.
+global_openrank_coverage,202602,749652,749652,968422.78,Recent months show material coverage loss.
+global_openrank_coverage,202603,701949,701949,886457.66,Recent months show material coverage loss.
+global_openrank_coverage,202604,648328,648328,846165.58,Recent months show material coverage loss.
+global_openrank_coverage,202605,481308,481308,668560.07,Recent months show material coverage loss.
+global_openrank_coverage,202606,246364,246364,393298.43,Recent months show material coverage loss.
+watch_event_coverage,202604,1786114,456956,1786114,Candidate-discovery signal only; not absolute GitHub star growth.
+watch_event_coverage,202605,986355,303969,986355,Candidate-discovery signal only; not absolute GitHub star growth.
+watch_event_coverage,202606,312201,125155,312201,Candidate-discovery signal only; not absolute GitHub star growth.
+watch_event_coverage,202607,76501,40609,76501,Candidate-discovery signal only; not absolute GitHub star growth.
+repo_info_freshness,all,1053822,1053822,2026-07-01 00:00:00+08:00,"missing description=235400, topics=713419, readme=25154"

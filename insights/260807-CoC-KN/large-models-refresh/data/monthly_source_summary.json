@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-07-28T15:33:31.336183+00:00",
+  "hf_open_ecosystem_weights": {
+    "hf_downloads_30d_score": 0.75,
+    "hf_likes_score": 0.25
+  },
+  "huggingface": {
+    "requested_models": 36,
+    "resolved_models": 36,
+    "role": "Weight-access classification and open-ecosystem adoption metadata; excluded from the cross-model usage composite.",
+    "status": "complete"
+  },
+  "openrouter": {
+    "caveat": "Each day exposes only the public Top 50 models plus an aggregated other row. The monthly candidate universe is the union of daily Top 50 models; models always below the daily cutoff are censored.",
+    "days_returned": 30,
+    "individual_model_rows": 78,
+    "metric": "sum of daily prompt + completion tokens",
+    "other_tokens": 12056704642280,
+    "source_url": "https://openrouter.ai/api/v1/datasets/rankings-daily",
+    "status": "complete",
+    "top50_observed_tokens": 176295669732150,
+    "top50_traffic_coverage": 0.935989,
+    "window_end": "2026-06-30",
+    "window_start": "2026-06-01"
+  },
+  "scoring_note": "Raw token counts are not added across platforms. Each platform is converted to an independent percentile; missing from a Top 50 receives zero for that platform. This rewards cross-platform use while avoiding platform-scale differences. Composite-score ties prefer the model with stronger coverage on its weaker platform.",
+  "table_grain": "One hosted model endpoint/release; free and paid aliases merged.",
+  "top50_summary": {
+    "best_closed_model": {
+      "model": "Claude Opus 4.8",
+      "rank": 3,
+      "score": 94.6667,
+      "vendor": "Anthropic"
+    },
+    "best_open_weight_model": {
+      "model": "DeepSeek V4 Flash",
+      "rank": 1,
+      "score": 97.0,
+      "vendor": "DeepSeek"
+    },
+    "closed_or_no_public_weights_count": 26,
+    "closed_top10_count": 5,
+    "open_weight_count": 24,
+    "open_weight_top10_count": 5
+  },
+  "usage_composite_weights": {
+    "openrouter_monthly_score": 0.5,
+    "zenmux_monthly_score": 0.5
+  },
+  "weight_access_note": "Closed or no public weights means no official public Hugging Face weight repository was resolved. It should not be read as a legal or source-code determination.",
+  "window_end": "2026-06-30",
+  "window_start": "2026-06-01",
+  "window_type": "previous complete calendar month",
+  "zenmux": {
+    "caveat": "Only the monthly Top 50 models are individually visible. Models outside the cutoff are combined into __others__.",
+    "individual_model_rows": 50,
+    "metric": "monthly prompt + completion tokens",
+    "other_tokens": 7259645172,
+    "source_url": "https://zenmux.ai/api/v1/management/statistics/leaderboard",
+    "status": "complete",
+    "top50_observed_tokens": 1518694523779,
+    "top50_traffic_coverage": 0.995243,
+    "window_end": "2026-06-30",
+    "window_start": "2026-06-01"
+  }
+}

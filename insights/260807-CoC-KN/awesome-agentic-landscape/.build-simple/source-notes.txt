@@ -1,0 +1,19 @@
+Local analysis
+- /Users/xiaoyawork/Desktop/src_code/agentic-ai-landscape/outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv
+- /Users/xiaoyawork/Desktop/src_code/agentic-ai-landscape/outputs/awesome-agentic-landscape-260729/data/validation_report.json
+
+Repository sources
+- https://github.com/sindresorhus/awesome
+- https://github.com/punkpeye/awesome-mcp-servers
+- https://github.com/VoltAgent/awesome-design-md
+- https://github.com/freestylefly/awesome-gpt-image-2
+- https://github.com/vercel-labs/skills
+- https://github.com/anthropics/skills
+- https://github.com/obra/superpowers
+- https://github.com/github/spec-kit
+
+Design decision
+- One slide only.
+- Eight representative projects, two per consumption form.
+- No stars, OpenRank, WatchEvents, participant counts, avatars, badges, or legends.
+- Every project is explained with one concrete sentence at presentation-readable size.

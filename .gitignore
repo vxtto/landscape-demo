@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+node_modules/
+/services/insights-api/node_modules
+/services/insights-api/dist
 /.pnp
 .pnp.*
 .yarn/*
@@ -23,6 +26,8 @@
 # misc
 .DS_Store
 *.pem
+__pycache__/
+*.py[cod]
 
 # debug
 npm-debug.log*
@@ -32,6 +37,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!**/.env.example
 
 # vercel
 .vercel

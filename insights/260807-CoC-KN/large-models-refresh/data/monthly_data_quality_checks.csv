@@ -1,0 +1,11 @@
+﻿check,value,rate,severity,interpretation
+top50_rows,50,,info,Requested monthly comparison table size.
+top50_duplicate_model_keys,0,0.0%,info,Free and paid aliases must not occupy separate rows.
+top50_open_weights,24,48.0%,info,Models with a resolved public weight repository.
+top50_closed_or_no_public_weights,26,52.0%,info,"No official public weight repository was resolved. This is an access classification, not proof about internal source code."
+top50_unverified_weight_status,0,0.0%,info,Weight status needs manual review before publication.
+top50_open_repositories_unresolved,0,0.0%,info,"Description suggests public weights, but an official weight repository was not resolved."
+top50_both_platforms,37,74.0%,medium,"Cross-platform overlap. A zero platform score means outside the visible Top 50, not necessarily zero usage."
+top50_open_models_missing_license,0,0.0%,info,Open-weight license must be verified for reuse limits.
+openrouter_traffic_coverage,0.935989,,medium,Share of monthly tokens visible as named models.
+zenmux_traffic_coverage,0.995243,,medium,Share of monthly tokens visible as named models.

@@ -1,0 +1,110 @@
+{"kind":"deck","id":"pr/zhouwr","name":"Deck"}
+{"kind":"layout","layoutId":"dc6af1c3-51fe-4c62-9bd3-22e7358251c7","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"31da445c-a124-4e0f-8507-ae86158d0b6c","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/5dad0b","slide":1,"title":"当 README","textShapes":3}
+{"kind":"textbox","id":"sh/07yx4f6d","slide":1,"name":"Title-3-1","text":"当 README\n开始被 agent 执行","textPreview":"当 README | 开始被 agent 执行","textChars":21,"textLines":2,"bbox":[41.33,182.55,992,261.57]}
+{"kind":"textbox","id":"sh/f6pwva5s","slide":1,"name":"Subtitle-4-2","text":"Awesome × Agentic AI Landscape 2026\n460 repositories scanned","textPreview":"Awesome × Agentic AI Landscape 2026 | 460 repositories scanned","textChars":60,"textLines":2,"bbox":[41.33,497.87,598.67,113.41]}
+{"kind":"textbox","id":"sh/e5gf25o7","slide":1,"name":"Subtitle-4-3","text":"OPEN-SOURCE SIGNALS / JULY 2026","textPreview":"OPEN-SOURCE SIGNALS / JULY 2026","textChars":31,"textLines":1,"bbox":[41.33,41.18,598.67,68.15]}
+{"kind":"shape","id":"sh/t47et0n2","slide":1,"name":"rule","bbox":[41,145,1198,5]}
+{"kind":"notes","id":"nt/5dad0b","slide":1,"text":"开场可以先抛出这个观察：代码生成越来越便宜，但让 agent 按正确顺序做事、遵守团队习惯，仍然很贵。我们去看 awesome 仓库，是因为它们正在记录这种稀缺知识。\n\n[Sources]\n- Local analysis: outputs/awesome-agentic-landscape-260729/data/awesome_agentic_candidates.csv\n- Local artifact: outputs/awesome-agentic-landscape-260729/landscape/awesome_agentic_landscape_2026.png\n[/Sources]"}
+{"kind":"slide","id":"sl/13diyc","slide":2,"title":"2","textShapes":3}
+{"kind":"textbox","id":"sh/jixgzahs","slide":2,"name":"Google-Shape-532-p58-2","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/kj6xsfid","slide":2,"name":"Google-Shape-533-p58-3","text":"这张图画的，是知识靠近 agent 的方式","textPreview":"这张图画的，是知识靠近 agent 的方式","textChars":21,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"shape","id":"sh/5kfy1kzy","slide":2,"name":"Picture-3-4-backing","bbox":[658.17,41.62,581.6,588.14]}
+{"kind":"shape","id":"sh/vedgva1w","slide":2,"name":"Google-Shape-534-p58-5","bbox":[41.33,213.33,581.33,416]}
+{"kind":"shape","id":"sh/xgfyxkz2","slide":2,"name":"title-cleanup","bbox":[0,0,1280,112]}
+{"kind":"textbox","id":"sh/u98zy90f","slide":2,"name":"landscape-title-overlay","text":"这张图画的，是知识靠近 agent 的方式","textPreview":"这张图画的，是知识靠近 agent 的方式","textChars":21,"textLines":1,"bbox":[41,36,1197,74]}
+{"kind":"image","id":"im/3m98zq1c","slide":2,"name":"Picture-3-4","geometry":"roundRect","alt":"hero placeholder for Picture 3","prompt":"Clean editorial light-blue conceptual image with subtle architectural geometry, ample white space, and no embedded text","isPlaceholder":true,"bbox":[658.17,41.62,581.6,588.14]}
+{"kind":"image","id":"im/pobq1gj2","slide":2,"name":"","alt":"Awesome × Agentic AI Landscape 2026","bbox":[41,112,1198,524]}
+{"kind":"notes","id":"nt/13diyc","slide":2,"text":"不要逐个念项目。先解释横向逻辑：左边仍然是给人读的地图；越往右，内容越接近 agent 可以直接加载和执行的形态。Core、Watch 和历史参照只是编辑角色，不是质量评级。\n\n[Sources]\n- Local artifact: outputs/awesome-agentic-landscape-260729/landscape/awesome_agentic_landscape_2026.png\n- Local data: outputs/awesome-agentic-landscape-260729/landscape/awesome_agentic_landscape_projects.csv\n[/Sources]"}
+{"kind":"slide","id":"sl/d4cvrv","slide":3,"title":"3","textShapes":10}
+{"kind":"shape","id":"sh/94nm10n2","slide":3,"name":"Rounded-Rectangle-5-1","bbox":[41.33,317.33,374.67,312]}
+{"kind":"shape","id":"sh/m1w365ob","slide":3,"name":"Rounded-Rectangle-6-2","bbox":[452.67,317.33,374.67,312]}
+{"kind":"shape","id":"sh/n254zq5w","slide":3,"name":"Rounded-Rectangle-7-3","bbox":[864.28,317.33,374.67,312]}
+{"kind":"textbox","id":"sh/0zel4v6l","slide":3,"name":"Slide-Number-Placeholder-1-4","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/10nmx0n6","slide":3,"name":"Title-2-5","text":"真正有故事的项目，大多已经靠近 agent 运行时","textPreview":"真正有故事的项目，大多已经靠近 agent 运行时","textChars":25,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"textbox","id":"sh/exc32lof","slide":3,"name":"Content-Placeholder-9-6","text":"进入首轮 landscape\n另有 2 个历史参照","textPreview":"进入首轮 landscape | 另有 2 个历史参照","textChars":25,"textLines":2,"bbox":[73.74,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/zyl4vq50","slide":3,"name":"Content-Placeholder-10-7","text":"创建于 2025 年以后\n约 92%","textPreview":"创建于 2025 年以后 | 约 92%","textChars":18,"textLines":2,"bbox":[896.78,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/cvul0b69","slide":3,"name":"Content-Placeholder-11-8","text":"可直接交给 agent\n约 79%","textPreview":"可直接交给 agent | 约 79%","textChars":17,"textLines":2,"bbox":[485.17,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/dw3mtgnu","slide":3,"name":"Content-Placeholder-9-9","text":"24","textPreview":"24","textChars":2,"textLines":1,"bbox":[73.74,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/h4r2xgby","slide":3,"name":"Content-Placeholder-9-10","text":"19 / 24","textPreview":"19 / 24","textChars":7,"textLines":1,"bbox":[484.3,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/w3i1obut","slide":3,"name":"Content-Placeholder-9-11","text":"22 / 24","textPreview":"22 / 24","textChars":7,"textLines":1,"bbox":[898.94,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/v29kv6d8","slide":3,"name":"Content-Placeholder-15-12","text":"这是一份编辑样本，不是市场份额统计。它说明我们在 460 个候选里看到了什么。\n近三个月的活动信号负责发现项目；最终入选还要看内容能否被 agent 直接消费，以及它是否代表一种新的策展形态。","textPreview":"这是一份编辑样本，不是市场份额统计。它说明我们在 460 个候选里看到了什么。 | 近三个月的活动信号负责发现项目；最终入选还要看内容能否被 agent 直接消费，以及它是否代表一种新的策展形态。","textChars":96,"textLines":2,"bbox":[41.33,119.51,1197.33,167.92]}
+{"kind":"shape","id":"sh/u10jm1cn","slide":3,"name":"rule","bbox":[41,302,1198,4]}
+{"kind":"textbox","id":"sh/90r2twv2","slide":3,"name":"source-note","text":"Snapshot 2026-07-29 · WatchEvents/participants: May 1–Jul 28 · OpenRank: Apr–Jun 2026","textPreview":"Snapshot 2026-07-29 · WatchEvents/participants: May 1–Jul 28 · OpenRank: Apr–Jun 2026","textChars":85,"textLines":1,"bbox":[42,650,1100,22]}
+{"kind":"notes","id":"nt/d4cvrv","slide":3,"text":"这里最值得讲的是 19/24。入选项目里，绝大多数已经不是纯阅读材料，而是文件、目录、命令或方法，可以直接进入 agent 工作流。22/24 创建于 2025 年以后，也说明这个形态非常新。注意：这是编辑样本，只能用来描述我们观察到的模式。\n\n[Sources]\n- Local data: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n- Local validation: outputs/awesome-agentic-landscape-260729/data/validation_report.json\n[/Sources]"}
+{"kind":"slide","id":"sl/we6t70","slide":4,"title":"4","textShapes":6}
+{"kind":"textbox","id":"sh/xw7ep8nm","slide":4,"name":"Slide-Number-Placeholder-1-2","text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[1184.17,659.17,54.5,25.33]}
+{"kind":"textbox","id":"sh/atgfut4v","slide":4,"name":"Title-2-3","text":"“Awesome”正在长出四种消费方式","textPreview":"“Awesome”正在长出四种消费方式","textChars":19,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"textbox","id":"sh/bupwny5g","slide":4,"name":"Content-Placeholder-9-4","text":"01  DISCOVER\n人来阅读、浏览、比较。\n代表：经典 awesome 列表、生态地图。","textPreview":"01  DISCOVER | 人来阅读、浏览、比较。 | 代表：经典 awesome 列表、生态地图。","textChars":47,"textLines":3,"bbox":[41.33,213.33,581.33,172.5]}
+{"kind":"textbox","id":"sh/kzix0nmx","slide":4,"name":"Content-Placeholder-10-5","text":"02  REUSE\n复制一份资产，再让 agent 使用。\n代表：prompt、DESIGN.md、工作流模板。","textPreview":"02  REUSE | 复制一份资产，再让 agent 使用。 | 代表：prompt、DESIGN.md、工作流模板。","textChars":56,"textLines":3,"bbox":[656.86,213.33,581.33,172.5]}
+{"kind":"textbox","id":"sh/lkrytsni","slide":4,"name":"Content-Placeholder-9-6","text":"03  INSTALL\n目录带有解析和安装语义。\n代表：skills、plugins、跨 agent catalog。","textPreview":"03  INSTALL | 目录带有解析和安装语义。 | 代表：skills、plugins、跨 agent catalog。","textChars":59,"textLines":3,"bbox":[41.33,421.73,581.33,172.51]}
+{"kind":"textbox","id":"sh/yx0fyd47","slide":4,"name":"Content-Placeholder-10-7","text":"04  OPERATE\n内容开始规定 agent 如何计划、评审和收尾。\n代表：spec、TDD、角色与工程方法。","textPreview":"04  OPERATE | 内容开始规定 agent 如何计划、评审和收尾。 | 代表：spec、TDD、角色与工程方法。","textChars":57,"textLines":3,"bbox":[656.86,421.73,581.33,172.51]}
+{"kind":"shape","id":"sh/jy9gri5s","slide":4,"name":"rule","bbox":[51,199,250,7]}
+{"kind":"shape","id":"sh/8nix4nm9","slide":4,"name":"rule","bbox":[666,199,250,7]}
+{"kind":"shape","id":"sh/tobyxs3u","slide":4,"name":"rule","bbox":[51,408,250,7]}
+{"kind":"shape","id":"sh/10j21cni","slide":4,"name":"rule","bbox":[666,408,250,7]}
+{"kind":"notes","id":"nt/we6t70","slide":4,"text":"这四列不是成熟度阶梯。它们描述的是消费方式：谁来读、怎样拿走、能不能安装，以及能不能约束 agent 的工作过程。一个项目也可能跨两列，我们放在最能说明故事的位置。\n\n[Sources]\n- Local data: outputs/awesome-agentic-landscape-260729/landscape/awesome_agentic_landscape_projects.csv\n- Local methodology: outputs/awesome-agentic-landscape-260729/analysis/render_awesome_agentic_landscape.py\n[/Sources]"}
+{"kind":"slide","id":"sl/kvjeiz","slide":5,"title":"5","textShapes":5}
+{"kind":"textbox","id":"sh/vapkbepk","slide":5,"name":"Google-Shape-532-p58-2","text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/gbi1kjq5","slide":5,"name":"Google-Shape-533-p58-3","text":"这个列表学会了安装自己","textPreview":"这个列表学会了安装自己","textChars":11,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"shape","id":"sh/hcr2do7q","slide":5,"name":"Picture-3-4-backing","bbox":[658.17,41.62,581.6,588.14]}
+{"kind":"textbox","id":"sh/7mpk7upo","slide":5,"name":"Google-Shape-534-p58-5","text":"vercel-labs/skills\n过去，我们打开 awesome 列表，点链接，再把东西搬进自己的项目。\n\n这里，一条命令完成发现、选择和安装。目录第一次带上了“执行语义”。","textPreview":"vercel-labs/skills | 过去，我们打开 awesome 列表，点链接，再把东西搬进自己的项目。 |  | 这里，一条命令完成发现、选择和安装。目录第一次带上了“执行语义”。","textChars":89,"textLines":4,"bbox":[41.33,213.33,581.33,416]}
+{"kind":"textbox","id":"sh/t872947u","slide":5,"name":"install-command","text":"npx skills add vercel-labs/agent-skills","textPreview":"npx skills add vercel-labs/agent-skills","textChars":39,"textLines":1,"bbox":[690,452,518,78]}
+{"kind":"textbox","id":"sh/qh0jqt87","slide":5,"name":"use-command-explainer","text":"也可以不安装：skills use 会生成 prompt，直接启动一个受支持的 coding agent。","textPreview":"也可以不安装：skills use 会生成 prompt，直接启动一个受支持的 coding agent。","textChars":53,"textLines":1,"bbox":[690,548,506,72]}
+{"kind":"image","id":"im/jq5cbal8","slide":5,"name":"Picture-3-4","geometry":"roundRect","alt":"hero placeholder for Picture 3","prompt":"Clean editorial light-blue conceptual image with subtle architectural geometry, ample white space, and no embedded text","isPlaceholder":true,"bbox":[658.17,41.62,581.6,588.14]}
+{"kind":"image","id":"im/lsnudk3e","slide":5,"name":"","geometry":"roundRect","alt":"GitHub repository card for vercel-labs/skills","bbox":[658,122,582,291]}
+{"kind":"notes","id":"nt/kvjeiz","slide":5,"text":"这个项目很像 npm 早期给 JavaScript 带来的变化：它给 skill 目录增加了解析、安装、更新和运行的语义。README 还展示了不落盘的 skills use。列表不再等人来摘，它已经知道怎样进入 agent。\n\n[Sources]\n- https://github.com/vercel-labs/skills\n- Local metrics: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n- Image: https://opengraph.githubassets.com/1/vercel-labs/skills\n[/Sources]"}
+{"kind":"slide","id":"sl/lmqwlw","slide":6,"title":"6","textShapes":6}
+{"kind":"textbox","id":"sh/srm90n69","slide":6,"name":"Google-Shape-532-p58-2","text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/7qd8ri5o","slide":6,"name":"Google-Shape-533-p58-3","text":"专业手艺开始被压进一份 Markdown","textPreview":"专业手艺开始被压进一份 Markdown","textChars":20,"textLines":1,"bbox":[41.33,36.17,1197.33,67.64]}
+{"kind":"shape","id":"sh/6p47ydo3","slide":6,"name":"Rounded-Rectangle-1-4","bbox":[41.68,350.56,580.99,138.67]}
+{"kind":"textbox","id":"sh/hgfqxcnq","slide":6,"name":"Content-Placeholder-10-5","text":"DESIGN.md\n“build me a page that looks like this”","textPreview":"DESIGN.md | “build me a page that looks like this”","textChars":48,"textLines":2,"bbox":[72.89,376.69,523.56,92.16]}
+{"kind":"textbox","id":"sh/gf69476l","slide":6,"name":"Content-Placeholder-15-6","text":"复制一个 DESIGN.md 到项目根目录。\n颜色、排版、组件和禁区都写进去。\nagent 读的不是链接，而是一套视觉语言。","textPreview":"复制一个 DESIGN.md 到项目根目录。 | 颜色、排版、组件和禁区都写进去。 | agent 读的不是链接，而是一套视觉语言。","textChars":62,"textLines":3,"bbox":[72.89,506.94,549.78,102.67]}
+{"kind":"shape","id":"sh/fex8v250","slide":6,"name":"Rounded-Rectangle-7-7","bbox":[657.3,350.56,580.99,138.67]}
+{"kind":"textbox","id":"sh/udor2xof","slide":6,"name":"Content-Placeholder-10-8","text":"style-library.json\n→ website + Agent Skill","textPreview":"style-library.json | → website + Agent Skill","textChars":42,"textLines":2,"bbox":[688.51,376.69,523.56,92.16]}
+{"kind":"textbox","id":"sh/pkzq1cn2","slide":6,"name":"Content-Placeholder-15-9","text":"470+ 案例和 20+ 模板共用一份 style library。\n同一份数据同时驱动网站和 agent skill。\nPrompt gallery 开始像软件包一样分发。","textPreview":"470+ 案例和 20+ 模板共用一份 style library。 | 同一份数据同时驱动网站和 agent skill。 | Prompt gallery 开始像软件包一样分发。","textChars":87,"textLines":3,"bbox":[688.51,506.94,549.78,102.67]}
+{"kind":"shape","id":"sh/4j69876h","slide":6,"name":"Content-Placeholder-15-10","bbox":[42.09,121.52,1197.33,171.05]}
+{"kind":"image","id":"im/p8bahcba","slide":6,"name":"","geometry":"roundRect","alt":"GitHub repository card for awesome-design-md","bbox":[42,137,581,182]}
+{"kind":"image","id":"im/47298rap","slide":6,"name":"","geometry":"roundRect","alt":"GitHub repository card for awesome-gpt-image-2","bbox":[657,137,581,182]}
+{"kind":"notes","id":"nt/lmqwlw","slide":6,"text":"这两个项目很有画面感。左边把一个品牌的视觉规则压成 DESIGN.md，agent 放进项目就能读。右边更进一步：网站展示的 470 多个案例，和 agent skill 读取的是同一份 style-library 数据。过去的 prompt gallery 是给人找灵感；现在它开始维护一个可安装的知识包。\n\n[Sources]\n- https://github.com/VoltAgent/awesome-design-md\n- https://github.com/freestylefly/awesome-gpt-image-2\n- Images: GitHub OpenGraph cards for both repositories\n- Local metrics: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n[/Sources]"}
+{"kind":"slide","id":"sl/kbg5ly","slide":7,"title":"7","textShapes":9}
+{"kind":"textbox","id":"sh/kry14v6t","slide":7,"name":"Slide-Number-Placeholder-3-2","text":"7","textPreview":"7","textChars":1,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/jqpkbq58","slide":7,"name":"Title-10-3","text":"Superpowers 最反直觉的设计，是先让 agent 慢下来","textPreview":"Superpowers 最反直觉的设计，是先让 agent 慢下来","textChars":33,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"shape","id":"sh/ipwj2lon","slide":7,"name":"Google-Shape-2259-p159-4","bbox":[35.46,354.2,1285.61,0.03]}
+{"kind":"shape","id":"sh/tw72h0na","slide":7,"name":"Google-Shape-2260-p159-5","bbox":[35.46,348.58,11.24,11.24]}
+{"kind":"shape","id":"sh/svy18v65","slide":7,"name":"Google-Shape-2261-p159-6","bbox":[446.38,348.58,11.24,11.24]}
+{"kind":"shape","id":"sh/7upkfa5k","slide":7,"name":"Google-Shape-2262-p159-7","bbox":[858.38,348.58,11.24,11.24]}
+{"kind":"textbox","id":"sh/6tgj65oz","slide":7,"name":"Content-Placeholder-15-8","text":"先聊清楚","textPreview":"先聊清楚","textChars":4,"textLines":1,"bbox":[41.33,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/90n25g76","slide":7,"name":"Content-Placeholder-15-9","text":"再写计划","textPreview":"再写计划","textChars":4,"textLines":1,"bbox":[450.83,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/oze1wb6l","slide":7,"name":"Content-Placeholder-15-10","text":"最后开工","textPreview":"最后开工","textChars":4,"textLines":1,"bbox":[863.33,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/mhgri5of","slide":7,"name":"Text-Placeholder-16-11","text":"把判断变成顺序\n拆任务、写验证步骤，把上下文和验收条件交代清楚。","textPreview":"把判断变成顺序 | 拆任务、写验证步骤，把上下文和验收条件交代清楚。","textChars":32,"textLines":2,"bbox":[453.24,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/nip8ba50","slide":7,"name":"Text-Placeholder-16-12","text":"把想法变成规格\n先提问，分段确认设计，不急着生成代码。","textPreview":"把想法变成规格 | 先提问，分段确认设计，不急着生成代码。","textChars":27,"textLines":2,"bbox":[41.98,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/8jy9kf6l","slide":7,"name":"Text-Placeholder-16-13","text":"把过程变成技能\nTDD、子 agent、两阶段 review 和收尾都有固定做法。","textPreview":"把过程变成技能 | TDD、子 agent、两阶段 review 和收尾都有固定做法。","textChars":41,"textLines":2,"bbox":[858.57,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/algrmpob","slide":7,"name":"superpowers-thesis","text":"代码便宜之后，顺序、判断和复核变成更稀缺的资产。","textPreview":"代码便宜之后，顺序、判断和复核变成更稀缺的资产。","textChars":24,"textLines":1,"bbox":[42,145,660,106]}
+{"kind":"image","id":"im/md0ny50j","slide":7,"name":"","geometry":"roundRect","alt":"GitHub repository card for obra/superpowers","bbox":[764,122,438,152]}
+{"kind":"notes","id":"nt/kbg5ly","slide":7,"text":"Superpowers 的故事不是又收集了一堆 prompt。它把完整的软件开发方法拆成可触发的 skills：brainstorming、writing plans、TDD、subagent development、code review。为了让 agent 跑得更远，它先给 agent 铺了一条轨道。\n\n[Sources]\n- https://github.com/obra/superpowers\n- https://github.com/obra/superpowers/blob/main/.codex-plugin/plugin.json\n- Image: https://opengraph.githubassets.com/1/obra/superpowers\n- Local metrics: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n[/Sources]"}
+{"kind":"slide","id":"sl/wnmatr","slide":8,"title":"8","textShapes":9}
+{"kind":"shape","id":"sh/toz2l87m","slide":8,"name":"Rounded-Rectangle-5-1","bbox":[41.33,317.33,374.67,312]}
+{"kind":"shape","id":"sh/6l83adob","slide":8,"name":"Rounded-Rectangle-6-2","bbox":[452.67,317.33,374.67,312]}
+{"kind":"shape","id":"sh/7mhkjypw","slide":8,"name":"Rounded-Rectangle-7-3","bbox":[864.28,317.33,374.67,312]}
+{"kind":"textbox","id":"sh/kj6l8365","slide":8,"name":"Slide-Number-Placeholder-1-4","text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/lkz2h87q","slide":8,"name":"Title-2-5","text":"三家官方仓库正在用同一种文件组织 agent 能力","textPreview":"三家官方仓库正在用同一种文件组织 agent 能力","textChars":25,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"textbox","id":"sh/yxoj6toz","slide":8,"name":"Content-Placeholder-9-6","text":"Anthropic\n自包含的说明、脚本与资源","textPreview":"Anthropic | 自包含的说明、脚本与资源","textChars":22,"textLines":2,"bbox":[73.74,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/jyxkfypk","slide":8,"name":"Content-Placeholder-10-7","text":"Google\n产品知识可以被选择并安装","textPreview":"Google | 产品知识可以被选择并安装","textChars":19,"textLines":2,"bbox":[896.78,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/wv614j69","slide":8,"name":"Content-Placeholder-11-8","text":"OpenAI\nagent 可发现、可复用的能力目录","textPreview":"OpenAI | agent 可发现、可复用的能力目录","textChars":25,"textLines":2,"bbox":[485.17,514.5,309.67,86]}
+{"kind":"textbox","id":"sh/xwf2do7u","slide":8,"name":"Content-Placeholder-9-9","text":"SKILL.md","textPreview":"SKILL.md","textChars":8,"textLines":1,"bbox":[73.74,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/xo7e1ovy","slide":8,"name":"Content-Placeholder-9-10","text":"write once","textPreview":"write once","textChars":10,"textLines":1,"bbox":[484.3,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/wnyd8jed","slide":8,"name":"Content-Placeholder-9-11","text":"npx add","textPreview":"npx add","textChars":7,"textLines":1,"bbox":[898.94,360,308.67,142.71]}
+{"kind":"textbox","id":"sh/vmpwzeds","slide":8,"name":"Content-Placeholder-15-12","text":"这不是单个社区的偶然实验。Anthropic、OpenAI 和 Google 都开始公开维护 skill 仓库。\n它们的产品边界不同，但共同点很清楚：知识被包装成文件夹、说明、脚本和资源，由 agent 动态发现和使用。","textPreview":"这不是单个社区的偶然实验。Anthropic、OpenAI 和 Google 都开始公开维护 skill 仓库。 | 它们的产品边界不同，但共同点很清楚：知识被包装成文件夹、说明、脚本和资源，由 agent 动态发现和使用。","textChars":110,"textLines":2,"bbox":[41.33,119.51,1197.33,167.92]}
+{"kind":"shape","id":"sh/ni5wvudw","slide":8,"name":"rule","bbox":[41,302,1198,4]}
+{"kind":"image","id":"im/twbi1gvm","slide":8,"name":"","geometry":"roundRect","alt":"Anthropic GitHub avatar","bbox":[330,338,58,58]}
+{"kind":"image","id":"im/uxkjulw7","slide":8,"name":"","geometry":"roundRect","alt":"OpenAI GitHub avatar","bbox":[742,338,58,58]}
+{"kind":"image","id":"im/fyt03qds","slide":8,"name":"","geometry":"roundRect","alt":"Google GitHub avatar","bbox":[1155,338,58,58]}
+{"kind":"notes","id":"nt/wnmatr","slide":8,"text":"这一页不要讲成厂商排名。它说明格式正在收敛。Anthropic 把 skill 定义成动态加载的 instructions、scripts 和 resources；OpenAI 直接写了 write once, use everywhere；Google 让产品知识通过 npx skills add 被选择和安装。文档正在获得包管理和运行时语义。\n\n[Sources]\n- https://github.com/anthropics/skills\n- https://github.com/openai/skills\n- https://github.com/google/skills\n- Local metrics: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n- Images: GitHub organization avatars\n[/Sources]"}
+{"kind":"slide","id":"sl/iq1jkv","slide":9,"title":"Awesome 仓库正在变成","textShapes":3}
+{"kind":"textbox","id":"sh/29gry5cn","slide":9,"name":"Title-3-1","text":"Awesome 仓库正在变成\nagent behavior 的源代码","textPreview":"Awesome 仓库正在变成 | agent behavior 的源代码","textChars":34,"textLines":2,"bbox":[41.33,182.55,992,261.57]}
+{"kind":"textbox","id":"sh/pc7q9kbe","slide":9,"name":"Subtitle-4-2","text":"Stars 仍然说明谁被看见。\n下一步要追踪：谁被安装，谁被 agent 调用。\n这会让下一版 landscape 更接近真实使用。","textPreview":"Stars 仍然说明谁被看见。 | 下一步要追踪：谁被安装，谁被 agent 调用。 | 这会让下一版 landscape 更接近真实使用。","textChars":66,"textLines":3,"bbox":[41.33,522.13,374.67,113.41]}
+{"kind":"textbox","id":"sh/4by90fut","slide":9,"name":"Subtitle-4-3","text":"NEXT","textPreview":"NEXT","textChars":4,"textLines":1,"bbox":[41.33,41.18,169.33,68.15]}
+{"kind":"shape","id":"sh/f6583atc","slide":9,"name":"rule","bbox":[41,145,1198,5]}
+{"kind":"notes","id":"nt/iq1jkv","slide":9,"text":"最后把问题留在测量上。Stars 适合发现趋势，但如果 awesome 已经接近代码，我们就该像观察依赖包一样观察它：被谁安装、在哪些 agent 中被调用、更新如何传播、出了问题怎样追溯。这个方向会让下一轮研究更有独特性。\n\n[Sources]\n- Local synthesis: outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv\n- Local methodology: outputs/awesome-agentic-landscape-260729/analysis/scan_awesome_agentic_projects.py\n[/Sources]"}

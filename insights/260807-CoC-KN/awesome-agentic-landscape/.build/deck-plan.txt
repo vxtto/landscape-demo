@@ -1,0 +1,23 @@
+Communication job:
+By the end, an open-source and AI audience should see that awesome repositories
+are moving closer to the agent runtime, because curated knowledge is increasingly
+packaged as installable skills, operating methods, and domain playbooks.
+
+Audience:
+Open-source practitioners, ecosystem researchers, maintainers, and AI developers.
+
+Narrative:
+1. Open with the tension: code is cheap, steering remains scarce.
+2. Show the complete landscape.
+3. Quantify what is distinctive about the editorial shortlist.
+4. Explain the four consumption forms.
+5. Tell the vercel-labs/skills installation story.
+6. Compare two domain-playbook stories: DESIGN.md and prompt-as-code.
+7. Tell the Superpowers operating-method story.
+8. Show convergence across official skill repositories.
+9. Close with the measurement implication for the next landscape.
+
+Visual route:
+Codex Grid layout library, with the generated landscape and GitHub repository
+OpenGraph cards used as evidence images. White canvas, black type, restrained
+blue accent, and the landscape's pink/purple/blue/green used sparingly.

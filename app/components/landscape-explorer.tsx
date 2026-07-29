@@ -666,7 +666,8 @@ export default function LandscapeExplorer({
 }: {
   projects: LandscapeProject[];
 }) {
-  const [query, setQuery] = useState("");
+  const [agentQuery, setAgentQuery] = useState("");
+  const [modelQuery, setModelQuery] = useState("");
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
   const [shareOpen, setShareOpen] = useState(false);
   const [shareTarget, setShareTarget] = useState<"agent" | "model">(
@@ -676,7 +677,8 @@ export default function LandscapeExplorer({
   const [modelZoom, setModelZoom] = useState(90);
   const agentSlideRef = useRef<HTMLElement>(null);
   const modelSlideRef = useRef<HTMLElement>(null);
-  const normalizedQuery = query.trim().toLowerCase();
+  const normalizedAgentQuery = agentQuery.trim().toLowerCase();
+  const normalizedModelQuery = modelQuery.trim().toLowerCase();
 
   const selectedProject =
     projects.find((project) => project.repo === selectedRepo) ?? null;
@@ -736,10 +738,10 @@ export default function LandscapeExplorer({
   const agentSummary = summarizeModule(agentProjects);
   const modelSummary = summarizeModule(modelProjects);
   const agentMatchCount = agentProjects.filter((project) =>
-    matchesQuery(project, normalizedQuery),
+    matchesQuery(project, normalizedAgentQuery),
   ).length;
   const modelMatchCount = modelProjects.filter((project) =>
-    matchesQuery(project, normalizedQuery),
+    matchesQuery(project, normalizedModelQuery),
   ).length;
   const agentStages = STAGES.filter((stage) => stage.id !== "model");
   const agentStageStyle: CSSProperties = {
@@ -776,62 +778,7 @@ export default function LandscapeExplorer({
       aria-label="Interactive Agentic AI open-source landscape"
     >
       <div className={styles.landscapeLead}>
-        <div>
-          <Badge variant="secondary">
-            Agentic AI open-source ecosystem · Jul 2026
-          </Badge>
-          <h1>Map the infrastructure behind agentic AI.</h1>
-          <p>
-            A curated view of {projects.length} open-source projects across two
-            complementary blocks: Agent Infra and Model Infra.
-          </p>
-        </div>
-        <div className={styles.rankRule}>
-          <span className={styles.rankRuleExample} aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </span>
-          <span>
-            Higher OpenRank
-            <strong>earlier · larger</strong>
-          </span>
-        </div>
-      </div>
-
-      <div className={styles.ecosystemToolbar}>
-        <label className={styles.search}>
-          <SearchIcon aria-hidden="true" />
-          <span className={styles.srOnly}>Search projects</span>
-          <Input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Find a project, category, or language"
-          />
-          {query ? (
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              type="button"
-              onClick={() => setQuery("")}
-              aria-label="Clear search"
-            >
-              <XIcon />
-            </Button>
-          ) : null}
-        </label>
-        <div className={styles.searchStatus} aria-live="polite">
-          {normalizedQuery ? (
-            <>
-              <strong>{agentMatchCount + modelMatchCount}</strong> matches
-              highlighted across both landscapes
-            </>
-          ) : (
-            <>
-              Search once across <strong>{projects.length}</strong> projects
-            </>
-          )}
-        </div>
+        <h1>Map the Infrastructure Behind Agentic AI</h1>
       </div>
 
       <section
@@ -843,12 +790,9 @@ export default function LandscapeExplorer({
       >
         <header className={styles.moduleHeader}>
           <div className={styles.moduleHeading}>
-            <Badge>Agent Infra</Badge>
-            <h2>Where agents are built, operated, and used.</h2>
-            <p>
-              Applications → frameworks → runtime infrastructure. Explore this
-              block independently while keeping its original architecture map.
-            </p>
+            <h2>Agent Infra</h2>
+            <h3>Where agents are built, operated, and used.</h3>
+            <p>Applications · Frameworks · Runtime infrastructure</p>
           </div>
           <ModuleSummaryStrip summary={agentSummary} />
         </header>
@@ -860,17 +804,30 @@ export default function LandscapeExplorer({
         />
 
         <div className={styles.moduleToolbar}>
-          <span className={styles.moduleMatch} aria-live="polite">
-            {normalizedQuery ? (
-              <>
-                <strong>{agentMatchCount}</strong> Agent Infra matches
-              </>
-            ) : (
-              <>
-                <strong>{agentProjects.length}</strong> projects ·{" "}
-                <strong>{agentSummary.zones}</strong> sections
-              </>
-            )}
+          <label className={cn(styles.search, styles.moduleSearch)}>
+            <SearchIcon aria-hidden="true" />
+            <span className={styles.srOnly}>Search Agent Infra</span>
+            <Input
+              value={agentQuery}
+              onChange={(event) => setAgentQuery(event.target.value)}
+              placeholder="Search Agent Infra"
+            />
+            {agentQuery ? (
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                type="button"
+                onClick={() => setAgentQuery("")}
+                aria-label="Clear Agent Infra search"
+              >
+                <XIcon />
+              </Button>
+            ) : null}
+          </label>
+          <span className={styles.srOnly} aria-live="polite">
+            {normalizedAgentQuery
+              ? `${agentMatchCount} Agent Infra matches`
+              : `${agentProjects.length} Agent Infra projects`}
           </span>
           <div className={styles.zoomControl} aria-label="Agent Infra zoom">
             <Button
@@ -954,7 +911,7 @@ export default function LandscapeExplorer({
                       key={stage.id}
                       stage={stage}
                       projects={projects}
-                      normalizedQuery={normalizedQuery}
+                      normalizedQuery={normalizedAgentQuery}
                       selectedRepo={selectedRepo}
                       rankScale={rankScale}
                       onSelect={setSelectedRepo}
@@ -976,12 +933,9 @@ export default function LandscapeExplorer({
       >
         <header className={styles.moduleHeader}>
           <div className={styles.moduleHeading}>
-            <Badge>Model Infra</Badge>
-            <h2>The systems beneath model workloads.</h2>
-            <p>
-              Access and serving → training → data and compute. A separate
-              landscape for the model systems that power the agentic stack.
-            </p>
+            <h2>Model Infra</h2>
+            <h3>The systems beneath model workloads.</h3>
+            <p>Access &amp; serving · Training · Data &amp; compute</p>
           </div>
           <ModuleSummaryStrip summary={modelSummary} />
         </header>
@@ -993,17 +947,30 @@ export default function LandscapeExplorer({
         />
 
         <div className={styles.moduleToolbar}>
-          <span className={styles.moduleMatch} aria-live="polite">
-            {normalizedQuery ? (
-              <>
-                <strong>{modelMatchCount}</strong> Model Infra matches
-              </>
-            ) : (
-              <>
-                <strong>{modelProjects.length}</strong> projects ·{" "}
-                <strong>{modelSummary.zones}</strong> sections
-              </>
-            )}
+          <label className={cn(styles.search, styles.moduleSearch)}>
+            <SearchIcon aria-hidden="true" />
+            <span className={styles.srOnly}>Search Model Infra</span>
+            <Input
+              value={modelQuery}
+              onChange={(event) => setModelQuery(event.target.value)}
+              placeholder="Search Model Infra"
+            />
+            {modelQuery ? (
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                type="button"
+                onClick={() => setModelQuery("")}
+                aria-label="Clear Model Infra search"
+              >
+                <XIcon />
+              </Button>
+            ) : null}
+          </label>
+          <span className={styles.srOnly} aria-live="polite">
+            {normalizedModelQuery
+              ? `${modelMatchCount} Model Infra matches`
+              : `${modelProjects.length} Model Infra projects`}
           </span>
           <div className={styles.zoomControl} aria-label="Model Infra zoom">
             <Button
@@ -1096,7 +1063,7 @@ export default function LandscapeExplorer({
                       key={definition.label}
                       definition={definition}
                       projects={projects}
-                      normalizedQuery={normalizedQuery}
+                      normalizedQuery={normalizedModelQuery}
                       selectedRepo={selectedRepo}
                       rankScale={rankScale}
                       onSelect={setSelectedRepo}

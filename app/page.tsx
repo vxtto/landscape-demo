@@ -1,7 +1,9 @@
 import { ArrowUpRightIcon } from "lucide-react";
+import Link from "next/link";
 
 import { getLandscapeProjects } from "@/lib/landscape-data";
 
+import LandscapeLogo from "./components/landscape-logo";
 import LandscapeExplorer from "./components/landscape-explorer";
 import styles from "./page.module.css";
 
@@ -17,13 +19,17 @@ export default function Home() {
             href="#landscape"
             aria-label="Agentic AI Open Source Landscape home"
           >
-            <span aria-hidden="true">AI</span>
+            <LandscapeLogo className={styles.brandMark} />
             <strong>Agentic AI Landscape</strong>
           </a>
           <nav className={styles.headerNav} aria-label="Primary navigation">
             <a href="#agent-infra">Agent Infra</a>
             <a href="#model-infra">Model Infra</a>
             <a href="#signals">Signals</a>
+            <Link className={styles.keynoteLink} href="/keynote">
+              <span>08.07</span>
+              <strong>Keynote</strong>
+            </Link>
             <a
               href="https://github.com/antgroup/agentic-ai-landscape"
               target="_blank"
@@ -39,7 +45,7 @@ export default function Home() {
 
         <footer className={styles.footer}>
           <div>
-            <span>AI</span>
+            <LandscapeLogo className={styles.footerMark} />
             <p>
               A living map of the open-source Agentic AI ecosystem — Agent
               Infra and Model Infra, viewed together.

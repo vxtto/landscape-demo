@@ -1,0 +1,1375 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="data:,">
+  <title>Agentic AI 新趋势下，开放生态的那些老规矩</title>
+  <style>
+    :root {
+      --ink: #081827;
+      --ink-2: #0d2235;
+      --ink-3: #133049;
+      --paper: #f3f6f5;
+      --paper-2: #dbe5e7;
+      --muted: #91a4ad;
+      --cyan: #58cee7;
+      --cyan-2: #a9eff7;
+      --amber: #f2a646;
+      --violet: #9b8cff;
+      --green: #74d8a2;
+      --red: #f08080;
+      --line: rgba(219, 229, 231, .18);
+      --line-strong: rgba(219, 229, 231, .36);
+      --serif: ui-serif, "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      --sans: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+      --mono: "SFMono-Regular", "IBM Plex Mono", "Roboto Mono", monospace;
+      --rail: 248px;
+      --max: 1460px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--paper);
+      background:
+        linear-gradient(rgba(88, 206, 231, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(88, 206, 231, .035) 1px, transparent 1px),
+        var(--ink);
+      background-size: 48px 48px;
+      font-family: var(--sans);
+      line-height: 1.65;
+      letter-spacing: .01em;
+    }
+
+    a { color: var(--cyan-2); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    button:focus-visible, a:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--cyan);
+      outline-offset: 4px;
+    }
+
+    .progress {
+      position: fixed;
+      z-index: 90;
+      inset: 0 auto auto 0;
+      height: 3px;
+      width: 0;
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(88, 206, 231, .65);
+    }
+
+    .rail {
+      position: fixed;
+      z-index: 50;
+      inset: 0 auto 0 0;
+      width: var(--rail);
+      display: flex;
+      flex-direction: column;
+      padding: 28px 22px 22px;
+      background: rgba(8, 24, 39, .92);
+      border-right: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 34px;
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--cyan);
+      position: relative;
+      transform: rotate(45deg);
+    }
+    .brand-mark::before, .brand-mark::after {
+      content: "";
+      position: absolute;
+      background: var(--cyan);
+    }
+    .brand-mark::before { width: 1px; inset: 5px auto 5px 50%; }
+    .brand-mark::after { height: 1px; inset: 50% 5px auto 5px; }
+    .brand strong { font-family: var(--serif); font-size: 15px; font-weight: 700; line-height: 1.25; }
+    .brand small { display: block; color: var(--muted); font-family: var(--mono); font-size: 10px; }
+
+    .story-nav {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 0 10px;
+      position: relative;
+    }
+    .story-nav::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 16px;
+      bottom: 16px;
+      width: 1px;
+      background: var(--line-strong);
+    }
+    .story-nav a {
+      position: relative;
+      display: grid;
+      grid-template-columns: 12px 1fr;
+      gap: 13px;
+      align-items: start;
+      padding: 10px 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 12px;
+      line-height: 1.35;
+      transition: color .2s ease;
+    }
+    .story-nav .node {
+      width: 11px;
+      height: 11px;
+      margin-top: 2px;
+      background: var(--ink);
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      z-index: 1;
+      transition: .2s ease;
+    }
+    .story-nav a.active { color: var(--paper); }
+    .story-nav a.active .node {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 5px rgba(88, 206, 231, .12);
+    }
+    .story-nav b { display: block; color: inherit; font-family: var(--mono); font-size: 10px; margin-bottom: 2px; }
+
+    .rail-tools { margin-top: auto; display: grid; gap: 9px; }
+    .mode-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--line);
+    }
+    .mode-switch button, .rail-link {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 8px;
+      cursor: pointer;
+      font-size: 11px;
+      text-align: center;
+      text-decoration: none;
+    }
+    .mode-switch button.active { color: var(--ink); background: var(--cyan); }
+    .rail-link { border: 1px solid var(--line); }
+    .rail-meta { color: var(--muted); font: 9px/1.5 var(--mono); }
+
+    main { margin-left: var(--rail); min-width: 0; }
+    .section {
+      position: relative;
+      min-height: 92vh;
+      padding: 104px clamp(36px, 5vw, 84px);
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 0;
+    }
+    .inner { width: min(100%, var(--max)); margin: 0 auto; }
+    .section-index {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--cyan);
+      font: 11px/1 var(--mono);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin-bottom: 22px;
+    }
+    .section-index::after { content: ""; width: 90px; height: 1px; background: currentColor; opacity: .6; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 { font-family: var(--serif); font-weight: 650; letter-spacing: -.035em; }
+    h1 {
+      max-width: 1050px;
+      font-size: clamp(48px, 7vw, 112px);
+      line-height: .98;
+      margin-bottom: 34px;
+    }
+    h2 { max-width: 1020px; font-size: clamp(38px, 5.2vw, 76px); line-height: 1.07; margin-bottom: 30px; }
+    h3 { font-size: 21px; line-height: 1.25; letter-spacing: -.01em; }
+    .lead {
+      max-width: 870px;
+      color: var(--paper-2);
+      font-size: clamp(18px, 1.7vw, 25px);
+      line-height: 1.65;
+    }
+    .eyebrow { font: 11px/1.4 var(--mono); color: var(--muted); letter-spacing: .09em; text-transform: uppercase; }
+    .micro { color: var(--muted); font-size: 12px; }
+    .mono { font-family: var(--mono); }
+    .accent { color: var(--cyan); }
+    .amber { color: var(--amber); }
+    .violet { color: var(--violet); }
+    .green { color: var(--green); }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      min-height: 100vh;
+      padding-top: 72px;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "OPEN / PARTICIPATE / GOVERN";
+      position: absolute;
+      right: -74px;
+      bottom: 92px;
+      color: rgba(219, 229, 231, .06);
+      font: 700 clamp(28px, 4vw, 58px)/1 var(--mono);
+      transform: rotate(-90deg);
+      transform-origin: right bottom;
+      white-space: nowrap;
+    }
+    .hero-copy { position: relative; z-index: 2; }
+    .hero-kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 28px;
+      color: var(--cyan-2);
+      font: 12px/1 var(--mono);
+      letter-spacing: .12em;
+    }
+    .hero-kicker::before { content: ""; width: 32px; height: 1px; background: var(--cyan); }
+    .hero-sub {
+      display: grid;
+      grid-template-columns: minmax(0, 720px) minmax(240px, 1fr);
+      gap: 56px;
+      align-items: end;
+    }
+    .hero-sub p { color: var(--paper-2); font-size: 18px; max-width: 720px; }
+    .event-stamp {
+      border-top: 1px solid var(--cyan);
+      padding-top: 14px;
+      font: 11px/1.65 var(--mono);
+      color: var(--muted);
+    }
+    .event-stamp strong { color: var(--paper); font-size: 14px; }
+
+    .data-window {
+      margin-top: 70px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .data-window > div { padding: 18px 20px; border-right: 1px solid var(--line); }
+    .data-window > div:last-child { border-right: 0; }
+    .data-window span { display: block; color: var(--muted); font: 10px/1.4 var(--mono); }
+    .data-window b { font-size: 16px; font-weight: 600; }
+
+    .quote-line {
+      margin: 46px 0;
+      padding: 18px 0 18px 24px;
+      border-left: 2px solid var(--cyan);
+      max-width: 1030px;
+      color: var(--paper);
+      font-family: var(--serif);
+      font-size: clamp(24px, 3vw, 42px);
+      line-height: 1.35;
+    }
+
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin: 44px 0 54px;
+      border-block: 1px solid var(--line);
+    }
+    .stat {
+      padding: 22px 22px 24px;
+      border-right: 1px solid var(--line);
+      min-height: 122px;
+    }
+    .stat:last-child { border-right: 0; }
+    .stat strong {
+      display: block;
+      font: 600 clamp(32px, 4vw, 58px)/1 var(--mono);
+      color: var(--paper);
+      letter-spacing: -.06em;
+    }
+    .stat span { color: var(--muted); font-size: 12px; }
+    .stat em { display: block; color: var(--cyan-2); font: normal 10px/1.4 var(--mono); margin-top: 8px; }
+
+    .funnel {
+      display: grid;
+      gap: 10px;
+      margin: 34px 0 58px;
+    }
+    .funnel-row {
+      display: grid;
+      grid-template-columns: 132px minmax(120px, 1fr) 250px;
+      align-items: center;
+      gap: 16px;
+    }
+    .funnel-row .label { color: var(--paper-2); font-size: 13px; }
+    .funnel-track { height: 34px; background: rgba(219,229,231,.05); position: relative; }
+    .funnel-fill {
+      height: 100%;
+      min-width: 5px;
+      background: var(--cyan);
+      opacity: .88;
+      transform-origin: left;
+      animation: grow 1s ease both;
+    }
+    .funnel-row:nth-child(2) .funnel-fill { background: #52aecd; }
+    .funnel-row:nth-child(3) .funnel-fill { background: var(--violet); }
+    .funnel-row:nth-child(4) .funnel-fill { background: var(--amber); }
+    .funnel-value { font: 12px/1.4 var(--mono); color: var(--muted); }
+    .funnel-value b { color: var(--paper); font-size: 17px; margin-right: 8px; }
+    @keyframes grow { from { transform: scaleX(0); } }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin: 48px 0;
+    }
+    .editorial-panel { border-top: 1px solid var(--line-strong); padding-top: 18px; }
+    .delta-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--paper-2);
+      font-size: 14px;
+    }
+    .delta-row b { font: 600 15px/1 var(--mono); color: var(--paper); }
+
+    .explorer {
+      margin: 54px 0 30px;
+      border: 1px solid var(--line-strong);
+      background: #06131f;
+      box-shadow: 0 26px 90px rgba(0,0,0,.28);
+    }
+    .explorer-toolbar {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--line);
+      background: var(--ink-2);
+    }
+    .tabs { display: flex; flex-wrap: wrap; gap: 5px; }
+    .tab, .tool-btn, .filter-btn {
+      appearance: none;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .tab:hover, .tool-btn:hover, .filter-btn:hover { color: var(--paper); border-color: var(--line); }
+    .tab.active, .filter-btn.active { color: var(--ink); background: var(--cyan); }
+    .explorer-actions { display: flex; gap: 5px; }
+    .tool-btn { border-color: var(--line); text-decoration: none; }
+    .explorer-stage {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(88,206,231,.08), transparent 46%),
+        #071522;
+    }
+    .explorer-stage iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: white;
+    }
+    .explorer-stage iframe.scaled {
+      position: absolute;
+      inset: 0 auto auto 0;
+      transform-origin: 0 0;
+      max-width: none;
+    }
+    .loading-note {
+      position: absolute;
+      z-index: 0;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      color: var(--muted);
+      font: 11px/1.5 var(--mono);
+      text-align: center;
+    }
+    .explorer-caption {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 50px;
+    }
+    .signal {
+      background: var(--ink);
+      padding: 28px;
+      min-height: 245px;
+    }
+    .signal .number { color: var(--cyan); font: 11px/1 var(--mono); }
+    .signal h3 { margin-top: 52px; }
+    .signal p { color: var(--muted); font-size: 14px; }
+
+    .apache-scale {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin: 48px 0 16px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .apache-scale > div { background: var(--ink-2); padding: 26px 24px; }
+    .apache-scale strong { display: block; font: 600 clamp(34px, 4vw, 58px)/1 var(--mono); color: var(--amber); }
+    .apache-scale span { color: var(--paper-2); font-size: 13px; }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      gap: 54px;
+      align-items: start;
+      margin: 50px 0;
+    }
+    .chart-block { border-top: 1px solid var(--line-strong); padding-top: 18px; }
+    .bar-chart { display: grid; gap: 17px; margin-top: 25px; }
+    .bar-row { display: grid; grid-template-columns: 145px 1fr 68px; gap: 12px; align-items: center; }
+    .bar-row label { color: var(--paper-2); font-size: 12px; }
+    .bar-track { height: 10px; background: rgba(219,229,231,.08); overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--cyan); }
+    .bar-row output { color: var(--paper); font: 11px/1 var(--mono); text-align: right; }
+    .bar-chart.apache .bar-fill { background: var(--amber); }
+    .bar-chart.license .bar-fill { background: var(--violet); }
+
+    .project-switcher { margin: 54px 0; }
+    .project-switcher .tabs { margin-bottom: 16px; }
+    .project-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .project-table th, .project-table td { padding: 13px 10px; border-bottom: 1px solid var(--line); text-align: left; }
+    .project-table th { color: var(--muted); font: 10px/1.3 var(--mono); text-transform: uppercase; }
+    .project-table td:nth-child(n+2) { font-family: var(--mono); }
+    .project-table tr:hover td { background: rgba(88,206,231,.04); }
+    .tag {
+      display: inline-block;
+      padding: 3px 7px;
+      border: 1px solid var(--line-strong);
+      color: var(--paper-2);
+      font: 9px/1.2 var(--mono);
+    }
+
+    .stack-map {
+      display: grid;
+      grid-template-columns: 1fr minmax(310px, .85fr);
+      gap: 42px;
+      margin: 52px 0;
+    }
+    .stack-layers { display: grid; gap: 10px; }
+    .stack-layer {
+      position: relative;
+      appearance: none;
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(13, 34, 53, .74);
+      color: var(--paper);
+      text-align: left;
+      padding: 24px 26px;
+      cursor: pointer;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .stack-layer:hover { border-color: var(--cyan); transform: translateX(4px); }
+    .stack-layer.active { border-color: var(--cyan); background: rgba(88,206,231,.08); }
+    .stack-layer b { display: block; font-size: 18px; margin-bottom: 6px; }
+    .stack-layer span { color: var(--muted); font: 11px/1.5 var(--mono); }
+    .stack-detail {
+      min-height: 346px;
+      padding: 28px;
+      border-left: 1px solid var(--cyan);
+      background: linear-gradient(90deg, rgba(88,206,231,.05), transparent);
+    }
+    .stack-detail h3 { font-family: var(--serif); font-size: 30px; }
+    .stack-detail p { color: var(--paper-2); }
+    .project-pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 28px; }
+    .project-pills span { padding: 7px 10px; border: 1px solid var(--line-strong); font: 11px/1 var(--mono); }
+
+    .license-band {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin: 34px 0 58px;
+      border-block: 1px solid var(--line);
+    }
+    .license-band > div { padding: 22px; border-right: 1px solid var(--line); }
+    .license-band > div:last-child { border-right: 0; }
+    .license-band strong { display: block; font: 600 42px/1 var(--mono); }
+    .license-band span { color: var(--muted); font-size: 12px; }
+
+    .comparison-wrap { overflow-x: auto; border-top: 1px solid var(--line-strong); }
+    .comparison { width: 100%; min-width: 850px; border-collapse: collapse; font-size: 13px; }
+    .comparison th, .comparison td { padding: 16px 14px; vertical-align: top; border-bottom: 1px solid var(--line); text-align: left; }
+    .comparison th { color: var(--muted); font: 10px/1.4 var(--mono); }
+    .comparison td:first-child { color: var(--paper); font-weight: 650; }
+    .comparison td { color: var(--paper-2); }
+    .comparison tr[data-type].hidden { display: none; }
+
+    .openness-lab {
+      display: grid;
+      grid-template-columns: minmax(320px, .9fr) minmax(0, 1.1fr);
+      gap: 42px;
+      margin: 54px 0;
+      padding: 32px 0;
+      border-block: 1px solid var(--line);
+    }
+    .checks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-top: 22px; }
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 0;
+      color: var(--paper-2);
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .check input { accent-color: var(--violet); }
+    .gauge {
+      position: relative;
+      min-height: 260px;
+      display: grid;
+      place-items: center;
+    }
+    .gauge-ring {
+      --score: 0;
+      width: 210px;
+      height: 210px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: conic-gradient(var(--violet) calc(var(--score) * 1%), rgba(219,229,231,.08) 0);
+      transition: background .25s ease;
+    }
+    .gauge-ring::before {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+    .gauge-value { position: relative; z-index: 1; text-align: center; }
+    .gauge-value strong { display: block; font: 600 52px/1 var(--mono); }
+    .gauge-value span { color: var(--muted); font-size: 11px; }
+
+    .community-path {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      position: relative;
+      margin: 68px 0 42px;
+    }
+    .community-path::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: var(--line-strong);
+    }
+    .community-step {
+      position: relative;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 0 14px;
+      text-align: center;
+    }
+    .community-step .dot {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      border: 1px solid var(--line-strong);
+      background: var(--ink);
+      color: var(--paper-2);
+      font: 11px/1 var(--mono);
+      position: relative;
+      z-index: 1;
+    }
+    .community-step.active { color: var(--paper); }
+    .community-step.active .dot { background: var(--amber); border-color: var(--amber); color: var(--ink); }
+    .community-step b { display: block; font-size: 13px; }
+    .community-detail {
+      max-width: 860px;
+      min-height: 175px;
+      margin: 0 auto;
+      padding: 28px 32px;
+      text-align: center;
+      border-block: 1px solid var(--line);
+    }
+    .community-detail h3 { font-family: var(--serif); font-size: 28px; }
+    .community-detail p { color: var(--paper-2); }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 64px;
+    }
+    .resource {
+      display: block;
+      min-height: 180px;
+      padding: 24px;
+      background: var(--ink-2);
+      color: var(--paper);
+      text-decoration: none;
+    }
+    .resource:hover { background: var(--ink-3); }
+    .resource .arrow { float: right; color: var(--cyan); }
+    .resource b { display: block; margin: 48px 0 7px; font-size: 17px; }
+    .resource span { color: var(--muted); font-size: 12px; }
+
+    details.evidence, details.speaker-note {
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      color: var(--paper-2);
+    }
+    details summary {
+      padding: 13px 0;
+      cursor: pointer;
+      color: var(--muted);
+      font: 10px/1.4 var(--mono);
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+    details .detail-body { padding: 4px 0 22px; font-size: 13px; }
+    .source-list { columns: 2; column-gap: 38px; }
+    .source-list li { break-inside: avoid; margin-bottom: 8px; }
+
+    .speaker-note {
+      border-color: rgba(242,166,70,.4) !important;
+      background: rgba(242,166,70,.035);
+      padding-inline: 16px;
+    }
+    .speaker-note summary { color: var(--amber); }
+
+    .presentation-mode .deep-dive { display: none !important; }
+    .presentation-mode .section { padding-block: 90px; }
+    .presentation-mode .lead { max-width: 1000px; }
+    .presentation-mode .speaker-note { display: block !important; }
+
+    .mobile-bar { display: none; }
+
+    @media (max-width: 980px) {
+      :root { --rail: 0px; }
+      .rail { display: none; }
+      main { margin-left: 0; }
+      .mobile-bar {
+        display: flex;
+        position: fixed;
+        z-index: 70;
+        inset: 0 0 auto;
+        height: 50px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 14px;
+        background: rgba(8,24,39,.94);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(14px);
+      }
+      .mobile-bar strong { font-family: var(--serif); font-size: 13px; }
+      .mobile-bar select { max-width: 55vw; background: var(--ink-2); color: var(--paper); border: 1px solid var(--line); padding: 6px; }
+      .section { padding: 90px 24px 72px; }
+      .hero-sub, .two-col, .stack-map, .openness-lab { grid-template-columns: 1fr; gap: 30px; }
+      .data-window, .stat-strip, .apache-scale { grid-template-columns: 1fr 1fr; }
+      .data-window > div:nth-child(2), .stat:nth-child(2), .apache-scale > div:nth-child(2) { border-right: 0; }
+      .data-window > div:nth-child(-n+2), .stat:nth-child(-n+2), .apache-scale > div:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .signal-grid, .resource-grid { grid-template-columns: 1fr; }
+      .funnel-row { grid-template-columns: 110px 1fr; }
+      .funnel-value { grid-column: 2; }
+    }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 47px; }
+      h2 { font-size: 39px; }
+      .hero { min-height: auto; }
+      .data-window, .stat-strip, .apache-scale, .editorial-grid, .license-band { grid-template-columns: 1fr; }
+      .data-window > div, .stat, .apache-scale > div, .license-band > div { border-right: 0; border-bottom: 1px solid var(--line); }
+      .community-path { grid-template-columns: 1fr; gap: 8px; }
+      .community-path::before { left: 21px; top: 22px; bottom: 22px; right: auto; width: 1px; height: auto; }
+      .community-step { display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 13px; text-align: left; padding: 0; }
+      .community-step .dot { margin: 0; }
+      .checks { grid-template-columns: 1fr; }
+      .explorer-toolbar, .explorer-caption { grid-template-columns: 1fr; display: grid; }
+      .explorer-stage { aspect-ratio: 4 / 3; }
+      .project-table { min-width: 650px; }
+      .project-switcher { overflow-x: auto; }
+      .source-list { columns: 1; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <aside class="rail" aria-label="故事线导航">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div><strong>开放生态现场笔记</strong><small>CoC China · 2026.08.07</small></div>
+    </div>
+    <ol class="story-nav">
+      <li><a href="#landscape" class="active"><span class="node"></span><span><b>01</b>生态图更新与趋势</span></a></li>
+      <li><a href="#apache"><span class="node"></span><span><b>02</b>Apache 的位置</span></a></li>
+      <li><a href="#inclusion"><span class="node"></span><span><b>03</b>InclusionAI 技术栈</span></a></li>
+      <li><a href="#licenses"><span class="node"></span><span><b>04</b>模型开放与许可证</span></a></li>
+      <li><a href="#community"><span class="node"></span><span><b>05</b>Community &gt;&gt;&gt; Code</span></a></li>
+    </ol>
+    <div class="rail-tools">
+      <div class="mode-switch" aria-label="页面密度">
+        <button type="button" class="active" data-mode="research">研究视图</button>
+        <button type="button" data-mode="presentation">演讲视图</button>
+      </div>
+      <a class="rail-link" href="#sources">查看全部来源</a>
+      <div class="rail-meta">GitHub snapshot 2026-07-28<br>OpenRank complete through 2026-06</div>
+    </div>
+  </aside>
+
+  <div class="mobile-bar">
+    <strong>开放生态现场笔记</strong>
+    <select id="mobileNav" aria-label="跳转到章节">
+      <option value="#landscape">01 生态图更新</option>
+      <option value="#apache">02 Apache</option>
+      <option value="#inclusion">03 InclusionAI</option>
+      <option value="#licenses">04 许可证</option>
+      <option value="#community">05 Community</option>
+    </select>
+  </div>
+
+  <main>
+    <header class="section hero" id="top">
+      <div class="inner hero-copy">
+        <div class="hero-kicker">CommunityOverCode China 2026 · Keynote working edition</div>
+        <h1>Agentic AI 新趋势下，<span class="accent">开放生态</span>的那些老规矩</h1>
+        <div class="hero-sub">
+          <p>Agent 正在改变软件的入口、生产方式和运行边界。生态图上的名字变化很快，但项目如何被发现、技术如何被复用、权利如何说清楚、信任如何积累，仍然决定一项技术能不能成为公共基础设施。</p>
+          <div class="event-stamp"><strong>30 MIN · 中文</strong><br>2026 年 8 月 7 日 · 北京<br>第一版交互工作稿</div>
+        </div>
+        <div class="data-window" aria-label="数据时间口径">
+          <div><span>GITHUB SNAPSHOT</span><b>2026-07-28</b></div>
+          <div><span>OPENRANK WINDOW</span><b>2025-07—2026-06</b></div>
+          <div><span>OPENROUTER / ZENMUX</span><b>2026-07-21—27</b></div>
+          <div><span>ASF HOMEPAGE</span><b>2026-07-29</b></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="landscape" data-section="landscape">
+      <div class="inner">
+        <div class="section-index">01 · Ecosystem refresh</div>
+        <h2>生态图每次刷新，<br>都在回答同一个问题：<span class="accent">什么开始变得重要？</span></h2>
+        <p class="lead">这次更新没有从 star 榜单里挑几个新名字。我们先扩张候选集，再用语义、活跃度和生态角色逐层收窄，最后才处理版面。数字用来发现变化，进入 landscape 仍然是一项编辑判断。</p>
+
+        <div class="funnel deep-dive" aria-label="项目扫描漏斗">
+          <div class="funnel-row">
+            <div class="label">原始候选集合</div>
+            <div class="funnel-track"><div class="funnel-fill" style="width:100%"></div></div>
+            <div class="funnel-value"><b>6,118</b>多源仓库 ID</div>
+          </div>
+          <div class="funnel-row">
+            <div class="label">语义相关</div>
+            <div class="funnel-track"><div class="funnel-fill" style="width:14.35%"></div></div>
+            <div class="funnel-value"><b>878</b>README / topic / 描述筛选</div>
+          </div>
+          <div class="funnel-row">
+            <div class="label">人工复核池</div>
+            <div class="funnel-track"><div class="funnel-fill" style="width:3.63%"></div></div>
+            <div class="funnel-value"><b>222</b>GitHub 信息刷新后</div>
+          </div>
+          <div class="funnel-row">
+            <div class="label">当前总览</div>
+            <div class="funnel-track"><div class="funnel-fill" style="width:2.06%"></div></div>
+            <div class="funnel-value"><b>126</b>Vercel live overview</div>
+          </div>
+        </div>
+
+        <div class="stat-strip">
+          <div class="stat"><strong>105</strong><span>保留</span><em>生态角色仍然清晰</em></div>
+          <div class="stat"><strong>21</strong><span>新增</span><em>补足协议、推理与上下文</em></div>
+          <div class="stat"><strong>17</strong><span>移出</span><em>去重、弱相关或版面取舍</em></div>
+          <div class="stat"><strong>251</strong><span>reference source</span><em>CSV 中保留完整判断</em></div>
+        </div>
+
+        <div class="editorial-grid deep-dive">
+          <div class="editorial-panel">
+            <div class="eyebrow">分类结构保持稳定</div>
+            <h3>只在信号足够明确时调整版面</h3>
+            <div class="delta-row"><span>Agentic coding</span><b>15 → 12</b></div>
+            <div class="delta-row"><span>Protocols &amp; interoperability</span><b>3 → 5</b></div>
+            <div class="delta-row"><span>Serving · Inference</span><b>6 → 8</b></div>
+          </div>
+          <div class="editorial-panel">
+            <div class="eyebrow">信号不等于结论</div>
+            <h3>三个指标各自只回答一部分问题</h3>
+            <div class="delta-row"><span>OpenRank</span><b>协作活跃度</b></div>
+            <div class="delta-row"><span>Stars / WatchEvent</span><b>关注变化</b></div>
+            <div class="delta-row"><span>README 语义与项目角色</span><b>能否被采用</b></div>
+          </div>
+        </div>
+
+        <div class="explorer" id="landscapeExplorer">
+          <div class="explorer-toolbar">
+            <div class="tabs" role="tablist" aria-label="生态图切换">
+              <button class="tab active" data-landscape="agent" role="tab">Agent Infra · live</button>
+              <button class="tab" data-landscape="model" role="tab">Model Infra · live</button>
+              <button class="tab" data-landscape="large" role="tab">Large Models · local</button>
+              <button class="tab" data-landscape="awesome" role="tab">Awesome · local</button>
+            </div>
+            <div class="explorer-actions">
+              <button class="tool-btn" id="localFallback" type="button">本地备份</button>
+              <a class="tool-btn" id="openLandscape" href="https://landscape-demo-omega.vercel.app/#agent-infra" target="_blank" rel="noreferrer">单独打开 ↗</a>
+              <button class="tool-btn" id="fullscreenLandscape" type="button">全屏</button>
+            </div>
+          </div>
+          <div class="explorer-stage" id="landscapeStage">
+            <div class="loading-note" id="loadingNote">正在加载交互式生态图…<br>外部页面较大，首次打开可能需要数秒。</div>
+            <iframe id="landscapeFrame" title="Agent Infra interactive landscape" loading="eager" src="https://landscape-demo-omega.vercel.app/#agent-infra"></iframe>
+          </div>
+          <div class="explorer-caption">
+            <span id="landscapeCaption">Vercel live explorer：可搜索项目、切换时间与查看项目详情。</span>
+            <span class="mono" id="landscapeSource">external · live</span>
+          </div>
+        </div>
+
+        <div class="signal-grid">
+          <article class="signal">
+            <span class="number">SIGNAL A</span>
+            <h3>协议开始占据版面</h3>
+            <p>MCP、A2A、AG-UI、A2UI 等项目让工具、agent、界面和上下文之间出现了更明确的连接层。标准化的不是“智能”，而是协作接口。</p>
+          </article>
+          <article class="signal">
+            <span class="number">SIGNAL B</span>
+            <h3>推理栈继续分化</h3>
+            <p>推理引擎、KV cache、编译器、部署和调度不再适合被压成一个方块。Agent 的长链路与并发负载正在把系统问题重新放大。</p>
+          </article>
+          <article class="signal">
+            <span class="number">SIGNAL C</span>
+            <h3>README 开始被机器执行</h3>
+            <p>Awesome 项目从收藏清单变成 agent 的技能索引、工具入口和运维手册。24 个入选项目中，19 个具备直接 agent-consumable 入口。</p>
+          </article>
+        </div>
+
+        <details class="speaker-note deep-dive">
+          <summary>给演讲者的讲法 · 约 7 分钟</summary>
+          <div class="detail-body">先用 6,118 → 878 → 222 解释扫描，不要逐项念项目。随后在大图中切换 Agent Infra 和 Model Infra，分别指出协议层、推理层的增厚。Large Models 用来说明“模型开放”并非二元标签；Awesome 图则引出 README 正在变成可执行接口。提醒观众：OpenRank 最新完整月是 2026-06，GitHub 信息截止 2026-07-28，两种时间口径不能混用。</div>
+        </details>
+
+        <details class="evidence deep-dive">
+          <summary>方法与限制</summary>
+          <div class="detail-body">原始候选来自既有 landscape、GitHub topic / repository 搜索、生态邻接与活动信号的并集。WatchEvent 只用于发现，不等价于完整 star 增长；2026 年 5–6 月 OpenDigger 数据仍可能回填。最终选择同时考虑项目角色、采用入口、代表性、替代关系与 1920×1080 版面容量。</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="apache" data-section="apache">
+      <div class="inner">
+        <div class="section-index amber">02 · Apache in the stack</div>
+        <h2>Apache 不一定出现在 Agent 产品层，<br>却已经在<span class="amber">系统主干</span>上。</h2>
+        <p class="lead">Agent 越像一位能调用工具、访问数据、持续运行的同事，底层就越像一套分布式系统。数据治理、工作流、计算调度、序列化与事务，这些恰好是 Apache 社区长期积累的地带。</p>
+
+        <div class="apache-scale" aria-label="Apache 官方首页宏观数字">
+          <div><strong>290+</strong><span>Open Source Projects</span></div>
+          <div><strong>1,300+</strong><span>Annual Releases</span></div>
+          <div><strong>10,000+</strong><span>Committers</span></div>
+          <div><strong>1,190+</strong><span>Members</span></div>
+        </div>
+        <p class="micro">ASF 官网首页展示值，访问于 2026-07-29。项目、年度发布、committer 与 member 是四种不同统计对象。</p>
+
+        <div class="two-col deep-dive">
+          <div class="chart-block">
+            <div class="eyebrow">GitHub apache org · another grain</div>
+            <h3>仓库规模与近期活动</h3>
+            <div class="bar-chart">
+              <div class="bar-row"><label>非 fork、非归档</label><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><output>2,474</output></div>
+              <div class="bar-row"><label>过去 365 天 push</label><div class="bar-track"><div class="bar-fill" style="width:94.5%"></div></div><output>2,337</output></div>
+              <div class="bar-row"><label>过去 90 天 push</label><div class="bar-track"><div class="bar-fill" style="width:80.3%"></div></div><output>1,986</output></div>
+              <div class="bar-row"><label>过去 30 天 push</label><div class="bar-track"><div class="bar-fill" style="width:38.3%"></div></div><output>947</output></div>
+            </div>
+            <p class="micro">GitHub org 观测快照，2026-07-29；不能与 ASF 项目数直接相除。</p>
+          </div>
+          <div class="chart-block">
+            <div class="eyebrow">Selected Model Infra landscape</div>
+            <h3>Apache 的密度集中在数据与计算</h3>
+            <div class="bar-chart apache">
+              <div class="bar-row"><label>Data Governance</label><div class="bar-track"><div class="bar-fill" style="width:57.1%"></div></div><output>4 / 7</output></div>
+              <div class="bar-row"><label>Data Integration</label><div class="bar-track"><div class="bar-fill" style="width:33.3%"></div></div><output>1 / 3</output></div>
+              <div class="bar-row"><label>Compute &amp; scheduling</label><div class="bar-track"><div class="bar-fill" style="width:25%"></div></div><output>1 / 4</output></div>
+              <div class="bar-row"><label>Model Infra overall</label><div class="bar-track"><div class="bar-fill" style="width:10.5%"></div></div><output>6 / 57</output></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-switcher">
+          <div class="tabs" role="tablist" aria-label="Apache 项目表切换">
+            <button class="tab active" data-project-set="landscape">全景图中的 Apache</button>
+            <button class="tab" data-project-set="ant">蚂蚁深度参与</button>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="project-table">
+              <thead><tr><th>项目</th><th>技术位置</th><th>Stars</th><th>OpenRank 2026-06 / 状态</th></tr></thead>
+              <tbody id="apacheProjects"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="quote-line">Apache 在 Agentic AI 里的优势，不是一批带 “AI” 标签的新项目，而是一套已经跨组织运行了二十多年的基础设施与治理方法。</div>
+
+        <details class="speaker-note deep-dive">
+          <summary>给演讲者的讲法 · 约 6 分钟</summary>
+          <div class="detail-body">四个官网数字只做规模开场，紧接着解释口径：一个 ASF project 可以对应多个 GitHub repo，committer 也不等于 member。然后切到全景图里的 6 个项目，强调 Iceberg、Hudi、Paimon、Gravitino 在 Data Governance 占 4/7。最后切换到 Fory、GeaFlow、Seata、Celeborn，讲蚂蚁参与的技术带宽；stars 只描述关注度，不代替社区健康。</div>
+        </details>
+
+        <details class="evidence deep-dive">
+          <summary>数据口径</summary>
+          <div class="detail-body">ASF FY2025 冻结口径为 295 projects、9,905 committers、1,147 members、208 committees、1,310 releases；本页大数字来自 2026-07-29 官网首页。GitHub org 统计为仓库级快照。二者各自有效，但不可混成同一分母。</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="inclusion" data-section="inclusion">
+      <div class="inner">
+        <div class="section-index violet">03 · InclusionAI</div>
+        <h2>把开放做成一套<br><span class="violet">可以进入、可以验证、可以继续贡献</span>的技术栈。</h2>
+        <p class="lead">InclusionAI 的观察价值不在于仓库数量本身。更重要的是，它尝试把模型、训练系统与 agent 运行时连接起来，让没有大规模训练资源的开发者也能从环境、工具、评测或运行时进入。</p>
+
+        <div class="stat-strip">
+          <div class="stat"><strong>58</strong><span>公开仓库</span><em>GitHub org snapshot</em></div>
+          <div class="stat"><strong>10,753</strong><span>合计 stars</span><em>关注度，不等同活跃度</em></div>
+          <div class="stat"><strong>45/58</strong><span>Apache-2.0 或 MIT</span><em>GitHub API 识别</em></div>
+          <div class="stat"><strong>22</strong><span>7 月以来有 push</span><em>截至 2026-07-28</em></div>
+        </div>
+
+        <div class="stack-map">
+          <div class="stack-layers" role="tablist" aria-label="InclusionAI 技术栈">
+            <button class="stack-layer active" data-stack="models"><b>模型层</b><span>Ling · LLaDA · Ming</span></button>
+            <button class="stack-layer" data-stack="training"><b>训练与对齐</b><span>AReaL · AReno · TwinFlow</span></button>
+            <button class="stack-layer" data-stack="runtime"><b>Agent 运行时与环境</b><span>AWorld · AEnvironment · Avernet</span></button>
+          </div>
+          <div class="stack-detail" id="stackDetail" aria-live="polite"></div>
+        </div>
+
+        <div class="two-col deep-dive">
+          <div class="chart-block">
+            <div class="eyebrow">Repository license detection</div>
+            <h3>GitHub API 识别的许可证分布</h3>
+            <div class="bar-chart license">
+              <div class="bar-row"><label>Apache-2.0</label><div class="bar-track"><div class="bar-fill" style="width:44.8%"></div></div><output>26</output></div>
+              <div class="bar-row"><label>MIT</label><div class="bar-track"><div class="bar-fill" style="width:32.8%"></div></div><output>19</output></div>
+              <div class="bar-row"><label>未识别 / 未声明</label><div class="bar-track"><div class="bar-fill" style="width:22.4%; background:var(--muted)"></div></div><output>13</output></div>
+            </div>
+          </div>
+          <div class="chart-block">
+            <div class="eyebrow">Participation surfaces</div>
+            <h3>开放技术栈提供了不同成本的贡献入口</h3>
+            <p>模型研究者可以改训练与评测；系统研究者可以优化并行、环境和运行时；应用开发者可以贡献工具、任务和可复现实验。共同点不是“所有东西都在一个 org”，而是接口与结果能够被公开验证。</p>
+            <p class="micro">AReaL 的主仓库位于 <span class="mono">areal-project/AReaL</span>，这里按技术栈关系呈现，不把它计入 inclusionAI org 的 58 个仓库。</p>
+          </div>
+        </div>
+
+        <details class="speaker-note deep-dive">
+          <summary>给演讲者的讲法 · 约 5 分钟</summary>
+          <div class="detail-body">依次点模型、训练、运行时三层，每层只举一两个项目和一种可贡献内容。不要把 58 个仓库念成成绩单，也不要说它们全部属于同一个 GitHub org。重点是“参与面”：即使不能训练基础模型，也能改环境、任务、评测和 runtime，并通过公开结果进入协作。</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="licenses" data-section="licenses">
+      <div class="inner">
+        <div class="section-index violet">04 · License and openness</div>
+        <h2>开放模型时代，<br>一份许可证只能说明<span class="violet">一部分事实</span>。</h2>
+        <p class="lead">软件许可证回答权利、义务和责任边界；模型开放还需要回答权重、架构、训练代码、数据说明、评测与文档究竟提供到了什么程度。这两类问题必须分开检查。</p>
+
+        <div class="license-band">
+          <div><strong>26</strong><span>Top 50 中没有公开权重</span></div>
+          <div><strong>24</strong><span>提供公开权重</span></div>
+          <div><strong>70.8%</strong><span>公开权重中采用 MIT 或 Apache-2.0</span></div>
+        </div>
+
+        <div class="tabs deep-dive" aria-label="比较表筛选">
+          <button class="filter-btn active" data-license-filter="all">全部</button>
+          <button class="filter-btn" data-license-filter="license">许可证</button>
+          <button class="filter-btn" data-license-filter="framework">开放框架</button>
+          <button class="filter-btn" data-license-filter="definition">定义</button>
+        </div>
+        <div class="comparison-wrap">
+          <table class="comparison">
+            <thead><tr><th>方案</th><th>类型</th><th>主要对象</th><th>它说清楚什么</th><th>仍需另行检查</th></tr></thead>
+            <tbody>
+              <tr data-type="license"><td>Apache License 2.0</td><td>软件许可证</td><td>软件、文档</td><td>版权许可、专利授权、NOTICE 与责任边界</td><td>模型材料是否完整</td></tr>
+              <tr data-type="license"><td>OpenMDW 1.1</td><td>模型材料许可证</td><td>Model Materials</td><td>模型材料在版权、专利、数据库权利与商业秘密下的使用和分发</td><td>不强制发布者提供完整材料</td></tr>
+              <tr data-type="license"><td>ModelGo</td><td>可组合许可证家族</td><td>模型</td><td>8 个变体组合 BY、SA、RAI、NC、ND 等条件</td><td>不等同于开放完整度分级</td></tr>
+              <tr data-type="framework"><td>Model Openness Framework</td><td>开放完整度框架</td><td>模型及相关材料</td><td>按代码、数据、文档等材料判断开放层级</td><td>它不是法律许可证</td></tr>
+              <tr data-type="definition"><td>OSAID 1.0</td><td>开放 AI 定义</td><td>AI 系统</td><td>Use、Study、Modify、Share 四项自由及 preferred form</td><td>它不是单一许可证文本</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="openness-lab deep-dive">
+          <div>
+            <div class="eyebrow">Interactive release check</div>
+            <h3>一份“可修改”的模型发布，还缺哪些材料？</h3>
+            <p class="micro">选择发布者实际提供的内容。这个演示只表达材料完整度，不构成法律判断，也不直接对应任何框架的正式评级。</p>
+            <div class="checks">
+              <label class="check"><input type="checkbox" value="weights" checked> 模型权重</label>
+              <label class="check"><input type="checkbox" value="architecture"> 架构说明</label>
+              <label class="check"><input type="checkbox" value="train-code"> 训练代码</label>
+              <label class="check"><input type="checkbox" value="data"> 数据来源说明</label>
+              <label class="check"><input type="checkbox" value="eval"> 评测方法与结果</label>
+              <label class="check"><input type="checkbox" value="docs"> 使用与修改文档</label>
+            </div>
+          </div>
+          <div class="gauge">
+            <div class="gauge-ring" id="gaugeRing">
+              <div class="gauge-value"><strong id="gaugeValue">17%</strong><span id="gaugeLabel">只有权重可得</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-line">Apache 2.0 没有过时。模型时代需要补上的，是对开放对象和材料边界同样清楚的说明。</div>
+
+        <details class="speaker-note deep-dive">
+          <summary>给演讲者的讲法 · 约 7 分钟</summary>
+          <div class="detail-body">先用 26/50 与 24/50 说明“开放权重”已经是一个需要单独观察的变量。比较表不要按严格到宽松来念，因为这里混合了许可证、框架和定义。可现场勾选权重、训练代码、数据说明，让观众看到：license 字段相同，材料完整度仍可能完全不同。OpenMDW、ModelGo 讲法律工具；MOF、OSAID 讲判断边界。</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="community" data-section="community">
+      <div class="inner">
+        <div class="section-index amber">05 · Community over code</div>
+        <h2>Community &gt;&gt;&gt; Code，<br>不是一句温情口号。</h2>
+        <p class="lead">它描述了一套把陌生贡献变成长期信任的机制。入口要能被找到，讨论要经得起回看，权限要跟着可见贡献增长。代码、模型和 agent 都会变；这套机制决定变化能否被更多人接住。</p>
+
+        <div class="community-path" role="tablist" aria-label="开放社区贡献路径">
+          <button class="community-step active" data-community="discover"><span class="dot">01</span><b>发现入口</b></button>
+          <button class="community-step" data-community="propose"><span class="dot">02</span><b>提出变更</b></button>
+          <button class="community-step" data-community="review"><span class="dot">03</span><b>公开审查</b></button>
+          <button class="community-step" data-community="ship"><span class="dot">04</span><b>共同交付</b></button>
+          <button class="community-step" data-community="trust"><span class="dot">05</span><b>积累信任</b></button>
+        </div>
+        <div class="community-detail" id="communityDetail" aria-live="polite"></div>
+
+        <div class="signal-grid deep-dive">
+          <article class="signal">
+            <span class="number">DISCOVERABLE</span>
+            <h3>贡献表面要清楚</h3>
+            <p>Good first issue、公开 roadmap、模型卡、数据说明、评测任务和工具接口，让潜在贡献者知道“从哪里开始”。</p>
+          </article>
+          <article class="signal">
+            <span class="number">REVIEWABLE</span>
+            <h3>决定要留下理由</h3>
+            <p>公开 proposal、邮件列表、issue / PR 审查与可复现实验，让技术选择不依赖某个公司的内部上下文。</p>
+          </article>
+          <article class="signal">
+            <span class="number">EARNED</span>
+            <h3>权限跟随贡献</h3>
+            <p>从使用者到 contributor、committer 和 member，权限来自持续、可见、可被社区检验的工作。</p>
+          </article>
+        </div>
+
+        <div class="quote-line">老规矩要保留的，是透明入口、公开过程和渐进式信任；需要扩大的，是它们覆盖的对象——代码之外还有模型、数据、工具、评测与治理。</div>
+
+        <div class="resource-grid">
+          <a class="resource" href="https://github.com/antgroup/agentic-ai-landscape" target="_blank" rel="noreferrer"><span class="arrow">↗</span><small class="mono">LANDSCAPE</small><b>Agentic AI Landscape</b><span>项目表、筛选方法与生态图</span></a>
+          <a class="resource" href="https://github.com/inclusionAI" target="_blank" rel="noreferrer"><span class="arrow">↗</span><small class="mono">STACK</small><b>InclusionAI</b><span>模型、训练与 agent 基础设施</span></a>
+          <a class="resource" href="https://www.apache.org/theapacheway/" target="_blank" rel="noreferrer"><span class="arrow">↗</span><small class="mono">GOVERNANCE</small><b>The Apache Way</b><span>跨组织开放协作的实践</span></a>
+        </div>
+
+        <details class="speaker-note deep-dive">
+          <summary>给演讲者的讲法 · 约 3 分钟</summary>
+          <div class="detail-body">逐个点击贡献路径，但不要把结尾讲成价值观清单。举一个具体动作：一个模型发布如果能被社区继续训练，需要的不只是下载按钮，还要有材料、复现实验、公开问题和变更过程。最后停在三个资源入口，把“听完”变成“可以开始参与”。</div>
+        </details>
+
+        <details class="evidence deep-dive" id="sources">
+          <summary>主要来源与本地研究材料</summary>
+          <div class="detail-body">
+            <ul class="source-list">
+              <li><a href="https://landscape-demo-omega.vercel.app/" target="_blank" rel="noreferrer">Agentic AI Landscape live demo</a></li>
+              <li><a href="https://www.apache.org/" target="_blank" rel="noreferrer">Apache Software Foundation</a></li>
+              <li><a href="https://github.com/apache" target="_blank" rel="noreferrer">Apache GitHub organization</a></li>
+              <li><a href="https://www.apache.org/theapacheway/" target="_blank" rel="noreferrer">The Apache Way</a></li>
+              <li><a href="https://github.com/inclusionAI" target="_blank" rel="noreferrer">InclusionAI GitHub</a></li>
+              <li><a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noreferrer">Apache License 2.0</a></li>
+              <li><a href="https://openmdw.ai/faq/" target="_blank" rel="noreferrer">OpenMDW 1.1 FAQ</a></li>
+              <li><a href="https://www.modelgo.li/" target="_blank" rel="noreferrer">ModelGo Licenses</a></li>
+              <li><a href="https://arxiv.org/abs/2403.13784" target="_blank" rel="noreferrer">Model Openness Framework</a></li>
+              <li><a href="https://opensource.org/ai/open-source-ai-definition" target="_blank" rel="noreferrer">Open Source AI Definition 1.0</a></li>
+              <li><a href="./landscape-refresh/landscape_scanning_methodology.md">本地：landscape 扫描方法</a></li>
+              <li><a href="./apache-ecosystem/apache_ecosystem_positioning_research.md">本地：Apache 生态研究</a></li>
+              <li><a href="./0807-CoC-KN-companion-report.md">本地：演讲辅助报告</a></li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const landscapeModes = {
+      agent: {
+        src: "https://landscape-demo-omega.vercel.app/#agent-infra",
+        title: "Agent Infra interactive landscape",
+        caption: "Vercel live explorer：可搜索项目、切换时间与查看项目详情。",
+        source: "external · live",
+        base: null
+      },
+      model: {
+        src: "https://landscape-demo-omega.vercel.app/#model-infra",
+        title: "Model Infra interactive landscape",
+        caption: "Vercel live explorer：跳转到 Model Infra，观察训练、推理、数据与调度层。",
+        source: "external · live",
+        base: null
+      },
+      agentLocal: {
+        src: "./landscape-refresh/agent_infra_landscape_2026.html",
+        title: "Agent Infra landscape local backup",
+        caption: "Agent Infra 本地静态备份：适合断网环境，不包含 Vercel 版的搜索与时间切换。",
+        source: "local · backup",
+        base: [3840, 2160]
+      },
+      modelLocal: {
+        src: "./landscape-refresh/model_infra_landscape_2026.html",
+        title: "Model Infra landscape local backup",
+        caption: "Model Infra 本地静态备份：适合断网环境，不包含 Vercel 版的搜索与时间切换。",
+        source: "local · backup",
+        base: [3840, 2160]
+      },
+      large: {
+        src: "./large-models-refresh/large_models_landscape_prototype.html",
+        title: "Large Models Landscape 2026",
+        caption: "仓库现有 Large Models HTML：按公开权重与使用信号组织的 2026 快照。",
+        source: "local · 3840×2160",
+        base: [3840, 2160]
+      },
+      awesome: {
+        src: "./awesome-agentic-landscape/interactive/awesome_agentic_landscape_2026.html",
+        title: "Awesome x Agentic AI Landscape 2026",
+        caption: "仓库现有 Awesome Landscape HTML：Discover、Reuse、Install、Operate 四种 agent 使用方式。",
+        source: "local · 1920×1080",
+        base: [1920, 1080]
+      }
+    };
+
+    const apacheSets = {
+      landscape: [
+        ["Apache Airflow", "Data · Integration", "46,289", "144.80"],
+        ["Apache Spark", "Compute & scheduling", "43,716", "87.87"],
+        ["Apache Iceberg", "Data · Governance", "9,085", "57.16"],
+        ["Apache Hudi", "Data · Governance", "6,197", "38.83"],
+        ["Apache Paimon", "Data · Governance", "3,353", "18.40"],
+        ["Apache Gravitino", "Data · Governance", "3,136", "40.68"]
+      ],
+      ant: [
+        ["Apache Fory", "高性能多语言序列化", "4,424", "TLP · 2025-07-17"],
+        ["Apache GeaFlow", "图计算与流图融合", "788", "Incubating"],
+        ["Apache Seata", "分布式事务", "25,976", "Incubating"],
+        ["Apache Celeborn", "大数据 shuffle 服务", "1,059", "TLP · 2024-03-21"]
+      ]
+    };
+
+    const stackData = {
+      models: {
+        kicker: "MODELS",
+        title: "开放的不只是权重",
+        projects: ["Ling", "LLaDA", "Ming"],
+        body: "模型层提供研究、推理与下游适配的共同对象。对参与者真正有用的，是权重之外仍能找到清楚的模型说明、评测边界和衍生工作的入口。",
+        ask: "可参与：模型评测、领域适配、推理优化、模型卡与行为研究。"
+      },
+      training: {
+        kicker: "TRAINING & ALIGNMENT",
+        title: "训练过程成为可协作对象",
+        projects: ["AReaL", "AReno", "TwinFlow"],
+        body: "训练与对齐层把复现实验、强化学习和系统效率暴露给社区。AReaL 主仓库位于 areal-project，因此这里描述的是技术栈连接，不是组织仓库清单。",
+        ask: "可参与：算法实现、分布式效率、可复现实验、奖励与评测工具。"
+      },
+      runtime: {
+        kicker: "AGENT RUNTIME",
+        title: "从模型能力走向真实环境",
+        projects: ["AWorld", "AEnvironment", "Avernet"],
+        body: "运行时与环境层把工具、任务、反馈和长链路执行连接起来。它允许应用开发者和系统开发者在不重新训练基础模型的情况下贡献可验证能力。",
+        ask: "可参与：环境、工具接口、任务集、观测、评测与运行时可靠性。"
+      }
+    };
+
+    const communityData = {
+      discover: ["先让入口可见", "项目需要清楚地告诉陌生人：当前问题在哪里、哪些任务适合开始、模型和数据材料放在哪里。可发现性是社区增长的第一道基础设施。"],
+      propose: ["把想法变成可讨论的变更", "proposal、issue、设计文档或可复现实验，为技术主张提供上下文。贡献不必一开始就写成代码，但需要进入共同的记录系统。"],
+      review: ["让理由留在公开过程里", "公开审查帮助社区看见取舍、风险和替代方案。它也让后来者不必依赖某家公司或某位维护者的内部记忆。"],
+      ship: ["共同承担交付结果", "合并、发布、兼容性和回归验证把个体贡献变成公共资产。发布频率本身不是目标，可预测的协作节奏才有复用价值。"],
+      trust: ["权限来自持续、可见的贡献", "信任通过维护、回应、判断和责任逐步累积。committer 或 member 是这种信任的治理表达，不是单纯的活跃度徽章。"]
+    };
+
+    const frame = document.getElementById("landscapeFrame");
+    const stage = document.getElementById("landscapeStage");
+    const loadingNote = document.getElementById("loadingNote");
+    const localFallback = document.getElementById("localFallback");
+    let currentLandscape = "agent";
+
+    function fitLandscapeFrame() {
+      const mode = landscapeModes[currentLandscape];
+      if (!mode.base) {
+        frame.classList.remove("scaled");
+        frame.style.width = "100%";
+        frame.style.height = "100%";
+        frame.style.transform = "none";
+        return;
+      }
+      const [baseWidth, baseHeight] = mode.base;
+      const scale = Math.min(stage.clientWidth / baseWidth, stage.clientHeight / baseHeight);
+      frame.classList.add("scaled");
+      frame.style.width = baseWidth + "px";
+      frame.style.height = baseHeight + "px";
+      frame.style.transform = `scale(${scale})`;
+      frame.style.left = Math.max(0, (stage.clientWidth - baseWidth * scale) / 2) + "px";
+      frame.style.top = Math.max(0, (stage.clientHeight - baseHeight * scale) / 2) + "px";
+    }
+
+    function setLandscape(key) {
+      currentLandscape = key;
+      const mode = landscapeModes[key];
+      frame.className = "";
+      loadingNote.hidden = false;
+      frame.src = mode.src;
+      frame.title = mode.title;
+      document.getElementById("landscapeCaption").textContent = mode.caption;
+      document.getElementById("landscapeSource").textContent = mode.source;
+      document.getElementById("openLandscape").href = mode.src;
+      localFallback.hidden = !["agent", "model", "agentLocal", "modelLocal"].includes(key);
+      localFallback.textContent = key.endsWith("Local") ? "返回 live" : "本地备份";
+      document.querySelectorAll("[data-landscape]").forEach(btn => btn.classList.toggle("active", btn.dataset.landscape === key));
+      requestAnimationFrame(fitLandscapeFrame);
+    }
+
+    document.querySelectorAll("[data-landscape]").forEach(btn => btn.addEventListener("click", () => setLandscape(btn.dataset.landscape)));
+    frame.addEventListener("load", () => {
+      loadingNote.hidden = true;
+      fitLandscapeFrame();
+    });
+    window.addEventListener("resize", fitLandscapeFrame);
+    localFallback.addEventListener("click", () => {
+      if (currentLandscape === "agent") setLandscape("agentLocal");
+      else if (currentLandscape === "model") setLandscape("modelLocal");
+      else if (currentLandscape === "agentLocal") setLandscape("agent");
+      else if (currentLandscape === "modelLocal") setLandscape("model");
+    });
+    document.getElementById("fullscreenLandscape").addEventListener("click", () => {
+      if (stage.requestFullscreen) stage.requestFullscreen();
+    });
+
+    function renderApacheSet(key) {
+      document.getElementById("apacheProjects").innerHTML = apacheSets[key].map(row =>
+        `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td><td><span class="tag">${row[3]}</span></td></tr>`
+      ).join("");
+      document.querySelectorAll("[data-project-set]").forEach(btn => btn.classList.toggle("active", btn.dataset.projectSet === key));
+    }
+    document.querySelectorAll("[data-project-set]").forEach(btn => btn.addEventListener("click", () => renderApacheSet(btn.dataset.projectSet)));
+    renderApacheSet("landscape");
+
+    function renderStack(key) {
+      const data = stackData[key];
+      document.getElementById("stackDetail").innerHTML = `
+        <div class="eyebrow">${data.kicker}</div>
+        <h3>${data.title}</h3>
+        <div class="project-pills">${data.projects.map(project => `<span>${project}</span>`).join("")}</div>
+        <p>${data.body}</p>
+        <p class="micro">${data.ask}</p>`;
+      document.querySelectorAll("[data-stack]").forEach(btn => btn.classList.toggle("active", btn.dataset.stack === key));
+    }
+    document.querySelectorAll("[data-stack]").forEach(btn => btn.addEventListener("click", () => renderStack(btn.dataset.stack)));
+    renderStack("models");
+
+    document.querySelectorAll("[data-license-filter]").forEach(btn => btn.addEventListener("click", () => {
+      const filter = btn.dataset.licenseFilter;
+      document.querySelectorAll("[data-license-filter]").forEach(item => item.classList.toggle("active", item === btn));
+      document.querySelectorAll(".comparison tr[data-type]").forEach(row => row.classList.toggle("hidden", filter !== "all" && row.dataset.type !== filter));
+    }));
+
+    function updateGauge() {
+      const checks = [...document.querySelectorAll(".check input")];
+      const count = checks.filter(item => item.checked).length;
+      const score = Math.round(count / checks.length * 100);
+      const labels = [
+        "没有可修改材料",
+        "只有权重可得",
+        "材料仍然很薄",
+        "已有基本修改线索",
+        "接近可复现发布",
+        "材料较为完整",
+        "六类材料均提供"
+      ];
+      document.getElementById("gaugeRing").style.setProperty("--score", score);
+      document.getElementById("gaugeValue").textContent = score + "%";
+      document.getElementById("gaugeLabel").textContent = labels[count];
+    }
+    document.querySelectorAll(".check input").forEach(input => input.addEventListener("change", updateGauge));
+    updateGauge();
+
+    function renderCommunity(key) {
+      const [title, body] = communityData[key];
+      document.getElementById("communityDetail").innerHTML = `<h3>${title}</h3><p>${body}</p>`;
+      document.querySelectorAll("[data-community]").forEach(btn => btn.classList.toggle("active", btn.dataset.community === key));
+    }
+    document.querySelectorAll("[data-community]").forEach(btn => btn.addEventListener("click", () => renderCommunity(btn.dataset.community)));
+    renderCommunity("discover");
+
+    const sections = [...document.querySelectorAll("[data-section]")];
+    const navLinks = [...document.querySelectorAll(".story-nav a")];
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id));
+          document.getElementById("mobileNav").value = "#" + entry.target.id;
+        }
+      });
+    }, { rootMargin: "-35% 0px -55% 0px", threshold: 0 });
+    sections.forEach(section => observer.observe(section));
+
+    function updateProgress() {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      document.getElementById("progress").style.width = (max > 0 ? window.scrollY / max * 100 : 0) + "%";
+    }
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+
+    document.querySelectorAll("[data-mode]").forEach(btn => btn.addEventListener("click", () => {
+      const presentation = btn.dataset.mode === "presentation";
+      document.body.classList.toggle("presentation-mode", presentation);
+      document.querySelectorAll("[data-mode]").forEach(item => item.classList.toggle("active", item === btn));
+    }));
+    document.getElementById("mobileNav").addEventListener("change", event => {
+      document.querySelector(event.target.value)?.scrollIntoView();
+    });
+  </script>
+</body>
+</html>

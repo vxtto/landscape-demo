@@ -1,0 +1,5 @@
+{$INSIGHTS_DOMAIN} {
+  encode zstd gzip
+  header -Server
+  reverse_proxy insights-api:8080
+}

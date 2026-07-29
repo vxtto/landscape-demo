@@ -1,0 +1,43 @@
+services:
+  insights-api:
+    build:
+      context: ../..
+      dockerfile: services/insights-api/Dockerfile
+    env_file:
+      - /secure/path/insights-api.env
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    expose:
+      - "8080"
+    networks:
+      - private
+
+  caddy:
+    image: caddy:2-alpine
+    depends_on:
+      insights-api:
+        condition: service_healthy
+    environment:
+      INSIGHTS_DOMAIN: insights-api.example.com
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile.example:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - private
+
+networks:
+  private:
+    internal: false
+
+volumes:
+  caddy_data:
+  caddy_config:

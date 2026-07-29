@@ -1,0 +1,899 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/kvjeiz",
+    "id": "kvjeiz",
+    "slide": 5,
+    "layoutId": "31da445c-a124-4e0f-8507-ae86158d0b6c",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+    "masterLayoutName": "Master",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Helvetica Neue",
+      "PingFang SC",
+      "SFMono-Regular"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "31da445c-a124-4e0f-8507-ae86158d0b6c",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "dc6af1c3-51fe-4c62-9bd3-22e7358251c7",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vapkbepk",
+      "id": "1",
+      "name": "Google-Shape-532-p58-2",
+      "bbox": [
+        1184.18,
+        659.24,
+        54.48,
+        25.33
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.0"
+      },
+      "geometry": "rect",
+      "text": "5",
+      "textPreview": "5",
+      "resolvedFontSize": 13.33,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 13.33,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "right",
+        "verticalAlignment": "bottom",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "5"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "5",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "fontSize": 13.33,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "right",
+            "verticalAlignment": "bottom",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "5",
+              "fontSize": 13.33,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gbi1kjq5",
+      "id": "2",
+      "name": "Google-Shape-533-p58-3",
+      "bbox": [
+        41.33,
+        36.12,
+        1197.33,
+        109.97
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.1"
+      },
+      "geometry": "rect",
+      "text": "这个列表学会了安装自己",
+      "textPreview": "这个列表学会了安装自己",
+      "resolvedFontSize": 38.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 38.67,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "这个列表学会了安装自己"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "这个列表学会了安装自己",
+          "lineSpacingPercent": 90000,
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "fontSize": 38.67,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "这个列表学会了安装自己",
+              "fontSize": 38.67,
+              "typeface": "PingFang SC",
+              "color": "#111318",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hcr2do7q",
+      "id": "3",
+      "name": "Picture-3-4-backing",
+      "bbox": [
+        658.17,
+        41.62,
+        581.6,
+        588.14
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.2"
+      },
+      "geometry": "roundRect",
+      "fillColor": "#EAF5FB",
+      "lineColor": "#B8BCC4",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/jq5cbal8",
+      "id": "4",
+      "name": "Picture-3-4",
+      "bbox": [
+        658.17,
+        41.62,
+        581.6,
+        588.14
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.3"
+      },
+      "geometry": "roundRect",
+      "alt": "hero placeholder for Picture 3",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "prompt": "Clean editorial light-blue conceptual image with subtle architectural geometry, ample white space, and no embedded text",
+      "isPlaceholder": true,
+      "asset": {
+        "assetId": "e795d029-710b-4690-97d2-90b3d77d6056",
+        "prompt": "Clean editorial light-blue conceptual image with subtle architectural geometry, ample white space, and no embedded text"
+      }
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7mpk7upo",
+      "id": "5",
+      "name": "Google-Shape-534-p58-5",
+      "bbox": [
+        41.33,
+        213.33,
+        581.33,
+        416
+      ],
+      "composeSource": {
+        "run": 1,
+        "path": "0.4"
+      },
+      "geometry": "rect",
+      "text": "vercel-labs/skills\n过去，我们打开 awesome 列表，点链接，再把东西搬进自己的项目。\n\n这里，一条命令完成发现、选择和安装。目录第一次带上了“执行语义”。",
+      "textPreview": "vercel-labs/skills | 过去，我们打开 awesome 列表，点链接，再把东西搬进自己的项目。 |  | 这里，一条命令完成发现、选择和安装。目录第一次带上了“执行语义”。",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 32,
+        "typeface": "Helvetica Neue",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 6,
+        "lines": [
+          {
+            "index": 1,
+            "text": "vercel-labs/skills"
+          },
+          {
+            "index": 2,
+            "text": "过去，我们打开 awesome"
+          },
+          {
+            "index": 3,
+            "text": "列表，点链接，再把东西搬进自己的项目。"
+          },
+          {
+            "index": 4,
+            "text": ""
+          },
+          {
+            "index": 5,
+            "text": "这里，一条命令完成发现、选择和安装。目录第一次带上了“执"
+          },
+          {
+            "index": 6,
+            "text": "行语义”。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "vercel-labs/skills",
+          "lineSpacingPercent": 105000,
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "vercel-labs/skills",
+              "fontSize": 27,
+              "typeface": "PingFang SC",
+              "color": "#111318",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "过去，我们打开 awesome 列表，点链接，再把东西搬进自己的项目。\n\n这里，一条命令完成发现、选择和安装。目录第一次带上了“执行语义”。",
+          "lineSpacingPercent": 116000,
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "fontSize": 32,
+            "typeface": "Helvetica Neue",
+            "color": "#000000",
+            "alignment": "left",
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 0,
+              "right": 0,
+              "bottom": 0,
+              "left": 0
+            }
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "过去，我们打开 awesome 列表，点链接，再把东西搬进自己的项目。\n\n这里，一条命令完成发现、选择和安装。目录第一次带上了“执行语义”。",
+              "fontSize": 21,
+              "typeface": "PingFang SC",
+              "color": "#565D68"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/lsnudk3e",
+      "id": "6",
+      "bbox": [
+        658,
+        122,
+        582,
+        291
+      ],
+      "geometry": "roundRect",
+      "alt": "GitHub repository card for vercel-labs/skills",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 4124"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "7a43a6af-b56c-4c6e-83dd-654ec11f265d",
+        "contentType": "image/png",
+        "byteLength": 36712
+      }
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t872947u",
+      "id": "7",
+      "name": "install-command",
+      "bbox": [
+        690,
+        452,
+        518,
+        78
+      ],
+      "geometry": "rect",
+      "text": "npx skills add vercel-labs/agent-skills",
+      "textPreview": "npx skills add vercel-labs/agent-skills",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 22,
+        "typeface": "SFMono-Regular",
+        "color": "#111318",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "npx skills add vercel-labs/agent-skills"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "npx skills add vercel-labs/agent-skills",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "typeface": "SFMono-Regular",
+            "color": "#111318",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "npx skills add vercel-labs/agent-skills",
+              "fontSize": 22,
+              "typeface": "SFMono-Regular",
+              "color": "#111318",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#EAF5FB",
+      "lineColor": "#3D8DFF",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qh0jqt87",
+      "id": "8",
+      "name": "use-command-explainer",
+      "bbox": [
+        690,
+        548,
+        506,
+        72
+      ],
+      "geometry": "rect",
+      "text": "也可以不安装：skills use 会生成 prompt，直接启动一个受支持的 coding agent。",
+      "textPreview": "也可以不安装：skills use 会生成 prompt，直接启动一个受支持的 coding agent。",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 17,
+        "typeface": "PingFang SC",
+        "color": "#565D68",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "也可以不安装：skills use 会生成"
+          },
+          {
+            "index": 2,
+            "text": "prompt，直接启动一个受支持的 coding agent。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "也可以不安装：skills use 会生成 prompt，直接启动一个受支持的 coding agent。",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "typeface": "PingFang SC",
+            "color": "#565D68",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "也可以不安装：skills use 会生成 prompt，直接启动一个受支持的 coding agent。",
+              "fontSize": 17,
+              "typeface": "PingFang SC",
+              "color": "#565D68",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": [
+    {
+      "index": 1,
+      "frame": {
+        "left": 0,
+        "top": 0,
+        "width": 1280,
+        "height": 720
+      },
+      "baseUnit": 1,
+      "root": {
+        "path": "0",
+        "kind": "layers",
+        "name": "codex-grid-layout-library#slide-08",
+        "requestedSize": {
+          "width": {
+            "mode": "fill",
+            "value": 1
+          },
+          "height": {
+            "mode": "fill",
+            "value": 1
+          }
+        },
+        "intrinsicSize": {
+          "width": 1239.77,
+          "height": 684.57
+        },
+        "frame": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "children": [
+          {
+            "path": "0.0",
+            "kind": "text",
+            "name": "Google-Shape-532-p58-2",
+            "position": {
+              "left": 1184.18,
+              "top": 659.24
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 54.48
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 25.33
+              }
+            },
+            "intrinsicSize": {
+              "width": 54.48,
+              "height": 25.33
+            },
+            "frame": {
+              "left": 1184.18,
+              "top": 659.24,
+              "width": 54.48,
+              "height": 25.33
+            },
+            "snappedFrame": {
+              "left": 1184.18,
+              "top": 659.24,
+              "width": 54.48,
+              "height": 25.33
+            },
+            "children": [],
+            "text": "5",
+            "transform": "none",
+            "element": {
+              "aid": "sh/vapkbepk",
+              "id": "1",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.1",
+            "kind": "text",
+            "name": "Google-Shape-533-p58-3",
+            "position": {
+              "left": 41.33,
+              "top": 36.12
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 1197.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 109.97
+              }
+            },
+            "intrinsicSize": {
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "frame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "snappedFrame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            },
+            "children": [],
+            "text": "这个列表学会了安装自己",
+            "transform": "none",
+            "element": {
+              "aid": "sh/gbi1kjq5",
+              "id": "2",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.2",
+            "kind": "shape",
+            "name": "Picture-3-4-backing",
+            "position": {
+              "left": 658.17,
+              "top": 41.62
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 581.6
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 588.14
+              }
+            },
+            "intrinsicSize": {
+              "width": 581.6,
+              "height": 588.14
+            },
+            "frame": {
+              "left": 658.17,
+              "top": 41.62,
+              "width": 581.6,
+              "height": 588.14
+            },
+            "snappedFrame": {
+              "left": 658.17,
+              "top": 41.62,
+              "width": 581.6,
+              "height": 588.14
+            },
+            "children": [],
+            "geometry": "roundRect",
+            "element": {
+              "aid": "sh/hcr2do7q",
+              "id": "3",
+              "kind": "shape"
+            }
+          },
+          {
+            "path": "0.3",
+            "kind": "image",
+            "name": "Picture-3-4",
+            "position": {
+              "left": 658.17,
+              "top": 41.62
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 581.6
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 588.14
+              }
+            },
+            "intrinsicSize": {
+              "width": 581.6,
+              "height": 588.14
+            },
+            "frame": {
+              "left": 658.17,
+              "top": 41.62,
+              "width": 581.6,
+              "height": 588.14
+            },
+            "snappedFrame": {
+              "left": 658.17,
+              "top": 41.62,
+              "width": 581.6,
+              "height": 588.14
+            },
+            "children": [],
+            "source": {
+              "kind": "prompt",
+              "prompt": "Clean editorial light-blue conceptual image with subtle architectural geometry, ample white space, and no embedded text"
+            },
+            "fit": "cover",
+            "alt": "hero placeholder for Picture 3",
+            "geometry": "roundRect",
+            "element": {
+              "aid": "im/jq5cbal8",
+              "id": "4",
+              "kind": "image"
+            }
+          },
+          {
+            "path": "0.4",
+            "kind": "text",
+            "name": "Google-Shape-534-p58-5",
+            "position": {
+              "left": 41.33,
+              "top": 213.33
+            },
+            "requestedSize": {
+              "width": {
+                "mode": "fixed",
+                "value": 581.33
+              },
+              "height": {
+                "mode": "fixed",
+                "value": 416
+              }
+            },
+            "intrinsicSize": {
+              "width": 581.33,
+              "height": 416
+            },
+            "frame": {
+              "left": 41.33,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 416
+            },
+            "snappedFrame": {
+              "left": 41.33,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 416
+            },
+            "children": [],
+            "text": "vercel-labs/skills\n过去，我们打开 awesome 列表，点链接，再把东西搬进自己的项目。\n\n这里，一条命令完成发现、选择和安装。目录第一次带上了“执行语义”。",
+            "transform": "none",
+            "element": {
+              "aid": "sh/7mpk7upo",
+              "id": "5",
+              "kind": "shape"
+            }
+          }
+        ],
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "alignItems": "stretch",
+        "justifyItems": "stretch",
+        "contentFrame": {
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720
+        },
+        "items": [
+          {
+            "path": "0.0",
+            "frame": {
+              "left": 1184.18,
+              "top": 659.24,
+              "width": 54.48,
+              "height": 25.33
+            }
+          },
+          {
+            "path": "0.1",
+            "frame": {
+              "left": 41.33,
+              "top": 36.12,
+              "width": 1197.33,
+              "height": 109.97
+            }
+          },
+          {
+            "path": "0.2",
+            "frame": {
+              "left": 658.17,
+              "top": 41.62,
+              "width": 581.6,
+              "height": 588.14
+            }
+          },
+          {
+            "path": "0.3",
+            "frame": {
+              "left": 658.17,
+              "top": 41.62,
+              "width": 581.6,
+              "height": 588.14
+            }
+          },
+          {
+            "path": "0.4",
+            "frame": {
+              "left": 41.33,
+              "top": 213.33,
+              "width": 581.33,
+              "height": 416
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

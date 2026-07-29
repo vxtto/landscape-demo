@@ -1,0 +1,51 @@
+﻿usage_composite_rank,model_name,vendor,landscape_domain,weight_access_status,license,parameter_count_b,usage_composite_score,aai_score,primary_category,capability_tags
+1,DeepSeek V4 Flash,DeepSeek,"Reasoning, Math & Science",Open weights,mit,158.069,97.0,40.3,Reasoning,text_input|text_output|reasoning|tool_use|structured_output
+2,DeepSeek V4 Pro,DeepSeek,"Reasoning, Math & Science",Open weights,mit,1598.84,95.0,44.3,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|coding
+3,Claude Opus 4.8,Anthropic,Frontier Generalist,Closed or no public weights,,,94.6667,55.7,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output
+4,Claude Opus 4.7,Anthropic,Frontier Generalist,Closed or no public weights,,,92.6667,,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+5,Claude Sonnet 4.6,Anthropic,Coding & Agentic,Closed or no public weights,,,90.3333,,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+6,GLM 5.2,Z.ai,"Reasoning, Math & Science",Open weights,mit,753.33,90.0,51.1,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|agentic
+7,Step 3.7 Flash,StepFun,Multimodal & Realtime,Open weights,apache-2.0,201.365,86.0,,Multimodal / VLM,text_input|image_input|video_input|text_output|reasoning|tool_use|structured_output|coding
+8,GPT-5.5,OpenAI,Frontier Generalist,Closed or no public weights,,,84.3333,,Multimodal / VLM,file_input|image_input|text_input|text_output|reasoning|tool_use|structured_output
+9,MiniMax M3,MiniMax,Multimodal & Realtime,Open weights,other,427.04,83.3333,44.4,Multimodal / VLM,text_input|image_input|video_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+10,Gemini 2.5 Flash Lite,Google,"Efficient, Edge & Specialized",Closed or no public weights,,,80.6667,,Multimodal / VLM,text_input|image_input|file_input|audio_input|video_input|text_output|reasoning|tool_use|structured_output
+11,Claude Opus 4.6,Anthropic,Frontier Generalist,Closed or no public weights,,,77.3333,,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+12,GLM 5.1,Z.ai,"Reasoning, Math & Science",Open weights,mit,753.864,77.0,,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|coding
+13,DeepSeek V3.2,DeepSeek,"Reasoning, Math & Science",Open weights,mit,685.397,76.3333,,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|agentic
+14,GPT-5.4,OpenAI,Frontier Generalist,Closed or no public weights,,,73.6667,,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output|coding
+15,Gemini 3 Flash Preview,Google,Multimodal & Realtime,Closed or no public weights,,,73.6667,,Multimodal / VLM,text_input|image_input|file_input|audio_input|video_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+16,Gemini 3.5 Flash,Google,Multimodal & Realtime,Closed or no public weights,,,69.3333,,Multimodal / VLM,text_input|image_input|video_input|file_input|audio_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+17,MiMo-V2.5,Xiaomi,Multimodal & Realtime,Open weights,mit,310.775,67.6667,,Multimodal / VLM,text_input|audio_input|image_input|video_input|text_output|reasoning|tool_use|structured_output|agentic
+18,Claude Haiku 4.5,Anthropic,"Efficient, Edge & Specialized",Closed or no public weights,,,67.3333,,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output
+19,MiMo-V2.5-Pro,Xiaomi,"Reasoning, Math & Science",Open weights,mit,1023.245,62.6666,42.2,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|agentic
+20,Gemini 3.1 Flash Lite,Google,"Efficient, Edge & Specialized",Closed or no public weights,,,60.3334,,Multimodal / VLM,text_input|image_input|video_input|file_input|audio_input|text_output|reasoning|tool_use|structured_output|agentic
+21,Gemini 2.5 Flash,Google,Multimodal & Realtime,Closed or no public weights,,,59.3334,,Multimodal / VLM,file_input|image_input|text_input|audio_input|video_input|text_output|reasoning|tool_use|structured_output|coding
+22,Gemini 3.1 Pro Preview,Google,Frontier Generalist,Closed or no public weights,,,58.0,,Multimodal / VLM,audio_input|file_input|image_input|text_input|video_input|text_output|reasoning|tool_use|structured_output|agentic
+23,Kimi K2.7 Code,MoonshotAI,Coding & Agentic,Open weights,other,1058.589,57.0,,Code & Math,text_input|image_input|text_output|reasoning|tool_use|structured_output|coding
+24,GPT-5.4 Mini,OpenAI,"Efficient, Edge & Specialized",Closed or no public weights,,,56.3333,,Multimodal / VLM,file_input|image_input|text_input|text_output|reasoning|tool_use|structured_output|coding
+25,Claude Fable 5,Anthropic,Frontier Generalist,Closed or no public weights,,,56.0,59.9,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output|coding
+26,Qwen3.7 Max,Qwen,Frontier Generalist,Closed or no public weights,,,55.3333,46.0,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+27,Kimi K2.6,MoonshotAI,Coding & Agentic,Open weights,other,1058.589,51.6666,,Multimodal / VLM,text_input|image_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+28,GPT-4o-mini,OpenAI,"Efficient, Edge & Specialized",Closed or no public weights,,,50.0,,Multimodal / VLM,text_input|image_input|file_input|text_output|tool_use|structured_output
+29,Gemini 3.1 Flash Lite Preview,Google,"Efficient, Edge & Specialized",Closed or no public weights,,,49.0,,Multimodal / VLM,text_input|image_input|video_input|file_input|audio_input|text_output|reasoning|tool_use|structured_output
+30,Qwen3.7 Plus,Qwen,Multimodal & Realtime,Closed or no public weights,,,48.3333,,Multimodal / VLM,text_input|image_input|text_output|reasoning|tool_use|structured_output
+31,Hy3 preview,Tencent,"Reasoning, Math & Science",Open weights,other,298.786,48.0,,Reasoning,text_input|text_output|reasoning|tool_use|agentic
+32,owl-alpha,Openrouter,Frontier Generalist,Closed or no public weights,,,47.3334,,General Language,
+33,GPT-5.2,OpenAI,Frontier Generalist,Closed or no public weights,,,45.0,,Multimodal / VLM,file_input|image_input|text_input|text_output|reasoning|tool_use|structured_output|agentic
+34,GLM 5,Z.ai,"Reasoning, Math & Science",Open weights,mit,753.864,42.6667,,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|agentic
+35,Claude Sonnet 4.5,Anthropic,Coding & Agentic,Closed or no public weights,,,42.0,,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+36,GPT-5.3-Codex,OpenAI,Coding & Agentic,Closed or no public weights,,,40.3333,,Code & Math,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+37,laguna-m.1-20260312:free,Poolside,Coding & Agentic,Closed or no public weights,,,40.0,,General Language,
+38,MiniMax M2.7,MiniMax,"Reasoning, Math & Science",Open weights,other,228.704,36.3333,,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|agentic
+39,gpt-oss-120b,OpenAI,"Efficient, Edge & Specialized",Open weights,apache-2.0,120.412,36.0,,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|agentic
+40,Nemotron 3 Super,NVIDIA,"Efficient, Edge & Specialized",Open weights,other,123.611,34.6666,,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|agentic
+41,Kimi K2.5,MoonshotAI,Coding & Agentic,Open weights,other,1058.589,33.0,,Multimodal / VLM,text_input|image_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+42,Gemma 4 26B A4B,Google,Multimodal & Realtime,Open weights,apache-2.0,26.544,32.0,,Multimodal / VLM,image_input|text_input|video_input|text_output|reasoning|tool_use|structured_output
+43,Nex-N2-Pro,Nex AGI,Coding & Agentic,Open weights,apache-2.0,396.802,30.6667,,Multimodal / VLM,text_input|image_input|text_output|reasoning|tool_use|agentic
+44,Gemma 4 31B,Google,Multimodal & Realtime,Open weights,apache-2.0,32.682,28.6667,,Multimodal / VLM,image_input|text_input|video_input|text_output|reasoning|tool_use|structured_output
+45,Mistral Nemo,Mistral,"Efficient, Edge & Specialized",Open weights,apache-2.0,12.248,28.0,,General Language,text_input|text_output|tool_use|structured_output
+46,GLM 4.7,Z.ai,"Reasoning, Math & Science",Open weights,mit,358.338,27.3333,,Reasoning,text_input|text_output|reasoning|tool_use|structured_output|agentic
+47,GPT-5 Mini,OpenAI,"Efficient, Edge & Specialized",Closed or no public weights,,,26.6667,,Multimodal / VLM,text_input|image_input|file_input|text_output|reasoning|tool_use|structured_output
+48,Claude Opus 4.5,Anthropic,Multimodal & Realtime,Closed or no public weights,,,26.0,,Multimodal / VLM,file_input|image_input|text_input|text_output|reasoning|tool_use|structured_output|coding|agentic
+49,Qwen3 Embedding 8B,Qwen,"Efficient, Edge & Specialized",Open weights,apache-2.0,7.567,23.3333,,Embedding / Rerank,text_input|embeddings_output
+50,Qwen3 235B A22B Instruct 2507,Qwen,"Efficient, Edge & Specialized",Open weights,apache-2.0,235.094,22.6667,,General Language,text_input|text_output|tool_use|structured_output

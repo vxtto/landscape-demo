@@ -11,7 +11,8 @@ npm install
 npm run dev
 ```
 
-The application expects these private environment variables in `.env`:
+For local-only development, the Next.js route can query ClickHouse directly
+with these private variables in `.env`:
 
 ```text
 CLICKHOUSE_HOST
@@ -20,14 +21,14 @@ CLICKHOUSE_PASSWORD
 GITHUB_TOKEN
 ```
 
-For production, prefer a full `CLICKHOUSE_URL` that begins with `https://`.
+For local direct access, prefer a full `CLICKHOUSE_URL` that begins with HTTPS.
 `CLICKHOUSE_PROTOCOL` and `CLICKHOUSE_PORT` are optional for local development;
 ports default to `8123` for HTTP and `8443` for HTTPS.
 
 Never prefix these variables with `NEXT_PUBLIC_`. All `.env*` files are ignored
 by Git and the data access modules import `server-only`.
 
-## Project insights service
+## Project insights architecture
 
 `GET /api/projects/[owner]/[repo]/insights` returns:
 
@@ -38,31 +39,49 @@ by Git and the data access modules import `server-only`.
 - a monthly contributor Arena ranked by normalized OpenRank
 - public contributor profile fields and yearly OpenRank trends
 
-The route only accepts repositories already present in the local landscape
-taxonomy. SQL statements are fixed in server code and repository values are
-passed to ClickHouse as typed query parameters. Browser responses never include
-database hostnames, credentials, SQL, GitHub tokens, email addresses, or other
-private connection details.
+In production, this same-origin Next.js route calls the independent service in
+[`services/insights-api`](services/insights-api). The browser never connects to
+that service or ClickHouse directly.
 
-The Next.js data cache revalidates project insights every seven days. The API
-also emits a one-week shared-cache policy, with a one-day stale-while-revalidate
-window.
+```text
+Browser -> Vercel Next.js route -> HTTPS Insights API -> private ClickHouse
+```
+
+Both layers only accept repositories already present in the local landscape
+taxonomy. The Insights API keeps SQL fixed in server code and passes repository
+values as ClickHouse typed parameters. Browser responses never include database
+hostnames, credentials, SQL, API tokens, GitHub tokens, email addresses, or
+other private connection details.
+
+The containerized service provides bearer authentication, authorization-header
+redaction, private-network transport checks, rate limiting, request
+coalescing, bounded caching, and sanitized errors. See its
+[deployment and security guide](services/insights-api/README.md).
 
 ## Vercel
 
-Configure the four private environment variables above for the Production
-environment in the long-lived Vercel project. They should remain server-only.
-After configuration, a normal push to `main` deploys the static landscape and
-the Node.js insights route together.
+Production Vercel deployments need only:
 
-Production refuses to send credentials over plain HTTP. The ClickHouse endpoint
-must be reachable from Vercel's serverless runtime over HTTPS. If the database
-is restricted to a private network or only exposes port `8123`, place a private
-read-only HTTPS gateway in front of it rather than exposing ClickHouse directly.
+```text
+INSIGHTS_API_URL=https://insights-api.example.com
+INSIGHTS_API_TOKEN=<at-least-32-random-characters>
+```
+
+These variables must remain server-only and must not use a `NEXT_PUBLIC_`
+prefix. Do not put ClickHouse credentials in Vercel. The backend URL must use
+HTTPS in production.
+
+Environment changes only apply to a new Vercel deployment. After configuring
+the variables, push to `main` or redeploy the current commit.
 
 ## Validation
 
 ```bash
 npm run lint
+npm run build
+
+cd services/insights-api
+npm run typecheck
+npm test
 npm run build
 ```
