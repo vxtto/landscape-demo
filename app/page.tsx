@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { getLandscapeProjects } from "@/lib/landscape-data";
 
-import AskAi from "./components/ask-ai";
+import AskAiPanel from "./components/ask-ai-panel";
 import LandscapeExplorer from "./components/landscape-explorer";
 import styles from "./page.module.css";
 
@@ -66,7 +66,6 @@ export default function Home() {
           </a>
           <nav className={styles.headerNav} aria-label="Primary navigation">
             <a href="#landscape">Landscape</a>
-            <a href="#ask-ai">Ask AI</a>
             <a href="#signals">Signals</a>
             <a
               href="https://github.com/antgroup/agentic-ai-landscape"
@@ -80,8 +79,6 @@ export default function Home() {
         </header>
 
         <LandscapeExplorer projects={projects} />
-
-        <AskAi />
 
         <section className={styles.metricGrid} aria-label="Landscape summary">
           {metrics.map((metric) => (
@@ -115,6 +112,8 @@ export default function Home() {
             . Multi-label categories overlap by design.
           </p>
         </footer>
+
+        <AskAiPanel />
       </div>
     </main>
   );

@@ -5,6 +5,11 @@ export type AskCandidate = {
   reason: string;
 };
 
+export type AskExchange = {
+  question: string;
+  answer: string;
+};
+
 export type AskStreamEvent =
   | { type: "meta"; verdict: AskVerdict; candidates: AskCandidate[] }
   | { type: "delta"; text: string }

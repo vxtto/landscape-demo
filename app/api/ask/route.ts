@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
 
-import type { AskStreamEvent } from "@/lib/ask-ai-types";
+import type { AskExchange, AskStreamEvent } from "@/lib/ask-ai-types";
 import {
   contentDeltas,
   streamAnswer,
@@ -11,6 +11,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const MAX_QUESTION_LENGTH = 500;
+const MAX_HISTORY_EXCHANGES = 3;
 const RATE_LIMIT_WINDOW_MS = 5 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 10;
 
@@ -41,9 +42,22 @@ export async function POST(request: NextRequest) {
   }
 
   let question: string;
+  let history: AskExchange[] = [];
   try {
     const body = await request.json();
     question = String(body.question ?? "").trim();
+    if (Array.isArray(body.history)) {
+      history = body.history
+        .slice(-MAX_HISTORY_EXCHANGES)
+        .map((exchange: unknown) => {
+          const turn = exchange as Partial<AskExchange>;
+          return {
+            question: String(turn?.question ?? "").slice(0, MAX_QUESTION_LENGTH),
+            answer: String(turn?.answer ?? ""),
+          };
+        })
+        .filter((turn: AskExchange) => turn.question && turn.answer);
+    }
   } catch {
     return Response.json({ error: "Invalid request body" }, { status: 400 });
   }
@@ -57,28 +71,61 @@ export async function POST(request: NextRequest) {
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
-      const send = (event: AskStreamEvent) =>
-        controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
+      // The reader goes away whenever a visitor navigates or hits Stop, so
+      // every write is guarded and the upstream call is cancelled with it
+      // rather than billing tokens nobody will read.
+      const upstream = new AbortController();
+      let closed = false;
+      const onDisconnect = () => {
+        closed = true;
+        upstream.abort();
+      };
+      request.signal.addEventListener("abort", onDisconnect);
+
+      const send = (event: AskStreamEvent) => {
+        if (closed) return;
+        try {
+          controller.enqueue(encoder.encode(`${JSON.stringify(event)}\n`));
+        } catch {
+          closed = true;
+        }
+      };
+
       try {
-        const triage = await triageQuestion(question);
+        const triage = await triageQuestion(question, history, upstream.signal);
         send({
           type: "meta",
           verdict: triage.verdict,
           candidates: triage.candidates,
         });
-        const answerStream = await streamAnswer(question, triage);
+        const answerStream = await streamAnswer(
+          question,
+          triage,
+          history,
+          upstream.signal,
+        );
         for await (const delta of contentDeltas(answerStream)) {
           send({ type: "delta", text: delta });
         }
         send({ type: "done" });
       } catch (error) {
-        console.error("ask-ai request failed", error);
-        send({
-          type: "error",
-          message: "The AI backend is unavailable right now, try again later",
-        });
+        if (!closed) {
+          console.error("ask-ai request failed", error);
+          send({
+            type: "error",
+            message: "The AI backend is unavailable right now, try again later",
+          });
+        }
       } finally {
-        controller.close();
+        request.signal.removeEventListener("abort", onDisconnect);
+        if (!closed) {
+          closed = true;
+          try {
+            controller.close();
+          } catch {
+            // reader already gone
+          }
+        }
       }
     },
   });

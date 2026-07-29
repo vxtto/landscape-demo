@@ -3,7 +3,7 @@ import "server-only";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 
-import type { AskCandidate, AskVerdict } from "@/lib/ask-ai-types";
+import type { AskCandidate, AskExchange, AskVerdict } from "@/lib/ask-ai-types";
 
 const BASE_URL = (
   process.env.OPENROUTER_BASE_URL ?? "https://openrouter.ai/api/v1"
@@ -11,6 +11,7 @@ const BASE_URL = (
 const MODEL = process.env.ASK_AI_MODEL ?? "z-ai/glm-5.2";
 const MAX_CANDIDATES = 3;
 const MAX_ANSWER_TOKENS = 1200;
+const MAX_HISTORY_ANSWER_CHARS = 600;
 
 export type CapabilityCard = {
   repo_name: string;
@@ -51,7 +52,10 @@ function apiKey() {
   return key;
 }
 
-async function chatCompletion(body: Record<string, unknown>) {
+async function chatCompletion(
+  body: Record<string, unknown>,
+  signal?: AbortSignal,
+) {
   const response = await fetch(`${BASE_URL}/chat/completions`, {
     method: "POST",
     headers: {
@@ -59,6 +63,7 @@ async function chatCompletion(body: Record<string, unknown>) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ model: MODEL, ...body }),
+    signal,
   });
   if (!response.ok) {
     throw new Error(`LLM request failed with status ${response.status}`);
@@ -108,25 +113,87 @@ Rules:
 - "closest_only": nothing does exactly this, but some projects come close or solve part of it.
 - "not_in_landscape": nothing is meaningfully related; candidates may be empty.
 - List at most ${MAX_CANDIDATES} candidates, most relevant first, repos verbatim from the catalog.
+- If earlier turns are shown, resolve references like "it" or "that one" against them.
 - Do not invent repos. Output only the JSON object.`;
 
-export async function triageQuestion(question: string): Promise<TriageResult> {
-  const response = await chatCompletion({
-    messages: [
-      { role: "system", content: `${TRIAGE_SYSTEM}\n\nCATALOG:\n${buildCatalog()}` },
-      { role: "user", content: question },
-    ],
-    temperature: 0.1,
-    max_tokens: 400,
-  });
+/**
+ * Prior turns go in the user message, never the system message, so the
+ * catalog prefix stays byte-identical and remains cacheable upstream.
+ */
+function withHistory(question: string, history: AskExchange[]): string {
+  if (history.length === 0) return `Question: ${question}`;
+  const transcript = history
+    .map(
+      (exchange) =>
+        `Q: ${exchange.question}\nA: ${exchange.answer.slice(0, MAX_HISTORY_ANSWER_CHARS)}`,
+    )
+    .join("\n\n");
+  return `Earlier in this conversation:\n${transcript}\n\nCurrent question: ${question}`;
+}
+
+/**
+ * Pull the triage object out of a raw completion. Reasoning models emit
+ * <think> blocks and some models wrap or trail the object with prose, so
+ * scanning for the first brace-balanced slice that parses is safer than
+ * slicing between the outermost braces.
+ */
+function extractJsonObject(content: string): unknown {
+  const cleaned = content
+    .replace(/<think>[\s\S]*?<\/think>/gi, "")
+    .replace(/```(?:json)?/gi, "");
+
+  for (
+    let start = cleaned.indexOf("{");
+    start !== -1;
+    start = cleaned.indexOf("{", start + 1)
+  ) {
+    let depth = 0;
+    let inString = false;
+    let escaped = false;
+    for (let index = start; index < cleaned.length; index += 1) {
+      const character = cleaned[index];
+      if (escaped) {
+        escaped = false;
+      } else if (character === "\\") {
+        escaped = true;
+      } else if (character === '"') {
+        inString = !inString;
+      } else if (!inString && character === "{") {
+        depth += 1;
+      } else if (!inString && character === "}") {
+        depth -= 1;
+        if (depth === 0) {
+          try {
+            return JSON.parse(cleaned.slice(start, index + 1));
+          } catch {
+            break;
+          }
+        }
+      }
+    }
+  }
+  throw new Error("Triage returned no parsable JSON");
+}
+
+export async function triageQuestion(
+  question: string,
+  history: AskExchange[] = [],
+  signal?: AbortSignal,
+): Promise<TriageResult> {
+  const response = await chatCompletion(
+    {
+      messages: [
+        { role: "system", content: `${TRIAGE_SYSTEM}\n\nCATALOG:\n${buildCatalog()}` },
+        { role: "user", content: withHistory(question, history) },
+      ],
+      temperature: 0.1,
+      max_tokens: 400,
+    },
+    signal,
+  );
   const data = await response.json();
   const content: string = data.choices?.[0]?.message?.content ?? "";
-  const start = content.indexOf("{");
-  const end = content.lastIndexOf("}");
-  if (start === -1 || end === -1) {
-    throw new Error("Triage returned no JSON");
-  }
-  const parsed = JSON.parse(content.slice(start, end + 1)) as TriageResult;
+  const parsed = extractJsonObject(content) as TriageResult;
 
   const known = new Map(
     getCapabilityCards().map((entry) => [entry.repo_name.toLowerCase(), entry.repo_name]),
@@ -159,11 +226,14 @@ Write a concise, factual answer in markdown (no top-level heading):
   landscape does exactly this before describing the closest options.
 - Ground every claim in the provided material; if the material does not say, say so.
 - Refer to projects by their repo name, e.g. **langgenius/dify**.
+- If earlier turns are shown, treat the current question as a follow-up to them.
 - Keep it under ~250 words.`;
 
 export async function streamAnswer(
   question: string,
   triage: TriageResult,
+  history: AskExchange[] = [],
+  signal?: AbortSignal,
 ): Promise<ReadableStream<Uint8Array>> {
   const cards = getCapabilityCards();
   const sections = triage.candidates.map((candidate) => {
@@ -188,15 +258,18 @@ export async function streamAnswer(
       ? `Verdict: ${triage.verdict}\n\n${sections.join("\n\n---\n\n")}`
       : `Verdict: ${triage.verdict}\n\nNo candidate projects were found in the landscape.`;
 
-  const response = await chatCompletion({
-    messages: [
-      { role: "system", content: ANSWER_SYSTEM },
-      { role: "user", content: `${context}\n\nQuestion: ${question}` },
-    ],
-    temperature: 0.3,
-    max_tokens: MAX_ANSWER_TOKENS,
-    stream: true,
-  });
+  const response = await chatCompletion(
+    {
+      messages: [
+        { role: "system", content: ANSWER_SYSTEM },
+        { role: "user", content: `${context}\n\n${withHistory(question, history)}` },
+      ],
+      temperature: 0.3,
+      max_tokens: MAX_ANSWER_TOKENS,
+      stream: true,
+    },
+    signal,
+  );
   if (!response.body) {
     throw new Error("LLM response has no body");
   }
