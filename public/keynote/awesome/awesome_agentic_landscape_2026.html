@@ -1,0 +1,1427 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Awesome x Agentic AI Landscape 2026</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root { --canvas-scale: 1; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #eceef1;
+      color: #111318;
+      font-family: Inter, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    }
+    body {
+      position: relative;
+    }
+    button, a {
+      font: inherit;
+    }
+    .canvas {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1920px;
+      height: 1080px;
+      padding: 20px 30px 18px 86px;
+      display: grid;
+      grid-template-rows: 106px 68px 1fr 38px;
+      gap: 10px;
+      background: #ffffff;
+      transform: translate(-50%, -50%) scale(var(--canvas-scale));
+      transform-origin: center center;
+    }
+    .side-label {
+      position: absolute;
+      left: 22px;
+      top: 204px;
+      bottom: 56px;
+      width: 48px;
+      border: 2px solid #111318;
+      border-radius: 16px;
+      background: #f1b7d8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      border-bottom: 3px solid #111318;
+    }
+    h1 {
+      margin: 0;
+      font-size: 44px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+    }
+    .subtitle {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #555b64;
+      font-weight: 650;
+    }
+    .header-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .brands {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 850;
+    }
+    .brands .ant { color: #126ed0; }
+    .brands .inclusion { color: #526cdf; }
+    .reset-view {
+      display: none;
+      padding: 8px 14px;
+      border: 1.5px solid #111318;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #111318;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .reset-view.is-visible { display: inline-flex; }
+    .summary {
+      display: grid;
+      grid-template-columns: 1.35fr 0.8fr 1.1fr 1fr;
+      gap: 10px;
+    }
+    .summary-item {
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 3px solid #111318;
+      background: #f4f5f6;
+    }
+    .summary-item:first-child {
+      background: #111318;
+      color: #ffffff;
+    }
+    .summary-item strong {
+      font-size: 21px;
+      line-height: 1;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .summary-item span {
+      font-size: 12px;
+      line-height: 1.2;
+      color: #555b64;
+      font-weight: 650;
+    }
+    .summary-item:first-child span { color: #dfe2e8; }
+    .stages {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      min-height: 0;
+    }
+    .stage {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      padding: 108px 9px 9px;
+      border: 2px solid #111318;
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .stage-heading {
+      position: absolute;
+      inset: 0 0 auto 0;
+      width: 100%;
+      height: 98px;
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      border: 0;
+      border-bottom: 2px solid #111318;
+      color: #111318;
+      text-align: left;
+      cursor: pointer;
+    }
+    .stage-number {
+      width: 46px;
+      height: 46px;
+      border: 2px solid #111318;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      font-size: 17px;
+      font-weight: 900;
+    }
+    .stage-verb {
+      margin-bottom: 3px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.2px;
+    }
+    .stage-heading h2 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .stage-heading p {
+      margin: 6px 0 0;
+      font-size: 12px;
+      color: #343941;
+      font-weight: 650;
+    }
+    .stage-count {
+      align-self: start;
+      min-width: 52px;
+      min-height: 42px;
+      padding: 5px 8px;
+      border: 1.5px solid #111318;
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .stage-count small {
+      margin-top: 2px;
+      font-size: 9px;
+      color: #666c74;
+      white-space: nowrap;
+    }
+    .project-list {
+      height: 100%;
+      display: grid;
+      grid-template-rows: repeat(var(--count), minmax(0, 1fr));
+      gap: 7px;
+      align-content: stretch;
+    }
+    .project-card {
+      width: 100%;
+      min-width: 0;
+      min-height: 0;
+      padding: 8px 10px;
+      border: 1.5px solid #24282e;
+      border-radius: 6px;
+      background: #ffffff;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 5px;
+      overflow: hidden;
+      color: #111318;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .project-card:hover,
+    .project-card:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(17, 19, 24, 0.12);
+      outline: 3px solid color-mix(in srgb, var(--accent) 78%, #ffffff);
+      outline-offset: 1px;
+    }
+    .project-card.tier-core {
+      border: 2px solid #1f2329;
+      border-left: 6px solid var(--accent);
+      background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--accent) 14%, #ffffff),
+        #ffffff 34%
+      );
+    }
+    .project-card.tier-watch {
+      border-style: dashed;
+      border-color: #b44a31;
+      border-left: 5px solid #cf5c3e;
+      background: #fffaf8;
+    }
+    .project-card.tier-benchmark {
+      border-color: #7a8088;
+      background: #f1f2f4;
+    }
+    .card-top {
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      gap: 8px;
+      align-items: center;
+      min-width: 0;
+    }
+    .avatar {
+      width: 34px;
+      height: 34px;
+      border: 1px solid #c4c8ce;
+      border-radius: 8px;
+      object-fit: cover;
+      background: #ffffff;
+    }
+    .project-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .project-copy strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .project-copy span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 10.5px;
+      color: #5a6068;
+      font-weight: 700;
+    }
+    .tier-badge {
+      align-self: start;
+      padding: 3px 5px;
+      border: 1px solid #272b31;
+      border-radius: 4px;
+      background: #272b31;
+      color: #ffffff;
+      font-size: 9px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+    .tier-watch .tier-badge {
+      border-color: #b44a31;
+      background: #fff1ec;
+      color: #a33b25;
+    }
+    .tier-benchmark .tier-badge {
+      color: #737982;
+      border-color: #737982;
+      background: #ffffff;
+    }
+    .project-note {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-size: 12.5px;
+      line-height: 1.22;
+      color: #343942;
+      font-weight: 700;
+    }
+    .project-use {
+      display: none;
+    }
+    .stages.is-focused {
+      grid-template-columns: 1fr;
+    }
+    .stages.is-focused .stage:not(.is-focused) {
+      display: none;
+    }
+    .stages.is-focused .stage.is-focused {
+      padding: 118px 14px 14px;
+    }
+    .stages.is-focused .stage-heading {
+      height: 106px;
+      grid-template-columns: 58px 1fr auto;
+      padding: 13px 18px;
+    }
+    .stages.is-focused .stage-number {
+      width: 54px;
+      height: 54px;
+      font-size: 20px;
+    }
+    .stages.is-focused .stage-heading h2 { font-size: 28px; }
+    .stages.is-focused .stage-heading p { font-size: 15px; }
+    .stages.is-focused .project-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(var(--focus-rows), minmax(0, 1fr));
+      gap: 10px;
+    }
+    .stages.is-focused .project-card {
+      padding: 14px 16px;
+      grid-template-rows: auto auto 1fr;
+      gap: 9px;
+    }
+    .stages.is-focused .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+    }
+    .stages.is-focused .card-top {
+      grid-template-columns: 42px 1fr auto;
+    }
+    .stages.is-focused .project-copy strong { font-size: 20px; }
+    .stages.is-focused .project-copy span { font-size: 12px; }
+    .stages.is-focused .tier-badge { font-size: 10px; }
+    .stages.is-focused .project-note {
+      font-size: 16px;
+      -webkit-line-clamp: 2;
+    }
+    .stages.is-focused .project-use {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      font-size: 14px;
+      line-height: 1.3;
+      color: #5a6068;
+      font-weight: 650;
+    }
+    footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: #555b64;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #24282e;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .legend-box {
+      width: 18px;
+      height: 12px;
+      border: 1.5px solid #22262c;
+      border-radius: 3px;
+      background: #ffffff;
+    }
+    .legend-box.watch { border-style: dashed; }
+    .legend-box.baseline {
+      border-color: #737982;
+      background: #f1f2f4;
+    }
+    dialog {
+      width: min(860px, calc(100vw - 48px));
+      padding: 0;
+      border: 0;
+      border-radius: 16px;
+      box-shadow: 0 26px 80px rgba(17, 19, 24, 0.28);
+      color: #111318;
+    }
+    dialog::backdrop {
+      background: rgba(17, 19, 24, 0.52);
+      backdrop-filter: blur(3px);
+    }
+    .detail-panel {
+      position: relative;
+      padding: 36px 40px 34px;
+      background: #ffffff;
+    }
+    .detail-close {
+      position: absolute;
+      top: 20px;
+      right: 22px;
+      width: 40px;
+      height: 40px;
+      border: 1.5px solid #111318;
+      border-radius: 50%;
+      background: #ffffff;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .detail-tier {
+      color: #c95132;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+    }
+    .detail-title {
+      margin: 12px 52px 0 0;
+      font-size: 32px;
+      line-height: 1.05;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+    .detail-owner {
+      margin-top: 8px;
+      color: #5a6068;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .detail-section {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1.5px solid #d7dade;
+    }
+    .detail-label {
+      margin-bottom: 8px;
+      color: #c95132;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .detail-copy {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.55;
+      font-weight: 650;
+    }
+    .detail-metrics {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .detail-metrics div {
+      padding: 14px;
+      background: #f1f2f4;
+    }
+    .detail-metrics strong {
+      display: block;
+      font-size: 23px;
+      font-weight: 900;
+    }
+    .detail-metrics span {
+      display: block;
+      margin-top: 5px;
+      color: #60666f;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .detail-link {
+      margin-top: 28px;
+      min-height: 48px;
+      padding: 0 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 7px;
+      background: #111318;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 850;
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <div class="side-label">AWESOME × AGENTIC</div>
+    <header>
+      <div>
+        <h1>Awesome × Agentic AI Landscape 2026</h1>
+        <div class="subtitle">When curation becomes an agent input · GitHub snapshot July 28–29, 2026</div>
+      </div>
+      <div class="header-actions">
+        <div class="brands">
+          <span class="ant">ANT OPEN SOURCE</span>
+          <span class="inclusion">INCLUSION AI</span>
+        </div>
+        <button class="reset-view" type="button">返回四列总览</button>
+      </div>
+    </header>
+    <section class="summary" aria-label="Landscape summary">
+      <div class="summary-item"><strong>CURATION → CODE</strong><span>the organizing hypothesis</span></div>
+      <div class="summary-item"><strong>460</strong><span>active candidates scanned</span></div>
+      <div class="summary-item"><strong>16 CORE · 8 WATCH</strong><span>plus 2 historical baselines</span></div>
+      <div class="summary-item"><strong>4 FORMS</strong><span>discover · reuse · install · operate</span></div>
+    </section>
+    <section class="stages" aria-label="Awesome repository evolution">
+      
+      <section
+        class="stage stage-discover"
+        data-stage="discover"
+        style="--accent:#f1b7d8;--count:5;--focus-rows:3"
+      >
+        <button class="stage-heading" type="button" aria-pressed="false">
+          <span class="stage-number">01</span>
+          <div>
+            <div class="stage-verb">DISCOVER</div>
+            <h2>Human-curated maps</h2>
+            <p>Read, browse, and choose</p>
+          </div>
+          <span class="stage-count">5<small>点击放大</small></span>
+        </button>
+        <div class="project-list">
+          
+      <button
+        class="project-card tier-benchmark"
+        type="button"
+        data-repo="awesome"
+        data-owner="sindresorhus"
+        data-tier="BASELINE"
+        data-what="经典的 awesome 元目录，按主题索引数百份精选清单。"
+        data-use="人先找到领域入口，再进入子清单挑工具；它代表 awesome 最早的使用方式。"
+        data-url="https://github.com/sindresorhus/awesome"
+        data-stars="490k"
+        data-watch="1.7k"
+        data-participants="35"
+        data-openrank="16.2"
+        aria-label="查看 sindresorhus/awesome 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/sindresorhus.png" alt="">
+          <div class="project-copy">
+            <strong>awesome</strong>
+            <span>sindresorhus</span>
+          </div>
+          <span class="tier-badge">BASELINE</span>
+        </div>
+        <div class="project-note">经典的 awesome 元目录，按主题索引数百份精选清单。</div>
+        <div class="project-use">人先找到领域入口，再进入子清单挑工具；它代表 awesome 最早的使用方式。</div>
+      </button>
+    
+      <button
+        class="project-card tier-benchmark"
+        type="button"
+        data-repo="awesome-ai-agents"
+        data-owner="e2b-dev"
+        data-tier="BASELINE"
+        data-what="收集自主 agent、框架、平台和研究资源。"
+        data-use="适合快速了解 agent 生态有哪些产品和技术路线，主要仍由人浏览和判断。"
+        data-url="https://github.com/e2b-dev/awesome-ai-agents"
+        data-stars="29.1k"
+        data-watch="85"
+        data-participants="29"
+        data-openrank="16.9"
+        aria-label="查看 e2b-dev/awesome-ai-agents 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/e2b-dev.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-ai-agents</strong>
+            <span>e2b-dev</span>
+          </div>
+          <span class="tier-badge">BASELINE</span>
+        </div>
+        <div class="project-note">收集自主 agent、框架、平台和研究资源。</div>
+        <div class="project-use">适合快速了解 agent 生态有哪些产品和技术路线，主要仍由人浏览和判断。</div>
+      </button>
+    
+      <button
+        class="project-card tier-watch"
+        type="button"
+        data-repo="awesome-llm-apps"
+        data-owner="Shubhamsaboo"
+        data-tier="WATCH"
+        data-what="收集可运行的 AI agent、RAG 和 LLM app 示例。"
+        data-use="开发者可以从完整 demo 里拆实现方式，比单纯的链接目录更接近可复用代码。"
+        data-url="https://github.com/Shubhamsaboo/awesome-llm-apps"
+        data-stars="128k"
+        data-watch="656"
+        data-participants="12"
+        data-openrank="12.4"
+        aria-label="查看 Shubhamsaboo/awesome-llm-apps 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/shubhamsaboo.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-llm-apps</strong>
+            <span>Shubhamsaboo</span>
+          </div>
+          <span class="tier-badge">WATCH</span>
+        </div>
+        <div class="project-note">收集可运行的 AI agent、RAG 和 LLM app 示例。</div>
+        <div class="project-use">开发者可以从完整 demo 里拆实现方式，比单纯的链接目录更接近可复用代码。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="awesome-claude-code"
+        data-owner="hesreallyhim"
+        data-tier="CORE"
+        data-what="整理 Claude Code 的 skills、agents、plugins 与开发工具。"
+        data-use="它像一张 Claude Code 生态地图，帮助人找到可以加入工作流的组件。"
+        data-url="https://github.com/hesreallyhim/awesome-claude-code"
+        data-stars="51.1k"
+        data-watch="432"
+        data-participants="43"
+        data-openrank="21.0"
+        aria-label="查看 hesreallyhim/awesome-claude-code 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/hesreallyhim.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-claude-code</strong>
+            <span>hesreallyhim</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">整理 Claude Code 的 skills、agents、plugins 与开发工具。</div>
+        <div class="project-use">它像一张 Claude Code 生态地图，帮助人找到可以加入工作流的组件。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="awesome-mcp-servers"
+        data-owner="punkpeye"
+        data-tier="CORE"
+        data-what="按能力整理 MCP servers，覆盖搜索、数据库、浏览器和文件系统。"
+        data-use="清单里的条目就是 agent 的工具接口，挑选后即可接入支持 MCP 的客户端。"
+        data-url="https://github.com/punkpeye/awesome-mcp-servers"
+        data-stars="91.5k"
+        data-watch="282"
+        data-participants="373"
+        data-openrank="253"
+        aria-label="查看 punkpeye/awesome-mcp-servers 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/punkpeye.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-mcp-servers</strong>
+            <span>punkpeye</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">按能力整理 MCP servers，覆盖搜索、数据库、浏览器和文件系统。</div>
+        <div class="project-use">清单里的条目就是 agent 的工具接口，挑选后即可接入支持 MCP 的客户端。</div>
+      </button>
+    
+        </div>
+      </section>
+    
+      <section
+        class="stage stage-reuse"
+        data-stage="reuse"
+        style="--accent:#d9b8ef;--count:7;--focus-rows:4"
+      >
+        <button class="stage-heading" type="button" aria-pressed="false">
+          <span class="stage-number">02</span>
+          <div>
+            <div class="stage-verb">REUSE</div>
+            <h2>Curated agent assets</h2>
+            <p>Copy, adapt, or drop in</p>
+          </div>
+          <span class="stage-count">7<small>点击放大</small></span>
+        </button>
+        <div class="project-list">
+          
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="awesome-copilot"
+        data-owner="github"
+        data-tier="CORE"
+        data-what="社区维护的 Copilot instructions、agents、skills 和配置合集。"
+        data-use="条目通常能直接放进仓库，让 Copilot 按团队约定完成具体任务。"
+        data-url="https://github.com/github/awesome-copilot"
+        data-stars="37.1k"
+        data-watch="296"
+        data-participants="57"
+        data-openrank="54.0"
+        aria-label="查看 github/awesome-copilot 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/github.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-copilot</strong>
+            <span>github</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">社区维护的 Copilot instructions、agents、skills 和配置合集。</div>
+        <div class="project-use">条目通常能直接放进仓库，让 Copilot 按团队约定完成具体任务。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="awesome-claude-skills"
+        data-owner="ComposioHQ"
+        data-tier="CORE"
+        data-what="精选 Claude Skills、工具和学习资源。"
+        data-use="把通用能力整理成 skill 形态，适合复制或改造成自己的 Claude 工作流。"
+        data-url="https://github.com/ComposioHQ/awesome-claude-skills"
+        data-stars="71.2k"
+        data-watch="698"
+        data-participants="40"
+        data-openrank="15.3"
+        aria-label="查看 ComposioHQ/awesome-claude-skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/composiohq.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-claude-skills</strong>
+            <span>ComposioHQ</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">精选 Claude Skills、工具和学习资源。</div>
+        <div class="project-use">把通用能力整理成 skill 形态，适合复制或改造成自己的 Claude 工作流。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="awesome-codex-skills"
+        data-owner="composio-community"
+        data-tier="CORE"
+        data-what="面向 Codex CLI 与 API 的实用 skills 和自动化工作流。"
+        data-use="下载到本地后，Codex 可以直接读取其中的说明并执行。"
+        data-url="https://github.com/composio-community/awesome-codex-skills"
+        data-stars="15.4k"
+        data-watch="831"
+        data-participants="10"
+        data-openrank="4.77"
+        aria-label="查看 composio-community/awesome-codex-skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/composio-community.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-codex-skills</strong>
+            <span>composio-community</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">面向 Codex CLI 与 API 的实用 skills 和自动化工作流。</div>
+        <div class="project-use">下载到本地后，Codex 可以直接读取其中的说明并执行。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="awesome-agent-skills"
+        data-owner="VoltAgent"
+        data-tier="CORE"
+        data-what="覆盖 Claude Code、Codex、Gemini CLI 和 Cursor 的大型 skill 目录。"
+        data-use="同一份能力可以在不同 coding agent 之间查找和迁移。"
+        data-url="https://github.com/VoltAgent/awesome-agent-skills"
+        data-stars="29.1k"
+        data-watch="515"
+        data-participants="21"
+        data-openrank="22.1"
+        aria-label="查看 VoltAgent/awesome-agent-skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/voltagent.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-agent-skills</strong>
+            <span>VoltAgent</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">覆盖 Claude Code、Codex、Gemini CLI 和 Cursor 的大型 skill 目录。</div>
+        <div class="project-use">同一份能力可以在不同 coding agent 之间查找和迁移。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="awesome-design-md"
+        data-owner="VoltAgent"
+        data-tier="CORE"
+        data-what="把品牌网站的颜色、字体、组件和禁区整理成 DESIGN.md。"
+        data-use="把文件放进项目，coding agent 就能按这套设计规则生成 UI。"
+        data-url="https://github.com/VoltAgent/awesome-design-md"
+        data-stars="105k"
+        data-watch="2.2k"
+        data-participants="5"
+        data-openrank="12.9"
+        aria-label="查看 VoltAgent/awesome-design-md 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/voltagent.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-design-md</strong>
+            <span>VoltAgent</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">把品牌网站的颜色、字体、组件和禁区整理成 DESIGN.md。</div>
+        <div class="project-use">把文件放进项目，coding agent 就能按这套设计规则生成 UI。</div>
+      </button>
+    
+      <button
+        class="project-card tier-watch"
+        type="button"
+        data-repo="awesome-gpt-image-2"
+        data-owner="freestylefly"
+        data-tier="WATCH"
+        data-what="把 GPT-Image 2 案例、工业模板和 style library 放在一起。"
+        data-use="提示词既供人参考，也被提炼成可以安装和复用的 skill。"
+        data-url="https://github.com/freestylefly/awesome-gpt-image-2"
+        data-stars="8.8k"
+        data-watch="558"
+        data-participants="3"
+        data-openrank="0.93"
+        aria-label="查看 freestylefly/awesome-gpt-image-2 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/freestylefly.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-gpt-image-2</strong>
+            <span>freestylefly</span>
+          </div>
+          <span class="tier-badge">WATCH</span>
+        </div>
+        <div class="project-note">把 GPT-Image 2 案例、工业模板和 style library 放在一起。</div>
+        <div class="project-use">提示词既供人参考，也被提炼成可以安装和复用的 skill。</div>
+      </button>
+    
+      <button
+        class="project-card tier-watch"
+        type="button"
+        data-repo="awesome-n8n-templates"
+        data-owner="enescingoz"
+        data-tier="WATCH"
+        data-what="整理可直接导入的 n8n 自动化工作流模板。"
+        data-use="列表里的条目本身就是可运行流程，导入后即可修改和执行。"
+        data-url="https://github.com/enescingoz/awesome-n8n-templates"
+        data-stars="24.2k"
+        data-watch="144"
+        data-participants="4"
+        data-openrank="1.90"
+        aria-label="查看 enescingoz/awesome-n8n-templates 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/enescingoz.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-n8n-templates</strong>
+            <span>enescingoz</span>
+          </div>
+          <span class="tier-badge">WATCH</span>
+        </div>
+        <div class="project-note">整理可直接导入的 n8n 自动化工作流模板。</div>
+        <div class="project-use">列表里的条目本身就是可运行流程，导入后即可修改和执行。</div>
+      </button>
+    
+        </div>
+      </section>
+    
+      <section
+        class="stage stage-install"
+        data-stage="install"
+        style="--accent:#a9c8f5;--count:7;--focus-rows:4"
+      >
+        <button class="stage-heading" type="button" aria-pressed="false">
+          <span class="stage-number">03</span>
+          <div>
+            <div class="stage-verb">INSTALL</div>
+            <h2>Skill &amp; plugin catalogs</h2>
+            <p>Resolve and load into an agent</p>
+          </div>
+          <span class="stage-count">7<small>点击放大</small></span>
+        </button>
+        <div class="project-list">
+          
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="skills"
+        data-owner="anthropics"
+        data-tier="CORE"
+        data-what="Anthropic 公开的 Agent Skills 范例库。"
+        data-use="每个目录把说明、脚本和资源放在一起，agent 可以按约定加载。"
+        data-url="https://github.com/anthropics/skills"
+        data-stars="165k"
+        data-watch="2.1k"
+        data-participants="37"
+        data-openrank="29.2"
+        aria-label="查看 anthropics/skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/anthropics.png" alt="">
+          <div class="project-copy">
+            <strong>skills</strong>
+            <span>anthropics</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">Anthropic 公开的 Agent Skills 范例库。</div>
+        <div class="project-use">每个目录把说明、脚本和资源放在一起，agent 可以按约定加载。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="skills"
+        data-owner="openai"
+        data-tier="CORE"
+        data-what="面向 Codex 的 Skills catalog。"
+        data-use="把常用任务写成可发现的指令包，供 Codex 在需要时直接使用。"
+        data-url="https://github.com/openai/skills"
+        data-stars="24.3k"
+        data-watch="377"
+        data-participants="105"
+        data-openrank="24.2"
+        aria-label="查看 openai/skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/openai.png" alt="">
+          <div class="project-copy">
+            <strong>skills</strong>
+            <span>openai</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">面向 Codex 的 Skills catalog。</div>
+        <div class="project-use">把常用任务写成可发现的指令包，供 Codex 在需要时直接使用。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="skills"
+        data-owner="vercel-labs"
+        data-tier="CORE"
+        data-what="开放的 agent skill 搜索和安装工具。"
+        data-use="npx skills 可以搜索、安装或运行 skill，目录与安装器连在了一起。"
+        data-url="https://github.com/vercel-labs/skills"
+        data-stars="27.4k"
+        data-watch="498"
+        data-participants="51"
+        data-openrank="52.4"
+        aria-label="查看 vercel-labs/skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/vercel-labs.png" alt="">
+          <div class="project-copy">
+            <strong>skills</strong>
+            <span>vercel-labs</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">开放的 agent skill 搜索和安装工具。</div>
+        <div class="project-use">npx skills 可以搜索、安装或运行 skill，目录与安装器连在了一起。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="agent-skills"
+        data-owner="addyosmani"
+        data-tier="CORE"
+        data-what="面向生产工程的 coding-agent skills。"
+        data-use="它把资深工程实践写成 agent 可以调用的工作步骤。"
+        data-url="https://github.com/addyosmani/agent-skills"
+        data-stars="80.7k"
+        data-watch="2.8k"
+        data-participants="27"
+        data-openrank="15.1"
+        aria-label="查看 addyosmani/agent-skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/addyosmani.png" alt="">
+          <div class="project-copy">
+            <strong>agent-skills</strong>
+            <span>addyosmani</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">面向生产工程的 coding-agent skills。</div>
+        <div class="project-use">它把资深工程实践写成 agent 可以调用的工作步骤。</div>
+      </button>
+    
+      <button
+        class="project-card tier-watch"
+        type="button"
+        data-repo="skills"
+        data-owner="google"
+        data-tier="WATCH"
+        data-what="面向 Google 产品和技术的 Agent Skills。"
+        data-use="把官方产品知识整理成 agent 能够读取和执行的能力包。"
+        data-url="https://github.com/google/skills"
+        data-stars="15.3k"
+        data-watch="621"
+        data-participants="6"
+        data-openrank="4.46"
+        aria-label="查看 google/skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/google.png" alt="">
+          <div class="project-copy">
+            <strong>skills</strong>
+            <span>google</span>
+          </div>
+          <span class="tier-badge">WATCH</span>
+        </div>
+        <div class="project-note">面向 Google 产品和技术的 Agent Skills。</div>
+        <div class="project-use">把官方产品知识整理成 agent 能够读取和执行的能力包。</div>
+      </button>
+    
+      <button
+        class="project-card tier-watch"
+        type="button"
+        data-repo="claude-plugins-official"
+        data-owner="anthropics"
+        data-tier="WATCH"
+        data-what="Anthropic 维护的 Claude Code 官方插件目录。"
+        data-use="插件可以携带命令、agents 和 skills，安装后直接进入 Claude Code。"
+        data-url="https://github.com/anthropics/claude-plugins-official"
+        data-stars="32.8k"
+        data-watch="1.2k"
+        data-participants="65"
+        data-openrank="64.6"
+        aria-label="查看 anthropics/claude-plugins-official 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/anthropics.png" alt="">
+          <div class="project-copy">
+            <strong>claude-plugins-official</strong>
+            <span>anthropics</span>
+          </div>
+          <span class="tier-badge">WATCH</span>
+        </div>
+        <div class="project-note">Anthropic 维护的 Claude Code 官方插件目录。</div>
+        <div class="project-use">插件可以携带命令、agents 和 skills，安装后直接进入 Claude Code。</div>
+      </button>
+    
+      <button
+        class="project-card tier-watch"
+        type="button"
+        data-repo="agents"
+        data-owner="wshobson"
+        data-tier="WATCH"
+        data-what="面向多种 coding agent 的插件与能力市场。"
+        data-use="同一套能力可以在 Claude Code、Codex、Cursor 等工具之间复用。"
+        data-url="https://github.com/wshobson/agents"
+        data-stars="38.3k"
+        data-watch="209"
+        data-participants="11"
+        data-openrank="6.72"
+        aria-label="查看 wshobson/agents 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/wshobson.png" alt="">
+          <div class="project-copy">
+            <strong>agents</strong>
+            <span>wshobson</span>
+          </div>
+          <span class="tier-badge">WATCH</span>
+        </div>
+        <div class="project-note">面向多种 coding agent 的插件与能力市场。</div>
+        <div class="project-use">同一套能力可以在 Claude Code、Codex、Cursor 等工具之间复用。</div>
+      </button>
+    
+        </div>
+      </section>
+    
+      <section
+        class="stage stage-operate"
+        data-stage="operate"
+        style="--accent:#9bd9bd;--count:7;--focus-rows:4"
+      >
+        <button class="stage-heading" type="button" aria-pressed="false">
+          <span class="stage-number">04</span>
+          <div>
+            <div class="stage-verb">OPERATE</div>
+            <h2>Agent operating practice</h2>
+            <p>Plan, coordinate, review, and run</p>
+          </div>
+          <span class="stage-count">7<small>点击放大</small></span>
+        </button>
+        <div class="project-list">
+          
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="ECC"
+        data-owner="affaan-m"
+        data-tier="CORE"
+        data-what="一套优化 agent harness 的系统，覆盖 skills、记忆和安全约定。"
+        data-use="它关心的不是单次生成，而是如何让 coding agent 长期稳定地工作。"
+        data-url="https://github.com/affaan-m/ECC"
+        data-stars="235k"
+        data-watch="3.9k"
+        data-participants="76"
+        data-openrank="63.4"
+        aria-label="查看 affaan-m/ECC 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/affaan-m.png" alt="">
+          <div class="project-copy">
+            <strong>ECC</strong>
+            <span>affaan-m</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">一套优化 agent harness 的系统，覆盖 skills、记忆和安全约定。</div>
+        <div class="project-use">它关心的不是单次生成，而是如何让 coding agent 长期稳定地工作。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="superpowers"
+        data-owner="obra"
+        data-tier="CORE"
+        data-what="把需求澄清、写计划、TDD 和代码评审整理成自动触发的 skills。"
+        data-use="仓库交付的是一套 coding agent 的工作纪律，而不是代码片段。"
+        data-url="https://github.com/obra/superpowers"
+        data-stars="263k"
+        data-watch="4.7k"
+        data-participants="60"
+        data-openrank="63.6"
+        aria-label="查看 obra/superpowers 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/obra.png" alt="">
+          <div class="project-copy">
+            <strong>superpowers</strong>
+            <span>obra</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">把需求澄清、写计划、TDD 和代码评审整理成自动触发的 skills。</div>
+        <div class="project-use">仓库交付的是一套 coding agent 的工作纪律，而不是代码片段。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="spec-kit"
+        data-owner="github"
+        data-tier="CORE"
+        data-what="面向规格驱动开发的工具包。"
+        data-use="先保存规格、计划和验收条件，再让 agent 开始写代码。"
+        data-url="https://github.com/github/spec-kit"
+        data-stars="124k"
+        data-watch="1.9k"
+        data-participants="63"
+        data-openrank="68.1"
+        aria-label="查看 github/spec-kit 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/github.png" alt="">
+          <div class="project-copy">
+            <strong>spec-kit</strong>
+            <span>github</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">面向规格驱动开发的工具包。</div>
+        <div class="project-use">先保存规格、计划和验收条件，再让 agent 开始写代码。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="gstack"
+        data-owner="garrytan"
+        data-tier="CORE"
+        data-what="一套带有明确角色分工的 Claude Code 工作栈。"
+        data-use="它把设计、工程管理和发布检查等工作拆成可调用的角色工具。"
+        data-url="https://github.com/garrytan/gstack"
+        data-stars="125k"
+        data-watch="2.2k"
+        data-participants="83"
+        data-openrank="57.6"
+        aria-label="查看 garrytan/gstack 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/garrytan.png" alt="">
+          <div class="project-copy">
+            <strong>gstack</strong>
+            <span>garrytan</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">一套带有明确角色分工的 Claude Code 工作栈。</div>
+        <div class="project-use">它把设计、工程管理和发布检查等工作拆成可调用的角色工具。</div>
+      </button>
+    
+      <button
+        class="project-card tier-core"
+        type="button"
+        data-repo="claude-code-best-practice"
+        data-owner="shanraisshan"
+        data-tier="CORE"
+        data-what="围绕 Claude Code 的 agentic engineering 实践库。"
+        data-use="重点是如何组织项目上下文和工作流程，而不是只追求一次生成成功。"
+        data-url="https://github.com/shanraisshan/claude-code-best-practice"
+        data-stars="63.6k"
+        data-watch="806"
+        data-participants="4"
+        data-openrank="6.64"
+        aria-label="查看 shanraisshan/claude-code-best-practice 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/shanraisshan.png" alt="">
+          <div class="project-copy">
+            <strong>claude-code-best-practice</strong>
+            <span>shanraisshan</span>
+          </div>
+          <span class="tier-badge">CORE</span>
+        </div>
+        <div class="project-note">围绕 Claude Code 的 agentic engineering 实践库。</div>
+        <div class="project-use">重点是如何组织项目上下文和工作流程，而不是只追求一次生成成功。</div>
+      </button>
+    
+      <button
+        class="project-card tier-watch"
+        type="button"
+        data-repo="agentic-awesome-skills"
+        data-owner="sickn33"
+        data-tier="WATCH"
+        data-what="面向 agent 的 skill 发现、选择和校验控制面。"
+        data-use="它通过 CLI 与 MCP 暴露目录，让 agent 也参与挑选和组合 skills。"
+        data-url="https://github.com/sickn33/agentic-awesome-skills"
+        data-stars="44.1k"
+        data-watch="432"
+        data-participants="23"
+        data-openrank="32.2"
+        aria-label="查看 sickn33/agentic-awesome-skills 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/sickn33.png" alt="">
+          <div class="project-copy">
+            <strong>agentic-awesome-skills</strong>
+            <span>sickn33</span>
+          </div>
+          <span class="tier-badge">WATCH</span>
+        </div>
+        <div class="project-note">面向 agent 的 skill 发现、选择和校验控制面。</div>
+        <div class="project-use">它通过 CLI 与 MCP 暴露目录，让 agent 也参与挑选和组合 skills。</div>
+      </button>
+    
+      <button
+        class="project-card tier-watch"
+        type="button"
+        data-repo="awesome-claude-code-toolkit"
+        data-owner="rohitg00"
+        data-tier="WATCH"
+        data-what="大型 Claude Code 工具包，包含 agents、skills、commands、hooks 和规则。"
+        data-use="它把原本分散的参考资料打包成一套可安装的完整工作栈。"
+        data-url="https://github.com/rohitg00/awesome-claude-code-toolkit"
+        data-stars="2.4k"
+        data-watch="46"
+        data-participants="23"
+        data-openrank="10.8"
+        aria-label="查看 rohitg00/awesome-claude-code-toolkit 的说明"
+      >
+        <div class="card-top">
+          <img class="avatar" src="assets/github-avatars/rohitg00.png" alt="">
+          <div class="project-copy">
+            <strong>awesome-claude-code-toolkit</strong>
+            <span>rohitg00</span>
+          </div>
+          <span class="tier-badge">WATCH</span>
+        </div>
+        <div class="project-note">大型 Claude Code 工具包，包含 agents、skills、commands、hooks 和规则。</div>
+        <div class="project-use">它把原本分散的参考资料打包成一套可安装的完整工作栈。</div>
+      </button>
+    
+        </div>
+      </section>
+    
+    </section>
+    <footer>
+      <span>Signals: ★ current stars · W visible WatchEvents, May 1–Jul 28 · P distinct issue/PR participants · OR OpenRank sum, Apr–Jun 2026</span>
+      <span class="legend">
+        <span class="legend-item"><i class="legend-box"></i>Core</span>
+        <span class="legend-item"><i class="legend-box watch"></i>Watch</span>
+        <span class="legend-item"><i class="legend-box baseline"></i>Historical baseline</span>
+      </span>
+    </footer>
+  </main>
+  <dialog id="project-dialog" aria-labelledby="detail-title">
+    <div class="detail-panel">
+      <button class="detail-close" type="button" aria-label="关闭">×</button>
+      <div class="detail-tier"></div>
+      <h2 class="detail-title" id="detail-title"></h2>
+      <div class="detail-owner"></div>
+      <section class="detail-section">
+        <div class="detail-label">它做什么</div>
+        <p class="detail-copy detail-what"></p>
+      </section>
+      <section class="detail-section">
+        <div class="detail-label">怎么使用</div>
+        <p class="detail-copy detail-use"></p>
+      </section>
+      <div class="detail-metrics" aria-label="Project signals">
+        <div><strong class="metric-stars"></strong><span>current stars</span></div>
+        <div><strong class="metric-watch"></strong><span>visible WatchEvents · 3m</span></div>
+        <div><strong class="metric-participants"></strong><span>issue/PR participants · 3m</span></div>
+        <div><strong class="metric-openrank"></strong><span>OpenRank · Apr–Jun</span></div>
+      </div>
+      <a class="detail-link" target="_blank" rel="noreferrer">打开 GitHub 仓库 ↗</a>
+    </div>
+  </dialog>
+  <script>
+    const canvas = document.querySelector(".canvas");
+    const stages = document.querySelector(".stages");
+    const resetView = document.querySelector(".reset-view");
+    const stageSections = [...document.querySelectorAll(".stage")];
+    const dialog = document.querySelector("#project-dialog");
+
+    function fitCanvas() {
+      const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+      document.documentElement.style.setProperty("--canvas-scale", String(scale));
+    }
+
+    function resetFocus() {
+      stages.classList.remove("is-focused");
+      stageSections.forEach((stage) => {
+        stage.classList.remove("is-focused");
+        stage.querySelector(".stage-heading").setAttribute("aria-pressed", "false");
+      });
+      resetView.classList.remove("is-visible");
+    }
+
+    stageSections.forEach((stage) => {
+      stage.querySelector(".stage-heading").addEventListener("click", () => {
+        const wasFocused = stage.classList.contains("is-focused");
+        resetFocus();
+        if (wasFocused) return;
+        stages.classList.add("is-focused");
+        stage.classList.add("is-focused");
+        stage.querySelector(".stage-heading").setAttribute("aria-pressed", "true");
+        resetView.classList.add("is-visible");
+      });
+    });
+    resetView.addEventListener("click", resetFocus);
+
+    document.querySelectorAll(".project-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        const data = card.dataset;
+        dialog.querySelector(".detail-tier").textContent = data.tier;
+        dialog.querySelector(".detail-title").textContent = data.repo;
+        dialog.querySelector(".detail-owner").textContent = data.owner;
+        dialog.querySelector(".detail-what").textContent = data.what;
+        dialog.querySelector(".detail-use").textContent = data.use;
+        dialog.querySelector(".metric-stars").textContent = `★ ${data.stars}`;
+        dialog.querySelector(".metric-watch").textContent = data.watch;
+        dialog.querySelector(".metric-participants").textContent = data.participants;
+        dialog.querySelector(".metric-openrank").textContent = data.openrank;
+        dialog.querySelector(".detail-link").href = data.url;
+        dialog.showModal();
+      });
+    });
+
+    dialog.querySelector(".detail-close").addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    window.addEventListener("resize", fitCanvas);
+    fitCanvas();
+  </script>
+</body>
+</html>

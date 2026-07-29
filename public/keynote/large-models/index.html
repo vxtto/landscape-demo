@@ -1,0 +1,1603 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=3840, initial-scale=1">
+  <title>Large Models Landscape 2026 - Prototype</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      width: 3840px;
+      height: 2160px;
+      margin: 0;
+      overflow: hidden;
+      background: #f7f8fa;
+      color: #111318;
+      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    body { position: relative; }
+    .canvas {
+      width: 3840px;
+      height: 2160px;
+      padding: 42px 58px 34px 172px;
+      display: grid;
+      grid-template-rows: 154px 118px 1fr 54px;
+      gap: 20px;
+      background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        #ffffff;
+    }
+    .side-label {
+      position: absolute;
+      left: 54px;
+      top: 300px;
+      bottom: 92px;
+      width: 88px;
+      border: 4px solid #111318;
+      border-radius: 28px;
+      background: #cbd5ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 38px;
+      font-weight: 850;
+    }
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      border-bottom: 3px solid #111318;
+    }
+    h1 {
+      margin: 0;
+      font-size: 78px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .subtitle {
+      margin-top: 13px;
+      font-size: 24px;
+      color: #4a4f58;
+      font-weight: 600;
+    }
+    .brands {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 24px;
+      font-weight: 850;
+      text-align: right;
+    }
+    .brands .ant { color: #126ed0; }
+    .brands .inclusion { color: #4867df; }
+    .summary {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr 1.15fr;
+      gap: 16px;
+    }
+    .summary-item {
+      border: 3px solid #111318;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+    .summary-item strong {
+      font-size: 36px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .summary-item span {
+      font-size: 20px;
+      line-height: 1.2;
+      color: #565b63;
+      font-weight: 650;
+    }
+    .summary-item.score {
+      background: #111318;
+      color: white;
+    }
+    .summary-item.score span { color: #d8dbe1; }
+    .summary-item.open strong { color: #176bb2; }
+    .summary-item.api strong { color: #222222; }
+    .panels {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      min-height: 0;
+    }
+    .domain-panel {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      padding: 72px 18px 18px;
+      border: 4px solid #111318;
+      border-radius: 10px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    .domain-heading {
+      position: absolute;
+      top: -2px;
+      left: 24px;
+      right: 24px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .domain-heading h2 {
+      margin: 0;
+      padding: 8px 18px 9px;
+      border: 3px solid #111318;
+      border-top: 0;
+      border-radius: 0 0 8px 8px;
+      background: var(--accent);
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .domain-heading span {
+      font-size: 17px;
+      font-weight: 750;
+      color: #555b64;
+    }
+    .domain-heading .mix {
+      margin-left: auto;
+      color: #272b31;
+    }
+    .model-grid {
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-auto-rows: 154px;
+      gap: 12px;
+      align-content: start;
+    }
+    .model-card {
+      min-width: 0;
+      min-height: 0;
+      padding: 10px 12px 9px;
+      border: 2.5px solid #25282e;
+      border-radius: 7px;
+      background: #ffffff;
+      display: grid;
+      grid-template-rows: 28px minmax(42px, auto) 23px 1fr;
+      gap: 5px;
+      overflow: hidden;
+    }
+    .model-card.open-osi {
+      border-color: #267cc2;
+      background: #eaf4ff;
+    }
+    .model-card.open-custom {
+      border-color: #c89118;
+      background:
+        repeating-linear-gradient(
+          135deg,
+          #fff7db 0,
+          #fff7db 13px,
+          #ffefba 13px,
+          #ffefba 20px
+        );
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+    .rank {
+      width: 42px;
+      height: 26px;
+      border: 2px solid #30343a;
+      border-radius: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      font-size: 15px;
+      font-weight: 850;
+      flex: 0 0 auto;
+    }
+    .rank.top-rank {
+      border-color: #1d8e58;
+      color: #126a40;
+      background: #dff6e9;
+    }
+    .vendor-logo {
+      display: block;
+      width: auto;
+      max-width: 116px;
+      height: 23px;
+      object-fit: contain;
+      object-position: left center;
+      min-width: 0;
+    }
+    .vendor-fallback {
+      font-size: 15px;
+      font-weight: 900;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .access {
+      margin-left: auto;
+      padding: 4px 7px;
+      border-radius: 4px;
+      background: #22262c;
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+    .open-osi .access { background: #267cc2; }
+    .open-custom .access { background: #b27b0e; }
+    .model-name {
+      align-self: center;
+      font-size: 22px;
+      line-height: 1.02;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 13px;
+      color: #4e535c;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+    .card-bottom {
+      align-self: end;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 0;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      min-width: 0;
+    }
+    .tag {
+      padding: 3px 5px;
+      border: 1px solid #8d939d;
+      border-radius: 3px;
+      background: rgba(255,255,255,.78);
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 850;
+      color: #3d424a;
+    }
+    .metrics {
+      display: flex;
+      gap: 4px;
+      flex: 0 0 auto;
+    }
+    .metric {
+      padding: 4px 6px;
+      border-radius: 4px;
+      background: #22262c;
+      color: #ffffff;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 900;
+    }
+    .metric.benchmark { background: #7846b9; }
+    .benchmark-panel {
+      padding: 76px 22px 20px;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      gap: 14px;
+    }
+    .benchmark-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-auto-rows: 112px;
+      gap: 12px;
+      align-content: start;
+    }
+    .benchmark-row {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr) auto 62px;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 12px;
+      border: 2.5px solid #292d33;
+      border-radius: 7px;
+      background: #ffffff;
+    }
+    .benchmark-order {
+      width: 30px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #dff5f3;
+      color: #176c69;
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .benchmark-model {
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+    }
+    .benchmark-model strong {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 20px;
+    }
+    .benchmark-model span {
+      color: #5a6069;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .benchmark-access {
+      padding: 4px 7px;
+      border-radius: 4px;
+      background: #24282e;
+      color: white;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .benchmark-access.open { background: #267cc2; }
+    .benchmark-score {
+      color: #7846b9;
+      font-size: 27px;
+      text-align: right;
+    }
+    .benchmark-note {
+      padding: 15px 18px;
+      border: 2.5px solid #2b2f35;
+      border-radius: 7px;
+      background: #e9f7f6;
+      display: grid;
+      gap: 5px;
+    }
+    .benchmark-note strong { font-size: 20px; }
+    .benchmark-note span {
+      color: #4f5660;
+      font-size: 15px;
+      font-weight: 650;
+    }
+    footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+      font-size: 17px;
+      color: #555b63;
+      font-weight: 650;
+    }
+    .legend {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      white-space: nowrap;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .swatch {
+      width: 30px;
+      height: 18px;
+      border: 2px solid #22262c;
+      border-radius: 4px;
+      background: white;
+    }
+    .swatch.osi { background: #eaf4ff; border-color: #267cc2; }
+    .swatch.custom {
+      border-color: #c89118;
+      background: repeating-linear-gradient(
+        135deg, #fff7db 0, #fff7db 6px, #ffefba 6px, #ffefba 10px
+      );
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <div class="side-label">Large Models</div>
+    <header>
+      <div>
+        <h1>Large Models Landscape 2026</h1>
+        <div class="subtitle">Capability-first view of the 50 most-used hosted model releases</div>
+      </div>
+      <div class="brands">
+        <span class="ant">ANT OPEN SOURCE</span>
+        <span class="inclusion">INCLUSION AI</span>
+      </div>
+    </header>
+
+    <section class="summary">
+      <div class="summary-item score">
+        <strong>June 2026</strong>
+        <span>OpenRouter + ZenMux monthly usage snapshot</span>
+      </div>
+      <div class="summary-item open">
+        <strong>24 OPEN</strong>
+        <span>public model weights</span>
+      </div>
+      <div class="summary-item api">
+        <strong>26 API</strong>
+        <span>closed or no public weights</span>
+      </div>
+      <div class="summary-item">
+        <strong>TOP 10: 5:5</strong>
+        <span>open vs API-only; 8 cards include public AAI scores</span>
+      </div>
+    </section>
+
+    <section class="panels">
+      
+      <section class="domain-panel" style="--accent:#f48ac6">
+        <div class="domain-heading">
+          <h2>Frontier Generalist</h2>
+          <span>10 models</span>
+          <span class="mix">0 open / 10 API</span>
+        </div>
+        <div class="model-grid">
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank top-rank">#3</span>
+          <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Claude Opus 4.8</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 94.7</span>
+            <span class="metric benchmark">AAI 55.7</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank top-rank">#4</span>
+          <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Claude Opus 4.7</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 92.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#11</span>
+          <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Claude Opus 4.6</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 77.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#25</span>
+          <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Claude Fable 5</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 56.0</span>
+            <span class="metric benchmark">AAI 59.9</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank top-rank">#8</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">GPT-5.5</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 84.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#14</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">GPT-5.4</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 73.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#33</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">GPT-5.2</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 45.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#22</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Gemini 3.1 Pro Preview</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">VIDEO</span></div>
+          <div class="metrics">
+            <span class="metric">USE 58.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#26</span>
+          <img class="vendor-logo" src="assets/vendor-logos/qwen-text.svg" alt="Qwen">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Qwen3.7 Max</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 55.3</span>
+            <span class="metric benchmark">AAI 46.0</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#32</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openrouter-text.svg" alt="Openrouter">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">owl-alpha</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"></div>
+          <div class="metrics">
+            <span class="metric">USE 47.3</span>
+            
+          </div>
+        </div>
+      </article>
+    </div>
+      </section>
+    
+      <section class="domain-panel" style="--accent:#75b7eb">
+        <div class="domain-heading">
+          <h2>Reasoning, Math &amp; Science</h2>
+          <span>10 models</span>
+          <span class="mix">10 open / 0 API</span>
+        </div>
+        <div class="model-grid">
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank top-rank">#1</span>
+          <img class="vendor-logo" src="assets/vendor-logos/deepseek-text.svg" alt="DeepSeek">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">DeepSeek V4 Flash</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>158B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 97.0</span>
+            <span class="metric benchmark">AAI 40.3</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank top-rank">#2</span>
+          <img class="vendor-logo" src="assets/vendor-logos/deepseek-text.svg" alt="DeepSeek">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">DeepSeek V4 Pro</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>1.60T params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 95.0</span>
+            <span class="metric benchmark">AAI 44.3</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#13</span>
+          <img class="vendor-logo" src="assets/vendor-logos/deepseek-text.svg" alt="DeepSeek">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">DeepSeek V3.2</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>685B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 76.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank top-rank">#6</span>
+          <img class="vendor-logo" src="assets/vendor-logos/zai-text.svg" alt="Z.ai">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">GLM 5.2</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>753B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 90.0</span>
+            <span class="metric benchmark">AAI 51.1</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#12</span>
+          <img class="vendor-logo" src="assets/vendor-logos/zai-text.svg" alt="Z.ai">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">GLM 5.1</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>754B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 77.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#34</span>
+          <img class="vendor-logo" src="assets/vendor-logos/zai-text.svg" alt="Z.ai">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">GLM 5</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>754B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 42.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#46</span>
+          <img class="vendor-logo" src="assets/vendor-logos/zai-text.svg" alt="Z.ai">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">GLM 4.7</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>358B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 27.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#19</span>
+          <img class="vendor-logo" src="assets/vendor-logos/xiaomimimo-text.svg" alt="Xiaomi">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">MiMo-V2.5-Pro</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>1.02T params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 62.7</span>
+            <span class="metric benchmark">AAI 42.2</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-custom">
+        <div class="card-top">
+          <span class="rank">#31</span>
+          <img class="vendor-logo" src="assets/vendor-logos/tencent-text.svg" alt="Tencent">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">HY 3 Preview</div>
+        <div class="card-meta">
+          <span>OTHER</span>
+          <span>299B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 48.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-custom">
+        <div class="card-top">
+          <span class="rank">#38</span>
+          <img class="vendor-logo" src="assets/vendor-logos/minimax-text.svg" alt="MiniMax">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">MiniMax M2.7</div>
+        <div class="card-meta">
+          <span>OTHER</span>
+          <span>229B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 36.3</span>
+            
+          </div>
+        </div>
+      </article>
+    </div>
+      </section>
+    
+      <section class="domain-panel" style="--accent:#55c99a">
+        <div class="domain-heading">
+          <h2>Coding &amp; Agentic</h2>
+          <span>8 models</span>
+          <span class="mix">4 open / 4 API</span>
+        </div>
+        <div class="model-grid">
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank top-rank">#5</span>
+          <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Claude Sonnet 4.6</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 90.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#35</span>
+          <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Claude Sonnet 4.5</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 42.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-custom">
+        <div class="card-top">
+          <span class="rank">#23</span>
+          <img class="vendor-logo" src="assets/vendor-logos/kimi-text.svg" alt="MoonshotAI">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Kimi K2.7 Code</div>
+        <div class="card-meta">
+          <span>OTHER</span>
+          <span>1.06T params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 57.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-custom">
+        <div class="card-top">
+          <span class="rank">#27</span>
+          <img class="vendor-logo" src="assets/vendor-logos/kimi-text.svg" alt="MoonshotAI">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Kimi K2.6</div>
+        <div class="card-meta">
+          <span>OTHER</span>
+          <span>1.06T params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 51.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-custom">
+        <div class="card-top">
+          <span class="rank">#41</span>
+          <img class="vendor-logo" src="assets/vendor-logos/kimi-text.svg" alt="MoonshotAI">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Kimi K2.5</div>
+        <div class="card-meta">
+          <span>OTHER</span>
+          <span>1.06T params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 33.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#36</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">GPT-5.3-Codex</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 40.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#37</span>
+          <img class="vendor-logo" src="assets/vendor-logos/poolside-text.svg" alt="Poolside">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Laguna M.1</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"></div>
+          <div class="metrics">
+            <span class="metric">USE 40.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#43</span>
+          <span class="vendor-fallback">Nex AGI</span>
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Nex-N2-Pro</div>
+        <div class="card-meta">
+          <span>APACHE 2.0</span>
+          <span>397B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 30.7</span>
+            
+          </div>
+        </div>
+      </article>
+    </div>
+      </section>
+    
+      <section class="domain-panel" style="--accent:#a98bea">
+        <div class="domain-heading">
+          <h2>Multimodal &amp; Realtime</h2>
+          <span>10 models</span>
+          <span class="mix">5 open / 5 API</span>
+        </div>
+        <div class="model-grid">
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank top-rank">#7</span>
+          <img class="vendor-logo" src="assets/vendor-logos/stepfun-text.svg" alt="StepFun">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Step 3.7 Flash</div>
+        <div class="card-meta">
+          <span>APACHE 2.0</span>
+          <span>201B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 86.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-custom">
+        <div class="card-top">
+          <span class="rank top-rank">#9</span>
+          <img class="vendor-logo" src="assets/vendor-logos/minimax-text.svg" alt="MiniMax">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">MiniMax M3</div>
+        <div class="card-meta">
+          <span>OTHER</span>
+          <span>427B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 83.3</span>
+            <span class="metric benchmark">AAI 44.4</span>
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#15</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Gemini 3 Flash Preview</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 73.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#16</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Gemini 3.5 Flash</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 69.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#21</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Gemini 2.5 Flash</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 59.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#42</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Gemma 4 26B A4B</div>
+        <div class="card-meta">
+          <span>APACHE 2.0</span>
+          <span>26.5B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">VIDEO</span></div>
+          <div class="metrics">
+            <span class="metric">USE 32.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#44</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Gemma 4 31B</div>
+        <div class="card-meta">
+          <span>APACHE 2.0</span>
+          <span>32.7B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">VIDEO</span></div>
+          <div class="metrics">
+            <span class="metric">USE 28.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#17</span>
+          <img class="vendor-logo" src="assets/vendor-logos/xiaomimimo-text.svg" alt="Xiaomi">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">MiMo-V2.5</div>
+        <div class="card-meta">
+          <span>MIT</span>
+          <span>311B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">VIDEO</span></div>
+          <div class="metrics">
+            <span class="metric">USE 67.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#30</span>
+          <img class="vendor-logo" src="assets/vendor-logos/qwen-text.svg" alt="Qwen">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Qwen3.7 Plus</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 48.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#48</span>
+          <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Claude Opus 4.5</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 26.0</span>
+            
+          </div>
+        </div>
+      </article>
+    </div>
+      </section>
+    
+      <section class="domain-panel" style="--accent:#f0ad5b">
+        <div class="domain-heading">
+          <h2>Efficient, Edge &amp; Specialized</h2>
+          <span>12 models</span>
+          <span class="mix">5 open / 7 API</span>
+        </div>
+        <div class="model-grid">
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank top-rank">#10</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Gemini 2.5 Flash Lite</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">VIDEO</span></div>
+          <div class="metrics">
+            <span class="metric">USE 80.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#20</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Gemini 3.1 Flash Lite</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">VIDEO</span></div>
+          <div class="metrics">
+            <span class="metric">USE 60.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#29</span>
+          <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Gemini 3.1 Flash Lite Preview</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">VIDEO</span></div>
+          <div class="metrics">
+            <span class="metric">USE 49.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#18</span>
+          <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">Claude Haiku 4.5</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 67.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#24</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">GPT-5.4 Mini</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">CODE</span><span class="tag">VISION</span></div>
+          <div class="metrics">
+            <span class="metric">USE 56.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#28</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">GPT-4o-mini</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">VISION</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 50.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#39</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">gpt-oss-120b</div>
+        <div class="card-meta">
+          <span>APACHE 2.0</span>
+          <span>120B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 36.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card api-only">
+        <div class="card-top">
+          <span class="rank">#47</span>
+          <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
+          <span class="access">API</span>
+        </div>
+        <div class="model-name">GPT-5 Mini</div>
+        <div class="card-meta">
+          <span>API-only</span>
+          <span>Params undisclosed</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">VISION</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 26.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-custom">
+        <div class="card-top">
+          <span class="rank">#40</span>
+          <img class="vendor-logo" src="assets/vendor-logos/nvidia-text.svg" alt="NVIDIA">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Nemotron 3 Super</div>
+        <div class="card-meta">
+          <span>OTHER</span>
+          <span>124B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">REASON</span><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 34.7</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#45</span>
+          <img class="vendor-logo" src="assets/vendor-logos/mistral-text.svg" alt="Mistral">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Mistral Nemo</div>
+        <div class="card-meta">
+          <span>APACHE 2.0</span>
+          <span>12.2B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 28.0</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#49</span>
+          <img class="vendor-logo" src="assets/vendor-logos/qwen-text.svg" alt="Qwen">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Qwen3 Embedding 8B</div>
+        <div class="card-meta">
+          <span>APACHE 2.0</span>
+          <span>7.57B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"></div>
+          <div class="metrics">
+            <span class="metric">USE 23.3</span>
+            
+          </div>
+        </div>
+      </article>
+    
+      <article class="model-card open-osi">
+        <div class="card-top">
+          <span class="rank">#50</span>
+          <img class="vendor-logo" src="assets/vendor-logos/qwen-text.svg" alt="Qwen">
+          <span class="access">OPEN</span>
+        </div>
+        <div class="model-name">Qwen3 235B A22B</div>
+        <div class="card-meta">
+          <span>APACHE 2.0</span>
+          <span>235B params</span>
+        </div>
+        <div class="card-bottom">
+          <div class="tags"><span class="tag">TOOLS</span></div>
+          <div class="metrics">
+            <span class="metric">USE 22.7</span>
+            
+          </div>
+        </div>
+      </article>
+    </div>
+      </section>
+    
+      <section class="domain-panel benchmark-panel" style="--accent:#55c8c5">
+        <div class="domain-heading">
+          <h2>Benchmark Lens</h2>
+          <span>Artificial Analysis Intelligence Index</span>
+        </div>
+        <div class="benchmark-list">
+          
+            <div class="benchmark-row">
+              <span class="benchmark-order">1</span>
+              <div class="benchmark-model">
+                <strong>Claude Fable 5</strong>
+                <span>Anthropic &middot; Usage #25</span>
+              </div>
+              <span class="benchmark-access ">API</span>
+              <strong class="benchmark-score">59.9</strong>
+            </div>
+            
+            <div class="benchmark-row">
+              <span class="benchmark-order">2</span>
+              <div class="benchmark-model">
+                <strong>Claude Opus 4.8</strong>
+                <span>Anthropic &middot; Usage #3</span>
+              </div>
+              <span class="benchmark-access ">API</span>
+              <strong class="benchmark-score">55.7</strong>
+            </div>
+            
+            <div class="benchmark-row">
+              <span class="benchmark-order">3</span>
+              <div class="benchmark-model">
+                <strong>GLM 5.2</strong>
+                <span>Z.ai &middot; Usage #6</span>
+              </div>
+              <span class="benchmark-access open">OPEN</span>
+              <strong class="benchmark-score">51.1</strong>
+            </div>
+            
+            <div class="benchmark-row">
+              <span class="benchmark-order">4</span>
+              <div class="benchmark-model">
+                <strong>Qwen3.7 Max</strong>
+                <span>Qwen &middot; Usage #26</span>
+              </div>
+              <span class="benchmark-access ">API</span>
+              <strong class="benchmark-score">46.0</strong>
+            </div>
+            
+            <div class="benchmark-row">
+              <span class="benchmark-order">5</span>
+              <div class="benchmark-model">
+                <strong>MiniMax M3</strong>
+                <span>MiniMax &middot; Usage #9</span>
+              </div>
+              <span class="benchmark-access open">OPEN</span>
+              <strong class="benchmark-score">44.4</strong>
+            </div>
+            
+            <div class="benchmark-row">
+              <span class="benchmark-order">6</span>
+              <div class="benchmark-model">
+                <strong>DeepSeek V4 Pro</strong>
+                <span>DeepSeek &middot; Usage #2</span>
+              </div>
+              <span class="benchmark-access open">OPEN</span>
+              <strong class="benchmark-score">44.3</strong>
+            </div>
+            
+            <div class="benchmark-row">
+              <span class="benchmark-order">7</span>
+              <div class="benchmark-model">
+                <strong>MiMo-V2.5-Pro</strong>
+                <span>Xiaomi &middot; Usage #19</span>
+              </div>
+              <span class="benchmark-access open">OPEN</span>
+              <strong class="benchmark-score">42.2</strong>
+            </div>
+            
+            <div class="benchmark-row">
+              <span class="benchmark-order">8</span>
+              <div class="benchmark-model">
+                <strong>DeepSeek V4 Flash</strong>
+                <span>DeepSeek &middot; Usage #1</span>
+              </div>
+              <span class="benchmark-access open">OPEN</span>
+              <strong class="benchmark-score">40.3</strong>
+            </div>
+            
+        </div>
+        <div class="benchmark-note">
+          <strong>USE is adoption. AAI is evaluated capability.</strong>
+          <span>Only models visible in the public AAI leaderboard snapshot receive a badge; missing does not mean zero.</span>
+        </div>
+      </section>
+    
+    </section>
+
+    <footer>
+      <div>
+        Usage score: 50% OpenRouter monthly percentile + 50% ZenMux monthly percentile.
+        AAI: Artificial Analysis Intelligence Index where publicly matched.
+      </div>
+      <div class="legend">
+        <span class="legend-item"><i class="swatch osi"></i> Open weights + OSI license</span>
+        <span class="legend-item"><i class="swatch custom"></i> Open weights + custom license</span>
+        <span class="legend-item"><i class="swatch"></i> API-only / no public weights</span>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-07-28T18:25:44.976207+00:00",
+  "source": "outputs/awesome-agentic-landscape-260729/data/editorial_shortlist.csv",
+  "html": "outputs/awesome-agentic-landscape-260729/landscape/awesome_agentic_landscape_2026.html",
+  "projects": 26,
+  "tier_counts": {
+    "core": 16,
+    "watch": 8,
+    "benchmark": 2
+  },
+  "stage_counts": {
+    "discover": 5,
+    "reuse": 7,
+    "install": 7,
+    "operate": 7
+  },
+  "avatar_status": {
+    "Shubhamsaboo": "cached",
+    "affaan-m": "cached",
+    "e2b-dev": "cached",
+    "ComposioHQ": "cached",
+    "VoltAgent": "cached",
+    "addyosmani": "cached",
+    "anthropics": "cached",
+    "garrytan": "cached",
+    "composio-community": "cached",
+    "enescingoz": "cached",
+    "freestylefly": "cached",
+    "obra": "cached",
+    "openai": "cached",
+    "rohitg00": "cached",
+    "github": "cached",
+    "google": "cached",
+    "hesreallyhim": "cached",
+    "punkpeye": "cached",
+    "shanraisshan": "cached",
+    "sindresorhus": "cached",
+    "wshobson": "cached",
+    "sickn33": "cached",
+    "vercel-labs": "cached"
+  },
+  "metric_windows": {
+    "watch_events": [
+      "2026-05-01",
+      "2026-07-29"
+    ],
+    "participants": [
+      "2026-05-01",
+      "2026-07-29"
+    ],
+    "openrank": [
+      "2026-04-01",
+      "2026-07-01"
+    ]
+  },
+  "caveats": [
+    "Visible WatchEvents are not exact GitHub star growth.",
+    "Recent OpenRank is coverage- and backfill-sensitive.",
+    "Stage placement is editorial and expresses consumption form, not a maturity score."
+  ]
+}
