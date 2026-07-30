@@ -39,8 +39,8 @@ import {
   materialChecks,
   projectsForLicenseLayer,
 } from "./license-research";
-import LandscapeExplorer from "../components/landscape-explorer";
-import LandscapeLogo from "../components/landscape-logo";
+import LandscapeExplorer from "@/app/components/landscape-explorer";
+import LandscapeLogo from "@/app/components/landscape-logo";
 
 type StackKey = "models" | "embodied" | "infra" | "industry";
 type CommunityKey = "discover" | "propose" | "review" | "ship" | "trust";

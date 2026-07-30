@@ -1,13 +1,19 @@
 import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { getLandscapeProjects } from "@/lib/landscape-data";
 
-import LandscapeLogo from "./components/landscape-logo";
-import LandscapeExplorer from "./components/landscape-explorer";
-import styles from "./page.module.css";
+import LandscapeLogo from "../components/landscape-logo";
+import LandscapeExplorer from "../components/landscape-explorer";
+import styles from "../page.module.css";
+import { getDictionary, hasLocale } from "./dictionaries";
 
-export default function Home() {
+export default async function Home({ params }: PageProps<"/[lang]">) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+
+  const dict = await getDictionary(lang);
   const projects = getLandscapeProjects();
 
   return (
@@ -17,25 +23,25 @@ export default function Home() {
           <a
             className={styles.brand}
             href="#landscape"
-            aria-label="Agentic AI Open Source Landscape home"
+            aria-label={dict.header.homeLabel}
           >
             <LandscapeLogo className={styles.brandMark} />
-            <strong>Agentic AI Landscape</strong>
+            <strong>{dict.header.brand}</strong>
           </a>
-          <nav className={styles.headerNav} aria-label="Primary navigation">
-            <a href="#agent-infra">Agent Infra</a>
-            <a href="#model-infra">Model Infra</a>
-            <a href="#signals">Signals</a>
-            <Link className={styles.keynoteLink} href="/keynote">
-              <span>08.07</span>
-              <strong>Keynote</strong>
+          <nav className={styles.headerNav} aria-label={dict.header.navLabel}>
+            <a href="#agent-infra">{dict.header.agentInfra}</a>
+            <a href="#model-infra">{dict.header.modelInfra}</a>
+            <a href="#signals">{dict.header.signals}</a>
+            <Link className={styles.keynoteLink} href={`/${lang}/keynote`}>
+              <span>{dict.header.keynoteDate}</span>
+              <strong>{dict.header.keynote}</strong>
             </Link>
             <a
               href="https://github.com/antgroup/agentic-ai-landscape"
               target="_blank"
               rel="noreferrer"
             >
-              GitHub
+              {dict.header.github}
               <ArrowUpRightIcon aria-hidden="true" />
             </a>
           </nav>
@@ -46,21 +52,18 @@ export default function Home() {
         <footer className={styles.footer}>
           <div>
             <LandscapeLogo className={styles.footerMark} />
-            <p>
-              A living map of the open-source Agentic AI ecosystem — Agent
-              Infra and Model Infra, viewed together.
-            </p>
+            <p>{dict.footer.tagline}</p>
           </div>
           <p>
-            Data from{" "}
+            {dict.footer.dataFrom}{" "}
             <a
               href="https://github.com/antgroup/agentic-ai-landscape"
               target="_blank"
               rel="noreferrer"
             >
-              antgroup/agentic-ai-landscape
+              {dict.footer.dataSource}
             </a>
-            . Multi-label categories overlap by design.
+            {dict.footer.dataNote}
           </p>
         </footer>
       </div>
