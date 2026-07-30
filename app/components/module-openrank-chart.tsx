@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import type { LandscapeProject } from "@/lib/landscape-types";
+import { projectLogoUrl } from "@/lib/project-logo";
 
 import styles from "../page.module.css";
 
@@ -199,7 +200,9 @@ export function ModuleOpenRankChart({
                       <span className={styles.moduleTrendIdentity}>
                         <Avatar className={styles.moduleTrendLogo}>
                           <AvatarImage
-                            src={`https://github.com/${project.owner}.png?size=80`}
+                            src={projectLogoUrl(project.owner)}
+                            decoding="async"
+                            loading="lazy"
                             alt=""
                           />
                           <AvatarFallback>

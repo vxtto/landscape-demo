@@ -20,6 +20,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import { projectLogoUrl } from "@/lib/project-logo";
 
 import styles from "../page.module.css";
 
@@ -97,7 +98,7 @@ async function withLocalProjectLogos<T>(
     images.map(async (image) => {
       const owner = image.dataset.exportLogoOwner;
       if (!owner) return;
-      image.src = `/api/project-logo/${encodeURIComponent(owner)}`;
+      image.src = projectLogoUrl(owner);
       await waitForImage(image);
     }),
   );

@@ -1,7 +1,6 @@
 ---
 name: frontend-design
 description: Guidance for distinctive, intentional visual design when building new UI or reshaping an existing one. Helps with aesthetic direction, typography, and making choices that don't read as templated defaults.
-license: Complete terms in LICENSE.txt
 ---
 
 # Frontend Design
@@ -25,6 +24,21 @@ Leverage motion deliberately. Think about where and if animation can serve the s
 Match complexity to the vision. Maximalist directions need elaborate execution; minimal directions need precision in spacing, type, and detail. Elegance is executing the chosen vision well.
 
 Consider written content carefully. Often a design brief may not contain real content, and it's up to you to come up with copy. Copy can make a design feel as templated as the design itself. See the below section on writing for more guidance.
+
+## Remove AI-shaped rhetoric and hierarchy
+
+Write the claim directly. Avoid using a theatrical reversal to make ordinary information sound profound. During the final copy pass, search for patterns such as “不是……而是……”, “不只……更……”, “越……越……”, and “先……再……最后……”. Keep one only when it expresses a necessary factual distinction or a real sequence. Otherwise, replace it with a concrete subject, verb, and consequence.
+
+Do not default to a large declarative heading followed by a smaller gray explanation. That hierarchy often adds drama without adding structure. Put related facts beside each other, use a labeled comparison, annotate the relevant object, or write one paragraph at a consistent reading size. A heading earns its scale by navigating the page; supporting text earns its place by answering a distinct question.
+
+Avoid repeating “eyebrow + large title + tiny note” inside every card or section. Cards should encode comparable fields or support an action. For diagrams and presentations, prefer relationships that can be read from position, connectors, labels, and aligned rows. If removing the small explanatory sentence makes the component unclear, redesign the component instead of shrinking the sentence.
+
+Before shipping, inspect both the words and the screenshot:
+
+- scan the visible copy for symmetrical slogans, forced contrasts, and generic concluding sentences;
+- check whether the same information could be read more plainly as a table, legend, route, or annotation;
+- remove one level of typographic hierarchy when the page relies on repeated large-title/small-note stacks;
+- read the result aloud and rewrite any sentence that sounds written to impress rather than to inform.
 
 ## Process: brainstorm, explore, plan, critique, build, critique again
 

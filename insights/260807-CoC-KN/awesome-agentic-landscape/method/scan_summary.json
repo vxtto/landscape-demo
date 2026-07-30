@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-07-28T16:46:35.157193+00:00",
+  "github_snapshot_date": "2026-07-29",
+  "event_window": [
+    "2026-05-01",
+    "2026-07-29"
+  ],
+  "openrank_window": [
+    "2026-04-01",
+    "2026-07-01"
+  ],
+  "search_queries": [
+    "awesome agent in:name,description,readme stars:>100 pushed:>=2026-04-01",
+    "awesome coding-agent in:name,description,readme stars:>50 pushed:>=2026-04-01",
+    "awesome claude-code in:name,description,readme stars:>50 pushed:>=2026-04-01",
+    "awesome codex in:name,description,readme stars:>50 pushed:>=2026-04-01",
+    "\"agent skills\" in:name,description,readme stars:>100 pushed:>=2026-04-01",
+    "awesome mcp in:name,description,readme stars:>100 pushed:>=2026-04-01",
+    "awesome prompts agent in:name,description,readme stars:>100 pushed:>=2026-04-01",
+    "awesome ai-agents in:name,description,readme stars:>100 pushed:>=2026-04-01",
+    "awesome \"best practices\" ai in:name,description,readme stars:>50 pushed:>=2026-04-01",
+    "\"system prompts\" \"coding agent\" in:name,description,readme stars:>100 pushed:>=2026-04-01"
+  ],
+  "candidate_count": 460,
+  "shortlist_count": 24,
+  "recommendation_counts": {
+    "core_candidate": 65,
+    "watch_candidate": 128,
+    "exclude_or_watch": 267
+  },
+  "quality_notes": [
+    "WatchEvent counts are visible OpenDigger events, not exact GitHub star growth.",
+    "2026 OpenRank is coverage- and backfill-sensitive; the scan uses it as a ranking signal only.",
+    "Distinct participants count issue, PR, comment, and review actors in the event window.",
+    "README-derived curation features are heuristics and require editorial review."
+  ]
+}

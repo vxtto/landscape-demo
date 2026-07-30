@@ -38,6 +38,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { LandscapeProject } from "@/lib/landscape-types";
+import { projectLogoUrl } from "@/lib/project-logo";
 
 import styles from "../page.module.css";
 
@@ -244,7 +245,8 @@ export function ProjectInsightDialog({
           <div className={styles.insightIdentity}>
             <Avatar className={styles.insightProjectAvatar}>
               <AvatarImage
-                src={`https://github.com/${project.owner}.png?size=160`}
+                src={projectLogoUrl(project.owner)}
+                decoding="async"
                 alt={`${project.name} logo`}
               />
               <AvatarFallback>{initials(project.name)}</AvatarFallback>
@@ -327,10 +329,11 @@ export function ProjectInsightDialog({
               >
                 <Image
                   className={styles.neighborLogo}
-                  src={`https://github.com/${neighbor.owner}.png?size=48`}
+                  src={projectLogoUrl(neighbor.owner)}
                   alt=""
                   width={20}
                   height={20}
+                  loading="lazy"
                   unoptimized
                 />
                 {neighbor.name}

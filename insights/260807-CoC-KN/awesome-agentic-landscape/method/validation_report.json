@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-07-28T17:01:03.029709+00:00",
+  "overall_assessment": "ready_with_caveats",
+  "candidate_count": 460,
+  "shortlist_count": 26,
+  "checks": [
+    {
+      "check": "candidate repository names are unique",
+      "passed": true,
+      "evidence": "460 rows, 460 distinct names"
+    },
+    {
+      "check": "candidate GitHub repository IDs are unique",
+      "passed": true,
+      "evidence": "460 rows, 460 distinct IDs"
+    },
+    {
+      "check": "shortlist repository names are unique",
+      "passed": true,
+      "evidence": "26 rows, 26 distinct names"
+    },
+    {
+      "check": "shortlist is a subset of the candidate pool",
+      "passed": true,
+      "evidence": "26/26 matched"
+    },
+    {
+      "check": "editorial tier counts match the intended first pass",
+      "passed": true,
+      "evidence": "{\"core\": 16, \"watch\": 8, \"benchmark\": 2}"
+    },
+    {
+      "check": "shortlist metrics are nonnegative",
+      "passed": true,
+      "evidence": "no negative values"
+    },
+    {
+      "check": "three-month OpenRank equals the monthly component sum",
+      "passed": true,
+      "evidence": "all rows reconcile"
+    },
+    {
+      "check": "activity month counts are within the three-month window",
+      "passed": true,
+      "evidence": "all rows are between 0 and 3"
+    },
+    {
+      "check": "repo-ID aggregation preserves renamed repository history",
+      "passed": true,
+      "evidence": "sickn33/agentic-awesome-skills has 432 visible WatchEvents after repo-ID aggregation; name-only aggregation returned 6 during QA"
+    }
+  ],
+  "issues": [],
+  "required_caveats": [
+    "Visible WatchEvents are a directional OpenDigger signal, not exact GitHub star growth.",
+    "April-June 2026 OpenRank is coverage- and backfill-sensitive.",
+    "The shortlist is an editorial seed set, not a complete census of awesome repositories."
+  ]
+}

@@ -101,3 +101,16 @@ The prototype uses six editorial domains, monthly usage rank, weight access,
 license, parameter count, capability tags, and public Artificial Analysis
 Intelligence Index matches. Vendor marks come from LobeHub Icons under its MIT
 license and are stored locally for offline presentation.
+
+The interactive version keeps the presentation overview readable while adding:
+
+- open-weight, API-only, Top 10, vendor, search, and public-AAI filters;
+- keyboard-accessible model cards and benchmark rows;
+- a model evidence passport that separates adoption, access, and evaluated
+  capability;
+- detailed OpenRouter, ZenMux, Hugging Face, license, parameter, context, and
+  pricing fields, with metric definitions and source links.
+
+The renderer reads the checked-in Artificial Analysis snapshot by default so a
+visual rebuild does not silently change the benchmark window. Set
+`REFRESH_AAI=1` only when intentionally refreshing that public snapshot.

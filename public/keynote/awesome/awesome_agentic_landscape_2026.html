@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Awesome x Agentic AI Landscape 2026</title>
   <style>
+    @font-face {
+      font-family: "Noto Sans SC Landscape";
+      src: url("/fonts/NotoSansSC-Landscape.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+    }
     * { box-sizing: border-box; }
     :root { --canvas-scale: 1; }
     html, body {
@@ -14,7 +21,7 @@
       overflow: hidden;
       background: #eceef1;
       color: #111318;
-      font-family: Inter, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+      font-family: "Noto Sans SC Landscape", "Noto Sans SC", "Source Han Sans SC", sans-serif;
     }
     body {
       position: relative;
@@ -529,6 +536,7 @@
       font-weight: 850;
     }
   </style>
+  <link rel="stylesheet" href="awesome_interactive.css">
 </head>
 <body>
   <main class="canvas">
@@ -552,8 +560,34 @@
       <div class="summary-item"><strong>16 CORE · 8 WATCH</strong><span>plus 2 historical baselines</span></div>
       <div class="summary-item"><strong>4 FORMS</strong><span>discover · reuse · install · operate</span></div>
     </section>
+    <section class="explore-toolbar" aria-label="Explore awesome projects">
+      <label class="project-search" for="project-search">
+        <span>SEARCH</span>
+        <input id="project-search" type="search" placeholder="Project, owner, or purpose…" autocomplete="off">
+      </label>
+      <div class="tier-filters" aria-label="Editorial tier">
+        <button class="tier-filter is-active" type="button" data-tier-filter="all" aria-pressed="true">All · 26</button>
+        <button class="tier-filter" type="button" data-tier-filter="CORE" aria-pressed="false">Core · 16</button>
+        <button class="tier-filter" type="button" data-tier-filter="WATCH" aria-pressed="false">Watch · 8</button>
+        <button class="tier-filter" type="button" data-tier-filter="BASELINE" aria-pressed="false">Baseline · 2</button>
+      </div>
+      <button class="direct-filter" id="direct-filter" type="button" aria-pressed="false">
+        <span>AGENT-READY</span>
+        <strong>Direct assets</strong>
+      </button>
+      <label class="owner-filter" for="owner-filter">
+        <span>OWNER</span>
+        <select id="owner-filter">
+          <option value="all">All owners</option>
+        </select>
+      </label>
+      <div class="explore-status">
+        <strong id="result-count">26 projects shown</strong>
+        <button id="reset-filters" type="button">Reset filters</button>
+      </div>
+    </section>
     <section class="stages" aria-label="Awesome repository evolution">
-      
+
       <section
         class="stage stage-discover"
         data-stage="discover"
@@ -569,7 +603,7 @@
           <span class="stage-count">5<small>点击放大</small></span>
         </button>
         <div class="project-list">
-          
+
       <button
         class="project-card tier-benchmark"
         type="button"
@@ -596,7 +630,7 @@
         <div class="project-note">经典的 awesome 元目录，按主题索引数百份精选清单。</div>
         <div class="project-use">人先找到领域入口，再进入子清单挑工具；它代表 awesome 最早的使用方式。</div>
       </button>
-    
+
       <button
         class="project-card tier-benchmark"
         type="button"
@@ -623,7 +657,7 @@
         <div class="project-note">收集自主 agent、框架、平台和研究资源。</div>
         <div class="project-use">适合快速了解 agent 生态有哪些产品和技术路线，主要仍由人浏览和判断。</div>
       </button>
-    
+
       <button
         class="project-card tier-watch"
         type="button"
@@ -650,7 +684,7 @@
         <div class="project-note">收集可运行的 AI agent、RAG 和 LLM app 示例。</div>
         <div class="project-use">开发者可以从完整 demo 里拆实现方式，比单纯的链接目录更接近可复用代码。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -677,7 +711,7 @@
         <div class="project-note">整理 Claude Code 的 skills、agents、plugins 与开发工具。</div>
         <div class="project-use">它像一张 Claude Code 生态地图，帮助人找到可以加入工作流的组件。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -704,10 +738,10 @@
         <div class="project-note">按能力整理 MCP servers，覆盖搜索、数据库、浏览器和文件系统。</div>
         <div class="project-use">清单里的条目就是 agent 的工具接口，挑选后即可接入支持 MCP 的客户端。</div>
       </button>
-    
+
         </div>
       </section>
-    
+
       <section
         class="stage stage-reuse"
         data-stage="reuse"
@@ -723,7 +757,7 @@
           <span class="stage-count">7<small>点击放大</small></span>
         </button>
         <div class="project-list">
-          
+
       <button
         class="project-card tier-core"
         type="button"
@@ -750,7 +784,7 @@
         <div class="project-note">社区维护的 Copilot instructions、agents、skills 和配置合集。</div>
         <div class="project-use">条目通常能直接放进仓库，让 Copilot 按团队约定完成具体任务。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -777,7 +811,7 @@
         <div class="project-note">精选 Claude Skills、工具和学习资源。</div>
         <div class="project-use">把通用能力整理成 skill 形态，适合复制或改造成自己的 Claude 工作流。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -804,7 +838,7 @@
         <div class="project-note">面向 Codex CLI 与 API 的实用 skills 和自动化工作流。</div>
         <div class="project-use">下载到本地后，Codex 可以直接读取其中的说明并执行。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -831,7 +865,7 @@
         <div class="project-note">覆盖 Claude Code、Codex、Gemini CLI 和 Cursor 的大型 skill 目录。</div>
         <div class="project-use">同一份能力可以在不同 coding agent 之间查找和迁移。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -858,7 +892,7 @@
         <div class="project-note">把品牌网站的颜色、字体、组件和禁区整理成 DESIGN.md。</div>
         <div class="project-use">把文件放进项目，coding agent 就能按这套设计规则生成 UI。</div>
       </button>
-    
+
       <button
         class="project-card tier-watch"
         type="button"
@@ -885,7 +919,7 @@
         <div class="project-note">把 GPT-Image 2 案例、工业模板和 style library 放在一起。</div>
         <div class="project-use">提示词既供人参考，也被提炼成可以安装和复用的 skill。</div>
       </button>
-    
+
       <button
         class="project-card tier-watch"
         type="button"
@@ -912,10 +946,10 @@
         <div class="project-note">整理可直接导入的 n8n 自动化工作流模板。</div>
         <div class="project-use">列表里的条目本身就是可运行流程，导入后即可修改和执行。</div>
       </button>
-    
+
         </div>
       </section>
-    
+
       <section
         class="stage stage-install"
         data-stage="install"
@@ -931,7 +965,7 @@
           <span class="stage-count">7<small>点击放大</small></span>
         </button>
         <div class="project-list">
-          
+
       <button
         class="project-card tier-core"
         type="button"
@@ -958,7 +992,7 @@
         <div class="project-note">Anthropic 公开的 Agent Skills 范例库。</div>
         <div class="project-use">每个目录把说明、脚本和资源放在一起，agent 可以按约定加载。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -985,7 +1019,7 @@
         <div class="project-note">面向 Codex 的 Skills catalog。</div>
         <div class="project-use">把常用任务写成可发现的指令包，供 Codex 在需要时直接使用。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -1012,7 +1046,7 @@
         <div class="project-note">开放的 agent skill 搜索和安装工具。</div>
         <div class="project-use">npx skills 可以搜索、安装或运行 skill，目录与安装器连在了一起。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -1039,7 +1073,7 @@
         <div class="project-note">面向生产工程的 coding-agent skills。</div>
         <div class="project-use">它把资深工程实践写成 agent 可以调用的工作步骤。</div>
       </button>
-    
+
       <button
         class="project-card tier-watch"
         type="button"
@@ -1066,7 +1100,7 @@
         <div class="project-note">面向 Google 产品和技术的 Agent Skills。</div>
         <div class="project-use">把官方产品知识整理成 agent 能够读取和执行的能力包。</div>
       </button>
-    
+
       <button
         class="project-card tier-watch"
         type="button"
@@ -1093,7 +1127,7 @@
         <div class="project-note">Anthropic 维护的 Claude Code 官方插件目录。</div>
         <div class="project-use">插件可以携带命令、agents 和 skills，安装后直接进入 Claude Code。</div>
       </button>
-    
+
       <button
         class="project-card tier-watch"
         type="button"
@@ -1120,10 +1154,10 @@
         <div class="project-note">面向多种 coding agent 的插件与能力市场。</div>
         <div class="project-use">同一套能力可以在 Claude Code、Codex、Cursor 等工具之间复用。</div>
       </button>
-    
+
         </div>
       </section>
-    
+
       <section
         class="stage stage-operate"
         data-stage="operate"
@@ -1139,7 +1173,7 @@
           <span class="stage-count">7<small>点击放大</small></span>
         </button>
         <div class="project-list">
-          
+
       <button
         class="project-card tier-core"
         type="button"
@@ -1166,7 +1200,7 @@
         <div class="project-note">一套优化 agent harness 的系统，覆盖 skills、记忆和安全约定。</div>
         <div class="project-use">它关心的不是单次生成，而是如何让 coding agent 长期稳定地工作。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -1193,7 +1227,7 @@
         <div class="project-note">把需求澄清、写计划、TDD 和代码评审整理成自动触发的 skills。</div>
         <div class="project-use">仓库交付的是一套 coding agent 的工作纪律，而不是代码片段。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -1220,7 +1254,7 @@
         <div class="project-note">面向规格驱动开发的工具包。</div>
         <div class="project-use">先保存规格、计划和验收条件，再让 agent 开始写代码。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -1247,7 +1281,7 @@
         <div class="project-note">一套带有明确角色分工的 Claude Code 工作栈。</div>
         <div class="project-use">它把设计、工程管理和发布检查等工作拆成可调用的角色工具。</div>
       </button>
-    
+
       <button
         class="project-card tier-core"
         type="button"
@@ -1274,7 +1308,7 @@
         <div class="project-note">围绕 Claude Code 的 agentic engineering 实践库。</div>
         <div class="project-use">重点是如何组织项目上下文和工作流程，而不是只追求一次生成成功。</div>
       </button>
-    
+
       <button
         class="project-card tier-watch"
         type="button"
@@ -1301,7 +1335,7 @@
         <div class="project-note">面向 agent 的 skill 发现、选择和校验控制面。</div>
         <div class="project-use">它通过 CLI 与 MCP 暴露目录，让 agent 也参与挑选和组合 skills。</div>
       </button>
-    
+
       <button
         class="project-card tier-watch"
         type="button"
@@ -1328,10 +1362,10 @@
         <div class="project-note">大型 Claude Code 工具包，包含 agents、skills、commands、hooks 和规则。</div>
         <div class="project-use">它把原本分散的参考资料打包成一套可安装的完整工作栈。</div>
       </button>
-    
+
         </div>
       </section>
-    
+
     </section>
     <footer>
       <span>Signals: ★ current stars · W visible WatchEvents, May 1–Jul 28 · P distinct issue/PR participants · OR OpenRank sum, Apr–Jun 2026</span>
@@ -1342,86 +1376,77 @@
       </span>
     </footer>
   </main>
-  <dialog id="project-dialog" aria-labelledby="detail-title">
-    <div class="detail-panel">
-      <button class="detail-close" type="button" aria-label="关闭">×</button>
-      <div class="detail-tier"></div>
-      <h2 class="detail-title" id="detail-title"></h2>
-      <div class="detail-owner"></div>
-      <section class="detail-section">
-        <div class="detail-label">它做什么</div>
-        <p class="detail-copy detail-what"></p>
-      </section>
-      <section class="detail-section">
-        <div class="detail-label">怎么使用</div>
-        <p class="detail-copy detail-use"></p>
-      </section>
-      <div class="detail-metrics" aria-label="Project signals">
-        <div><strong class="metric-stars"></strong><span>current stars</span></div>
-        <div><strong class="metric-watch"></strong><span>visible WatchEvents · 3m</span></div>
-        <div><strong class="metric-participants"></strong><span>issue/PR participants · 3m</span></div>
-        <div><strong class="metric-openrank"></strong><span>OpenRank · Apr–Jun</span></div>
+  <div class="passport-backdrop" id="passport-backdrop" hidden></div>
+  <aside class="project-passport" id="project-passport" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="passport-title">
+    <button class="passport-close" id="passport-close" type="button" aria-label="Close project passport">CLOSE ×</button>
+    <header class="passport-header">
+      <div class="passport-avatar" id="passport-avatar"></div>
+      <p id="passport-owner"></p>
+      <h2 id="passport-title"></h2>
+      <div class="passport-badges">
+        <span id="passport-tier"></span>
+        <span id="passport-stage"></span>
+        <span id="passport-consumability"></span>
       </div>
-      <a class="detail-link" target="_blank" rel="noreferrer">打开 GitHub 仓库 ↗</a>
+    </header>
+    <p class="passport-thesis" id="passport-thesis"></p>
+    <section class="passport-copy-grid">
+      <article>
+        <span>WHAT IT IS</span>
+        <p id="passport-what"></p>
+      </article>
+      <article>
+        <span>HOW AN AGENT USES IT</span>
+        <p id="passport-use"></p>
+      </article>
+    </section>
+    <section class="passport-lanes" aria-label="Project interpretation">
+      <article class="form-lane">
+        <span>FORM</span>
+        <strong id="passport-form"></strong>
+        <small id="passport-form-label"></small>
+        <p id="passport-form-note"></p>
+      </article>
+      <article class="momentum-lane">
+        <span>MOMENTUM</span>
+        <strong id="passport-watch"></strong>
+        <small>visible WatchEvents · 3 months</small>
+        <p>Discovery signal only. WatchEvents are not exact GitHub star growth.</p>
+      </article>
+      <article class="collaboration-lane">
+        <span>COLLABORATION</span>
+        <strong id="passport-participants"></strong>
+        <small>issue/PR participants · 3 months</small>
+        <p id="passport-collaboration-note"></p>
+      </article>
+    </section>
+    <section class="passport-evidence" aria-label="Project signals">
+      <article><span>CURRENT STARS</span><strong id="passport-stars"></strong><p>GitHub snapshot; a scale signal, not a quality score.</p></article>
+      <article><span>OPENRANK</span><strong id="passport-openrank"></strong><p>Sum for Apr–Jun 2026; recent values may be coverage- and backfill-sensitive.</p></article>
+      <article><span>AWESOME VALUE</span><strong id="passport-value-score"></strong><p>Editorial screening score used to form this shortlist, not a universal benchmark.</p></article>
+    </section>
+    <section class="passport-specs">
+      <div><span>Category</span><strong id="passport-category"></strong></div>
+      <div><span>Language</span><strong id="passport-language"></strong></div>
+      <div><span>License</span><strong id="passport-license"></strong></div>
+      <div><span>Evidence</span><strong id="passport-evidence-grade"></strong></div>
+      <div><span>Observed activity</span><strong id="passport-activity"></strong></div>
+      <div><span>Snapshot date</span><strong id="passport-snapshot"></strong></div>
+    </section>
+    <details class="metric-glossary">
+      <summary>How to read these signals</summary>
+      <div>
+        <p><strong>CORE / WATCH / BASELINE</strong> is an editorial role. CORE anchors the argument, WATCH is promising but needs another window, and BASELINE shows the older human-browsed form.</p>
+        <p><strong>Direct / hybrid / indirect</strong> describes agent consumability: whether the repository already packages executable assets, mixes assets with human-oriented curation, or mainly serves human browsing.</p>
+        <p><strong>WatchEvents</strong> counts visible GitHub watch/star events in the observed window. Coverage limits mean it must not be presented as exact star growth.</p>
+        <p><strong>Participants</strong> counts distinct issue and pull-request participants. <strong>OpenRank</strong> summarizes network activity; neither is a quality verdict by itself.</p>
+      </div>
+    </details>
+    <div class="passport-links">
+      <a id="passport-github-link" target="_blank" rel="noreferrer">Open GitHub repository ↗</a>
     </div>
-  </dialog>
-  <script>
-    const canvas = document.querySelector(".canvas");
-    const stages = document.querySelector(".stages");
-    const resetView = document.querySelector(".reset-view");
-    const stageSections = [...document.querySelectorAll(".stage")];
-    const dialog = document.querySelector("#project-dialog");
-
-    function fitCanvas() {
-      const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-      document.documentElement.style.setProperty("--canvas-scale", String(scale));
-    }
-
-    function resetFocus() {
-      stages.classList.remove("is-focused");
-      stageSections.forEach((stage) => {
-        stage.classList.remove("is-focused");
-        stage.querySelector(".stage-heading").setAttribute("aria-pressed", "false");
-      });
-      resetView.classList.remove("is-visible");
-    }
-
-    stageSections.forEach((stage) => {
-      stage.querySelector(".stage-heading").addEventListener("click", () => {
-        const wasFocused = stage.classList.contains("is-focused");
-        resetFocus();
-        if (wasFocused) return;
-        stages.classList.add("is-focused");
-        stage.classList.add("is-focused");
-        stage.querySelector(".stage-heading").setAttribute("aria-pressed", "true");
-        resetView.classList.add("is-visible");
-      });
-    });
-    resetView.addEventListener("click", resetFocus);
-
-    document.querySelectorAll(".project-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        const data = card.dataset;
-        dialog.querySelector(".detail-tier").textContent = data.tier;
-        dialog.querySelector(".detail-title").textContent = data.repo;
-        dialog.querySelector(".detail-owner").textContent = data.owner;
-        dialog.querySelector(".detail-what").textContent = data.what;
-        dialog.querySelector(".detail-use").textContent = data.use;
-        dialog.querySelector(".metric-stars").textContent = `★ ${data.stars}`;
-        dialog.querySelector(".metric-watch").textContent = data.watch;
-        dialog.querySelector(".metric-participants").textContent = data.participants;
-        dialog.querySelector(".metric-openrank").textContent = data.openrank;
-        dialog.querySelector(".detail-link").href = data.url;
-        dialog.showModal();
-      });
-    });
-
-    dialog.querySelector(".detail-close").addEventListener("click", () => dialog.close());
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) dialog.close();
-    });
-    window.addEventListener("resize", fitCanvas);
-    fitCanvas();
-  </script>
+  </aside>
+  <script src="awesome_project_data.js"></script>
+  <script src="awesome_interactive.js"></script>
 </body>
 </html>

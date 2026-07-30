@@ -529,6 +529,7 @@
       font-weight: 850;
     }
   </style>
+  <link rel="stylesheet" href="awesome_interactive.css">
 </head>
 <body>
   <main class="canvas">
@@ -551,6 +552,32 @@
       <div class="summary-item"><strong>460</strong><span>active candidates scanned</span></div>
       <div class="summary-item"><strong>16 CORE · 8 WATCH</strong><span>plus 2 historical baselines</span></div>
       <div class="summary-item"><strong>4 FORMS</strong><span>discover · reuse · install · operate</span></div>
+    </section>
+    <section class="explore-toolbar" aria-label="Explore awesome projects">
+      <label class="project-search" for="project-search">
+        <span>SEARCH</span>
+        <input id="project-search" type="search" placeholder="Project, owner, or purpose…" autocomplete="off">
+      </label>
+      <div class="tier-filters" aria-label="Editorial tier">
+        <button class="tier-filter is-active" type="button" data-tier-filter="all" aria-pressed="true">All · 26</button>
+        <button class="tier-filter" type="button" data-tier-filter="CORE" aria-pressed="false">Core · 16</button>
+        <button class="tier-filter" type="button" data-tier-filter="WATCH" aria-pressed="false">Watch · 8</button>
+        <button class="tier-filter" type="button" data-tier-filter="BASELINE" aria-pressed="false">Baseline · 2</button>
+      </div>
+      <button class="direct-filter" id="direct-filter" type="button" aria-pressed="false">
+        <span>AGENT-READY</span>
+        <strong>Direct assets</strong>
+      </button>
+      <label class="owner-filter" for="owner-filter">
+        <span>OWNER</span>
+        <select id="owner-filter">
+          <option value="all">All owners</option>
+        </select>
+      </label>
+      <div class="explore-status">
+        <strong id="result-count">26 projects shown</strong>
+        <button id="reset-filters" type="button">Reset filters</button>
+      </div>
     </section>
     <section class="stages" aria-label="Awesome repository evolution">
 
@@ -1342,86 +1369,77 @@
       </span>
     </footer>
   </main>
-  <dialog id="project-dialog" aria-labelledby="detail-title">
-    <div class="detail-panel">
-      <button class="detail-close" type="button" aria-label="关闭">×</button>
-      <div class="detail-tier"></div>
-      <h2 class="detail-title" id="detail-title"></h2>
-      <div class="detail-owner"></div>
-      <section class="detail-section">
-        <div class="detail-label">它做什么</div>
-        <p class="detail-copy detail-what"></p>
-      </section>
-      <section class="detail-section">
-        <div class="detail-label">怎么使用</div>
-        <p class="detail-copy detail-use"></p>
-      </section>
-      <div class="detail-metrics" aria-label="Project signals">
-        <div><strong class="metric-stars"></strong><span>current stars</span></div>
-        <div><strong class="metric-watch"></strong><span>visible WatchEvents · 3m</span></div>
-        <div><strong class="metric-participants"></strong><span>issue/PR participants · 3m</span></div>
-        <div><strong class="metric-openrank"></strong><span>OpenRank · Apr–Jun</span></div>
+  <div class="passport-backdrop" id="passport-backdrop" hidden></div>
+  <aside class="project-passport" id="project-passport" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="passport-title">
+    <button class="passport-close" id="passport-close" type="button" aria-label="Close project passport">CLOSE ×</button>
+    <header class="passport-header">
+      <div class="passport-avatar" id="passport-avatar"></div>
+      <p id="passport-owner"></p>
+      <h2 id="passport-title"></h2>
+      <div class="passport-badges">
+        <span id="passport-tier"></span>
+        <span id="passport-stage"></span>
+        <span id="passport-consumability"></span>
       </div>
-      <a class="detail-link" target="_blank" rel="noreferrer">打开 GitHub 仓库 ↗</a>
+    </header>
+    <p class="passport-thesis" id="passport-thesis"></p>
+    <section class="passport-copy-grid">
+      <article>
+        <span>WHAT IT IS</span>
+        <p id="passport-what"></p>
+      </article>
+      <article>
+        <span>HOW AN AGENT USES IT</span>
+        <p id="passport-use"></p>
+      </article>
+    </section>
+    <section class="passport-lanes" aria-label="Project interpretation">
+      <article class="form-lane">
+        <span>FORM</span>
+        <strong id="passport-form"></strong>
+        <small id="passport-form-label"></small>
+        <p id="passport-form-note"></p>
+      </article>
+      <article class="momentum-lane">
+        <span>MOMENTUM</span>
+        <strong id="passport-watch"></strong>
+        <small>visible WatchEvents · 3 months</small>
+        <p>Discovery signal only. WatchEvents are not exact GitHub star growth.</p>
+      </article>
+      <article class="collaboration-lane">
+        <span>COLLABORATION</span>
+        <strong id="passport-participants"></strong>
+        <small>issue/PR participants · 3 months</small>
+        <p id="passport-collaboration-note"></p>
+      </article>
+    </section>
+    <section class="passport-evidence" aria-label="Project signals">
+      <article><span>CURRENT STARS</span><strong id="passport-stars"></strong><p>GitHub snapshot; a scale signal, not a quality score.</p></article>
+      <article><span>OPENRANK</span><strong id="passport-openrank"></strong><p>Sum for Apr–Jun 2026; recent values may be coverage- and backfill-sensitive.</p></article>
+      <article><span>AWESOME VALUE</span><strong id="passport-value-score"></strong><p>Editorial screening score used to form this shortlist, not a universal benchmark.</p></article>
+    </section>
+    <section class="passport-specs">
+      <div><span>Category</span><strong id="passport-category"></strong></div>
+      <div><span>Language</span><strong id="passport-language"></strong></div>
+      <div><span>License</span><strong id="passport-license"></strong></div>
+      <div><span>Evidence</span><strong id="passport-evidence-grade"></strong></div>
+      <div><span>Observed activity</span><strong id="passport-activity"></strong></div>
+      <div><span>Snapshot date</span><strong id="passport-snapshot"></strong></div>
+    </section>
+    <details class="metric-glossary">
+      <summary>How to read these signals</summary>
+      <div>
+        <p><strong>CORE / WATCH / BASELINE</strong> is an editorial role. CORE anchors the argument, WATCH is promising but needs another window, and BASELINE shows the older human-browsed form.</p>
+        <p><strong>Direct / hybrid / indirect</strong> describes agent consumability: whether the repository already packages executable assets, mixes assets with human-oriented curation, or mainly serves human browsing.</p>
+        <p><strong>WatchEvents</strong> counts visible GitHub watch/star events in the observed window. Coverage limits mean it must not be presented as exact star growth.</p>
+        <p><strong>Participants</strong> counts distinct issue and pull-request participants. <strong>OpenRank</strong> summarizes network activity; neither is a quality verdict by itself.</p>
+      </div>
+    </details>
+    <div class="passport-links">
+      <a id="passport-github-link" target="_blank" rel="noreferrer">Open GitHub repository ↗</a>
     </div>
-  </dialog>
-  <script>
-    const canvas = document.querySelector(".canvas");
-    const stages = document.querySelector(".stages");
-    const resetView = document.querySelector(".reset-view");
-    const stageSections = [...document.querySelectorAll(".stage")];
-    const dialog = document.querySelector("#project-dialog");
-
-    function fitCanvas() {
-      const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
-      document.documentElement.style.setProperty("--canvas-scale", String(scale));
-    }
-
-    function resetFocus() {
-      stages.classList.remove("is-focused");
-      stageSections.forEach((stage) => {
-        stage.classList.remove("is-focused");
-        stage.querySelector(".stage-heading").setAttribute("aria-pressed", "false");
-      });
-      resetView.classList.remove("is-visible");
-    }
-
-    stageSections.forEach((stage) => {
-      stage.querySelector(".stage-heading").addEventListener("click", () => {
-        const wasFocused = stage.classList.contains("is-focused");
-        resetFocus();
-        if (wasFocused) return;
-        stages.classList.add("is-focused");
-        stage.classList.add("is-focused");
-        stage.querySelector(".stage-heading").setAttribute("aria-pressed", "true");
-        resetView.classList.add("is-visible");
-      });
-    });
-    resetView.addEventListener("click", resetFocus);
-
-    document.querySelectorAll(".project-card").forEach((card) => {
-      card.addEventListener("click", () => {
-        const data = card.dataset;
-        dialog.querySelector(".detail-tier").textContent = data.tier;
-        dialog.querySelector(".detail-title").textContent = data.repo;
-        dialog.querySelector(".detail-owner").textContent = data.owner;
-        dialog.querySelector(".detail-what").textContent = data.what;
-        dialog.querySelector(".detail-use").textContent = data.use;
-        dialog.querySelector(".metric-stars").textContent = `★ ${data.stars}`;
-        dialog.querySelector(".metric-watch").textContent = data.watch;
-        dialog.querySelector(".metric-participants").textContent = data.participants;
-        dialog.querySelector(".metric-openrank").textContent = data.openrank;
-        dialog.querySelector(".detail-link").href = data.url;
-        dialog.showModal();
-      });
-    });
-
-    dialog.querySelector(".detail-close").addEventListener("click", () => dialog.close());
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) dialog.close();
-    });
-    window.addEventListener("resize", fitCanvas);
-    fitCanvas();
-  </script>
+  </aside>
+  <script src="awesome_project_data.js"></script>
+  <script src="awesome_interactive.js"></script>
 </body>
 </html>

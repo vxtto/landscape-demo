@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=3840, initial-scale=1">
-  <title>Large Models Landscape 2026 - Prototype</title>
+  <title>Large Models Landscape 2026</title>
   <style>
     * { box-sizing: border-box; }
     html, body {
@@ -22,8 +22,8 @@
       height: 2160px;
       padding: 42px 58px 34px 172px;
       display: grid;
-      grid-template-rows: 154px 118px 1fr 54px;
-      gap: 20px;
+      grid-template-rows: 154px 118px 74px 1fr 54px;
+      gap: 16px;
       background:
         linear-gradient(#ffffff, #ffffff) padding-box,
         #ffffff;
@@ -409,6 +409,602 @@
         135deg, #fff7db 0, #fff7db 6px, #ffefba 6px, #ffefba 10px
       );
     }
+    button,
+input,
+select {
+  font: inherit;
+}
+
+.summary-item {
+  appearance: none;
+  color: #111318;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    opacity 150ms ease;
+}
+
+.summary-item:hover,
+.summary-item:focus-visible {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 #cbd5ff;
+  outline: none;
+}
+
+.summary-item.is-active {
+  box-shadow: inset 0 -8px 0 #cbd5ff;
+}
+
+.summary-item.score {
+  color: #ffffff;
+}
+
+.summary-item.score.is-active {
+  box-shadow: inset 0 -8px 0 #f48ac6;
+}
+
+.explore-toolbar {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 280px 150px 1fr;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.model-search,
+.vendor-filter,
+.aai-filter,
+.reset-filter,
+.explore-hint {
+  min-width: 0;
+  min-height: 74px;
+  margin: 0;
+  border: 2.5px solid #111318;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.model-search,
+.vendor-filter {
+  padding: 8px 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.model-search > span,
+.vendor-filter > span,
+.aai-filter > span {
+  color: #626871;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.model-search input,
+.vendor-filter select {
+  width: 100%;
+  min-width: 0;
+  height: 50px;
+  border: 0;
+  background: transparent;
+  color: #111318;
+  font-size: 22px;
+  font-weight: 800;
+  outline: none;
+}
+
+.model-search:focus-within,
+.vendor-filter:focus-within {
+  box-shadow: inset 0 -6px 0 #cbd5ff;
+}
+
+.aai-filter,
+.reset-filter {
+  cursor: pointer;
+}
+
+.aai-filter {
+  padding: 9px 18px;
+  display: grid;
+  align-content: center;
+  gap: 4px;
+  text-align: left;
+}
+
+.aai-filter strong {
+  color: #7846b9;
+  font-size: 20px;
+}
+
+.aai-filter[aria-pressed="true"] {
+  background: #efe6fb;
+  box-shadow: inset 0 -7px 0 #7846b9;
+}
+
+.reset-filter {
+  color: #111318;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.reset-filter:hover,
+.reset-filter:focus-visible,
+.aai-filter:hover,
+.aai-filter:focus-visible {
+  background: #f1f2f5;
+  outline: 4px solid #cbd5ff;
+  outline-offset: -4px;
+}
+
+.explore-hint {
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  border-color: #c8ccd3;
+  color: #626871;
+  font-size: 16px;
+}
+
+.explore-hint strong {
+  color: #111318;
+}
+
+.model-card {
+  position: relative;
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    opacity 140ms ease,
+    filter 140ms ease;
+}
+
+.model-card:hover,
+.model-card:focus-visible {
+  z-index: 3;
+  transform: translate(-4px, -4px);
+  box-shadow: 9px 9px 0 #111318;
+  outline: none;
+}
+
+.model-card::after {
+  content: "DETAILS ↗";
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  color: #737984;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity 140ms ease;
+}
+
+.model-card:hover::after,
+.model-card:focus-visible::after {
+  opacity: 1;
+}
+
+.model-card .card-meta {
+  display: none;
+}
+
+.model-card {
+  grid-template-rows: 28px minmax(48px, 1fr) 28px;
+}
+
+.model-card .model-name {
+  font-size: 24px;
+}
+
+.model-card .tags {
+  max-width: 58%;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.model-card .tag:nth-child(n + 3),
+.model-card .metric.benchmark {
+  display: none;
+}
+
+.model-card.is-filtered {
+  display: none;
+}
+
+.model-card.vendor-muted {
+  opacity: 0.25;
+  filter: grayscale(0.9);
+}
+
+.domain-panel.is-empty {
+  opacity: 0.32;
+}
+
+.domain-panel.is-empty::after {
+  content: "NO MATCHES";
+  position: absolute;
+  inset: 72px 18px 18px;
+  display: grid;
+  place-items: center;
+  border: 2px dashed #9ea3ab;
+  color: #767c85;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.benchmark-row {
+  cursor: pointer;
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease;
+}
+
+.benchmark-row:hover,
+.benchmark-row:focus-visible {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 #55c8c5;
+  outline: none;
+}
+
+footer > div:first-child {
+  min-width: 0;
+}
+
+#result-count {
+  color: #111318;
+  font-size: 18px;
+}
+
+.passport-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgb(17 19 24 / 46%);
+  backdrop-filter: blur(5px);
+}
+
+.model-passport {
+  position: fixed;
+  z-index: 21;
+  top: 0;
+  right: 0;
+  width: 1260px;
+  height: 2160px;
+  padding: 58px 62px 48px;
+  overflow-y: auto;
+  background:
+    linear-gradient(90deg, #111318 0 14px, #267cc2 14px 28px, #7846b9 28px 42px, transparent 42px),
+    #ffffff;
+  border-left: 5px solid #111318;
+  box-shadow: -28px 0 0 rgb(17 19 24 / 12%);
+  transform: translateX(104%);
+  transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.model-passport.is-open {
+  transform: translateX(0);
+}
+
+.passport-close {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  margin-left: auto;
+  padding: 13px 18px;
+  display: block;
+  border: 3px solid #111318;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #111318;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.passport-close:hover,
+.passport-close:focus-visible {
+  background: #111318;
+  color: #ffffff;
+  outline: none;
+}
+
+.passport-header {
+  display: block;
+  border: 0;
+}
+
+.passport-logo {
+  height: 54px;
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.passport-logo img {
+  width: auto;
+  max-width: 290px;
+  height: 48px;
+}
+
+.passport-logo .vendor-fallback {
+  font-size: 32px;
+}
+
+.passport-header > p {
+  margin: 24px 0 0;
+  color: #676d76;
+  font-size: 17px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.passport-header h2 {
+  max-width: 1050px;
+  margin: 12px 0 0;
+  font-size: 72px;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.passport-badges {
+  margin-top: 24px;
+  display: flex;
+  gap: 10px;
+}
+
+.passport-badges span {
+  padding: 8px 12px;
+  border: 2px solid #111318;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 850;
+}
+
+.passport-thesis {
+  margin: 34px 0 0;
+  padding: 22px 24px;
+  border-left: 8px solid #f48ac6;
+  background: #fff1f8;
+  font-size: 20px;
+  line-height: 1.48;
+  font-weight: 720;
+}
+
+.passport-lanes {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: 3px solid #111318;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.passport-lane {
+  min-height: 330px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #111318;
+}
+
+.passport-lane:last-child {
+  border-right: 0;
+}
+
+.passport-lane > span,
+.passport-evidence span,
+.passport-capabilities > span {
+  color: #626871;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.passport-lane > strong {
+  margin-top: 36px;
+  font-size: 42px;
+  line-height: 0.96;
+  overflow-wrap: anywhere;
+}
+
+.passport-lane > small {
+  margin-top: 10px;
+  color: #626871;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.passport-lane > p {
+  margin: auto 0 0;
+  color: #565c65;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.usage-lane {
+  background: #edf8f3;
+}
+
+.access-lane {
+  background: #eaf4ff;
+}
+
+.capability-lane {
+  background: #f1eafb;
+}
+
+.usage-lane > i {
+  height: 12px;
+  margin-top: 18px;
+  display: block;
+  overflow: hidden;
+  background: rgb(17 19 24 / 14%);
+  border-radius: 99px;
+}
+
+.usage-lane > i b {
+  width: 0;
+  height: 100%;
+  display: block;
+  background: #1d8e58;
+  transition: width 300ms ease;
+}
+
+.passport-evidence {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.passport-evidence article {
+  min-height: 190px;
+  padding: 20px;
+  border: 2px solid #111318;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.passport-evidence strong {
+  margin-top: 22px;
+  display: block;
+  font-size: 32px;
+}
+
+.passport-evidence p {
+  margin: 12px 0 0;
+  color: #616771;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.passport-specs {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 3px solid #111318;
+  border-left: 3px solid #111318;
+}
+
+.passport-specs > div {
+  min-height: 98px;
+  padding: 17px 19px;
+  border-right: 3px solid #111318;
+  border-bottom: 3px solid #111318;
+}
+
+.passport-specs span,
+.passport-specs strong {
+  display: block;
+}
+
+.passport-specs span {
+  color: #686e77;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.passport-specs strong {
+  margin-top: 9px;
+  font-size: 20px;
+}
+
+.passport-capabilities {
+  margin-top: 28px;
+}
+
+.passport-capabilities > div {
+  margin-top: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.passport-capabilities i {
+  padding: 8px 11px;
+  border: 2px solid #6c727b;
+  border-radius: 5px;
+  background: #f7f8fa;
+  color: #34383e;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.metric-glossary {
+  margin-top: 30px;
+  border: 3px solid #111318;
+  border-radius: 9px;
+  background: #fff8df;
+}
+
+.metric-glossary summary {
+  padding: 18px 20px;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.metric-glossary > div {
+  padding: 0 20px 20px;
+}
+
+.metric-glossary p {
+  margin: 14px 0 0;
+  color: #5e563f;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.passport-links {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.passport-links a {
+  padding: 13px 16px;
+  border: 2px solid #111318;
+  border-radius: 6px;
+  color: #111318;
+  font-size: 14px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.passport-links a:hover,
+.passport-links a:focus-visible {
+  background: #111318;
+  color: #ffffff;
+  outline: none;
+}
+
+.passport-links a[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summary-item,
+  .model-card,
+  .benchmark-row,
+  .model-passport,
+  .usage-lane > i b {
+    transition: none;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -425,35 +1021,65 @@
       </div>
     </header>
 
-    <section class="summary">
-      <div class="summary-item score">
+    <section class="summary" aria-label="Landscape filters">
+      <button class="summary-item score is-active" type="button" data-primary-filter="all" aria-pressed="true">
         <strong>June 2026</strong>
-        <span>OpenRouter + ZenMux monthly usage snapshot</span>
-      </div>
-      <div class="summary-item open">
+        <span>All 50 · OpenRouter + ZenMux complete month</span>
+      </button>
+      <button class="summary-item open" type="button" data-primary-filter="open" aria-pressed="false">
         <strong>24 OPEN</strong>
-        <span>public model weights</span>
-      </div>
-      <div class="summary-item api">
+        <span>show public model weights</span>
+      </button>
+      <button class="summary-item api" type="button" data-primary-filter="api" aria-pressed="false">
         <strong>26 API</strong>
-        <span>closed or no public weights</span>
-      </div>
-      <div class="summary-item">
+        <span>show closed or no public weights</span>
+      </button>
+      <button class="summary-item" type="button" data-primary-filter="top10" aria-pressed="false">
         <strong>TOP 10: 5:5</strong>
-        <span>open vs API-only; 8 cards include public AAI scores</span>
-      </div>
+        <span>open vs API-only · inspect the leaders</span>
+      </button>
+    </section>
+
+    <section class="explore-toolbar" aria-label="Explore model cards">
+      <label class="model-search">
+        <span>FIND</span>
+        <input id="model-search" type="search" placeholder="Model or vendor" autocomplete="off">
+      </label>
+      <label class="vendor-filter">
+        <span>VENDOR</span>
+        <select id="vendor-filter">
+          <option value="all">All model makers</option>
+        </select>
+      </label>
+      <button class="aai-filter" id="aai-filter" type="button" aria-pressed="false">
+        <span>AAI LENS</span>
+        <strong>8 matched</strong>
+      </button>
+      <button class="reset-filter" id="reset-filter" type="button">RESET</button>
+      <p class="explore-hint"><strong>Click a model</strong> for its evidence passport</p>
     </section>
 
     <section class="panels">
 
-      <section class="domain-panel" style="--accent:#f48ac6">
+      <section class="domain-panel" style="--accent:#f48ac6" data-domain="Frontier Generalist">
         <div class="domain-heading">
           <h2>Frontier Generalist</h2>
-          <span>10 models</span>
+          <span class="domain-count">10 models</span>
           <span class="mix">0 open / 10 API</span>
         </div>
         <div class="model-grid">
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Claude Opus 4.8"
+        data-model-json="{&quot;name&quot;:&quot;Claude Opus 4.8&quot;,&quot;displayName&quot;:&quot;Claude Opus 4.8&quot;,&quot;vendor&quot;:&quot;Anthropic&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:3,&quot;usage&quot;:94.6667,&quot;aai&quot;:55.7,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:9,&quot;score&quot;:89.3333,&quot;days&quot;:30,&quot;tokens&quot;:6637782685692,&quot;url&quot;:&quot;https://openrouter.ai/anthropic/claude-opus-4.8&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:1,&quot;score&quot;:100,&quot;tokens&quot;:283603654582,&quot;url&quot;:&quot;https://zenmux.ai/models/anthropic/claude-opus-4.8&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:5,&quot;completionPrice&quot;:25}"
+        data-model-name="Claude Opus 4.8"
+        data-vendor="Anthropic"
+        data-access="api"
+        data-rank="3"
+        data-has-aai="true"
+      >
         <div class="card-top">
           <span class="rank top-rank">#3</span>
           <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
@@ -473,7 +1099,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Claude Opus 4.7"
+        data-model-json="{&quot;name&quot;:&quot;Claude Opus 4.7&quot;,&quot;displayName&quot;:&quot;Claude Opus 4.7&quot;,&quot;vendor&quot;:&quot;Anthropic&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:4,&quot;usage&quot;:92.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:6,&quot;score&quot;:93.3333,&quot;days&quot;:30,&quot;tokens&quot;:9160262683291,&quot;url&quot;:&quot;https://openrouter.ai/anthropic/claude-opus-4.7&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:5,&quot;score&quot;:92,&quot;tokens&quot;:125398246605,&quot;url&quot;:&quot;https://zenmux.ai/models/anthropic/claude-opus-4.7&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:5,&quot;completionPrice&quot;:25}"
+        data-model-name="Claude Opus 4.7"
+        data-vendor="Anthropic"
+        data-access="api"
+        data-rank="4"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank top-rank">#4</span>
           <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
@@ -493,7 +1130,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Claude Opus 4.6"
+        data-model-json="{&quot;name&quot;:&quot;Claude Opus 4.6&quot;,&quot;displayName&quot;:&quot;Claude Opus 4.6&quot;,&quot;vendor&quot;:&quot;Anthropic&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:11,&quot;usage&quot;:77.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:27,&quot;score&quot;:66.6667,&quot;days&quot;:30,&quot;tokens&quot;:1495703613558,&quot;url&quot;:&quot;https://openrouter.ai/anthropic/claude-opus-4.6&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:7,&quot;score&quot;:88,&quot;tokens&quot;:86099102858,&quot;url&quot;:&quot;https://zenmux.ai/models/anthropic/claude-opus-4.6&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:5,&quot;completionPrice&quot;:25}"
+        data-model-name="Claude Opus 4.6"
+        data-vendor="Anthropic"
+        data-access="api"
+        data-rank="11"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#11</span>
           <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
@@ -513,7 +1161,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Claude Fable 5"
+        data-model-json="{&quot;name&quot;:&quot;Claude Fable 5&quot;,&quot;displayName&quot;:&quot;Claude Fable 5&quot;,&quot;vendor&quot;:&quot;Anthropic&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:25,&quot;usage&quot;:56.0,&quot;aai&quot;:59.9,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:51,&quot;score&quot;:36,&quot;days&quot;:3,&quot;tokens&quot;:236947075244,&quot;url&quot;:&quot;https://openrouter.ai/anthropic/claude-fable-5&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:13,&quot;score&quot;:76,&quot;tokens&quot;:19493799165,&quot;url&quot;:&quot;https://zenmux.ai/models/anthropic/claude-fable-5&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:10,&quot;completionPrice&quot;:50}"
+        data-model-name="Claude Fable 5"
+        data-vendor="Anthropic"
+        data-access="api"
+        data-rank="25"
+        data-has-aai="true"
+      >
         <div class="card-top">
           <span class="rank">#25</span>
           <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
@@ -533,7 +1192,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GPT-5.5"
+        data-model-json="{&quot;name&quot;:&quot;GPT-5.5&quot;,&quot;displayName&quot;:&quot;GPT-5.5&quot;,&quot;vendor&quot;:&quot;OpenAI&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:8,&quot;usage&quot;:84.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:14,&quot;score&quot;:82.6667,&quot;days&quot;:30,&quot;tokens&quot;:3306189045250,&quot;url&quot;:&quot;https://openrouter.ai/openai/gpt-5.5&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:8,&quot;score&quot;:86,&quot;tokens&quot;:58984046352,&quot;url&quot;:&quot;https://zenmux.ai/models/openai/gpt-5.5&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1050000,&quot;inputModalities&quot;:[&quot;file&quot;,&quot;image&quot;,&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:5,&quot;completionPrice&quot;:30}"
+        data-model-name="GPT-5.5"
+        data-vendor="OpenAI"
+        data-access="api"
+        data-rank="8"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank top-rank">#8</span>
           <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
@@ -553,7 +1223,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GPT-5.4"
+        data-model-json="{&quot;name&quot;:&quot;GPT-5.4&quot;,&quot;displayName&quot;:&quot;GPT-5.4&quot;,&quot;vendor&quot;:&quot;OpenAI&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:14,&quot;usage&quot;:73.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:28,&quot;score&quot;:65.3333,&quot;days&quot;:30,&quot;tokens&quot;:1399334035146,&quot;url&quot;:&quot;https://openrouter.ai/openai/gpt-5.4&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:10,&quot;score&quot;:82,&quot;tokens&quot;:32426247662,&quot;url&quot;:&quot;https://zenmux.ai/models/openai/gpt-5.4&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1050000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:2.5,&quot;completionPrice&quot;:15}"
+        data-model-name="GPT-5.4"
+        data-vendor="OpenAI"
+        data-access="api"
+        data-rank="14"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#14</span>
           <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
@@ -573,7 +1254,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GPT-5.2"
+        data-model-json="{&quot;name&quot;:&quot;GPT-5.2&quot;,&quot;displayName&quot;:&quot;GPT-5.2&quot;,&quot;vendor&quot;:&quot;OpenAI&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:33,&quot;usage&quot;:45.0,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:66,&quot;score&quot;:16,&quot;days&quot;:3,&quot;tokens&quot;:57638633215,&quot;url&quot;:&quot;https://openrouter.ai/openai/gpt-5.2&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:14,&quot;score&quot;:74,&quot;tokens&quot;:19137392606,&quot;url&quot;:&quot;https://zenmux.ai/models/openai/gpt-5.2&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:400000,&quot;inputModalities&quot;:[&quot;file&quot;,&quot;image&quot;,&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:1.75,&quot;completionPrice&quot;:14}"
+        data-model-name="GPT-5.2"
+        data-vendor="OpenAI"
+        data-access="api"
+        data-rank="33"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#33</span>
           <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
@@ -593,7 +1285,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemini 3.1 Pro Preview"
+        data-model-json="{&quot;name&quot;:&quot;Gemini 3.1 Pro Preview&quot;,&quot;displayName&quot;:&quot;Gemini 3.1 Pro Preview&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:22,&quot;usage&quot;:58.0,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Audio input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:32,&quot;score&quot;:60,&quot;days&quot;:30,&quot;tokens&quot;:1055643567680,&quot;url&quot;:&quot;https://openrouter.ai/google/gemini-3.1-pro-preview&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:23,&quot;score&quot;:56,&quot;tokens&quot;:4992114489,&quot;url&quot;:&quot;https://zenmux.ai/models/google/gemini-3.1-pro-preview&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;audio&quot;,&quot;file&quot;,&quot;image&quot;,&quot;text&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:2,&quot;completionPrice&quot;:12}"
+        data-model-name="Gemini 3.1 Pro Preview"
+        data-vendor="Google"
+        data-access="api"
+        data-rank="22"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#22</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -613,7 +1316,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Qwen3.7 Max"
+        data-model-json="{&quot;name&quot;:&quot;Qwen3.7 Max&quot;,&quot;displayName&quot;:&quot;Qwen3.7 Max&quot;,&quot;vendor&quot;:&quot;Qwen&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:26,&quot;usage&quot;:55.3333,&quot;aai&quot;:46.0,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:39,&quot;score&quot;:50.6667,&quot;days&quot;:30,&quot;tokens&quot;:773396693859,&quot;url&quot;:&quot;https://openrouter.ai/qwen/qwen3.7-max&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:21,&quot;score&quot;:60,&quot;tokens&quot;:5674539729,&quot;url&quot;:&quot;https://zenmux.ai/models/qwen/qwen3.7-max&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:1.475,&quot;completionPrice&quot;:4.425}"
+        data-model-name="Qwen3.7 Max"
+        data-vendor="Qwen"
+        data-access="api"
+        data-rank="26"
+        data-has-aai="true"
+      >
         <div class="card-top">
           <span class="rank">#26</span>
           <img class="vendor-logo" src="assets/vendor-logos/qwen-text.svg" alt="Qwen">
@@ -633,7 +1347,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for owl-alpha"
+        data-model-json="{&quot;name&quot;:&quot;owl-alpha&quot;,&quot;displayName&quot;:&quot;owl-alpha&quot;,&quot;vendor&quot;:&quot;Openrouter&quot;,&quot;domain&quot;:&quot;Frontier Generalist&quot;,&quot;rank&quot;:32,&quot;usage&quot;:47.3334,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;General Language&quot;,&quot;capabilities&quot;:[],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:5,&quot;score&quot;:94.6667,&quot;days&quot;:30,&quot;tokens&quot;:11226896505293,&quot;url&quot;:&quot;https://openrouter.ai/openrouter/owl-alpha&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:null,&quot;inputModalities&quot;:[],&quot;outputModalities&quot;:[],&quot;promptPrice&quot;:null,&quot;completionPrice&quot;:null}"
+        data-model-name="owl-alpha"
+        data-vendor="Openrouter"
+        data-access="api"
+        data-rank="32"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#32</span>
           <img class="vendor-logo" src="assets/vendor-logos/openrouter-text.svg" alt="Openrouter">
@@ -655,14 +1380,25 @@
     </div>
       </section>
 
-      <section class="domain-panel" style="--accent:#75b7eb">
+      <section class="domain-panel" style="--accent:#75b7eb" data-domain="Reasoning, Math &amp; Science">
         <div class="domain-heading">
           <h2>Reasoning, Math &amp; Science</h2>
-          <span>10 models</span>
+          <span class="domain-count">10 models</span>
           <span class="mix">10 open / 0 API</span>
         </div>
         <div class="model-grid">
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for DeepSeek V4 Flash"
+        data-model-json="{&quot;name&quot;:&quot;DeepSeek V4 Flash&quot;,&quot;displayName&quot;:&quot;DeepSeek V4 Flash&quot;,&quot;vendor&quot;:&quot;DeepSeek&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:1,&quot;usage&quot;:97.0,&quot;aai&quot;:40.3,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;158B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:1,&quot;score&quot;:100,&quot;days&quot;:30,&quot;tokens&quot;:19140970585276,&quot;url&quot;:&quot;https://openrouter.ai/deepseek/deepseek-v4-flash&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:4,&quot;score&quot;:94,&quot;tokens&quot;:140926776943,&quot;url&quot;:&quot;https://zenmux.ai/models/deepseek/deepseek-v4-flash&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:3119592,&quot;downloadsAll&quot;:8942773,&quot;likes&quot;:1859,&quot;score&quot;:77.0834,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.14,&quot;completionPrice&quot;:0.28}"
+        data-model-name="DeepSeek V4 Flash"
+        data-vendor="DeepSeek"
+        data-access="open"
+        data-rank="1"
+        data-has-aai="true"
+      >
         <div class="card-top">
           <span class="rank top-rank">#1</span>
           <img class="vendor-logo" src="assets/vendor-logos/deepseek-text.svg" alt="DeepSeek">
@@ -682,7 +1418,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for DeepSeek V4 Pro"
+        data-model-json="{&quot;name&quot;:&quot;DeepSeek V4 Pro&quot;,&quot;displayName&quot;:&quot;DeepSeek V4 Pro&quot;,&quot;vendor&quot;:&quot;DeepSeek&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:2,&quot;usage&quot;:95.0,&quot;aai&quot;:44.3,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;1.60T params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:7,&quot;score&quot;:92,&quot;days&quot;:30,&quot;tokens&quot;:8890972175016,&quot;url&quot;:&quot;https://openrouter.ai/deepseek/deepseek-v4-pro&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:2,&quot;score&quot;:98,&quot;tokens&quot;:265228417791,&quot;url&quot;:&quot;https://zenmux.ai/models/deepseek/deepseek-v4-pro&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:1635092,&quot;downloadsAll&quot;:9110847,&quot;likes&quot;:5337,&quot;score&quot;:80.5555,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.435,&quot;completionPrice&quot;:0.87}"
+        data-model-name="DeepSeek V4 Pro"
+        data-vendor="DeepSeek"
+        data-access="open"
+        data-rank="2"
+        data-has-aai="true"
+      >
         <div class="card-top">
           <span class="rank top-rank">#2</span>
           <img class="vendor-logo" src="assets/vendor-logos/deepseek-text.svg" alt="DeepSeek">
@@ -702,7 +1449,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for DeepSeek V3.2"
+        data-model-json="{&quot;name&quot;:&quot;DeepSeek V3.2&quot;,&quot;displayName&quot;:&quot;DeepSeek V3.2&quot;,&quot;vendor&quot;:&quot;DeepSeek&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:13,&quot;usage&quot;:76.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;685B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:11,&quot;score&quot;:86.6667,&quot;days&quot;:30,&quot;tokens&quot;:4188782637495,&quot;url&quot;:&quot;https://openrouter.ai/deepseek/deepseek-v3.2&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:18,&quot;score&quot;:66,&quot;tokens&quot;:13069739354,&quot;url&quot;:&quot;https://zenmux.ai/models/deepseek/deepseek-v3.2&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:1277394,&quot;downloadsAll&quot;:21012205,&quot;likes&quot;:1460,&quot;score&quot;:66.6667,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/deepseek-ai/DeepSeek-V3.2&quot;},&quot;contextLength&quot;:163840,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.26899999999999996,&quot;completionPrice&quot;:0.39999999999999997}"
+        data-model-name="DeepSeek V3.2"
+        data-vendor="DeepSeek"
+        data-access="open"
+        data-rank="13"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#13</span>
           <img class="vendor-logo" src="assets/vendor-logos/deepseek-text.svg" alt="DeepSeek">
@@ -722,7 +1480,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GLM 5.2"
+        data-model-json="{&quot;name&quot;:&quot;GLM 5.2&quot;,&quot;displayName&quot;:&quot;GLM 5.2&quot;,&quot;vendor&quot;:&quot;Z.ai&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:6,&quot;usage&quot;:90.0,&quot;aai&quot;:51.1,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;753B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:13,&quot;score&quot;:84,&quot;days&quot;:15,&quot;tokens&quot;:4114731050175,&quot;url&quot;:&quot;https://openrouter.ai/z-ai/glm-5.2&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:3,&quot;score&quot;:96,&quot;tokens&quot;:143302864344,&quot;url&quot;:&quot;https://zenmux.ai/models/z-ai/glm-5.2&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:1267198,&quot;downloadsAll&quot;:1414195,&quot;likes&quot;:4588,&quot;score&quot;:74.3055,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/zai-org/GLM-5.2&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.7686000000000001,&quot;completionPrice&quot;:2.4156}"
+        data-model-name="GLM 5.2"
+        data-vendor="Z.ai"
+        data-access="open"
+        data-rank="6"
+        data-has-aai="true"
+      >
         <div class="card-top">
           <span class="rank top-rank">#6</span>
           <img class="vendor-logo" src="assets/vendor-logos/zai-text.svg" alt="Z.ai">
@@ -742,7 +1511,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GLM 5.1"
+        data-model-json="{&quot;name&quot;:&quot;GLM 5.1&quot;,&quot;displayName&quot;:&quot;GLM 5.1&quot;,&quot;vendor&quot;:&quot;Z.ai&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:12,&quot;usage&quot;:77.0,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;754B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:20,&quot;score&quot;:76,&quot;days&quot;:30,&quot;tokens&quot;:2113040625289,&quot;url&quot;:&quot;https://openrouter.ai/z-ai/glm-5.1&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:12,&quot;score&quot;:78,&quot;tokens&quot;:21110775379,&quot;url&quot;:&quot;https://zenmux.ai/models/z-ai/glm-5.1&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:84623,&quot;downloadsAll&quot;:606906,&quot;likes&quot;:1839,&quot;score&quot;:32.6389,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/zai-org/GLM-5.1&quot;},&quot;contextLength&quot;:204800,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.966,&quot;completionPrice&quot;:3.036}"
+        data-model-name="GLM 5.1"
+        data-vendor="Z.ai"
+        data-access="open"
+        data-rank="12"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#12</span>
           <img class="vendor-logo" src="assets/vendor-logos/zai-text.svg" alt="Z.ai">
@@ -762,7 +1542,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GLM 5"
+        data-model-json="{&quot;name&quot;:&quot;GLM 5&quot;,&quot;displayName&quot;:&quot;GLM 5&quot;,&quot;vendor&quot;:&quot;Z.ai&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:34,&quot;usage&quot;:42.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;754B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:41,&quot;score&quot;:49.3333,&quot;days&quot;:29,&quot;tokens&quot;:686306699029,&quot;url&quot;:&quot;https://openrouter.ai/z-ai/glm-5&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:33,&quot;score&quot;:36,&quot;tokens&quot;:1641981369,&quot;url&quot;:&quot;https://zenmux.ai/models/z-ai/glm-5&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:157161,&quot;downloadsAll&quot;:1249019,&quot;likes&quot;:2119,&quot;score&quot;:41.6667,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/zai-org/GLM-5&quot;},&quot;contextLength&quot;:204800,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.95,&quot;completionPrice&quot;:2.5500000000000003}"
+        data-model-name="GLM 5"
+        data-vendor="Z.ai"
+        data-access="open"
+        data-rank="34"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#34</span>
           <img class="vendor-logo" src="assets/vendor-logos/zai-text.svg" alt="Z.ai">
@@ -782,7 +1573,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GLM 4.7"
+        data-model-json="{&quot;name&quot;:&quot;GLM 4.7&quot;,&quot;displayName&quot;:&quot;GLM 4.7&quot;,&quot;vendor&quot;:&quot;Z.ai&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:46,&quot;usage&quot;:27.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;358B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:58,&quot;score&quot;:26.6667,&quot;days&quot;:5,&quot;tokens&quot;:107103311674,&quot;url&quot;:&quot;https://openrouter.ai/z-ai/glm-4.7&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:37,&quot;score&quot;:28,&quot;tokens&quot;:795118990,&quot;url&quot;:&quot;https://zenmux.ai/models/z-ai/glm-4.7&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:62141,&quot;downloadsAll&quot;:651138,&quot;likes&quot;:2051,&quot;score&quot;:28.4722,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/zai-org/GLM-4.7&quot;},&quot;contextLength&quot;:204800,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.39999999999999997,&quot;completionPrice&quot;:1.75}"
+        data-model-name="GLM 4.7"
+        data-vendor="Z.ai"
+        data-access="open"
+        data-rank="46"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#46</span>
           <img class="vendor-logo" src="assets/vendor-logos/zai-text.svg" alt="Z.ai">
@@ -802,7 +1604,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for MiMo-V2.5-Pro"
+        data-model-json="{&quot;name&quot;:&quot;MiMo-V2.5-Pro&quot;,&quot;displayName&quot;:&quot;MiMo-V2.5-Pro&quot;,&quot;vendor&quot;:&quot;Xiaomi&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:19,&quot;usage&quot;:62.6666,&quot;aai&quot;:42.2,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;1.02T params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:19,&quot;score&quot;:77.3333,&quot;days&quot;:30,&quot;tokens&quot;:2337514757962,&quot;url&quot;:&quot;https://openrouter.ai/xiaomi/mimo-v2.5-pro&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:27,&quot;score&quot;:48,&quot;tokens&quot;:3476351534,&quot;url&quot;:&quot;https://zenmux.ai/models/xiaomi/mimo-v2.5-pro&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:60632,&quot;downloadsAll&quot;:261428,&quot;likes&quot;:721,&quot;score&quot;:15.2778,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/XiaomiMiMo/MiMo-V2.5-Pro&quot;},&quot;contextLength&quot;:1050000,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.435,&quot;completionPrice&quot;:0.87}"
+        data-model-name="MiMo-V2.5-Pro"
+        data-vendor="Xiaomi"
+        data-access="open"
+        data-rank="19"
+        data-has-aai="true"
+      >
         <div class="card-top">
           <span class="rank">#19</span>
           <img class="vendor-logo" src="assets/vendor-logos/xiaomimimo-text.svg" alt="Xiaomi">
@@ -822,7 +1635,18 @@
         </div>
       </article>
 
-      <article class="model-card open-custom">
+      <article
+        class="model-card open-custom"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for HY 3 Preview"
+        data-model-json="{&quot;name&quot;:&quot;Hy3 preview&quot;,&quot;displayName&quot;:&quot;HY 3 Preview&quot;,&quot;vendor&quot;:&quot;Tencent&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:31,&quot;usage&quot;:48.0,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;OTHER&quot;,&quot;licenseClass&quot;:&quot;open_weight_custom_or_other_license&quot;,&quot;parameters&quot;:&quot;299B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:4,&quot;score&quot;:96,&quot;days&quot;:30,&quot;tokens&quot;:15260724235356,&quot;url&quot;:&quot;https://openrouter.ai/tencent/hy3-preview&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;https://zenmux.ai/models/tencent/hy3-preview&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:72803,&quot;downloadsAll&quot;:263991,&quot;likes&quot;:300,&quot;score&quot;:16.6666,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/tencent/Hy3-preview&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.063,&quot;completionPrice&quot;:0.21}"
+        data-model-name="HY 3 Preview"
+        data-vendor="Tencent"
+        data-access="open"
+        data-rank="31"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#31</span>
           <img class="vendor-logo" src="assets/vendor-logos/tencent-text.svg" alt="Tencent">
@@ -842,7 +1666,18 @@
         </div>
       </article>
 
-      <article class="model-card open-custom">
+      <article
+        class="model-card open-custom"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for MiniMax M2.7"
+        data-model-json="{&quot;name&quot;:&quot;MiniMax M2.7&quot;,&quot;displayName&quot;:&quot;MiniMax M2.7&quot;,&quot;vendor&quot;:&quot;MiniMax&quot;,&quot;domain&quot;:&quot;Reasoning, Math &amp; Science&quot;,&quot;rank&quot;:38,&quot;usage&quot;:36.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;OTHER&quot;,&quot;licenseClass&quot;:&quot;open_weight_custom_or_other_license&quot;,&quot;parameters&quot;:&quot;229B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:33,&quot;score&quot;:58.6667,&quot;days&quot;:30,&quot;tokens&quot;:1013744236955,&quot;url&quot;:&quot;https://openrouter.ai/minimax/minimax-m2.7&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:44,&quot;score&quot;:14,&quot;tokens&quot;:644109746,&quot;url&quot;:&quot;https://zenmux.ai/models/minimax/minimax-m2.7&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:948259,&quot;downloadsAll&quot;:5129953,&quot;likes&quot;:1232,&quot;score&quot;:55.5556,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/MiniMaxAI/MiniMax-M2.7&quot;},&quot;contextLength&quot;:204800,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.25,&quot;completionPrice&quot;:1}"
+        data-model-name="MiniMax M2.7"
+        data-vendor="MiniMax"
+        data-access="open"
+        data-rank="38"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#38</span>
           <img class="vendor-logo" src="assets/vendor-logos/minimax-text.svg" alt="MiniMax">
@@ -864,14 +1699,25 @@
     </div>
       </section>
 
-      <section class="domain-panel" style="--accent:#55c99a">
+      <section class="domain-panel" style="--accent:#55c99a" data-domain="Coding &amp; Agentic">
         <div class="domain-heading">
           <h2>Coding &amp; Agentic</h2>
-          <span>8 models</span>
+          <span class="domain-count">8 models</span>
           <span class="mix">4 open / 4 API</span>
         </div>
         <div class="model-grid">
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Claude Sonnet 4.6"
+        data-model-json="{&quot;name&quot;:&quot;Claude Sonnet 4.6&quot;,&quot;displayName&quot;:&quot;Claude Sonnet 4.6&quot;,&quot;vendor&quot;:&quot;Anthropic&quot;,&quot;domain&quot;:&quot;Coding &amp; Agentic&quot;,&quot;rank&quot;:5,&quot;usage&quot;:90.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:8,&quot;score&quot;:90.6667,&quot;days&quot;:30,&quot;tokens&quot;:7478436739891,&quot;url&quot;:&quot;https://openrouter.ai/anthropic/claude-sonnet-4.6&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:6,&quot;score&quot;:90,&quot;tokens&quot;:117283603441,&quot;url&quot;:&quot;https://zenmux.ai/models/anthropic/claude-sonnet-4.6&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:3,&quot;completionPrice&quot;:15}"
+        data-model-name="Claude Sonnet 4.6"
+        data-vendor="Anthropic"
+        data-access="api"
+        data-rank="5"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank top-rank">#5</span>
           <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
@@ -891,7 +1737,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Claude Sonnet 4.5"
+        data-model-json="{&quot;name&quot;:&quot;Claude Sonnet 4.5&quot;,&quot;displayName&quot;:&quot;Claude Sonnet 4.5&quot;,&quot;vendor&quot;:&quot;Anthropic&quot;,&quot;domain&quot;:&quot;Coding &amp; Agentic&quot;,&quot;rank&quot;:35,&quot;usage&quot;:42.0,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:48,&quot;score&quot;:40,&quot;days&quot;:24,&quot;tokens&quot;:379693949943,&quot;url&quot;:&quot;https://openrouter.ai/anthropic/claude-sonnet-4.5&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:29,&quot;score&quot;:44,&quot;tokens&quot;:3339435604,&quot;url&quot;:&quot;https://zenmux.ai/models/anthropic/claude-sonnet-4.5&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:3,&quot;completionPrice&quot;:15}"
+        data-model-name="Claude Sonnet 4.5"
+        data-vendor="Anthropic"
+        data-access="api"
+        data-rank="35"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#35</span>
           <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
@@ -911,7 +1768,18 @@
         </div>
       </article>
 
-      <article class="model-card open-custom">
+      <article
+        class="model-card open-custom"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Kimi K2.7 Code"
+        data-model-json="{&quot;name&quot;:&quot;Kimi K2.7 Code&quot;,&quot;displayName&quot;:&quot;Kimi K2.7 Code&quot;,&quot;vendor&quot;:&quot;MoonshotAI&quot;,&quot;domain&quot;:&quot;Coding &amp; Agentic&quot;,&quot;rank&quot;:23,&quot;usage&quot;:57.0,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;OTHER&quot;,&quot;licenseClass&quot;:&quot;open_weight_custom_or_other_license&quot;,&quot;parameters&quot;:&quot;1.06T params&quot;,&quot;category&quot;:&quot;Code &amp; Math&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:45,&quot;score&quot;:44,&quot;days&quot;:18,&quot;tokens&quot;:545201146054,&quot;url&quot;:&quot;https://openrouter.ai/moonshotai/kimi-k2.7-code&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:16,&quot;score&quot;:70,&quot;tokens&quot;:17857234908,&quot;url&quot;:&quot;https://zenmux.ai/models/moonshotai/kimi-k2.7-code&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:681111,&quot;downloadsAll&quot;:1405746,&quot;likes&quot;:1329,&quot;score&quot;:47.9167,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/moonshotai/Kimi-K2.7-Code&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.73,&quot;completionPrice&quot;:3.5}"
+        data-model-name="Kimi K2.7 Code"
+        data-vendor="MoonshotAI"
+        data-access="open"
+        data-rank="23"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#23</span>
           <img class="vendor-logo" src="assets/vendor-logos/kimi-text.svg" alt="MoonshotAI">
@@ -931,7 +1799,18 @@
         </div>
       </article>
 
-      <article class="model-card open-custom">
+      <article
+        class="model-card open-custom"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Kimi K2.6"
+        data-model-json="{&quot;name&quot;:&quot;Kimi K2.6&quot;,&quot;displayName&quot;:&quot;Kimi K2.6&quot;,&quot;vendor&quot;:&quot;MoonshotAI&quot;,&quot;domain&quot;:&quot;Coding &amp; Agentic&quot;,&quot;rank&quot;:27,&quot;usage&quot;:51.6666,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;OTHER&quot;,&quot;licenseClass&quot;:&quot;open_weight_custom_or_other_license&quot;,&quot;parameters&quot;:&quot;1.06T params&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:22,&quot;score&quot;:73.3333,&quot;days&quot;:30,&quot;tokens&quot;:1846063016407,&quot;url&quot;:&quot;https://openrouter.ai/moonshotai/kimi-k2.6&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:36,&quot;score&quot;:30,&quot;tokens&quot;:837750009,&quot;url&quot;:&quot;https://zenmux.ai/models/moonshotai/kimi-k2.6&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:884375,&quot;downloadsAll&quot;:7043478,&quot;likes&quot;:1579,&quot;score&quot;:57.6389,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/moonshotai/Kimi-K2.6&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.646,&quot;completionPrice&quot;:2.7199999999999998}"
+        data-model-name="Kimi K2.6"
+        data-vendor="MoonshotAI"
+        data-access="open"
+        data-rank="27"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#27</span>
           <img class="vendor-logo" src="assets/vendor-logos/kimi-text.svg" alt="MoonshotAI">
@@ -951,7 +1830,18 @@
         </div>
       </article>
 
-      <article class="model-card open-custom">
+      <article
+        class="model-card open-custom"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Kimi K2.5"
+        data-model-json="{&quot;name&quot;:&quot;Kimi K2.5&quot;,&quot;displayName&quot;:&quot;Kimi K2.5&quot;,&quot;vendor&quot;:&quot;MoonshotAI&quot;,&quot;domain&quot;:&quot;Coding &amp; Agentic&quot;,&quot;rank&quot;:41,&quot;usage&quot;:33.0,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;OTHER&quot;,&quot;licenseClass&quot;:&quot;open_weight_custom_or_other_license&quot;,&quot;parameters&quot;:&quot;1.06T params&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:42,&quot;score&quot;:48,&quot;days&quot;:30,&quot;tokens&quot;:642591035241,&quot;url&quot;:&quot;https://openrouter.ai/moonshotai/kimi-k2.5&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:42,&quot;score&quot;:18,&quot;tokens&quot;:683755567,&quot;url&quot;:&quot;https://zenmux.ai/models/moonshotai/kimi-k2.5&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:972850,&quot;downloadsAll&quot;:14882479,&quot;likes&quot;:2858,&quot;score&quot;:67.3611,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/moonshotai/Kimi-K2.5&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.5700000000000001,&quot;completionPrice&quot;:2.8499999999999996}"
+        data-model-name="Kimi K2.5"
+        data-vendor="MoonshotAI"
+        data-access="open"
+        data-rank="41"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#41</span>
           <img class="vendor-logo" src="assets/vendor-logos/kimi-text.svg" alt="MoonshotAI">
@@ -971,7 +1861,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GPT-5.3-Codex"
+        data-model-json="{&quot;name&quot;:&quot;GPT-5.3-Codex&quot;,&quot;displayName&quot;:&quot;GPT-5.3-Codex&quot;,&quot;vendor&quot;:&quot;OpenAI&quot;,&quot;domain&quot;:&quot;Coding &amp; Agentic&quot;,&quot;rank&quot;:36,&quot;usage&quot;:40.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Code &amp; Math&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:49,&quot;score&quot;:38.6667,&quot;days&quot;:16,&quot;tokens&quot;:346441420774,&quot;url&quot;:&quot;https://openrouter.ai/openai/gpt-5.3-codex&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:30,&quot;score&quot;:42,&quot;tokens&quot;:2153143016,&quot;url&quot;:&quot;https://zenmux.ai/models/openai/gpt-5.3-codex&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:400000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:1.75,&quot;completionPrice&quot;:14}"
+        data-model-name="GPT-5.3-Codex"
+        data-vendor="OpenAI"
+        data-access="api"
+        data-rank="36"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#36</span>
           <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
@@ -991,7 +1892,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Laguna M.1"
+        data-model-json="{&quot;name&quot;:&quot;laguna-m.1-20260312:free&quot;,&quot;displayName&quot;:&quot;Laguna M.1&quot;,&quot;vendor&quot;:&quot;Poolside&quot;,&quot;domain&quot;:&quot;Coding &amp; Agentic&quot;,&quot;rank&quot;:37,&quot;usage&quot;:40.0,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;General Language&quot;,&quot;capabilities&quot;:[],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:17,&quot;score&quot;:80,&quot;days&quot;:30,&quot;tokens&quot;:2637589682187,&quot;url&quot;:&quot;https://openrouter.ai/poolside/laguna-m.1-20260312:free&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:null,&quot;inputModalities&quot;:[],&quot;outputModalities&quot;:[],&quot;promptPrice&quot;:null,&quot;completionPrice&quot;:null}"
+        data-model-name="Laguna M.1"
+        data-vendor="Poolside"
+        data-access="api"
+        data-rank="37"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#37</span>
           <img class="vendor-logo" src="assets/vendor-logos/poolside-text.svg" alt="Poolside">
@@ -1011,10 +1923,21 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Nex-N2-Pro"
+        data-model-json="{&quot;name&quot;:&quot;Nex-N2-Pro&quot;,&quot;displayName&quot;:&quot;Nex-N2-Pro&quot;,&quot;vendor&quot;:&quot;Nex AGI&quot;,&quot;domain&quot;:&quot;Coding &amp; Agentic&quot;,&quot;rank&quot;:43,&quot;usage&quot;:30.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;APACHE 2.0&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;397B params&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:31,&quot;score&quot;:61.3333,&quot;days&quot;:13,&quot;tokens&quot;:1073625555445,&quot;url&quot;:&quot;https://openrouter.ai/nex-agi/nex-n2-pro&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:1704,&quot;downloadsAll&quot;:10089,&quot;likes&quot;:371,&quot;score&quot;:4.8611,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/nex-agi/Nex-N2-Pro&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.25,&quot;completionPrice&quot;:1}"
+        data-model-name="Nex-N2-Pro"
+        data-vendor="Nex AGI"
+        data-access="open"
+        data-rank="43"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#43</span>
-          <span class="vendor-fallback">Nex AGI</span>
+          <img class="vendor-logo" src="assets/vendor-logos/nexagi-text.svg" alt="Nex AGI">
           <span class="access">OPEN</span>
         </div>
         <div class="model-name">Nex-N2-Pro</div>
@@ -1033,14 +1956,25 @@
     </div>
       </section>
 
-      <section class="domain-panel" style="--accent:#a98bea">
+      <section class="domain-panel" style="--accent:#a98bea" data-domain="Multimodal &amp; Realtime">
         <div class="domain-heading">
           <h2>Multimodal &amp; Realtime</h2>
-          <span>10 models</span>
+          <span class="domain-count">10 models</span>
           <span class="mix">5 open / 5 API</span>
         </div>
         <div class="model-grid">
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Step 3.7 Flash"
+        data-model-json="{&quot;name&quot;:&quot;Step 3.7 Flash&quot;,&quot;displayName&quot;:&quot;Step 3.7 Flash&quot;,&quot;vendor&quot;:&quot;StepFun&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:7,&quot;usage&quot;:86.0,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;APACHE 2.0&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;201B params&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:10,&quot;score&quot;:88,&quot;days&quot;:30,&quot;tokens&quot;:4437677107095,&quot;url&quot;:&quot;https://openrouter.ai/stepfun/step-3.7-flash&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:9,&quot;score&quot;:84,&quot;tokens&quot;:37621795483,&quot;url&quot;:&quot;https://zenmux.ai/models/stepfun/step-3.7-flash&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:144225,&quot;downloadsAll&quot;:302028,&quot;likes&quot;:426,&quot;score&quot;:22.9167,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/stepfun-ai/Step-3.7-Flash&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.19999999999999998,&quot;completionPrice&quot;:1.15}"
+        data-model-name="Step 3.7 Flash"
+        data-vendor="StepFun"
+        data-access="open"
+        data-rank="7"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank top-rank">#7</span>
           <img class="vendor-logo" src="assets/vendor-logos/stepfun-text.svg" alt="StepFun">
@@ -1060,7 +1994,18 @@
         </div>
       </article>
 
-      <article class="model-card open-custom">
+      <article
+        class="model-card open-custom"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for MiniMax M3"
+        data-model-json="{&quot;name&quot;:&quot;MiniMax M3&quot;,&quot;displayName&quot;:&quot;MiniMax M3&quot;,&quot;vendor&quot;:&quot;MiniMax&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:9,&quot;usage&quot;:83.3333,&quot;aai&quot;:44.4,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;OTHER&quot;,&quot;licenseClass&quot;:&quot;open_weight_custom_or_other_license&quot;,&quot;parameters&quot;:&quot;427B params&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:2,&quot;score&quot;:98.6667,&quot;days&quot;:30,&quot;tokens&quot;:15535863397306,&quot;url&quot;:&quot;https://openrouter.ai/minimax/minimax-m3&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:17,&quot;score&quot;:68,&quot;tokens&quot;:15517405253,&quot;url&quot;:&quot;https://zenmux.ai/models/minimax/minimax-m3&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:154969,&quot;downloadsAll&quot;:348278,&quot;likes&quot;:1380,&quot;score&quot;:32.6389,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/MiniMaxAI/Minimax-M3&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.3,&quot;completionPrice&quot;:1.2}"
+        data-model-name="MiniMax M3"
+        data-vendor="MiniMax"
+        data-access="open"
+        data-rank="9"
+        data-has-aai="true"
+      >
         <div class="card-top">
           <span class="rank top-rank">#9</span>
           <img class="vendor-logo" src="assets/vendor-logos/minimax-text.svg" alt="MiniMax">
@@ -1080,7 +2025,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemini 3 Flash Preview"
+        data-model-json="{&quot;name&quot;:&quot;Gemini 3 Flash Preview&quot;,&quot;displayName&quot;:&quot;Gemini 3 Flash Preview&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:15,&quot;usage&quot;:73.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Audio input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:12,&quot;score&quot;:85.3333,&quot;days&quot;:30,&quot;tokens&quot;:4161165820747,&quot;url&quot;:&quot;https://openrouter.ai/google/gemini-3-flash-preview&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:20,&quot;score&quot;:62,&quot;tokens&quot;:5811582445,&quot;url&quot;:&quot;https://zenmux.ai/models/google/gemini-3-flash-preview&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;,&quot;audio&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.5,&quot;completionPrice&quot;:3}"
+        data-model-name="Gemini 3 Flash Preview"
+        data-vendor="Google"
+        data-access="api"
+        data-rank="15"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#15</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -1100,7 +2056,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemini 3.5 Flash"
+        data-model-json="{&quot;name&quot;:&quot;Gemini 3.5 Flash&quot;,&quot;displayName&quot;:&quot;Gemini 3.5 Flash&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:16,&quot;usage&quot;:69.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Audio input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:21,&quot;score&quot;:74.6667,&quot;days&quot;:30,&quot;tokens&quot;:1879675070343,&quot;url&quot;:&quot;https://openrouter.ai/google/gemini-3.5-flash&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:19,&quot;score&quot;:64,&quot;tokens&quot;:12941317023,&quot;url&quot;:&quot;https://zenmux.ai/models/google/gemini-3.5-flash&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;video&quot;,&quot;file&quot;,&quot;audio&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:1.5,&quot;completionPrice&quot;:9}"
+        data-model-name="Gemini 3.5 Flash"
+        data-vendor="Google"
+        data-access="api"
+        data-rank="16"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#16</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -1120,7 +2087,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemini 2.5 Flash"
+        data-model-json="{&quot;name&quot;:&quot;Gemini 2.5 Flash&quot;,&quot;displayName&quot;:&quot;Gemini 2.5 Flash&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:21,&quot;usage&quot;:59.3334,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Audio input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:18,&quot;score&quot;:78.6667,&quot;days&quot;:30,&quot;tokens&quot;:2611556403280,&quot;url&quot;:&quot;https://openrouter.ai/google/gemini-2.5-flash&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:31,&quot;score&quot;:40,&quot;tokens&quot;:2074352600,&quot;url&quot;:&quot;https://zenmux.ai/models/google/gemini-2.5-flash&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;file&quot;,&quot;image&quot;,&quot;text&quot;,&quot;audio&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.3,&quot;completionPrice&quot;:2.5}"
+        data-model-name="Gemini 2.5 Flash"
+        data-vendor="Google"
+        data-access="api"
+        data-rank="21"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#21</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -1140,7 +2118,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemma 4 26B A4B"
+        data-model-json="{&quot;name&quot;:&quot;Gemma 4 26B A4B&quot;,&quot;displayName&quot;:&quot;Gemma 4 26B A4B&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:42,&quot;usage&quot;:32.0,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;APACHE 2.0&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;26.5B params&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:29,&quot;score&quot;:64,&quot;days&quot;:30,&quot;tokens&quot;:1175460125037,&quot;url&quot;:&quot;https://openrouter.ai/google/gemma-4-26b-a4b-it&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:13007085,&quot;downloadsAll&quot;:44058078,&quot;likes&quot;:1332,&quot;score&quot;:84.0277,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/google/gemma-4-26B-A4B-it&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;image&quot;,&quot;text&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.16,&quot;completionPrice&quot;:0.48}"
+        data-model-name="Gemma 4 26B A4B"
+        data-vendor="Google"
+        data-access="open"
+        data-rank="42"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#42</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -1160,7 +2149,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemma 4 31B"
+        data-model-json="{&quot;name&quot;:&quot;Gemma 4 31B&quot;,&quot;displayName&quot;:&quot;Gemma 4 31B&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:44,&quot;usage&quot;:28.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;APACHE 2.0&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;32.7B params&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:34,&quot;score&quot;:57.3333,&quot;days&quot;:30,&quot;tokens&quot;:977870742657,&quot;url&quot;:&quot;https://openrouter.ai/google/gemma-4-31b-it&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:12393109,&quot;downloadsAll&quot;:42804768,&quot;likes&quot;:3394,&quot;score&quot;:91.6666,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/google/gemma-4-31B-it&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;image&quot;,&quot;text&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.14,&quot;completionPrice&quot;:0.39999999999999997}"
+        data-model-name="Gemma 4 31B"
+        data-vendor="Google"
+        data-access="open"
+        data-rank="44"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#44</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -1180,7 +2180,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for MiMo-V2.5"
+        data-model-json="{&quot;name&quot;:&quot;MiMo-V2.5&quot;,&quot;displayName&quot;:&quot;MiMo-V2.5&quot;,&quot;vendor&quot;:&quot;Xiaomi&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:17,&quot;usage&quot;:67.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;MIT&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;311B params&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Audio input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:3,&quot;score&quot;:97.3333,&quot;days&quot;:30,&quot;tokens&quot;:15444138266661,&quot;url&quot;:&quot;https://openrouter.ai/xiaomi/mimo-v2.5&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:32,&quot;score&quot;:38,&quot;tokens&quot;:1779957562,&quot;url&quot;:&quot;https://zenmux.ai/models/xiaomi/mimo-v2.5&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:321772,&quot;downloadsAll&quot;:784840,&quot;likes&quot;:372,&quot;score&quot;:32.6389,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/XiaomiMiMo/MiMo-V2.5&quot;},&quot;contextLength&quot;:1050000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;audio&quot;,&quot;image&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.14,&quot;completionPrice&quot;:0.28}"
+        data-model-name="MiMo-V2.5"
+        data-vendor="Xiaomi"
+        data-access="open"
+        data-rank="17"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#17</span>
           <img class="vendor-logo" src="assets/vendor-logos/xiaomimimo-text.svg" alt="Xiaomi">
@@ -1200,7 +2211,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Qwen3.7 Plus"
+        data-model-json="{&quot;name&quot;:&quot;Qwen3.7 Plus&quot;,&quot;displayName&quot;:&quot;Qwen3.7 Plus&quot;,&quot;vendor&quot;:&quot;Qwen&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:30,&quot;usage&quot;:48.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:46,&quot;score&quot;:42.6667,&quot;days&quot;:20,&quot;tokens&quot;:454880362523,&quot;url&quot;:&quot;https://openrouter.ai/qwen/qwen3.7-plus&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:24,&quot;score&quot;:54,&quot;tokens&quot;:4593046905,&quot;url&quot;:&quot;https://zenmux.ai/models/qwen/qwen3.7-plus&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.32,&quot;completionPrice&quot;:1.28}"
+        data-model-name="Qwen3.7 Plus"
+        data-vendor="Qwen"
+        data-access="api"
+        data-rank="30"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#30</span>
           <img class="vendor-logo" src="assets/vendor-logos/qwen-text.svg" alt="Qwen">
@@ -1220,7 +2242,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Claude Opus 4.5"
+        data-model-json="{&quot;name&quot;:&quot;Claude Opus 4.5&quot;,&quot;displayName&quot;:&quot;Claude Opus 4.5&quot;,&quot;vendor&quot;:&quot;Anthropic&quot;,&quot;domain&quot;:&quot;Multimodal &amp; Realtime&quot;,&quot;rank&quot;:48,&quot;usage&quot;:26.0,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;days&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;https://openrouter.ai/anthropic/claude-opus-4.5&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:25,&quot;score&quot;:52,&quot;tokens&quot;:4543228312,&quot;url&quot;:&quot;https://zenmux.ai/models/anthropic/claude-opus-4.5&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:200000,&quot;inputModalities&quot;:[&quot;file&quot;,&quot;image&quot;,&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:5,&quot;completionPrice&quot;:25}"
+        data-model-name="Claude Opus 4.5"
+        data-vendor="Anthropic"
+        data-access="api"
+        data-rank="48"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#48</span>
           <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
@@ -1242,14 +2275,25 @@
     </div>
       </section>
 
-      <section class="domain-panel" style="--accent:#f0ad5b">
+      <section class="domain-panel" style="--accent:#f0ad5b" data-domain="Efficient, Edge &amp; Specialized">
         <div class="domain-heading">
           <h2>Efficient, Edge &amp; Specialized</h2>
-          <span>12 models</span>
+          <span class="domain-count">12 models</span>
           <span class="mix">5 open / 7 API</span>
         </div>
         <div class="model-grid">
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemini 2.5 Flash Lite"
+        data-model-json="{&quot;name&quot;:&quot;Gemini 2.5 Flash Lite&quot;,&quot;displayName&quot;:&quot;Gemini 2.5 Flash Lite&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:10,&quot;usage&quot;:80.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Audio input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:15,&quot;score&quot;:81.3333,&quot;days&quot;:30,&quot;tokens&quot;:2762855818754,&quot;url&quot;:&quot;https://openrouter.ai/google/gemini-2.5-flash-lite&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:11,&quot;score&quot;:80,&quot;tokens&quot;:25900355984,&quot;url&quot;:&quot;https://zenmux.ai/models/google/gemini-2.5-flash-lite&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;,&quot;audio&quot;,&quot;video&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.09999999999999999,&quot;completionPrice&quot;:0.39999999999999997}"
+        data-model-name="Gemini 2.5 Flash Lite"
+        data-vendor="Google"
+        data-access="api"
+        data-rank="10"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank top-rank">#10</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -1269,7 +2313,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemini 3.1 Flash Lite"
+        data-model-json="{&quot;name&quot;:&quot;Gemini 3.1 Flash Lite&quot;,&quot;displayName&quot;:&quot;Gemini 3.1 Flash Lite&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:20,&quot;usage&quot;:60.3334,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Audio input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:24,&quot;score&quot;:70.6667,&quot;days&quot;:30,&quot;tokens&quot;:1773344535424,&quot;url&quot;:&quot;https://openrouter.ai/google/gemini-3.1-flash-lite&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:26,&quot;score&quot;:50,&quot;tokens&quot;:4221813579,&quot;url&quot;:&quot;https://zenmux.ai/models/google/gemini-3.1-flash-lite&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;video&quot;,&quot;file&quot;,&quot;audio&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.25,&quot;completionPrice&quot;:1.5}"
+        data-model-name="Gemini 3.1 Flash Lite"
+        data-vendor="Google"
+        data-access="api"
+        data-rank="20"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#20</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -1289,7 +2344,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Gemini 3.1 Flash Lite Preview"
+        data-model-json="{&quot;name&quot;:&quot;Gemini 3.1 Flash Lite Preview&quot;,&quot;displayName&quot;:&quot;Gemini 3.1 Flash Lite Preview&quot;,&quot;vendor&quot;:&quot;Google&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:29,&quot;usage&quot;:49.0,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Video input&quot;,&quot;Audio input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:38,&quot;score&quot;:52,&quot;days&quot;:30,&quot;tokens&quot;:801982497858,&quot;url&quot;:&quot;https://openrouter.ai/google/gemini-3.1-flash-lite-preview&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:28,&quot;score&quot;:46,&quot;tokens&quot;:3393237144,&quot;url&quot;:&quot;https://zenmux.ai/models/google/gemini-3.1-flash-lite-preview&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:1048576,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;video&quot;,&quot;file&quot;,&quot;audio&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.25,&quot;completionPrice&quot;:1.5}"
+        data-model-name="Gemini 3.1 Flash Lite Preview"
+        data-vendor="Google"
+        data-access="api"
+        data-rank="29"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#29</span>
           <img class="vendor-logo" src="assets/vendor-logos/gemini-text.svg" alt="Google">
@@ -1309,7 +2375,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Claude Haiku 4.5"
+        data-model-json="{&quot;name&quot;:&quot;Claude Haiku 4.5&quot;,&quot;displayName&quot;:&quot;Claude Haiku 4.5&quot;,&quot;vendor&quot;:&quot;Anthropic&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:18,&quot;usage&quot;:67.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:30,&quot;score&quot;:62.6667,&quot;days&quot;:30,&quot;tokens&quot;:1077675741636,&quot;url&quot;:&quot;https://openrouter.ai/anthropic/claude-haiku-4.5&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:15,&quot;score&quot;:72,&quot;tokens&quot;:19110644037,&quot;url&quot;:&quot;https://zenmux.ai/models/anthropic/claude-haiku-4.5&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:200000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:1,&quot;completionPrice&quot;:5}"
+        data-model-name="Claude Haiku 4.5"
+        data-vendor="Anthropic"
+        data-access="api"
+        data-rank="18"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#18</span>
           <img class="vendor-logo" src="assets/vendor-logos/anthropic-text.svg" alt="Anthropic">
@@ -1329,7 +2406,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GPT-5.4 Mini"
+        data-model-json="{&quot;name&quot;:&quot;GPT-5.4 Mini&quot;,&quot;displayName&quot;:&quot;GPT-5.4 Mini&quot;,&quot;vendor&quot;:&quot;OpenAI&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:24,&quot;usage&quot;:56.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Coding&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:36,&quot;score&quot;:54.6667,&quot;days&quot;:30,&quot;tokens&quot;:860183038270,&quot;url&quot;:&quot;https://openrouter.ai/openai/gpt-5.4-mini&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:22,&quot;score&quot;:58,&quot;tokens&quot;:5205564545,&quot;url&quot;:&quot;https://zenmux.ai/models/openai/gpt-5.4-mini&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:400000,&quot;inputModalities&quot;:[&quot;file&quot;,&quot;image&quot;,&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.75,&quot;completionPrice&quot;:4.5}"
+        data-model-name="GPT-5.4 Mini"
+        data-vendor="OpenAI"
+        data-access="api"
+        data-rank="24"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#24</span>
           <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
@@ -1349,7 +2437,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GPT-4o-mini"
+        data-model-json="{&quot;name&quot;:&quot;GPT-4o-mini&quot;,&quot;displayName&quot;:&quot;GPT-4o-mini&quot;,&quot;vendor&quot;:&quot;OpenAI&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:28,&quot;usage&quot;:50.0,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;ZenMux&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:26,&quot;score&quot;:68,&quot;days&quot;:30,&quot;tokens&quot;:1731841578166,&quot;url&quot;:&quot;https://openrouter.ai/openai/gpt-4o-mini&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:35,&quot;score&quot;:32,&quot;tokens&quot;:862162061,&quot;url&quot;:&quot;https://zenmux.ai/models/openai/gpt-4o-mini&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:128000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.15,&quot;completionPrice&quot;:0.6}"
+        data-model-name="GPT-4o-mini"
+        data-vendor="OpenAI"
+        data-access="api"
+        data-rank="28"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#28</span>
           <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
@@ -1369,7 +2468,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for gpt-oss-120b"
+        data-model-json="{&quot;name&quot;:&quot;gpt-oss-120b&quot;,&quot;displayName&quot;:&quot;gpt-oss-120b&quot;,&quot;vendor&quot;:&quot;OpenAI&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:39,&quot;usage&quot;:36.0,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;APACHE 2.0&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;120B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:23,&quot;score&quot;:72,&quot;days&quot;:30,&quot;tokens&quot;:1789605742484,&quot;url&quot;:&quot;https://openrouter.ai/openai/gpt-oss-120b&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:4326683,&quot;downloadsAll&quot;:47550715,&quot;likes&quot;:5047,&quot;score&quot;:88.1944,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/openai/gpt-oss-120b&quot;},&quot;contextLength&quot;:131072,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.037,&quot;completionPrice&quot;:0.16999999999999998}"
+        data-model-name="gpt-oss-120b"
+        data-vendor="OpenAI"
+        data-access="open"
+        data-rank="39"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#39</span>
           <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
@@ -1389,7 +2499,18 @@
         </div>
       </article>
 
-      <article class="model-card api-only">
+      <article
+        class="model-card api-only"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for GPT-5 Mini"
+        data-model-json="{&quot;name&quot;:&quot;GPT-5 Mini&quot;,&quot;displayName&quot;:&quot;GPT-5 Mini&quot;,&quot;vendor&quot;:&quot;OpenAI&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:47,&quot;usage&quot;:26.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:false,&quot;access&quot;:&quot;Closed or no public weights&quot;,&quot;license&quot;:&quot;API-only&quot;,&quot;licenseClass&quot;:&quot;closed_or_no_public_weights&quot;,&quot;parameters&quot;:&quot;Params undisclosed&quot;,&quot;category&quot;:&quot;Multimodal / VLM&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Vision input&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:37,&quot;score&quot;:53.3333,&quot;days&quot;:30,&quot;tokens&quot;:820680884341,&quot;url&quot;:&quot;https://openrouter.ai/openai/gpt-5-mini&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;https://zenmux.ai/models/openai/gpt-5-mini&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:0,&quot;downloadsAll&quot;:0,&quot;likes&quot;:0,&quot;score&quot;:null,&quot;gated&quot;:false,&quot;url&quot;:&quot;&quot;},&quot;contextLength&quot;:400000,&quot;inputModalities&quot;:[&quot;text&quot;,&quot;image&quot;,&quot;file&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.25,&quot;completionPrice&quot;:2}"
+        data-model-name="GPT-5 Mini"
+        data-vendor="OpenAI"
+        data-access="api"
+        data-rank="47"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#47</span>
           <img class="vendor-logo" src="assets/vendor-logos/openai-text.svg" alt="OpenAI">
@@ -1409,7 +2530,18 @@
         </div>
       </article>
 
-      <article class="model-card open-custom">
+      <article
+        class="model-card open-custom"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Nemotron 3 Super"
+        data-model-json="{&quot;name&quot;:&quot;Nemotron 3 Super&quot;,&quot;displayName&quot;:&quot;Nemotron 3 Super&quot;,&quot;vendor&quot;:&quot;NVIDIA&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:40,&quot;usage&quot;:34.6666,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;OTHER&quot;,&quot;licenseClass&quot;:&quot;open_weight_custom_or_other_license&quot;,&quot;parameters&quot;:&quot;124B params&quot;,&quot;category&quot;:&quot;Reasoning&quot;,&quot;capabilities&quot;:[&quot;Reasoning&quot;,&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:25,&quot;score&quot;:69.3333,&quot;days&quot;:30,&quot;tokens&quot;:1769628176458,&quot;url&quot;:&quot;https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:223302,&quot;downloadsAll&quot;:2388500,&quot;likes&quot;:269,&quot;score&quot;:25.6944,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8&quot;},&quot;contextLength&quot;:1000000,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.08499999999999999,&quot;completionPrice&quot;:0.39999999999999997}"
+        data-model-name="Nemotron 3 Super"
+        data-vendor="NVIDIA"
+        data-access="open"
+        data-rank="40"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#40</span>
           <img class="vendor-logo" src="assets/vendor-logos/nvidia-text.svg" alt="NVIDIA">
@@ -1429,7 +2561,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Mistral Nemo"
+        data-model-json="{&quot;name&quot;:&quot;Mistral Nemo&quot;,&quot;displayName&quot;:&quot;Mistral Nemo&quot;,&quot;vendor&quot;:&quot;Mistral&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:45,&quot;usage&quot;:28.0,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;APACHE 2.0&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;12.2B params&quot;,&quot;category&quot;:&quot;General Language&quot;,&quot;capabilities&quot;:[&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:35,&quot;score&quot;:56,&quot;days&quot;:30,&quot;tokens&quot;:868208145885,&quot;url&quot;:&quot;https://openrouter.ai/mistralai/mistral-nemo&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:438357,&quot;downloadsAll&quot;:9670540,&quot;likes&quot;:1692,&quot;score&quot;:47.9166,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407&quot;},&quot;contextLength&quot;:131072,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.019000000000000003,&quot;completionPrice&quot;:0.03}"
+        data-model-name="Mistral Nemo"
+        data-vendor="Mistral"
+        data-access="open"
+        data-rank="45"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#45</span>
           <img class="vendor-logo" src="assets/vendor-logos/mistral-text.svg" alt="Mistral">
@@ -1449,7 +2592,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Qwen3 Embedding 8B"
+        data-model-json="{&quot;name&quot;:&quot;Qwen3 Embedding 8B&quot;,&quot;displayName&quot;:&quot;Qwen3 Embedding 8B&quot;,&quot;vendor&quot;:&quot;Qwen&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:49,&quot;usage&quot;:23.3333,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;APACHE 2.0&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;7.57B params&quot;,&quot;category&quot;:&quot;Embedding / Rerank&quot;,&quot;capabilities&quot;:[&quot;Embeddings&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:43,&quot;score&quot;:46.6667,&quot;days&quot;:24,&quot;tokens&quot;:606869792316,&quot;url&quot;:&quot;https://openrouter.ai/qwen/qwen3-embedding-8b&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:3377421,&quot;downloadsAll&quot;:18884925,&quot;likes&quot;:761,&quot;score&quot;:70.1389,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/Qwen/Qwen3-Embedding-8B&quot;},&quot;contextLength&quot;:32768,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;embeddings&quot;],&quot;promptPrice&quot;:0.01,&quot;completionPrice&quot;:null}"
+        data-model-name="Qwen3 Embedding 8B"
+        data-vendor="Qwen"
+        data-access="open"
+        data-rank="49"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#49</span>
           <img class="vendor-logo" src="assets/vendor-logos/qwen-text.svg" alt="Qwen">
@@ -1469,7 +2623,18 @@
         </div>
       </article>
 
-      <article class="model-card open-osi">
+      <article
+        class="model-card open-osi"
+        role="button"
+        tabindex="0"
+        aria-label="Open details for Qwen3 235B A22B"
+        data-model-json="{&quot;name&quot;:&quot;Qwen3 235B A22B Instruct 2507&quot;,&quot;displayName&quot;:&quot;Qwen3 235B A22B&quot;,&quot;vendor&quot;:&quot;Qwen&quot;,&quot;domain&quot;:&quot;Efficient, Edge &amp; Specialized&quot;,&quot;rank&quot;:50,&quot;usage&quot;:22.6667,&quot;aai&quot;:null,&quot;isOpen&quot;:true,&quot;access&quot;:&quot;Open weights&quot;,&quot;license&quot;:&quot;APACHE 2.0&quot;,&quot;licenseClass&quot;:&quot;open_source_license&quot;,&quot;parameters&quot;:&quot;235B params&quot;,&quot;category&quot;:&quot;General Language&quot;,&quot;capabilities&quot;:[&quot;Tool use&quot;,&quot;Structured output&quot;],&quot;sourcePresence&quot;:[&quot;OpenRouter&quot;,&quot;HuggingFace&quot;],&quot;openrouter&quot;:{&quot;rank&quot;:44,&quot;score&quot;:45.3333,&quot;days&quot;:20,&quot;tokens&quot;:549731985743,&quot;url&quot;:&quot;https://openrouter.ai/qwen/qwen3-235b-a22b-2507&quot;},&quot;zenmux&quot;:{&quot;rank&quot;:null,&quot;score&quot;:0,&quot;tokens&quot;:0,&quot;url&quot;:&quot;https://zenmux.ai/models/qwen/qwen3-235b-a22b-2507&quot;},&quot;huggingface&quot;:{&quot;downloads30d&quot;:64901,&quot;downloadsAll&quot;:1529742,&quot;likes&quot;:793,&quot;score&quot;:20.8333,&quot;gated&quot;:false,&quot;url&quot;:&quot;https://huggingface.co/Qwen/Qwen3-235B-A22B-Instruct-2507&quot;},&quot;contextLength&quot;:262144,&quot;inputModalities&quot;:[&quot;text&quot;],&quot;outputModalities&quot;:[&quot;text&quot;],&quot;promptPrice&quot;:0.09,&quot;completionPrice&quot;:0.55}"
+        data-model-name="Qwen3 235B A22B"
+        data-vendor="Qwen"
+        data-access="open"
+        data-rank="50"
+        data-has-aai="false"
+      >
         <div class="card-top">
           <span class="rank">#50</span>
           <img class="vendor-logo" src="assets/vendor-logos/qwen-text.svg" alt="Qwen">
@@ -1498,7 +2663,12 @@
         </div>
         <div class="benchmark-list">
 
-            <div class="benchmark-row">
+            <div
+              class="benchmark-row"
+              role="button"
+              tabindex="0"
+              data-model-name="Claude Fable 5"
+            >
               <span class="benchmark-order">1</span>
               <div class="benchmark-model">
                 <strong>Claude Fable 5</strong>
@@ -1508,7 +2678,12 @@
               <strong class="benchmark-score">59.9</strong>
             </div>
 
-            <div class="benchmark-row">
+            <div
+              class="benchmark-row"
+              role="button"
+              tabindex="0"
+              data-model-name="Claude Opus 4.8"
+            >
               <span class="benchmark-order">2</span>
               <div class="benchmark-model">
                 <strong>Claude Opus 4.8</strong>
@@ -1518,7 +2693,12 @@
               <strong class="benchmark-score">55.7</strong>
             </div>
 
-            <div class="benchmark-row">
+            <div
+              class="benchmark-row"
+              role="button"
+              tabindex="0"
+              data-model-name="GLM 5.2"
+            >
               <span class="benchmark-order">3</span>
               <div class="benchmark-model">
                 <strong>GLM 5.2</strong>
@@ -1528,7 +2708,12 @@
               <strong class="benchmark-score">51.1</strong>
             </div>
 
-            <div class="benchmark-row">
+            <div
+              class="benchmark-row"
+              role="button"
+              tabindex="0"
+              data-model-name="Qwen3.7 Max"
+            >
               <span class="benchmark-order">4</span>
               <div class="benchmark-model">
                 <strong>Qwen3.7 Max</strong>
@@ -1538,7 +2723,12 @@
               <strong class="benchmark-score">46.0</strong>
             </div>
 
-            <div class="benchmark-row">
+            <div
+              class="benchmark-row"
+              role="button"
+              tabindex="0"
+              data-model-name="MiniMax M3"
+            >
               <span class="benchmark-order">5</span>
               <div class="benchmark-model">
                 <strong>MiniMax M3</strong>
@@ -1548,7 +2738,12 @@
               <strong class="benchmark-score">44.4</strong>
             </div>
 
-            <div class="benchmark-row">
+            <div
+              class="benchmark-row"
+              role="button"
+              tabindex="0"
+              data-model-name="DeepSeek V4 Pro"
+            >
               <span class="benchmark-order">6</span>
               <div class="benchmark-model">
                 <strong>DeepSeek V4 Pro</strong>
@@ -1558,7 +2753,12 @@
               <strong class="benchmark-score">44.3</strong>
             </div>
 
-            <div class="benchmark-row">
+            <div
+              class="benchmark-row"
+              role="button"
+              tabindex="0"
+              data-model-name="MiMo-V2.5-Pro"
+            >
               <span class="benchmark-order">7</span>
               <div class="benchmark-model">
                 <strong>MiMo-V2.5-Pro</strong>
@@ -1568,7 +2768,12 @@
               <strong class="benchmark-score">42.2</strong>
             </div>
 
-            <div class="benchmark-row">
+            <div
+              class="benchmark-row"
+              role="button"
+              tabindex="0"
+              data-model-name="DeepSeek V4 Flash"
+            >
               <span class="benchmark-order">8</span>
               <div class="benchmark-model">
                 <strong>DeepSeek V4 Flash</strong>
@@ -1589,8 +2794,8 @@
 
     <footer>
       <div>
-        Usage score: 50% OpenRouter monthly percentile + 50% ZenMux monthly percentile.
-        AAI: Artificial Analysis Intelligence Index where publicly matched.
+        <strong id="result-count" aria-live="polite">50 models shown</strong>
+        · Usage = 50% OpenRouter percentile + 50% ZenMux percentile. AAI appears only where publicly matched.
       </div>
       <div class="legend">
         <span class="legend-item"><i class="swatch osi"></i> Open weights + OSI license</span>
@@ -1599,5 +2804,388 @@
       </div>
     </footer>
   </main>
+  <div class="passport-backdrop" id="passport-backdrop" hidden></div>
+  <aside
+    class="model-passport"
+    id="model-passport"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="passport-model-name"
+    aria-hidden="true"
+  >
+    <button class="passport-close" id="passport-close" type="button" aria-label="Close model details">CLOSE ×</button>
+    <header class="passport-header">
+      <div class="passport-logo" id="passport-logo"></div>
+      <p id="passport-vendor"></p>
+      <h2 id="passport-model-name"></h2>
+      <div class="passport-badges">
+        <span id="passport-rank"></span>
+        <span id="passport-domain"></span>
+      </div>
+    </header>
+    <p class="passport-thesis">Adoption, access and evaluated capability are three different questions. This card keeps their evidence separate.</p>
+    <section class="passport-lanes">
+      <article class="passport-lane usage-lane">
+        <span>01 · ADOPTION</span>
+        <strong id="passport-usage"></strong>
+        <small>Usage composite</small>
+        <i><b id="passport-usage-bar"></b></i>
+        <p>Equal-weight average of each platform’s monthly token percentile. Raw tokens are not added across platforms.</p>
+      </article>
+      <article class="passport-lane access-lane">
+        <span>02 · ACCESS</span>
+        <strong id="passport-access"></strong>
+        <small id="passport-license"></small>
+        <p id="passport-access-note"></p>
+      </article>
+      <article class="passport-lane capability-lane">
+        <span>03 · CAPABILITY</span>
+        <strong id="passport-aai"></strong>
+        <small>Public AAI match</small>
+        <p id="passport-aai-note"></p>
+      </article>
+    </section>
+    <section class="passport-evidence" aria-label="Source evidence">
+      <article>
+        <span>OPENROUTER · JUNE</span>
+        <strong id="passport-openrouter-rank"></strong>
+        <p id="passport-openrouter-note"></p>
+      </article>
+      <article>
+        <span>ZENMUX · JUNE</span>
+        <strong id="passport-zenmux-rank"></strong>
+        <p id="passport-zenmux-note"></p>
+      </article>
+      <article>
+        <span>HUGGING FACE · OPEN MODELS</span>
+        <strong id="passport-hf-score"></strong>
+        <p id="passport-hf-note"></p>
+      </article>
+    </section>
+    <section class="passport-specs">
+      <div><span>Parameters</span><strong id="passport-parameters"></strong></div>
+      <div><span>Context</span><strong id="passport-context"></strong></div>
+      <div><span>Price / 1M tokens</span><strong id="passport-price"></strong></div>
+      <div><span>Source coverage</span><strong id="passport-sources"></strong></div>
+    </section>
+    <section class="passport-capabilities">
+      <span>CAPABILITY SIGNALS</span>
+      <div id="passport-capabilities"></div>
+    </section>
+    <details class="metric-glossary">
+      <summary>What exactly do these metrics mean?</summary>
+      <div>
+        <p><strong>Usage composite</strong> averages the model’s percentile inside OpenRouter and ZenMux. Missing a platform Top 50 contributes zero; it does not prove zero usage.</p>
+        <p><strong>AAI</strong> is the Artificial Analysis Intelligence Index for models matched to the public snapshot. No badge means “not publicly matched”, not a score of zero.</p>
+        <p><strong>HF ecosystem score</strong> is only for open-weight models: 75% 30-day download percentile + 25% likes percentile. It is not compared with API-only models.</p>
+        <p><strong>Open weights</strong> means an official public weight repository was resolved. It does not automatically mean open training data, unrestricted redistribution or OSI-defined Open Source AI.</p>
+      </div>
+    </details>
+    <nav class="passport-links" aria-label="Model source links">
+      <a id="passport-openrouter-link" target="_blank" rel="noreferrer">OpenRouter ↗</a>
+      <a id="passport-zenmux-link" target="_blank" rel="noreferrer">ZenMux ↗</a>
+      <a id="passport-hf-link" target="_blank" rel="noreferrer">Hugging Face ↗</a>
+    </nav>
+  </aside>
+  <script>(() => {
+  const cards = [...document.querySelectorAll(".model-card")];
+  const panels = [...document.querySelectorAll(".domain-panel[data-domain]")];
+  const primaryButtons = [
+    ...document.querySelectorAll("[data-primary-filter]"),
+  ];
+  const searchInput = document.querySelector("#model-search");
+  const vendorSelect = document.querySelector("#vendor-filter");
+  const aaiButton = document.querySelector("#aai-filter");
+  const resetButton = document.querySelector("#reset-filter");
+  const resultCount = document.querySelector("#result-count");
+  const drawer = document.querySelector("#model-passport");
+  const backdrop = document.querySelector("#passport-backdrop");
+  const closeButton = document.querySelector("#passport-close");
+  let primaryFilter = "all";
+  let aaiOnly = false;
+  let lastFocus = null;
+
+  const dataFor = (card) => {
+    if (!card.__modelData) {
+      card.__modelData = JSON.parse(card.dataset.modelJson);
+    }
+    return card.__modelData;
+  };
+
+  const vendors = [...new Set(cards.map((card) => dataFor(card).vendor))].sort(
+    (left, right) => left.localeCompare(right),
+  );
+  vendors.forEach((vendor) => {
+    const option = document.createElement("option");
+    const count = cards.filter((card) => dataFor(card).vendor === vendor).length;
+    option.value = vendor;
+    option.textContent = `${vendor} · ${count}`;
+    vendorSelect.append(option);
+  });
+
+  const matchesPrimary = (data) => {
+    if (primaryFilter === "open") return data.isOpen;
+    if (primaryFilter === "api") return !data.isOpen;
+    if (primaryFilter === "top10") return data.rank <= 10;
+    return true;
+  };
+
+  const applyFilters = () => {
+    const query = searchInput.value.trim().toLocaleLowerCase();
+    const vendor = vendorSelect.value;
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const data = dataFor(card);
+      const haystack = `${data.displayName} ${data.vendor} ${data.domain}`.toLocaleLowerCase();
+      const visible =
+        matchesPrimary(data) &&
+        (!aaiOnly || data.aai !== null) &&
+        (vendor === "all" || data.vendor === vendor) &&
+        (!query || haystack.includes(query));
+      card.classList.toggle("is-filtered", !visible);
+      if (visible) visibleCount += 1;
+    });
+
+    panels.forEach((panel) => {
+      const visibleCards = [
+        ...panel.querySelectorAll(".model-card:not(.is-filtered)"),
+      ];
+      const openCount = visibleCards.filter(
+        (card) => dataFor(card).isOpen,
+      ).length;
+      const apiCount = visibleCards.length - openCount;
+      panel.classList.toggle("is-empty", visibleCards.length === 0);
+      panel.querySelector(".domain-count").textContent =
+        `${visibleCards.length} shown`;
+      panel.querySelector(".mix").textContent =
+        `${openCount} open / ${apiCount} API`;
+    });
+
+    resultCount.textContent = `${visibleCount} model${visibleCount === 1 ? "" : "s"} shown`;
+  };
+
+  primaryButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      primaryFilter = button.dataset.primaryFilter;
+      primaryButtons.forEach((candidate) => {
+        const active = candidate === button;
+        candidate.classList.toggle("is-active", active);
+        candidate.setAttribute("aria-pressed", String(active));
+      });
+      applyFilters();
+    });
+  });
+
+  searchInput.addEventListener("input", applyFilters);
+  vendorSelect.addEventListener("change", applyFilters);
+  aaiButton.addEventListener("click", () => {
+    aaiOnly = !aaiOnly;
+    aaiButton.setAttribute("aria-pressed", String(aaiOnly));
+    applyFilters();
+  });
+  resetButton.addEventListener("click", () => {
+    primaryFilter = "all";
+    aaiOnly = false;
+    searchInput.value = "";
+    vendorSelect.value = "all";
+    aaiButton.setAttribute("aria-pressed", "false");
+    primaryButtons.forEach((button) => {
+      const active = button.dataset.primaryFilter === "all";
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+    applyFilters();
+  });
+
+  const compact = (value) =>
+    value === null || value === undefined
+      ? "Not visible"
+      : new Intl.NumberFormat("en", {
+          notation: "compact",
+          maximumFractionDigits: 1,
+        }).format(value);
+
+  const score = (value) =>
+    value === null || value === undefined ? "Not matched" : value.toFixed(1);
+
+  const rank = (value) =>
+    value === null || value === undefined ? "Outside visible Top 50" : `#${value}`;
+
+  const setText = (id, value) => {
+    document.querySelector(`#${id}`).textContent = value;
+  };
+
+  const setLink = (id, url) => {
+    const link = document.querySelector(`#${id}`);
+    link.hidden = !url;
+    if (url) link.href = url;
+    else link.removeAttribute("href");
+  };
+
+  const openDrawer = (card) => {
+    const data = dataFor(card);
+    lastFocus = document.activeElement;
+    const logoSlot = document.querySelector("#passport-logo");
+    const logo = card.querySelector(".vendor-logo, .vendor-fallback");
+    logoSlot.replaceChildren(logo.cloneNode(true));
+
+    setText("passport-vendor", data.vendor);
+    setText("passport-model-name", data.displayName);
+    setText("passport-rank", `Usage rank #${data.rank}`);
+    setText("passport-domain", data.domain);
+    setText("passport-usage", data.usage.toFixed(1));
+    document.querySelector("#passport-usage-bar").style.width =
+      `${Math.max(0, Math.min(100, data.usage))}%`;
+
+    const accessLabel = data.isOpen ? "Open weights" : "API-only";
+    setText("passport-access", accessLabel);
+    setText("passport-license", data.license);
+    setText(
+      "passport-access-note",
+      data.isOpen
+        ? data.licenseClass === "open_source_license"
+          ? "Public weights with an OSI-approved software license. Training data and code still need separate verification."
+          : "Public weights under a custom or restricted license. Weight access is not the same as unrestricted open source."
+        : "No official public weight repository was resolved for this endpoint in the snapshot.",
+    );
+
+    setText("passport-aai", score(data.aai));
+    setText(
+      "passport-aai-note",
+      data.aai === null
+        ? "This model was not matched to the public Artificial Analysis snapshot; absence is not a zero."
+        : "Artificial Analysis Intelligence Index from the public leaderboard snapshot.",
+    );
+
+    setText("passport-openrouter-rank", rank(data.openrouter.rank));
+    setText(
+      "passport-openrouter-note",
+      data.openrouter.rank === null
+        ? "Outside the platform’s visible monthly Top 50."
+        : `${compact(data.openrouter.tokens)} tokens · ${data.openrouter.days ?? "—"}/30 daily Top 50 appearances · percentile ${score(data.openrouter.score)}.`,
+    );
+    setText("passport-zenmux-rank", rank(data.zenmux.rank));
+    setText(
+      "passport-zenmux-note",
+      data.zenmux.rank === null
+        ? "Outside the platform’s visible monthly Top 50."
+        : `${compact(data.zenmux.tokens)} tokens · platform percentile ${score(data.zenmux.score)}.`,
+    );
+    setText(
+      "passport-hf-score",
+      data.huggingface.score === null
+        ? data.isOpen
+          ? "Metadata incomplete"
+          : "Not applicable"
+        : score(data.huggingface.score),
+    );
+    setText(
+      "passport-hf-note",
+      data.huggingface.score === null
+        ? data.isOpen
+          ? "No complete open-ecosystem score was available."
+          : "HF ecosystem score is only computed for open-weight models."
+        : `${compact(data.huggingface.downloads30d)} downloads in 30 days · ${compact(data.huggingface.likes)} likes${data.huggingface.gated ? " · gated access" : ""}.`,
+    );
+
+    setText("passport-parameters", data.parameters);
+    setText(
+      "passport-context",
+      data.contextLength === null ? "Not disclosed" : compact(data.contextLength),
+    );
+    setText(
+      "passport-price",
+      data.promptPrice === null && data.completionPrice === null
+        ? "Not available"
+        : `$${data.promptPrice ?? "—"} in · $${data.completionPrice ?? "—"} out`,
+    );
+    setText(
+      "passport-sources",
+      data.sourcePresence.length
+        ? data.sourcePresence.join(" + ")
+        : "No named source",
+    );
+
+    const capabilities = document.querySelector("#passport-capabilities");
+    capabilities.replaceChildren(
+      ...(data.capabilities.length ? data.capabilities : ["No tagged capability"]).map(
+        (label) => {
+          const item = document.createElement("i");
+          item.textContent = label;
+          return item;
+        },
+      ),
+    );
+
+    setLink("passport-openrouter-link", data.openrouter.url);
+    setLink("passport-zenmux-link", data.zenmux.url);
+    setLink("passport-hf-link", data.huggingface.url);
+
+    backdrop.hidden = false;
+    drawer.classList.add("is-open");
+    drawer.setAttribute("aria-hidden", "false");
+    closeButton.focus();
+  };
+
+  const closeDrawer = () => {
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    backdrop.hidden = true;
+    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+  };
+
+  cards.forEach((card) => {
+    card.addEventListener("click", () => openDrawer(card));
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openDrawer(card);
+      }
+    });
+    card.addEventListener("mouseenter", () => {
+      const vendor = dataFor(card).vendor;
+      cards.forEach((candidate) => {
+        if (
+          !candidate.classList.contains("is-filtered") &&
+          dataFor(candidate).vendor !== vendor
+        ) {
+          candidate.classList.add("vendor-muted");
+        }
+      });
+    });
+    card.addEventListener("mouseleave", () => {
+      cards.forEach((candidate) => candidate.classList.remove("vendor-muted"));
+    });
+  });
+
+  document.querySelectorAll(".benchmark-row").forEach((row) => {
+    const openMatchingCard = () => {
+      const card = cards.find(
+        (candidate) =>
+          candidate.dataset.modelName === row.dataset.modelName,
+      );
+      if (card) openDrawer(card);
+    };
+    row.addEventListener("click", openMatchingCard);
+    row.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openMatchingCard();
+      }
+    });
+  });
+
+  closeButton.addEventListener("click", closeDrawer);
+  backdrop.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && drawer.classList.contains("is-open")) {
+      closeDrawer();
+    }
+  });
+
+  applyFilters();
+})();
+</script>
 </body>
 </html>

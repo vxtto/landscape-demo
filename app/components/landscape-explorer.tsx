@@ -1,14 +1,15 @@
 "use client";
 
 import {
+  ArrowUpRightIcon,
   Share2Icon,
-  ZoomInIcon,
-  ZoomOutIcon,
   SearchIcon,
   XIcon,
 } from "lucide-react";
 import {
   type CSSProperties,
+  type ReactNode,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -23,6 +24,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { LandscapeProject, StageId } from "@/lib/landscape-types";
+import { projectLogoUrl } from "@/lib/project-logo";
 import { cn } from "@/lib/utils";
 
 import styles from "../page.module.css";
@@ -110,6 +112,11 @@ type RankStyle = CSSProperties & {
   "--rank-grow": string;
 };
 
+type ZoneStyle = CSSProperties & {
+  "--project-columns": number;
+  "--project-rows": number;
+};
+
 type LayoutRect = {
   x: number;
   y: number;
@@ -173,10 +180,100 @@ const MODEL_STAGES = [
   },
 ] as const;
 
+const MODEL_STAGE_ASPECT_RATIO: Record<
+  (typeof MODEL_STAGES)[number]["label"],
+  number
+> = {
+  "Access & Serving": 6.83,
+  "Model Training": 4.74,
+  "Data & Compute": 6.83,
+};
+
 const COMPACT_NUMBER = new Intl.NumberFormat("en", {
   notation: "compact",
   maximumFractionDigits: 1,
 });
+
+const LANDSCAPE_CANVAS_WIDTH = 1440;
+const LANDSCAPE_CANVAS_HEIGHT = 810;
+
+function FixedLandscapeFrame({
+  children,
+  fitViewport,
+}: {
+  children: ReactNode;
+  fitViewport?: boolean;
+}) {
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+
+    const fit = () => {
+      const heightScale = fitViewport
+        ? window.innerHeight / LANDSCAPE_CANVAS_HEIGHT
+        : 1;
+      setScale(
+        Math.min(
+          1,
+          viewport.clientWidth / LANDSCAPE_CANVAS_WIDTH,
+          heightScale,
+        ),
+      );
+    };
+
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(viewport);
+    if (fitViewport) window.addEventListener("resize", fit);
+
+    return () => {
+      observer.disconnect();
+      if (fitViewport) window.removeEventListener("resize", fit);
+    };
+  }, [fitViewport]);
+
+  return (
+    <div ref={viewportRef} className={styles.boardViewport}>
+      <div
+        className={styles.landscapeFrameSizer}
+        style={{
+          width: LANDSCAPE_CANVAS_WIDTH * scale,
+          height: LANDSCAPE_CANVAS_HEIGHT * scale,
+        }}
+      >
+        <div
+          className={styles.landscapeFrameSurface}
+          style={{ transform: `scale(${scale})` }}
+        >
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function projectGrid(count: number, aspectRatio: number) {
+  if (count <= 1) return { columns: 1, rows: 1 };
+
+  let columns = Math.max(
+    1,
+    Math.min(count, Math.round(Math.sqrt(count * aspectRatio))),
+  );
+
+  if (count === 2 && aspectRatio < 1) columns = 1;
+  if (count === 3 && aspectRatio < 2) columns = 2;
+  if (count === 4 && aspectRatio > 0.55 && aspectRatio < 2.2) {
+    columns = 2;
+  }
+
+  return {
+    columns,
+    rows: Math.ceil(count / columns),
+  };
+}
 
 function worstRowAspect(row: WeightedZone[], shortSide: number) {
   if (!row.length) return Number.POSITIVE_INFINITY;
@@ -345,8 +442,10 @@ function ProjectMark({
       <span className={styles.projectLogoWrap}>
         <Avatar className={styles.projectLogo}>
           <AvatarImage
-            src={`https://github.com/${project.owner}.png?size=128`}
+            src={projectLogoUrl(project.owner)}
             data-export-logo-owner={project.owner}
+            decoding="async"
+            loading="lazy"
             alt=""
           />
           <AvatarFallback>{projectInitials(project.name)}</AvatarFallback>
@@ -379,6 +478,7 @@ function ZoneSection({
   rankScale,
   onSelect,
   style,
+  aspectRatio,
   className,
 }: {
   zone: string;
@@ -388,6 +488,7 @@ function ZoneSection({
   rankScale: (project: LandscapeProject) => number;
   onSelect: (repo: string) => void;
   style?: CSSProperties;
+  aspectRatio: number;
   className?: string;
 }) {
   const rankedZoneValues = zoneProjects
@@ -413,12 +514,18 @@ function ZoneSection({
   const [zoneFamily, zoneName = zone] = zone.includes(" · ")
     ? zone.split(" · ", 2)
     : ["", zone];
+  const grid = projectGrid(zoneProjects.length, aspectRatio);
+  const zoneStyle: ZoneStyle = {
+    ...style,
+    "--project-columns": grid.columns,
+    "--project-rows": grid.rows,
+  };
 
   return (
     <section
       data-landscape-zone
       className={cn(styles.zone, className)}
-      style={style}
+      style={zoneStyle}
     >
       <header className={styles.zoneHeader}>
         <span aria-hidden="true" />
@@ -522,6 +629,10 @@ function StageSection({
               rankScale={rankScale}
               onSelect={onSelect}
               style={zoneStyle}
+              aspectRatio={
+                (STAGE_ASPECT_RATIO[stage.id] * layout.width) /
+                layout.height
+              }
             />
           );
         })}
@@ -580,6 +691,11 @@ function ModelStageSection({
       weight: 3 + projectCount,
     };
   });
+  const totalRowWeight = rows.reduce(
+    (sum, row) => sum + row.weight,
+    0,
+  );
+  const macroAspect = MODEL_STAGE_ASPECT_RATIO[definition.label];
 
   return (
     <article
@@ -601,30 +717,44 @@ function ModelStageSection({
             .join(" "),
         }}
       >
-        {rows.map((row, rowIndex) => (
-          <div
-            key={`${definition.label}-${rowIndex}`}
-            className={styles.modelStageRow}
-            style={{
-              gridTemplateColumns: row.items
-                .map((item) => `${item.weight}fr`)
-                .join(" "),
-            }}
-          >
-            {row.items.map(({ zone, projects: zoneProjects }) => (
-              <ZoneSection
-                key={zone}
-                zone={zone}
-                zoneProjects={zoneProjects}
-                normalizedQuery={normalizedQuery}
-                selectedRepo={selectedRepo}
-                rankScale={rankScale}
-                onSelect={onSelect}
-                className={styles.modelStageZone}
-              />
-            ))}
-          </div>
-        ))}
+        {rows.map((row, rowIndex) => {
+          const rowAspect =
+            macroAspect * (totalRowWeight / row.weight);
+          const totalItemWeight = row.items.reduce(
+            (sum, item) => sum + item.weight,
+            0,
+          );
+
+          return (
+            <div
+              key={`${definition.label}-${rowIndex}`}
+              className={styles.modelStageRow}
+              style={{
+                gridTemplateColumns: row.items
+                  .map((item) => `${item.weight}fr`)
+                  .join(" "),
+              }}
+            >
+              {row.items.map(
+                ({ zone, projects: zoneProjects, weight }) => (
+                  <ZoneSection
+                    key={zone}
+                    zone={zone}
+                    zoneProjects={zoneProjects}
+                    normalizedQuery={normalizedQuery}
+                    selectedRepo={selectedRepo}
+                    rankScale={rankScale}
+                    onSelect={onSelect}
+                    aspectRatio={
+                      rowAspect * (weight / totalItemWeight)
+                    }
+                    className={styles.modelStageZone}
+                  />
+                ),
+              )}
+            </div>
+          );
+        })}
       </div>
     </article>
   );
@@ -663,8 +793,12 @@ function ModuleSummaryStrip({
 
 export default function LandscapeExplorer({
   projects,
+  embedOnly,
+  standalone,
 }: {
   projects: LandscapeProject[];
+  embedOnly?: "agent" | "model";
+  standalone?: boolean;
 }) {
   const [agentQuery, setAgentQuery] = useState("");
   const [modelQuery, setModelQuery] = useState("");
@@ -673,8 +807,6 @@ export default function LandscapeExplorer({
   const [shareTarget, setShareTarget] = useState<"agent" | "model">(
     "agent",
   );
-  const [agentZoom, setAgentZoom] = useState(90);
-  const [modelZoom, setModelZoom] = useState(90);
   const agentSlideRef = useRef<HTMLElement>(null);
   const modelSlideRef = useRef<HTMLElement>(null);
   const normalizedAgentQuery = agentQuery.trim().toLowerCase();
@@ -773,310 +905,280 @@ export default function LandscapeExplorer({
 
   return (
     <section
-      className={styles.explorer}
+      className={cn(styles.explorer, embedOnly && styles.embedExplorer)}
       id="landscape"
-      aria-label="Interactive Agentic AI open-source landscape"
+      aria-label={
+        embedOnly
+          ? `${embedOnly === "agent" ? "Agent" : "Model"} Infra landscape`
+          : "Interactive Agentic AI open-source landscape"
+      }
     >
-      <div className={styles.landscapeLead}>
-        <h1>Map the Infrastructure Behind Agentic AI</h1>
-      </div>
-
-      <section
-        className={cn(
-          styles.landscapeModule,
-          styles.agentLandscapeModule,
-        )}
-        id="agent-infra"
-      >
-        <header className={styles.moduleHeader}>
-          <div className={styles.moduleHeading}>
-            <h2>Agent Infra</h2>
-            <h3>Where agents are built, operated, and used.</h3>
-            <p>Applications · Frameworks · Runtime infrastructure</p>
-          </div>
-          <ModuleSummaryStrip summary={agentSummary} />
-        </header>
-
-        <ModuleOpenRankChart
-          module="agent"
-          projects={agentProjects}
-          onSelect={setSelectedRepo}
-        />
-
-        <div className={styles.moduleToolbar}>
-          <label className={cn(styles.search, styles.moduleSearch)}>
-            <SearchIcon aria-hidden="true" />
-            <span className={styles.srOnly}>Search Agent Infra</span>
-            <Input
-              value={agentQuery}
-              onChange={(event) => setAgentQuery(event.target.value)}
-              placeholder="Search Agent Infra"
-            />
-            {agentQuery ? (
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                type="button"
-                onClick={() => setAgentQuery("")}
-                aria-label="Clear Agent Infra search"
-              >
-                <XIcon />
-              </Button>
-            ) : null}
-          </label>
-          <span className={styles.srOnly} aria-live="polite">
-            {normalizedAgentQuery
-              ? `${agentMatchCount} Agent Infra matches`
-              : `${agentProjects.length} Agent Infra projects`}
-          </span>
-          <div className={styles.zoomControl} aria-label="Agent Infra zoom">
-            <Button
-              variant="outline"
-              size="icon-sm"
-              type="button"
-              onClick={() =>
-                setAgentZoom((value) => Math.max(70, value - 10))
-              }
-              disabled={agentZoom === 70}
-              aria-label="Zoom Agent Infra out"
-            >
-              <ZoomOutIcon />
-            </Button>
-            <span>{agentZoom}%</span>
-            <Button
-              variant="outline"
-              size="icon-sm"
-              type="button"
-              onClick={() =>
-                setAgentZoom((value) => Math.min(110, value + 10))
-              }
-              disabled={agentZoom === 110}
-              aria-label="Zoom Agent Infra in"
-            >
-              <ZoomInIcon />
-            </Button>
-          </div>
-          <Button
-            className={styles.shareButton}
-            variant="outline"
-            type="button"
-            onClick={() => {
-              setShareTarget("agent");
-              setShareOpen(true);
-            }}
-          >
-            <Share2Icon data-icon="inline-start" />
-            Share Agent Infra
-          </Button>
-          <span className={styles.scrollHint}>
-            Scroll sideways to inspect →
-          </span>
+      {!embedOnly ? (
+        <div className={styles.landscapeLead}>
+          <h1>Map the Infrastructure Behind Agentic AI</h1>
         </div>
+      ) : null}
 
-        <div className={styles.boardViewport}>
-          <div
-            className={styles.landscapeBoard}
-            style={{ zoom: agentZoom / 100 }}
-          >
-            <section ref={agentSlideRef} className={styles.landscapeSlide}>
-              <header className={styles.boardMasthead}>
-                <div className={styles.boardTitleLockup}>
-                  <span aria-hidden="true">A</span>
-                  <div>
-                    <h2>Agent Infra Landscape 2026</h2>
-                    <p>Applications · frameworks · runtime infrastructure</p>
-                  </div>
+      {embedOnly !== "model" ? (
+        <section
+          className={cn(
+            styles.landscapeModule,
+            styles.agentLandscapeModule,
+          )}
+          id="agent-infra"
+        >
+          {!embedOnly ? (
+            <>
+              <header className={styles.moduleHeader}>
+                <div className={styles.moduleHeading}>
+                  <h2>Agent Infra</h2>
+                  <h3>Where agents are built, operated, and used.</h3>
+                  <p>Applications · Frameworks · Runtime infrastructure</p>
                 </div>
-                <div className={styles.boardSource}>
-                  <strong>ANT OPEN SOURCE</strong>
-                  <span>
-                    {agentProjects.length} projects · Jun OpenRank weighted
-                  </span>
-                </div>
+                <ModuleSummaryStrip summary={agentSummary} />
               </header>
 
-              <div className={styles.landscapeBand}>
-                <aside className={styles.infraRail} aria-hidden="true">
-                  <span>Agent Infra</span>
-                </aside>
-                <div
-                  className={cn(
-                    styles.stageStack,
-                    styles.agentStageStack,
-                  )}
-                  style={agentStageStyle}
+              <ModuleOpenRankChart
+                module="agent"
+                projects={agentProjects}
+                onSelect={setSelectedRepo}
+              />
+
+              <div className={styles.moduleToolbar}>
+                <label className={cn(styles.search, styles.moduleSearch)}>
+                  <SearchIcon aria-hidden="true" />
+                  <span className={styles.srOnly}>Search Agent Infra</span>
+                  <Input
+                    value={agentQuery}
+                    onChange={(event) => setAgentQuery(event.target.value)}
+                    placeholder="Search Agent Infra"
+                  />
+                  {agentQuery ? (
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      type="button"
+                      onClick={() => setAgentQuery("")}
+                      aria-label="Clear Agent Infra search"
+                    >
+                      <XIcon />
+                    </Button>
+                  ) : null}
+                </label>
+                <span className={styles.srOnly} aria-live="polite">
+                  {normalizedAgentQuery
+                    ? `${agentMatchCount} Agent Infra matches`
+                    : `${agentProjects.length} Agent Infra projects`}
+                </span>
+                <a
+                  className={styles.canvasLink}
+                  href="/embed/agent-infra"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  {agentStages.map((stage) => (
-                    <StageSection
-                      key={stage.id}
-                      stage={stage}
-                      projects={projects}
-                      normalizedQuery={normalizedAgentQuery}
-                      selectedRepo={selectedRepo}
-                      rankScale={rankScale}
-                      onSelect={setSelectedRepo}
-                    />
-                  ))}
-                </div>
+                  Direct canvas
+                  <ArrowUpRightIcon aria-hidden="true" />
+                </a>
+                <Button
+                  className={styles.shareButton}
+                  variant="outline"
+                  type="button"
+                  onClick={() => {
+                    setShareTarget("agent");
+                    setShareOpen(true);
+                  }}
+                >
+                  <Share2Icon data-icon="inline-start" />
+                  Share Agent Infra
+                </Button>
               </div>
-            </section>
-          </div>
-        </div>
-      </section>
+            </>
+          ) : null}
 
-      <section
-        className={cn(
-          styles.landscapeModule,
-          styles.modelLandscapeModule,
-        )}
-        id="model-infra"
-      >
-        <header className={styles.moduleHeader}>
-          <div className={styles.moduleHeading}>
-            <h2>Model Infra</h2>
-            <h3>The systems beneath model workloads.</h3>
-            <p>Access &amp; serving · Training · Data &amp; compute</p>
-          </div>
-          <ModuleSummaryStrip summary={modelSummary} />
-        </header>
+          <FixedLandscapeFrame fitViewport={standalone}>
+            <div className={styles.landscapeBoard}>
+              <section ref={agentSlideRef} className={styles.landscapeSlide}>
+                <header className={styles.boardMasthead}>
+                  <div className={styles.boardTitleLockup}>
+                    <span aria-hidden="true">A</span>
+                    <div>
+                      <h2>Agent Infra Landscape 2026</h2>
+                      <p>Applications · frameworks · runtime infrastructure</p>
+                    </div>
+                  </div>
+                  <div className={styles.boardSource}>
+                    <strong>ANT OPEN SOURCE</strong>
+                    <span>
+                      {agentProjects.length} projects · Jun OpenRank weighted
+                    </span>
+                  </div>
+                </header>
 
-        <ModuleOpenRankChart
-          module="model"
-          projects={modelProjects}
-          onSelect={setSelectedRepo}
-        />
-
-        <div className={styles.moduleToolbar}>
-          <label className={cn(styles.search, styles.moduleSearch)}>
-            <SearchIcon aria-hidden="true" />
-            <span className={styles.srOnly}>Search Model Infra</span>
-            <Input
-              value={modelQuery}
-              onChange={(event) => setModelQuery(event.target.value)}
-              placeholder="Search Model Infra"
-            />
-            {modelQuery ? (
-              <Button
-                variant="ghost"
-                size="icon-sm"
-                type="button"
-                onClick={() => setModelQuery("")}
-                aria-label="Clear Model Infra search"
-              >
-                <XIcon />
-              </Button>
-            ) : null}
-          </label>
-          <span className={styles.srOnly} aria-live="polite">
-            {normalizedModelQuery
-              ? `${modelMatchCount} Model Infra matches`
-              : `${modelProjects.length} Model Infra projects`}
-          </span>
-          <div className={styles.zoomControl} aria-label="Model Infra zoom">
-            <Button
-              variant="outline"
-              size="icon-sm"
-              type="button"
-              onClick={() =>
-                setModelZoom((value) => Math.max(70, value - 10))
-              }
-              disabled={modelZoom === 70}
-              aria-label="Zoom Model Infra out"
-            >
-              <ZoomOutIcon />
-            </Button>
-            <span>{modelZoom}%</span>
-            <Button
-              variant="outline"
-              size="icon-sm"
-              type="button"
-              onClick={() =>
-                setModelZoom((value) => Math.min(110, value + 10))
-              }
-              disabled={modelZoom === 110}
-              aria-label="Zoom Model Infra in"
-            >
-              <ZoomInIcon />
-            </Button>
-          </div>
-          <Button
-            className={styles.shareButton}
-            variant="outline"
-            type="button"
-            onClick={() => {
-              setShareTarget("model");
-              setShareOpen(true);
-            }}
-          >
-            <Share2Icon data-icon="inline-start" />
-            Share Model Infra
-          </Button>
-          <span className={styles.scrollHint}>
-            Scroll sideways to inspect →
-          </span>
-        </div>
-
-        <div className={styles.boardViewport}>
-          <div
-            className={styles.landscapeBoard}
-            style={{ zoom: modelZoom / 100 }}
-          >
-            <section
-              ref={modelSlideRef}
-              className={cn(
-                styles.landscapeSlide,
-                styles.modelLandscapeSlide,
-              )}
-            >
-              <header className={styles.boardMasthead}>
-                <div className={styles.boardTitleLockup}>
-                  <span aria-hidden="true">M</span>
-                  <div>
-                    <h2>Model Infra Landscape 2026</h2>
-                    <p>Routing · serving · training · data · compute</p>
+                <div className={styles.landscapeBand}>
+                  <aside className={styles.infraRail} aria-hidden="true">
+                    <span>Agent Infra</span>
+                  </aside>
+                  <div
+                    className={cn(
+                      styles.stageStack,
+                      styles.agentStageStack,
+                    )}
+                    style={agentStageStyle}
+                  >
+                    {agentStages.map((stage) => (
+                      <StageSection
+                        key={stage.id}
+                        stage={stage}
+                        projects={projects}
+                        normalizedQuery={normalizedAgentQuery}
+                        selectedRepo={selectedRepo}
+                        rankScale={rankScale}
+                        onSelect={setSelectedRepo}
+                      />
+                    ))}
                   </div>
                 </div>
-                <div className={styles.boardSource}>
-                  <strong>ANT OPEN SOURCE</strong>
-                  <span>
-                    {modelProjects.length} projects · Jun OpenRank weighted
-                  </span>
+              </section>
+            </div>
+          </FixedLandscapeFrame>
+        </section>
+      ) : null}
+
+      {embedOnly !== "agent" ? (
+        <section
+          className={cn(
+            styles.landscapeModule,
+            styles.modelLandscapeModule,
+          )}
+          id="model-infra"
+        >
+          {!embedOnly ? (
+            <>
+              <header className={styles.moduleHeader}>
+                <div className={styles.moduleHeading}>
+                  <h2>Model Infra</h2>
+                  <h3>The systems beneath model workloads.</h3>
+                  <p>Access &amp; serving · Training · Data &amp; compute</p>
                 </div>
+                <ModuleSummaryStrip summary={modelSummary} />
               </header>
 
-              <div className={styles.landscapeBand}>
-                <aside
-                  className={cn(styles.infraRail, styles.modelInfraRail)}
-                  aria-hidden="true"
-                >
-                  <span>Model Infra</span>
-                </aside>
-                <div
-                  className={cn(
-                    styles.stageStack,
-                    styles.modelStageStack,
-                  )}
-                  style={modelStageStyle}
-                >
-                  {MODEL_STAGES.map((definition) => (
-                    <ModelStageSection
-                      key={definition.label}
-                      definition={definition}
-                      projects={projects}
-                      normalizedQuery={normalizedModelQuery}
-                      selectedRepo={selectedRepo}
-                      rankScale={rankScale}
-                      onSelect={setSelectedRepo}
-                    />
-                  ))}
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
+              <ModuleOpenRankChart
+                module="model"
+                projects={modelProjects}
+                onSelect={setSelectedRepo}
+              />
 
-      <EcosystemSignals projects={projects} />
+              <div className={styles.moduleToolbar}>
+                <label className={cn(styles.search, styles.moduleSearch)}>
+                  <SearchIcon aria-hidden="true" />
+                  <span className={styles.srOnly}>Search Model Infra</span>
+                  <Input
+                    value={modelQuery}
+                    onChange={(event) => setModelQuery(event.target.value)}
+                    placeholder="Search Model Infra"
+                  />
+                  {modelQuery ? (
+                    <Button
+                      variant="ghost"
+                      size="icon-sm"
+                      type="button"
+                      onClick={() => setModelQuery("")}
+                      aria-label="Clear Model Infra search"
+                    >
+                      <XIcon />
+                    </Button>
+                  ) : null}
+                </label>
+                <span className={styles.srOnly} aria-live="polite">
+                  {normalizedModelQuery
+                    ? `${modelMatchCount} Model Infra matches`
+                    : `${modelProjects.length} Model Infra projects`}
+                </span>
+                <a
+                  className={styles.canvasLink}
+                  href="/embed/model-infra"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Direct canvas
+                  <ArrowUpRightIcon aria-hidden="true" />
+                </a>
+                <Button
+                  className={styles.shareButton}
+                  variant="outline"
+                  type="button"
+                  onClick={() => {
+                    setShareTarget("model");
+                    setShareOpen(true);
+                  }}
+                >
+                  <Share2Icon data-icon="inline-start" />
+                  Share Model Infra
+                </Button>
+              </div>
+            </>
+          ) : null}
+
+          <FixedLandscapeFrame fitViewport={standalone}>
+            <div className={styles.landscapeBoard}>
+              <section
+                ref={modelSlideRef}
+                className={cn(
+                  styles.landscapeSlide,
+                  styles.modelLandscapeSlide,
+                )}
+              >
+                <header className={styles.boardMasthead}>
+                  <div className={styles.boardTitleLockup}>
+                    <span aria-hidden="true">M</span>
+                    <div>
+                      <h2>Model Infra Landscape 2026</h2>
+                      <p>Routing · serving · training · data · compute</p>
+                    </div>
+                  </div>
+                  <div className={styles.boardSource}>
+                    <strong>ANT OPEN SOURCE</strong>
+                    <span>
+                      {modelProjects.length} projects · Jun OpenRank weighted
+                    </span>
+                  </div>
+                </header>
+
+                <div className={styles.landscapeBand}>
+                  <aside
+                    className={cn(styles.infraRail, styles.modelInfraRail)}
+                    aria-hidden="true"
+                  >
+                    <span>Model Infra</span>
+                  </aside>
+                  <div
+                    className={cn(
+                      styles.stageStack,
+                      styles.modelStageStack,
+                    )}
+                    style={modelStageStyle}
+                  >
+                    {MODEL_STAGES.map((definition) => (
+                      <ModelStageSection
+                        key={definition.label}
+                        definition={definition}
+                        projects={projects}
+                        normalizedQuery={normalizedModelQuery}
+                        selectedRepo={selectedRepo}
+                        rankScale={rankScale}
+                        onSelect={setSelectedRepo}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </section>
+            </div>
+          </FixedLandscapeFrame>
+        </section>
+      ) : null}
+
+      {!embedOnly ? <EcosystemSignals projects={projects} /> : null}
 
       {selectedProject ? (
         <ProjectInsightDialog
@@ -1088,14 +1190,16 @@ export default function LandscapeExplorer({
         />
       ) : null}
 
-      <LandscapeShareDialog
-        open={shareOpen}
-        onOpenChange={setShareOpen}
-        initialSelection={shareTarget}
-        getTarget={(id) =>
-          id === "agent" ? agentSlideRef.current : modelSlideRef.current
-        }
-      />
+      {!embedOnly ? (
+        <LandscapeShareDialog
+          open={shareOpen}
+          onOpenChange={setShareOpen}
+          initialSelection={shareTarget}
+          getTarget={(id) =>
+            id === "agent" ? agentSlideRef.current : modelSlideRef.current
+          }
+        />
+      ) : null}
     </section>
   );
 }

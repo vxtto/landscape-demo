@@ -1,0 +1,372 @@
+{
+  "generated_at": "2026-07-29T17:29:53.021650+00:00",
+  "grain": {
+    "project_categories": "Apache Projects Directory project records",
+    "github_metrics": "public repositories in the apache GitHub org"
+  },
+  "counts": {
+    "projects_directory_records": 375,
+    "non_retired_project_records": 305,
+    "classifiable_doap_records": 259,
+    "virtual_no_tlp_doap_records": 46,
+    "github_public_repositories": 3148,
+    "github_nonfork_nonarchived_repositories": 2473,
+    "project_records_with_resolved_github_repository": 275
+  },
+  "top_official_categories": [
+    {
+      "category": "library",
+      "project_records": 94
+    },
+    {
+      "category": "big-data",
+      "project_records": 54
+    },
+    {
+      "category": "network-server",
+      "project_records": 32
+    },
+    {
+      "category": "database",
+      "project_records": 30
+    },
+    {
+      "category": "xml",
+      "project_records": 24
+    },
+    {
+      "category": "network-client",
+      "project_records": 21
+    },
+    {
+      "category": "build-management",
+      "project_records": 18
+    },
+    {
+      "category": "web-framework",
+      "project_records": 17
+    },
+    {
+      "category": "content",
+      "project_records": 15
+    },
+    {
+      "category": "cloud",
+      "project_records": 12
+    },
+    {
+      "category": "http",
+      "project_records": 12
+    },
+    {
+      "category": "data-engineering",
+      "project_records": 7
+    }
+  ],
+  "grouped_domains": {
+    "data_analytics_ai": {
+      "project_records": 80,
+      "official_labels": [
+        "big-data",
+        "data-engineering",
+        "data-management-platform",
+        "data-visualization",
+        "database",
+        "distributed-sql-database",
+        "hadoop",
+        "search",
+        "sql"
+      ],
+      "head_projects_by_github_stars": [
+        {
+          "project": "Apache Superset",
+          "repository": "apache/superset",
+          "stars": 74039
+        },
+        {
+          "project": "Apache ECharts",
+          "repository": "apache/echarts",
+          "stars": 66924
+        },
+        {
+          "project": "Apache Airflow",
+          "repository": "apache/airflow",
+          "stars": 46301
+        },
+        {
+          "project": "Apache Spark",
+          "repository": "apache/spark",
+          "stars": 43723
+        },
+        {
+          "project": "Apache Kafka",
+          "repository": "apache/kafka",
+          "stars": 33331
+        },
+        {
+          "project": "Apache Flink",
+          "repository": "apache/flink",
+          "stars": 26228
+        }
+      ]
+    },
+    "network_messaging_integration": {
+      "project_records": 41,
+      "official_labels": [
+        "ftp",
+        "http",
+        "integration",
+        "mail",
+        "network-client",
+        "network-server"
+      ],
+      "head_projects_by_github_stars": [
+        {
+          "project": "Apache Arrow",
+          "repository": "apache/arrow",
+          "stars": 16965
+        },
+        {
+          "project": "Apache Thrift",
+          "repository": "apache/thrift",
+          "stars": 10941
+        },
+        {
+          "project": "Apache Tomcat",
+          "repository": "apache/tomcat",
+          "stars": 8215
+        },
+        {
+          "project": "Apache CouchDB",
+          "repository": "apache/couchdb",
+          "stars": 6933
+        },
+        {
+          "project": "Apache Camel",
+          "repository": "apache/camel",
+          "stars": 6272
+        },
+        {
+          "project": "Apache Ignite",
+          "repository": "apache/ignite",
+          "stars": 5074
+        }
+      ]
+    },
+    "cloud_build_operations": {
+      "project_records": 34,
+      "official_labels": [
+        "build-management",
+        "cloud",
+        "ide",
+        "observability",
+        "osgi",
+        "testing"
+      ],
+      "head_projects_by_github_stars": [
+        {
+          "project": "Apache SkyWalking",
+          "repository": "apache/skywalking",
+          "stars": 24896
+        },
+        {
+          "project": "Apache JMeter",
+          "repository": "apache/jmeter",
+          "stars": 9483
+        },
+        {
+          "project": "Apache CouchDB",
+          "repository": "apache/couchdb",
+          "stars": 6933
+        },
+        {
+          "project": "Apache Camel",
+          "repository": "apache/camel",
+          "stars": 6272
+        },
+        {
+          "project": "Apache Maven",
+          "repository": "apache/maven",
+          "stars": 5280
+        },
+        {
+          "project": "Apache Ignite",
+          "repository": "apache/ignite",
+          "stars": 5074
+        }
+      ]
+    },
+    "web_application_platforms": {
+      "project_records": 37,
+      "official_labels": [
+        "content",
+        "javaee",
+        "mobile",
+        "web-framework"
+      ],
+      "head_projects_by_github_stars": [
+        {
+          "project": "Apache Tomcat",
+          "repository": "apache/tomcat",
+          "stars": 8215
+        },
+        {
+          "project": "Apache CouchDB",
+          "repository": "apache/couchdb",
+          "stars": 6933
+        },
+        {
+          "project": "Apache Shiro",
+          "repository": "apache/shiro",
+          "stars": 4448
+        },
+        {
+          "project": "Apache Tika",
+          "repository": "apache/tika",
+          "stars": 3901
+        },
+        {
+          "project": "Apache Nutch",
+          "repository": "apache/nutch",
+          "stars": 3273
+        },
+        {
+          "project": "Apache PDFBox",
+          "repository": "apache/pdfbox",
+          "stars": 3099
+        }
+      ]
+    },
+    "libraries_languages_formats": {
+      "project_records": 119,
+      "official_labels": [
+        "c",
+        "c++",
+        "go",
+        "graphics",
+        "groovy",
+        "java",
+        "library",
+        "php",
+        "python",
+        "regexp",
+        "sdk",
+        "templating",
+        "xml"
+      ],
+      "head_projects_by_github_stars": [
+        {
+          "project": "Apache ECharts",
+          "repository": "apache/echarts",
+          "stars": 66924
+        },
+        {
+          "project": "Apache bRPC",
+          "repository": "apache/brpc",
+          "stars": 17571
+        },
+        {
+          "project": "Apache Arrow",
+          "repository": "apache/arrow",
+          "stars": 16965
+        },
+        {
+          "project": "Apache Thrift",
+          "repository": "apache/thrift",
+          "stars": 10941
+        },
+        {
+          "project": "Apache DataFusion",
+          "repository": "apache/datafusion",
+          "stars": 9045
+        },
+        {
+          "project": "Apache IoTDB",
+          "repository": "apache/iotdb",
+          "stars": 6375
+        }
+      ]
+    },
+    "iot_geospatial": {
+      "project_records": 9,
+      "official_labels": [
+        "geospatial",
+        "iot"
+      ],
+      "head_projects_by_github_stars": [
+        {
+          "project": "Apache Superset",
+          "repository": "apache/superset",
+          "stars": 74039
+        },
+        {
+          "project": "Apache IoTDB",
+          "repository": "apache/iotdb",
+          "stars": 6375
+        },
+        {
+          "project": "Apache Calcite",
+          "repository": "apache/calcite",
+          "stars": 5160
+        },
+        {
+          "project": "Apache Ignite",
+          "repository": "apache/ignite",
+          "stars": 5074
+        },
+        {
+          "project": "Apache PLC4X",
+          "repository": "apache/plc4x",
+          "stars": 1701
+        },
+        {
+          "project": "Apache Mynewt",
+          "repository": "apache/mynewt-core",
+          "stars": 889
+        }
+      ]
+    },
+    "security_identity": {
+      "project_records": 4,
+      "official_labels": [
+        "identity-management",
+        "identity-provisioning",
+        "security"
+      ],
+      "head_projects_by_github_stars": [
+        {
+          "project": "Apache Ranger",
+          "repository": "apache/ranger",
+          "stars": 1068
+        },
+        {
+          "project": "Apache Syncope",
+          "repository": "apache/syncope",
+          "stars": 335
+        },
+        {
+          "project": "Apache Santuario",
+          "repository": "apache/santuario-xml-security-java",
+          "stars": 57
+        },
+        {
+          "project": "Apache Fortress",
+          "repository": "apache/directory-fortress-core",
+          "stars": 53
+        }
+      ]
+    }
+  },
+  "caveats": [
+    "Grouped domains roll up official multi-label DOAP categories, so their counts overlap and must not be summed.",
+    "Projects Directory data is maintained by individual PMCs and is explicitly a partial catalog.",
+    "A project can own multiple GitHub repositories; repository count is not project count.",
+    "Stars select recognizable head examples but do not measure community health.",
+    "GitHub pushed_at can include automation, website, and dependency updates."
+  ],
+  "sources": {
+    "projects_directory": "https://projects.apache.org/json/foundation/projects.json",
+    "projects_directory_about": "https://projects.apache.org/about.html",
+    "github_org": "https://github.com/apache"
+  }
+}

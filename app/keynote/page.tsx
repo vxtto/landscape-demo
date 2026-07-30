@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { getLandscapeProjects } from "@/lib/landscape-data";
+
 import KeynoteExperience from "./keynote-experience";
 
 export const metadata: Metadata = {
@@ -9,5 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function KeynotePage() {
-  return <KeynoteExperience />;
+  const projects = getLandscapeProjects();
+
+  return <KeynoteExperience projects={projects} />;
 }
