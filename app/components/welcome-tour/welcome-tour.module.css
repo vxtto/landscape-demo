@@ -1,0 +1,150 @@
+/*
+ * The tour inherits the landscape palette when it is mounted inside .explorer,
+ * but every token carries a literal fallback so renaming or dropping one of
+ * them upstream degrades the colour rather than the component.
+ */
+
+.tourLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.tourHighlight {
+  position: fixed;
+  border-radius: 18px;
+  border: 1.5px solid
+    color-mix(in srgb, var(--signal-pink, #f15bc8) 65%, white);
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, var(--signal-pink, #f15bc8) 18%, transparent),
+    0 0 44px color-mix(in srgb, var(--signal-pink, #f15bc8) 38%, transparent),
+    0 0 0 9999px rgb(20 20 20 / 32%);
+  transition:
+    top 240ms ease,
+    left 240ms ease,
+    width 240ms ease,
+    height 240ms ease;
+}
+
+.tourCloud {
+  position: fixed;
+  width: min(380px, calc(100vw - 36px));
+  padding: 18px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background: color-mix(
+    in srgb,
+    var(--paper, #ffffff) 92%,
+    var(--signal-pink-soft, #ffd2f2)
+  );
+  border: 1px solid color-mix(in srgb, var(--signal-pink, #f15bc8) 34%, white);
+  border-radius: 20px;
+  box-shadow:
+    0 0 34px color-mix(in srgb, var(--signal-pink, #f15bc8) 26%, transparent),
+    0 24px 60px rgb(23 23 23 / 18%);
+  pointer-events: auto;
+  outline: none;
+  transition:
+    top 240ms ease,
+    left 240ms ease;
+}
+
+.tourCloud header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tourStepBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--signal-violet, #7458ff);
+  font-family: var(--font-code, inherit);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+}
+
+.tourStepBadge svg {
+  width: 13px;
+  height: 13px;
+  color: var(--signal-pink, #f15bc8);
+}
+
+.tourCloud strong {
+  font-size: 17px;
+  font-weight: 740;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.tourCloud p {
+  margin: 0;
+  color: var(--quiet, #717171);
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+}
+
+.tourCloud footer {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.tourDots {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.tourDots i {
+  width: 6px;
+  height: 6px;
+  background: #ddd9d4;
+  border-radius: 50%;
+  transition: background 160ms ease;
+}
+
+.tourDots i.tourDotActive {
+  background: var(--signal-pink, #f15bc8);
+}
+
+.tourActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.tourVeil {
+  position: fixed;
+  inset: 0;
+  background: rgb(20 20 20 / 32%);
+}
+
+.tourCloudCentered {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: min(440px, calc(100vw - 36px));
+  text-align: center;
+  box-shadow:
+    0 0 54px color-mix(in srgb, var(--signal-pink, #f15bc8) 34%, transparent),
+    0 24px 60px rgb(23 23 23 / 22%);
+}
+
+.tourCloudCentered p {
+  margin: 0 auto;
+  max-width: 360px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tourHighlight,
+  .tourCloud {
+    transition: none;
+  }
+}

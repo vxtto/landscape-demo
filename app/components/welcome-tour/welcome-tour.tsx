@@ -6,43 +6,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import styles from "../page.module.css";
+import styles from "./welcome-tour.module.css";
+import { TOUR_STEPS, TOUR_VERSION, type TourStep } from "./tour-steps";
 
-const STORAGE_KEY = "landscape-welcome-tour-v1";
+const STORAGE_KEY = `landscape-welcome-tour-v${TOUR_VERSION}`;
 
-type TourStep = {
-  anchor: string | null;
-  title: string;
-  body: string;
-};
-
-const STEPS: TourStep[] = [
-  {
-    anchor: "hero",
-    title: "A map for a world that won't hold still",
-    body: "Projects rise and vanish in weeks, not years. This isn't a snapshot — it's a living map that updates as the ecosystem moves.",
-  },
-  {
-    anchor: "agent-module",
-    title: "Start with Agent Infra",
-    body: "Applications, frameworks, runtime — the layers people reach for when they build something that acts. Each zone is sized by the attention its projects are getting.",
-  },
-  {
-    anchor: "model-module",
-    title: "Then what runs underneath",
-    body: "Serving, training, data and compute. Split out as its own block so you can read either half on its own, or scroll straight through both.",
-  },
-  {
-    anchor: "project",
-    title: "Every logo opens a story",
-    body: "Take this one — click any project to see who's building it, its OpenRank trend, and the contributors driving it forward right now.",
-  },
-  {
-    anchor: null,
-    title: "Open source is the point",
-    body: "Intelligence shouldn't be a privilege for the few. Everything here is open — the projects, the data, the map itself — so more people can see, use, and shape the agent ecosystem together.",
-  },
-];
+const CLOUD_WIDTH = 380;
+const CLOUD_GAP = 18;
 
 type AnchorRect = {
   top: number;
@@ -61,13 +31,55 @@ function measureElement(element: Element): AnchorRect {
   };
 }
 
+/** An element only counts as an anchor if it actually occupies space. */
+function isVisible(element: Element) {
+  const rect = element.getBoundingClientRect();
+  return rect.width > 0 && rect.height > 0;
+}
+
+/**
+ * Walk the step's fallback chain and return the first visible match, or null
+ * if the UI it described is gone. Resolved elements are cached per step so a
+ * "random" pick stays put for the rest of the run.
+ */
+function resolveAnchor(step: TourStep, cache: Map<string, Element>) {
+  const cached = cache.get(step.id);
+  if (cached?.isConnected && isVisible(cached)) return cached;
+  cache.delete(step.id);
+
+  for (const selector of step.anchors ?? []) {
+    const matches = Array.from(document.querySelectorAll(selector)).filter(
+      isVisible,
+    );
+    if (!matches.length) continue;
+
+    const element =
+      step.pick === "random"
+        ? matches[Math.floor(Math.random() * matches.length)]
+        : matches[0];
+
+    cache.set(step.id, element);
+    return element;
+  }
+
+  return null;
+}
+
 export default function WelcomeTour() {
   const [step, setStep] = useState<number | null>(null);
-  const [rect, setRect] = useState<AnchorRect | null>(null);
+  // Tagged with the step it was measured for, so a rect can never outlive its
+  // step and spotlight the previous element under this step's copy.
+  const [tracked, setTracked] = useState<{
+    step: number;
+    rect: AnchorRect;
+  } | null>(null);
+  // Which way the reader is travelling, so a skipped step keeps their momentum.
+  const directionRef = useRef<1 | -1>(1);
+  const anchorCache = useRef(new Map<string, Element>());
   const cloudRef = useRef<HTMLDivElement>(null);
-  const exampleProjectRef = useRef<Element | null>(null);
 
   useEffect(() => {
+    if (!TOUR_STEPS.length) return;
     if (window.localStorage.getItem(STORAGE_KEY)) return;
     const timer = window.setTimeout(() => setStep(0), 700);
     return () => window.clearTimeout(timer);
@@ -78,45 +90,56 @@ export default function WelcomeTour() {
     setStep(null);
   }, []);
 
+  const goTo = useCallback(
+    (next: number, direction: 1 | -1) => {
+      directionRef.current = direction;
+      if (next < 0 || next >= TOUR_STEPS.length) {
+        dismiss();
+        return;
+      }
+      setStep(next);
+    },
+    [dismiss],
+  );
+
   useEffect(() => {
     if (step === null) return;
 
-    const anchor = STEPS[step].anchor;
+    const current = TOUR_STEPS[step];
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
     const behavior = reducedMotion ? ("auto" as const) : ("smooth" as const);
 
-    if (anchor === null) {
+    if (!current.anchors?.length) {
       window.scrollTo({ top: 0, behavior });
       return;
     }
 
-    let element: Element | null;
-    if (anchor === "project") {
-      // The example project is picked at random, once per tour run.
-      if (!exampleProjectRef.current) {
-        const candidates = document.querySelectorAll("[data-tour-candidate]");
-        exampleProjectRef.current =
-          candidates[Math.floor(Math.random() * candidates.length)] ?? null;
+    const element = resolveAnchor(current, anchorCache.current);
+    if (!element) {
+      if (process.env.NODE_ENV !== "production") {
+        console.warn(
+          `[welcome-tour] step "${current.id}" matched none of ` +
+            `${JSON.stringify(current.anchors)} — skipping it. ` +
+            `Update its anchors in tour-steps.ts.`,
+        );
       }
-      element = exampleProjectRef.current;
-    } else {
-      element = document.querySelector(`[data-tour="${anchor}"]`);
+      goTo(step + directionRef.current, directionRef.current);
+      return;
     }
-    if (!element) return;
 
     element.scrollIntoView({ block: "center", inline: "center", behavior });
 
-    const target = element;
+    let frame = 0;
     const track = () => {
-      setRect(measureElement(target));
+      setTracked({ step, rect: measureElement(element) });
       frame = window.requestAnimationFrame(track);
     };
-    let frame = window.requestAnimationFrame(track);
+    frame = window.requestAnimationFrame(track);
 
     return () => window.cancelAnimationFrame(frame);
-  }, [step]);
+  }, [step, goTo]);
 
   useEffect(() => {
     if (step === null) return;
@@ -134,21 +157,25 @@ export default function WelcomeTour() {
 
   if (step === null) return null;
 
-  const current = STEPS[step];
-  const centered = current.anchor === null;
+  const current = TOUR_STEPS[step];
+  const centered = !current.anchors?.length;
+  const rect = tracked?.step === step ? tracked.rect : null;
   if (!centered && !rect) return null;
 
-  const isLast = step === STEPS.length - 1;
+  const isLast = step === TOUR_STEPS.length - 1;
   const cloudStyle =
     centered || !rect
       ? undefined
       : {
-          top: Math.min(rect.top + rect.height + 18, window.innerHeight - 230),
+          top: Math.min(
+            rect.top + rect.height + CLOUD_GAP,
+            window.innerHeight - 230,
+          ),
           left: Math.max(
-            18,
+            CLOUD_GAP,
             Math.min(
-              rect.left + rect.width / 2 - 190,
-              window.innerWidth - 398,
+              rect.left + rect.width / 2 - CLOUD_WIDTH / 2,
+              window.innerWidth - CLOUD_WIDTH - CLOUD_GAP,
             ),
           ),
         };
@@ -175,13 +202,15 @@ export default function WelcomeTour() {
         style={cloudStyle}
         role="dialog"
         aria-modal="false"
-        aria-label={`Welcome walkthrough, step ${step + 1} of ${STEPS.length}`}
+        aria-label={`Welcome walkthrough, step ${step + 1} of ${
+          TOUR_STEPS.length
+        }`}
         tabIndex={-1}
       >
         <header>
           <span className={styles.tourStepBadge}>
             <SparklesIcon aria-hidden="true" />
-            {step + 1} / {STEPS.length}
+            {step + 1} / {TOUR_STEPS.length}
           </span>
           <Button
             variant="ghost"
@@ -197,9 +226,9 @@ export default function WelcomeTour() {
         <p>{current.body}</p>
         <footer>
           <span className={styles.tourDots} aria-hidden="true">
-            {STEPS.map((tourStep, index) => (
+            {TOUR_STEPS.map((tourStep, index) => (
               <i
-                key={tourStep.title}
+                key={tourStep.id}
                 className={cn(index === step && styles.tourDotActive)}
               />
             ))}
@@ -210,7 +239,7 @@ export default function WelcomeTour() {
                 variant="ghost"
                 size="sm"
                 type="button"
-                onClick={() => setStep(step - 1)}
+                onClick={() => goTo(step - 1, -1)}
               >
                 Back
               </Button>
@@ -218,7 +247,7 @@ export default function WelcomeTour() {
             <Button
               size="sm"
               type="button"
-              onClick={() => (isLast ? dismiss() : setStep(step + 1))}
+              onClick={() => (isLast ? dismiss() : goTo(step + 1, 1))}
             >
               {isLast ? "Explore the landscape" : "Next"}
             </Button>

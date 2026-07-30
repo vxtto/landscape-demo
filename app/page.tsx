@@ -5,6 +5,7 @@ import { getLandscapeProjects } from "@/lib/landscape-data";
 
 import LandscapeLogo from "./components/landscape-logo";
 import LandscapeExplorer from "./components/landscape-explorer";
+import WelcomeTour from "./components/welcome-tour";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -12,6 +13,8 @@ export default function Home() {
 
   return (
     <main className={styles.page}>
+      <WelcomeTour />
+
       <div className={styles.appShell}>
         <header className={styles.siteHeader}>
           <a
