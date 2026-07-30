@@ -32,6 +32,7 @@ import { EcosystemSignals } from "./ecosystem-signals";
 import { LandscapeShareDialog } from "./landscape-share-dialog";
 import { ModuleOpenRankChart } from "./module-openrank-chart";
 import { ProjectInsightDialog } from "./project-insight-dialog";
+import WelcomeTour from "./welcome-tour";
 
 type StageDefinition = {
   id: StageId;
@@ -432,6 +433,7 @@ function ProjectMark({
       )}
       type="button"
       style={style}
+      data-tour-candidate=""
       onClick={onSelect}
       aria-pressed={selected}
       aria-label={`${project.name}, OpenRank ${formatOpenRank(project)}`}
@@ -914,9 +916,13 @@ export default function LandscapeExplorer({
       }
     >
       {!embedOnly ? (
-        <div className={styles.landscapeLead}>
-          <h1>Map the Infrastructure Behind Agentic AI</h1>
-        </div>
+        <>
+          <WelcomeTour />
+
+          <div className={styles.landscapeLead} data-tour="hero">
+            <h1>Map the Infrastructure Behind Agentic AI</h1>
+          </div>
+        </>
       ) : null}
 
       {embedOnly !== "model" ? (
@@ -930,7 +936,7 @@ export default function LandscapeExplorer({
           {!embedOnly ? (
             <>
               <header className={styles.moduleHeader}>
-                <div className={styles.moduleHeading}>
+                <div className={styles.moduleHeading} data-tour="agent-module">
                   <h2>Agent Infra</h2>
                   <h3>Where agents are built, operated, and used.</h3>
                   <p>Applications · Frameworks · Runtime infrastructure</p>
@@ -1055,7 +1061,7 @@ export default function LandscapeExplorer({
           {!embedOnly ? (
             <>
               <header className={styles.moduleHeader}>
-                <div className={styles.moduleHeading}>
+                <div className={styles.moduleHeading} data-tour="model-module">
                   <h2>Model Infra</h2>
                   <h3>The systems beneath model workloads.</h3>
                   <p>Access &amp; serving · Training · Data &amp; compute</p>
