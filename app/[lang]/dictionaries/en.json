@@ -26,6 +26,11 @@
     "modelTitle": "Model Infra Landscape 2026",
     "modelDescription": "A standalone 16:9 canvas of the Model Infra open-source landscape."
   },
+  "localeSwitch": {
+    "label": "Change language",
+    "en": "English",
+    "zh": "中文"
+  },
   "keynote": {
     "_note": "Authored in Chinese and not yet translated. These values are the Chinese originals so /en/keynote renders the real talk rather than blanks. Replace them when an English version exists — see dictionaries/README.md.",
     "title": "Agentic AI 新趋势下，开放生态的那些老规矩",

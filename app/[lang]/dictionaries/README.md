@@ -13,7 +13,7 @@ authored in Chinese. Neither has been translated, so right now:
 | Route | Renders |
 | --- | --- |
 | `/en` | English, complete |
-| `/zh` | English, via fallback — no Chinese UI copy exists yet |
+| `/zh` | Chinese chrome — **machine-drafted, needs review** |
 | `/en/keynote` | Chinese, via the `keynote._note` values in `en.json` |
 | `/zh/keynote` | Chinese, complete |
 
@@ -23,9 +23,21 @@ beats serving blanks. Replace those two values when an English keynote exists.
 
 ## What still needs a human
 
-**Chinese UI copy.** Nothing in `zh.json` covers `header`, `footer`, `metadata`
-or `embed`, so `/zh` is English. These are short strings and translating them
-is the smallest useful next step.
+**Review of the Chinese chrome.** The `header`, `footer`, `metadata`, `embed`
+and `localeSwitch` values in `zh.json` were drafted by a model, not a native
+speaker, and have not been through the `de-ai-writing` skill that `AGENTS.md`
+requires for copy written on the author's behalf. Treat them as a starting
+point. Decisions worth a second look:
+
+- `Agent Infra` / `Model Infra` / `Agentic AI` were left in English, on the
+  grounds that Chinese writing in this community uses them untranslated. If
+  that is wrong, they change in one place each.
+- `footer.dataFrom` and `footer.dataNote` are fragments concatenated around a
+  link. `dataNote` opens with a full-width comma so the joined sentence reads
+  `数据来自 <link>，分类标签支持多选，项目重叠属有意为之。` Keep that shape if
+  you reword either half.
+- Nav labels are width-constrained; `生态信号` and `主题演讲` are four
+  characters each to match the English labels' footprint.
 
 **The keynote body.** Only the page metadata is wired up. Roughly 8,000 CJK
 characters of talk content still live inline:

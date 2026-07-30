@@ -1,0 +1,50 @@
+/*
+ * Sits in the site header next to the nav links. Tokens carry literal
+ * fallbacks so the control stays legible if the palette is renamed upstream.
+ */
+
+.localeSwitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--border, #e2e2de);
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.localeSwitch > a,
+.localeSwitch > span {
+  padding: 5px 10px;
+  border-radius: 999px;
+  color: var(--quiet, #717171);
+  text-decoration: none;
+  transition:
+    background 140ms ease,
+    color 140ms ease;
+}
+
+.localeSwitch > a:hover {
+  color: var(--ink, #141414);
+  background: color-mix(in srgb, var(--signal-pink, #f15bc8) 10%, transparent);
+}
+
+.localeSwitch > span[aria-current] {
+  color: var(--paper, #ffffff);
+  background: var(--ink, #141414);
+  font-weight: 640;
+}
+
+.localeSwitch > a:focus-visible {
+  outline: 2px solid var(--signal-violet, #7458ff);
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .localeSwitch > a,
+  .localeSwitch > span {
+    transition: none;
+  }
+}

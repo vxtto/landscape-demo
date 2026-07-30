@@ -7,7 +7,8 @@ import { getLandscapeProjects } from "@/lib/landscape-data";
 import LandscapeLogo from "../components/landscape-logo";
 import LandscapeExplorer from "../components/landscape-explorer";
 import styles from "../page.module.css";
-import { getDictionary, hasLocale } from "./dictionaries";
+import { LOCALES, getDictionary, hasLocale } from "./dictionaries";
+import LocaleSwitch from "./locale-switch";
 
 export default async function Home({ params }: PageProps<"/[lang]">) {
   const { lang } = await params;
@@ -44,6 +45,12 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
               {dict.header.github}
               <ArrowUpRightIcon aria-hidden="true" />
             </a>
+            <LocaleSwitch
+              locales={LOCALES}
+              current={lang}
+              label={dict.localeSwitch.label}
+              names={dict.localeSwitch}
+            />
           </nav>
         </header>
 

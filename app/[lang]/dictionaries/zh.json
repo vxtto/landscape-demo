@@ -1,4 +1,36 @@
 {
+  "metadata": {
+    "title": "Agentic AI Open Source Landscape 2026",
+    "description": "探索开源 Agentic AI 生态中的 Agent Infra、Model Infra 及生态信号。"
+  },
+  "header": {
+    "homeLabel": "返回 Agentic AI Open Source Landscape 首页",
+    "brand": "Agentic AI Landscape",
+    "navLabel": "主导航",
+    "agentInfra": "Agent Infra",
+    "modelInfra": "Model Infra",
+    "signals": "生态信号",
+    "keynoteDate": "08.07",
+    "keynote": "主题演讲",
+    "github": "GitHub"
+  },
+  "footer": {
+    "tagline": "持续更新的开源 Agentic AI 生态地图 —— 将 Agent Infra 与 Model Infra 并置呈现。",
+    "dataFrom": "数据来自",
+    "dataSource": "antgroup/agentic-ai-landscape",
+    "dataNote": "，分类标签支持多选，项目重叠属有意为之。"
+  },
+  "embed": {
+    "agentTitle": "Agent Infra Landscape 2026",
+    "agentDescription": "Agent Infra 开源生态地图的独立 16:9 画布视图。",
+    "modelTitle": "Model Infra Landscape 2026",
+    "modelDescription": "Model Infra 开源生态地图的独立 16:9 画布视图。"
+  },
+  "localeSwitch": {
+    "label": "切换语言",
+    "en": "English",
+    "zh": "中文"
+  },
   "keynote": {
     "title": "Agentic AI 新趋势下，开放生态的那些老规矩",
     "description": "CommunityOverCode China 2026 keynote 的交互式研究页面：生态图、Apache、InclusionAI、开放模型许可证与社区治理。"
