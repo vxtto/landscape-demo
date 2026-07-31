@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-07-31",
+  "talk_cutoff": "2026-07-28",
+  "recent_created_window": [
+    "2026-04-28",
+    "2026-07-28"
+  ],
+  "original_pool_rows_reconsidered": 222,
+  "github_search_matches_before_dedup": 306,
+  "candidate_records_before_velocity_filter": 448,
+  "high_recall_velocity_rows": 346,
+  "clickhouse_status": "available",
+  "post_cutoff_rule": "GitHub stars observed after 2026-07-28 are discovery-only and must not replace the keynote snapshot without an archived cutoff value."
+}

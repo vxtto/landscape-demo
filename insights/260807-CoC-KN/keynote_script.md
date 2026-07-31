@@ -6,7 +6,7 @@
 > 研究页：<https://landscape.16507.cn/keynote>
 > 舞台播放：<https://landscape.16507.cn/keynote/present>
 
-这份稿子对应舞台播放模式的 18 个场景。屏幕里运行的是网页本身：生态图保留真实项目和布局，Apache 与 InclusionAI 保留原来的 Tab、项目卡和技术栈。翻页笔替演讲者完成切换和聚焦。
+这份文件保留舞台执行说明。当前播放模式共有 20 个场景；可直接照读的 30 分钟版本见 [`keynote_verbatim_30min.md`](./keynote_verbatim_30min.md)。屏幕里运行的是网页本身：生态图保留真实项目和布局，Apache 与 InclusionAI 保留原来的 Tab、项目卡和技术栈。翻页笔或触屏手势替演讲者完成切换和聚焦。
 
 ## 这场演讲怎样走
 
@@ -36,16 +36,17 @@ InclusionAI 把“谁可以参与”展开到模型、具身智能、基础设�
 1. 打开 <https://landscape.16507.cn/keynote/present>，停在标题页，等待 Large Models 与 Awesome 的 HTML 完成预加载。
 2. 按 `Enter` 进入全屏，确认画面没有变化；按 `Esc` 退出，再按 `Enter` 回到全屏。
 3. 按一次“下一步”，再按一次“上一步”回到标题。确认标题页完整、页面没有滚动条。
-4. 前进到 Agent Infra，确认整张动态生态图已经出现；再按一次“下一步”，协议区应被自动聚焦。
-5. 继续检查 Large Models：第一屏应完整显示六个领域；按“下一步”后，原 HTML 会切换到 Top 10 筛选。
-6. 继续检查 Awesome：按“下一步”后，原 HTML 会切换到 `AGENT-READY` 筛选。
-7. 用“上一步”原路退回标题。正式演讲前不要刷新页面。
-8. 若浏览器拦截全屏，先在浏览器设置中允许当前站点使用全屏。
+4. 前进到 Agent Infra，确认整张动态生态图已经出现；连续检查四次“下一步”：`Agentic coding`、`Memory, knowledge & context`、`Protocols & interoperability`、`Observability & evaluation` 应依次聚焦。
+5. 继续检查 Model Infra：`Model API gateways`、`Serving · Inference`、许可证视角应依次出现，最后一次恢复全图。
+6. 继续检查 Large Models：第一屏应完整显示六个领域；随后依次切到 Top 10、开放权重、AAI 可比样本，卡片数量应为 10、24、8。
+7. 继续检查 Awesome：随后依次切到 direct 项目、`Install`、全量视角，项目数量应为 19、26、26。
+8. 用“上一步”原路退回标题。正式演讲前不要刷新页面。
+9. 若浏览器拦截全屏，先在浏览器设置中允许当前站点使用全屏。
 
 数据口径：
 
 - GitHub 项目快照：2026-07-28。
-- OpenRank：最后一个完整月份为 2026-06，趋势窗口为 2025-07—2026-06。
+- OpenRank：趋势字段覆盖 2025-08—2026-07；2026-07 尚未完整，舞台分析只使用截至 2026-06 的完整月份。
 - OpenRouter 与 ZenMux：2026-06-01—2026-06-30。
 - InclusionAI 三个平台：2026-07-30。
 - Apache 官网数字：2026-07-29 页面口径。
@@ -92,13 +93,13 @@ Agentic AI 的变化很快，新模型、新框架和新协议不断出现。开
 
 ### 继续讲
 
-接下来四张图，是从四个角度看同一个生态。每张图只讲一个变化。
+接下来四张图，是从四个角度看同一个生态。每张图会切几次视角，所有观点都落到图上的项目、分区或筛选结果。
 
 再按 `PageDown`，进入 Agent Infra。
 
 ---
 
-## 03｜Agent Infra：协议开始成为一层基础设施（1:40—3:25）
+## 03｜Agent Infra：入口很热，变化发生在更下面（1:40—3:25）
 
 ### 进入画面
 
@@ -108,27 +109,57 @@ Agent Infra 的真实网页组件铺满屏幕，项目 Logo、分区和 OpenRank
 
 这张图沿着 Agent 完成一次任务的路径来组织项目。上面有应用和框架，下面是工具、环境、记忆、协议和运行基础设施。
 
-这次我们保留了 58 个项目，新加了 11 个。数量本身没有太多可讲的，版面往哪里增长更重要。
+这张图有 74 个项目。先看当前结构，再看近期增长、公共接口和 Agent 自身的改进方式。
 
 ### 按一次 `PageDown`
 
-生态图保持完整，协议区自动抬高并高亮；右下角出现一条讲解卡：
+`Agentic coding` 自动抬高并高亮；右下角出现：
 
-> Protocols & interoperability：3 → 5
+> 22 / 74：最大的两个 section 都围绕 coding
 
 ### 继续讲
 
-最明显的变化在协议区。
+Agentic coding 有 12 个项目，Code-first frameworks 有 10 个。代码仍是 Agent 生态最密集的入口，也是新项目最容易获得用户反馈的地方。
 
-MCP 处理 Agent 如何连接工具，A2A 处理 Agent 之间怎样协作。AG-UI 和 A2UI 又把过程事件与界面带进来。它们解决的问题并不相同，但都在减少框架和产品之间的私有连接。
+### 再按一次 `PageDown`
 
-现在还不能说标准已经稳定。可以确认的是，生态开始认真建设一层公共语言。
+`Memory, knowledge & context` 抬高；讲解卡切换为：
+
+> OpenViking · OpenRank：35.96 → 140.23
+
+### 继续讲
+
+OpenViking 把 memory、RAG 和 skills 收进 context database。2026 年 3 月到 6 月，它的 OpenRank 从 35.96 升到 140.23。
+
+上下文原本常被包在 framework 里面。现在开始出现独立的 context database，社区可以单独改进存储、检索和更新方式。图上的 `RISING` 只给有时间窗口证据的项目；它和“这一版刚加入主图”是两个字段。
+
+### 再按一次 `PageDown`
+
+`Protocols & interoperability` 抬高；讲解卡显示：
+
+> 3 → 5：Protocols & interoperability
+
+### 继续讲
+
+MCP 连接 Agent 与工具，A2A 处理 Agent 之间的协作。AG-UI 和 A2UI 又把事件流与界面带进公共接口层。这些协议还很年轻，现场不要讲成标准已经稳定。
+
+### 再按一次 `PageDown`
+
+`Observability & evaluation` 抬高；讲解卡显示：
+
+> SkillOpt：15.2K stars / 45 名 7 月可见参与者
+
+### 继续讲
+
+SkillOpt 不是在训练模型权重。它把 skill 文档当作可训练状态，用 rollout、评估和验证门决定怎样更新。
+
+Agent 的改进开始有了另一条路径：模型不变，执行策略和技能材料持续迭代。项目 5 月 8 日才创建，历史还短，所以图上标 `NEW`，不把它讲成已经成熟的类别。
 
 再按 `PageDown`，进入 Model Infra。
 
 ---
 
-## 04｜Model Infra：Inference 已经装不进一个方块（3:25—5:05）
+## 04｜Model Infra：Gateway 又热了，但职责已经分叉（3:25—5:05）
 
 ### 进入画面
 
@@ -136,21 +167,39 @@ Model Infra 的真实网页组件铺满屏幕。第一眼只看全图，不显�
 
 ### 讲法
 
-Model Infra 看的是模型访问、训练、数据、计算和推理。57 个项目里有 10 个是这次新加入的。
+Model Infra 看的是模型访问、训练、数据、计算和推理。现在有 58 个项目，其中 6 个在 Model API gateways。
 
 ### 按一次 `PageDown`
 
-Serving · Inference 区域自动聚焦，项目 Logo 和分区仍然可见；右下角出现：
+Model API gateways 自动聚焦，项目 Logo 和分区仍然可见；右下角出现：
 
-> Serving · Inference：6 → 8
+> OmniRoute · OpenRank：4.07 → 39.04
 
 ### 继续讲
 
-以前我们很容易把 inference 理解成一个推理引擎。现在这一块已经拆开了。
+OmniRoute 截至 7 月 28 日有 32,706 stars，2 月到 6 月 OpenRank 从 4.07 升到 39.04。机器扫描发现了它，按绝对排名截断的人工短名单却把它漏掉了。
 
-vLLM、SGLang 仍然是核心引擎。LMCache 处理 KV cache 的复用，vLLM-Omni 扩展多模态 serving，硬件适配也形成了自己的项目和协作面。
+这次把它补回来，也补了一条高增速复核通道。OmniRoute 与 LiteLLM、New API、AgentGateway 有交叉；这里不把热度等同于独特性，而是用它说明 gateway 的职责正在从模型 API 代理延伸到配额 fallback、MCP 和 A2A 流量。
 
-Agent 会把一次请求拉成长链路。缓存能不能复用、请求怎样排队、不同硬件怎样接入，会直接反映在成本和延迟上。
+### 再按一次 `PageDown`
+
+`Serving · Inference` 自动聚焦；讲解卡显示：
+
+> 6 → 8：Serving · Inference
+
+### 继续讲
+
+推理区增加的并不都是 engine。LMCache 处理 KV cache 复用，vLLM-Omni 处理多模态 serving。Agent 请求更长、重复前缀更多，cache、调度与恢复开始单独形成项目。
+
+### 再按一次 `PageDown`
+
+全图恢复，右下角显示：
+
+> 39 / 58：Model Infra 中三分之二采用 Apache-2.0
+
+### 继续讲
+
+Model Infra 经常涉及硬件适配、专利授权和多家公司共同维护。Apache-2.0 在这一层明显多于其他许可证，后面的 Apache 与许可证章节会回到这个问题。
 
 OpenRank 在这里表示协作活跃度，不表示性能排名。
 
@@ -180,6 +229,26 @@ Large Models 原始 HTML 按 3840×2160 画布等比缩放到舞台中。六个�
 
 开放权重模型已经进入主流使用区。这个结果不等于开放模型已经赢了，也不能代表整个模型市场。它说明社区可获得的模型，已经能够和闭源 API 出现在同一个真实使用区间里。
 
+### 再按一次 `PageDown`
+
+原 HTML 切换到开放权重视角；右下角显示：
+
+> Reasoning：12 / 13 为开放权重
+
+### 继续讲
+
+开放程度和模型类型有关。Reasoning 区几乎都是开放权重模型；Multimodal / VLM 则相反，30 个模型中有 22 个没有公开权重。这两类能力走出了不同的发布路径。
+
+### 再按一次 `PageDown`
+
+原 HTML 切到 AAI 可比样本；右下角显示：
+
+> 使用 #1 / AAI 最高模型使用 #25
+
+### 继续讲
+
+公开使用与能力榜没有排成同一条队伍。8 个可比样本中，使用第 1 的模型 AAI 为 40.3；AAI 最高的模型在使用数据里排第 25。部署成本、价格和渠道都会改变实际选择。
+
 再按 `PageDown`，进入 Awesome。
 
 ---
@@ -200,7 +269,7 @@ Awesome Agentic Landscape 原始 HTML 铺满屏幕，保留四列总览、筛选
 
 原 HTML 自动打开 `AGENT-READY`，只保留可以被 Agent 直接消费的项目；右下角出现：
 
-> 入图的 24 个项目中，19 个可被 Agent 直接消费
+> 入图的 26 个项目中，19 个可被 Agent 直接消费
 
 ### 继续讲
 
@@ -208,53 +277,72 @@ README 过去主要解释软件怎么安装。现在有些 README 已经在告�
 
 这是一种很轻的接口。经验正在成为可复用的开源资产。
 
+### 再按一次 `PageDown`
+
+原 HTML 聚焦 `Install`；右下角显示：
+
+> 7 / 7：Install 阶段全部达到 direct
+
+### 继续讲
+
+安装环节最容易写成机器可以执行的入口：一条命令、一个 manifest，或者一份明确的配置。可消费性在这里已经比较成熟。
+
+### 再按一次 `PageDown`
+
+原 HTML 恢复全图；右下角显示：
+
+> 22 / 26：创建于 2025 年以后
+
+### 继续讲
+
+这是编辑样本的年龄结构，不能外推到 GitHub 全量。它说明这些 Agent-native 知识资产形成得很快，项目之间的格式和分发方式还会继续变化。
+
 再按 `PageDown`，进入筛选方法。
 
 ---
 
-## 07｜筛选方法：6118 不是项目总量（7:55—9:45）
+## 07｜四张图怎样形成这次观察（7:55—9:45）
 
 ### 进入画面
 
-先显示标题和第一个数字：
+屏幕列出四张图各自的数据源、时间窗与最终样本：
 
-> 6,118 高召回候选
+- Agent Infra：OpenDigger 与 GitHub，74 个入图项目；
+- Model Infra：共用仓库候选池，58 个入图项目；
+- Large Models：OpenRouter、ZenMux 与 Hugging Face，2026 年 6 月完整自然月，50 个模型 endpoint；
+- Awesome：GitHub、OpenDigger 与手工种子，26 个编辑样本。
 
 ### 讲法
 
-6118 是三个候选入口合并、去重并排除旧图基线后的结果。里面有教程、应用、课程和大量弱相关仓库。它不能解释成 Agentic AI 项目总量。
+四张图没有共用一个排行榜。研究对象不同，取样单位也不同。Agent Infra 和 Model Infra 看 GitHub 仓库与协作信号；Large Models 看完整月份的实际使用，再由 Hugging Face 核验官方权重；Awesome 还要阅读 README，确认内容能否被 Agent 直接使用。
 
 ### 第一次按 `PageDown`
 
-出现：
-
-> 878 语义相关
-
-名称、description、topics 和 README 负责第一轮高召回过滤。
-
-### 第二次按 `PageDown`
-
-出现：
-
-> 222 人工复核池
-
-我们刷新 GitHub 信息，重新阅读项目说明，检查它到底解决生态里的什么问题。
-
-### 第三次按 `PageDown`
-
-出现：
-
-> 126 当前总览
-
-以及一句：
-
-> 数字负责发现，进入版面仍是编辑判断。
+四行分别展开筛选与复核路径。
 
 ### 继续讲
 
-OpenRank 和 star 增长帮助我们发现变化。进入版面前还要判断：它有没有补上结构缺口，是不是通用能力，和图上已有项目是否重复。
+基础设施项目会检查仓库状态、README 和它在技术结构里的位置。绝对 Top-N 之外，还会单独复核最近 90 天新建项目，以及 OpenRank、WatchEvent 的加速信号。模型 endpoint 先在各平台内部计算分位，避免把两家的 token 数直接相加。Awesome 的判断落在仓库材料上：有没有可安装的 skill、instruction、hook 或 workflow。
 
-下架也不表示项目失败。它只表示这次主图不再需要它解释结构。
+### 第二次按 `PageDown`
+
+下方出现四项共同判断：完整时间窗、数据粒度、证据相互校验、编辑取舍。
+
+### 继续讲
+
+每张图都要标清时间窗。仓库、模型 endpoint 和知识资产分开统计。使用量、协作活跃与发布材料各自回答不同问题，不能互相代替。进入主图还会检查结构缺口和重复表达。
+
+### 第三次按 `PageDown`
+
+底部出现 `OBSERVATION / CONCLUSION / INITIATIVE`。
+
+### 继续讲
+
+这轮观察里，开放权重已经进入主流使用；协议、推理和可执行知识资产也在增厚。
+
+采用数据告诉我们有没有人在用。许可证与发布材料决定社区拿到以后能做什么，还缺什么。
+
+接下来我们会把每次更新的快照、脚本和入图理由一起发布。项目社区可以在仓库里补充证据或提出修正，让下一版建立在可复核的材料上。
 
 再按 `PageDown`，进入 Apache 转场。
 
@@ -320,7 +408,7 @@ Apache 官网目前写的是 290 多个开源项目。这个数字背后还有�
 
 ### 进入画面｜Data, analytics & AI
 
-Apache Project Atlas 出现。左侧保留 7 个领域 Tab，右侧显示当前领域的官方标签、头部项目和进入 Agentic Landscape 的 Apache 项目。
+Apache Project Atlas 直接沿用研究视图。顶部保留分类口径，左侧是 7 个领域，右侧显示当前领域的官方标签、头部项目和进入 Agentic Landscape 的 Apache 项目；底部 46 条无可用 DOAP 分类的目录记录也完整保留。
 
 PageDown 不会离开这张图，它会像有人操作网页一样，替演讲者依次切换领域。
 
@@ -608,7 +696,7 @@ InclusionAI 这样的技术栈把参与入口扩展到了模型、具身智能�
 ## 时间不足时
 
 - 四张生态图各保留一条结论，不展开项目。
-- 筛选方法保留 6118 的口径和“数字负责发现，编辑判断进入版面”。
+- 方法页保留四套数据来源、共同判断准则和公开研究的后续动作。
 - Apache 保留运行链；四个蚂蚁参与项目各用一个短语带过。
 - InclusionAI 保留 Infra 与“许多进入方式”。
 - 许可证保留 Rights / Materials 两层和发布检查的最后状态。

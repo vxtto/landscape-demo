@@ -271,7 +271,6 @@
 }
 
 .chapterLinks,
-.modeSwitch,
 .inlineTabs {
   display: flex;
   align-items: center;
@@ -279,7 +278,6 @@
 }
 
 .chapterLinks a,
-.modeSwitch button,
 .inlineTabs button,
 .explorerToolbar button {
   border: 0;
@@ -317,13 +315,6 @@
   color: var(--violet) !important;
 }
 
-.modeSwitch {
-  flex: 0 0 auto;
-  padding-left: 10px;
-  border-left: 1px solid var(--rule);
-}
-
-.modeSwitch button,
 .inlineTabs button {
   min-height: 36px;
   padding: 7px 10px;
@@ -332,12 +323,10 @@
   font-weight: 700;
 }
 
-.modeSwitch button:hover,
 .inlineTabs button:hover {
   color: var(--ink);
 }
 
-.modeSwitch .activeMode,
 .inlineTabs .activeTab,
 .explorerToolbar .activeTab {
   background: var(--ink);
@@ -610,6 +599,63 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.explorerSearch {
+  min-width: 240px;
+  max-width: 430px;
+  min-height: 40px;
+  margin-left: auto;
+  padding: 0 8px 0 12px;
+  display: flex;
+  flex: 1 1 320px;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+}
+
+.explorerSearch > svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  color: var(--quiet);
+}
+
+.explorerSearch input {
+  min-width: 0;
+  height: 38px;
+  padding: 0;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+}
+
+.explorerSearch input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.explorerSearch button {
+  min-width: 30px;
+  min-height: 30px;
+  padding: 6px;
+  justify-content: center;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
 }
 
 .explorerActions {
@@ -1492,6 +1538,210 @@
   height: 12px;
 }
 
+.apacheAtlas[data-stage="true"] {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  border-radius: 1.15cqw;
+  box-shadow: 0.55cqw 0.72cqh 0 #d8f5f5;
+}
+
+.apacheAtlas[data-stage="true"] .apacheAtlasHeading {
+  min-height: 7.6cqh;
+  padding: 1.35cqh 1.35cqw;
+  grid-template-columns: minmax(20cqw, 0.75fr) minmax(0, 1.25fr);
+  gap: 1.4cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheAtlasHeading > div {
+  gap: 0.8cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheAtlasHeading > div > strong {
+  font-size: 0.62cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheAtlasHeading > div > span {
+  font-size: 1.18cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheAtlasHeading dl > div {
+  padding-left: 0.9cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheAtlasHeading dt {
+  font-size: 0.5cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheAtlasHeading dd {
+  margin-top: 0.45cqh;
+  font-size: 0.72cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheAtlasBody {
+  min-height: 0;
+  grid-template-columns: 22.4cqw minmax(0, 1fr);
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainTabs {
+  min-height: 0;
+  padding: 1cqh 0.75cqw;
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+  gap: 0.6cqh;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainTabs button {
+  min-height: 0;
+  padding: 0.55cqh 0.75cqw;
+  grid-template-columns: 3.8cqw minmax(0, 1fr);
+  gap: 0.8cqw;
+  border-radius: 0.55cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainTabs button > strong {
+  font-size: 1.65cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainTabs button > span {
+  font-size: 0.7cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainTabs .activeDomain {
+  box-shadow: 0.45cqw 0.55cqh 0 var(--orange);
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainDetail {
+  min-height: 0;
+  padding: 2.1cqh 2.2cqw 1.5cqh;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: start;
+  overflow: hidden;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainLead {
+  grid-template-columns: 10.4cqw minmax(15cqw, 0.8fr) minmax(21cqw, 1.2fr);
+  gap: 1.5cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainLead > div:first-child {
+  padding-right: 1.4cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainLead > div:first-child strong {
+  margin-top: 0.9cqh;
+  font-size: 4.8cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainLead h3 {
+  font-size: 1.75cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheDomainDefinition {
+  padding-left: 1.45cqw;
+  font-size: 0.82cqw;
+  line-height: 1.5;
+}
+
+.apacheAtlas[data-stage="true"] .apacheLabelCloud {
+  margin-top: 1.15cqh;
+  gap: 0.38cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheLabelCloud span {
+  padding: 0.4cqh 0.45cqw;
+  font-size: 0.5cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheHeadProjects,
+.apacheAtlas[data-stage="true"] .apacheLandscapeMatch {
+  margin-top: 1.55cqh;
+  padding-top: 1.25cqh;
+}
+
+.apacheAtlas[data-stage="true"] .apacheHeadProjects > p,
+.apacheAtlas[data-stage="true"] .apacheLandscapeMatch > p {
+  font-size: 0.5cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheHeadProjects > div {
+  margin-top: 0.85cqh;
+  gap: 0.55cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheHeadProjects > div > span {
+  min-height: 5.2cqh;
+  padding: 0.65cqh 0.75cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheHeadProjects strong {
+  font-size: 0.68cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheHeadProjects small {
+  font-size: 0.52cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheLandscapeMatch > div {
+  margin-top: 0.8cqh;
+  gap: 0.5cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheLandscapeMatch > div > span {
+  padding: 0.5cqh 0.6cqw 0.5cqh 0.45cqw;
+  gap: 0.42cqw;
+  font-size: 0.66cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheLandscapeMatch img {
+  width: 1cqw;
+  height: 1cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheLandscapeMatch > small {
+  margin-top: 0.8cqh;
+  font-size: 0.68cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheMetadataGap {
+  min-height: 10.5cqh;
+  padding: 1.35cqh 1.55cqw;
+  grid-template-columns: 5.2cqw minmax(0, 1fr) auto;
+  gap: 1.3cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheMetadataGap > strong {
+  font-size: 3.65cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheMetadataGap span {
+  font-size: 0.54cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheMetadataGap p {
+  max-width: 62cqw;
+  margin-top: 0.45cqh;
+  font-size: 0.7cqw;
+  line-height: 1.4;
+}
+
+.apacheAtlas[data-stage="true"] .apacheSourceLinks {
+  gap: 0.5cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheSourceLinks a {
+  padding: 0.65cqh 0.7cqw;
+  gap: 0.35cqw;
+  font-size: 0.62cqw;
+}
+
+.apacheAtlas[data-stage="true"] .apacheSourceLinks svg {
+  width: 0.7cqw;
+  height: 0.7cqw;
+}
+
 .apacheBridgeLead {
   margin: 86px 0 34px;
   padding: 22px 0;
@@ -2037,6 +2287,15 @@
 
 .serviceBand article:last-child {
   border-right: 0;
+}
+
+.serviceBand article img {
+  width: auto;
+  max-width: 118px;
+  height: 38px;
+  margin-bottom: 12px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .serviceBand article span {
@@ -2854,18 +3113,6 @@
   text-decoration: none;
 }
 
-.presentationMode .deepDive {
-  display: none;
-}
-
-.presentationMode .storySection {
-  padding-block: 92px;
-}
-
-.presentationMode .sectionHeading > p:last-child {
-  max-width: 980px;
-}
-
 .brand:focus-visible,
 .backLink:focus-visible,
 .chapterNav a:focus-visible,
@@ -2905,12 +3152,6 @@
 
   .chapterLinks a {
     flex: 0 0 auto;
-  }
-
-  .modeSwitch {
-    padding: 7px 0 0;
-    border-top: 1px solid var(--rule);
-    border-left: 0;
   }
 
   .funnelRow {
@@ -3328,6 +3569,13 @@
 
   .explorerToolbar > div {
     overflow-x: auto;
+  }
+
+  .explorerSearch {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    flex-basis: auto;
   }
 
   .explorerActions {

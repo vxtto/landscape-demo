@@ -1,14 +1,15 @@
 # Website font
 
-The website uses a locally hosted subset of **Noto Sans SC Variable** from
-the official [notofonts/noto-cjk](https://github.com/notofonts/noto-cjk)
-repository.
+The website uses locally hosted, project-specific subsets of **Alibaba
+PuHuiTi** supplied by the project owner.
 
-- Source font: `Sans/Variable/OTF/Subset/NotoSansSC-VF.otf`
-- Website subset: `NotoSansSC-Landscape.woff2`
-- Weight axis: 100–900
-- License: SIL Open Font License 1.1, included as
-  `OFL-NotoSansCJK.txt`
+- Light: `AlibabaPuHuiTi-Light.woff2` (100–349)
+- Regular: `AlibabaPuHuiTi-Regular.woff2` (350–449)
+- Medium: `AlibabaPuHuiTi-Medium.woff2` (450–649)
+- Bold: `AlibabaPuHuiTi-Bold.woff2` (650–799)
+- Heavy: `AlibabaPuHuiTi-Heavy.woff2` (800–900)
 
-The subset contains the Chinese and Latin characters used by the current
-website, keynote pages, and landscape data.
+The subsets contain the Chinese and Latin characters used by the current
+website, keynote pages, landscape data, and presentation sources. Do not copy
+these font files into another project without confirming the applicable font
+license.

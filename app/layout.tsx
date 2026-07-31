@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Agentic AI Open Source Landscape 2026",
   description:
-    "Explore Agent Infra, Model Infra, and ecosystem signals across the open-source Agentic AI landscape.",
+    "Explore Agent Infra, Model Infra, Large Models, reusable agent assets, and ecosystem signals.",
 };
 
 export default function RootLayout({

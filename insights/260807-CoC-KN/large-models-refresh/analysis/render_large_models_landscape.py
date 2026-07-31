@@ -526,7 +526,7 @@ def build_html(rows: list[dict[str, Any]]) -> str:
       overflow: hidden;
       background: #f7f8fa;
       color: #111318;
-      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      font-family: "Alibaba PuHuiTi", "阿里巴巴普惠体", sans-serif;
       letter-spacing: 0;
     }}
     body {{ position: relative; }}

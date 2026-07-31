@@ -2,10 +2,12 @@
 
 import {
   ArrowUpRightIcon,
+  Maximize2Icon,
   Share2Icon,
   SearchIcon,
   XIcon,
 } from "lucide-react";
+import Image from "next/image";
 import {
   type CSSProperties,
   type ReactNode,
@@ -15,11 +17,6 @@ import {
   useState,
 } from "react";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -30,8 +27,8 @@ import { cn } from "@/lib/utils";
 import styles from "../page.module.css";
 import { EcosystemSignals } from "./ecosystem-signals";
 import { LandscapeShareDialog } from "./landscape-share-dialog";
-import { ModuleOpenRankChart } from "./module-openrank-chart";
 import { ProjectInsightDialog } from "./project-insight-dialog";
+import { ProjectRanking } from "./project-ranking";
 
 type StageDefinition = {
   id: StageId;
@@ -393,14 +390,17 @@ function ProjectMark({
   rankScale,
   matched,
   selected,
+  focused,
   onSelect,
 }: {
   project: LandscapeProject;
   rankScale: number;
   matched: boolean;
   selected: boolean;
+  focused?: boolean;
   onSelect: () => void;
 }) {
+  const [logoFailed, setLogoFailed] = useState(false);
   const stableScale = Number(rankScale.toFixed(6));
   const visualScale = Number(Math.pow(stableScale, 0.76).toFixed(6));
   const labelDemand = Math.min(
@@ -412,7 +412,7 @@ function ProjectMark({
     1 - Math.max(0, project.name.length - 18) * 0.035,
   );
   const style: RankStyle = {
-    "--logo-size": `${(28 + visualScale * 40).toFixed(3)}px`,
+    "--logo-size": `${(32 + visualScale * 42).toFixed(3)}px`,
     "--name-size": `${(
       (10.2 + visualScale * 3.8) *
       labelScale
@@ -429,6 +429,7 @@ function ProjectMark({
     <button
       className={cn(
         styles.projectMark,
+        focused && styles.focusedProjectMark,
         !matched && styles.projectMarkDimmed,
         selected && styles.projectMarkSelected,
       )}
@@ -437,33 +438,61 @@ function ProjectMark({
       onClick={onSelect}
       aria-pressed={selected}
       aria-label={`${project.name}, OpenRank ${formatOpenRank(project)}`}
-      data-landscape-new={
-        project.landscapeAction === "add" ? "true" : undefined
-      }
+      data-landscape-project
+      data-landscape-signal={project.trendSignal ?? undefined}
     >
-      <span className={styles.projectLogoWrap}>
-        <Avatar className={styles.projectLogo}>
-          <AvatarImage
-            src={projectLogoUrl(project.owner)}
-            data-export-logo-owner={project.owner}
-            decoding="async"
-            loading="lazy"
-            alt=""
-          />
-          <AvatarFallback>{projectInitials(project.name)}</AvatarFallback>
-        </Avatar>
-        {project.landscapeAction === "add" ? (
+      <span className={styles.projectLogoWrap} data-landscape-logo>
+        <span className={styles.projectLogo}>
+          {!logoFailed ? (
+            <Image
+              src={projectLogoUrl(project.owner)}
+              width={112}
+              height={96}
+              unoptimized
+              data-export-logo-owner={project.owner}
+              decoding="async"
+              loading="eager"
+              alt=""
+              style={{
+                width: "100%",
+                height: "100%",
+                maxWidth: "100%",
+                maxHeight: "100%",
+                padding: 4,
+                objectFit: "contain",
+                display: "block",
+              }}
+              onError={() => setLogoFailed(true)}
+            />
+          ) : (
+            <span className={styles.projectLogoFallback}>
+              {projectInitials(project.name)}
+            </span>
+          )}
+        </span>
+        {project.trendSignal ? (
           <span
             className={styles.projectNewBadge}
-            aria-label="New in this landscape edition"
+            data-signal={project.trendSignal}
+            title={project.trendSignalReason}
+            aria-label={
+              project.trendSignal === "new"
+                ? "New project in the last three months"
+                : "Project with strong recent growth"
+            }
           >
-            NEW
+            {project.trendSignal === "new" ? "NEW" : "RISING"}
           </span>
         ) : null}
       </span>
-      <span className={styles.projectName}>
+      <span className={styles.projectName} data-landscape-project-name>
         {breakableProjectName(project.name)}
       </span>
+      {focused ? (
+        <span className={styles.focusedProjectMeta}>
+          {project.owner} · OR {formatOpenRank(project)}
+        </span>
+      ) : null}
       <span className={styles.projectRank}>
         <strong>{formatOpenRank(project)}</strong>
         <small>OpenRank</small>
@@ -480,6 +509,7 @@ function ZoneSection({
   presentationFocus,
   rankScale,
   onSelect,
+  expanded,
   style,
   aspectRatio,
   className,
@@ -491,6 +521,7 @@ function ZoneSection({
   presentationFocus?: string;
   rankScale: (project: LandscapeProject) => number;
   onSelect: (repo: string) => void;
+  expanded?: boolean;
   style?: CSSProperties;
   aspectRatio: number;
   className?: string;
@@ -524,6 +555,11 @@ function ZoneSection({
     "--project-columns": grid.columns,
     "--project-rows": grid.rows,
   };
+  const title = (
+    <Badge className={styles.zoneTitleBadge} variant="outline">
+      <span>{zoneFamily ? `${zoneFamily} / ${zoneName}` : zoneName}</span>
+    </Badge>
+  );
 
   return (
     <section
@@ -539,13 +575,7 @@ function ZoneSection({
     >
       <header className={styles.zoneHeader}>
         <span aria-hidden="true" />
-        <h4>
-          <Badge className={styles.zoneTitleBadge} variant="outline">
-            <span>
-              {zoneFamily ? `${zoneFamily} / ${zoneName}` : zoneName}
-            </span>
-          </Badge>
-        </h4>
+        <h4>{title}</h4>
         <Badge className={styles.zoneCountBadge} variant="secondary">
           {zoneProjects.length}
         </Badge>
@@ -559,6 +589,7 @@ function ZoneSection({
             rankScale={getZoneRankScale(zoneProject)}
             matched={matchesQuery(zoneProject, normalizedQuery)}
             selected={selectedRepo === zoneProject.repo}
+            focused={expanded}
             onSelect={() => onSelect(zoneProject.repo)}
           />
         ))}
@@ -575,6 +606,8 @@ function StageSection({
   presentationFocus,
   rankScale,
   onSelect,
+  focused,
+  onFocusStage,
 }: {
   stage: StageDefinition;
   projects: LandscapeProject[];
@@ -583,6 +616,8 @@ function StageSection({
   presentationFocus?: string;
   rankScale: (project: LandscapeProject) => number;
   onSelect: (repo: string) => void;
+  focused?: boolean;
+  onFocusStage?: (stage: StageId) => void;
 }) {
   const stageProjects = projects.filter(
     (project) => project.stage === stage.id,
@@ -609,17 +644,47 @@ function StageSection({
 
     return { zone, projects: zoneProjects, weight };
   });
+  const stageAspect = focused ? 2.08 : STAGE_ASPECT_RATIO[stage.id];
   const zoneLayouts = buildTreemap(
     zoneItems,
-    STAGE_ASPECT_RATIO[stage.id],
+    stageAspect,
+  );
+
+  const stageTitle = (
+    <>
+      <div>
+        <h3>{stage.label}</h3>
+        <span>{stage.description}</span>
+      </div>
+      <em>
+        {stageProjects.length}
+        {onFocusStage ? <Maximize2Icon aria-hidden="true" /> : null}
+      </em>
+    </>
   );
 
   return (
-    <article className={cn(styles.stage, styles[`stage_${stage.id}`])}>
-      <header className={styles.stageLabel}>
-        <h3>{stage.label}</h3>
-        <span>{stage.description}</span>
-      </header>
+    <article
+      className={cn(
+        styles.stage,
+        styles[`stage_${stage.id}`],
+        focused && styles.stageFocused,
+      )}
+      data-focused-stage={focused ? stage.id : undefined}
+    >
+      {onFocusStage ? (
+        <button
+          className={styles.stageLabel}
+          type="button"
+          aria-pressed={focused}
+          aria-label={`Focus ${stage.label}`}
+          onClick={() => onFocusStage(stage.id)}
+        >
+          {stageTitle}
+        </button>
+      ) : (
+        <header className={styles.stageLabel}>{stageTitle}</header>
+      )}
 
       <div className={styles.stageGrid}>
         {zoneItems.map(({ zone, projects: zoneProjects }) => {
@@ -641,9 +706,10 @@ function StageSection({
               presentationFocus={presentationFocus}
               rankScale={rankScale}
               onSelect={onSelect}
+              expanded={focused}
               style={zoneStyle}
               aspectRatio={
-                (STAGE_ASPECT_RATIO[stage.id] * layout.width) /
+                (stageAspect * layout.width) /
                 layout.height
               }
             />
@@ -662,6 +728,8 @@ function ModelStageSection({
   presentationFocus,
   rankScale,
   onSelect,
+  focused,
+  onFocusStage,
 }: {
   definition: (typeof MODEL_STAGES)[number];
   projects: LandscapeProject[];
@@ -670,6 +738,8 @@ function ModelStageSection({
   presentationFocus?: string;
   rankScale: (project: LandscapeProject) => number;
   onSelect: (repo: string) => void;
+  focused?: boolean;
+  onFocusStage?: (stage: string) => void;
 }) {
   const modelProjects = projects.filter(
     (project) => project.stage === "model",
@@ -711,6 +781,23 @@ function ModelStageSection({
     0,
   );
   const macroAspect = MODEL_STAGE_ASPECT_RATIO[definition.label];
+  const projectCount = rows.reduce(
+    (sum, row) =>
+      sum + row.items.reduce((rowSum, item) => rowSum + item.projects.length, 0),
+    0,
+  );
+  const stageTitle = (
+    <>
+      <div>
+        <h3>{definition.label}</h3>
+        <span>{definition.description}</span>
+      </div>
+      <em>
+        {projectCount}
+        {onFocusStage ? <Maximize2Icon aria-hidden="true" /> : null}
+      </em>
+    </>
+  );
 
   return (
     <article
@@ -718,12 +805,23 @@ function ModelStageSection({
         styles.stage,
         styles.stage_model,
         styles.modelMacroStage,
+        focused && styles.stageFocused,
       )}
+      data-focused-stage={focused ? definition.label : undefined}
     >
-      <header className={styles.stageLabel}>
-        <h3>{definition.label}</h3>
-        <span>{definition.description}</span>
-      </header>
+      {onFocusStage ? (
+        <button
+          className={styles.stageLabel}
+          type="button"
+          aria-pressed={focused}
+          aria-label={`Focus ${definition.label}`}
+          onClick={() => onFocusStage(definition.label)}
+        >
+          {stageTitle}
+        </button>
+      ) : (
+        <header className={styles.stageLabel}>{stageTitle}</header>
+      )}
       <div
         className={styles.modelStageGrid}
         style={{
@@ -761,6 +859,7 @@ function ModelStageSection({
                     presentationFocus={presentationFocus}
                     rankScale={rankScale}
                     onSelect={onSelect}
+                    expanded={focused}
                     aspectRatio={
                       rowAspect * (weight / totalItemWeight)
                     }
@@ -792,7 +891,7 @@ function ModuleSummaryStrip({
     { label: "Sections", value: summary.zones.toLocaleString() },
     { label: "OpenRank", value: COMPACT_NUMBER.format(summary.openrank) },
     { label: "Stars", value: COMPACT_NUMBER.format(summary.stars) },
-    { label: "New", value: summary.newProjects.toLocaleString() },
+    { label: "Trend", value: summary.newProjects.toLocaleString() },
   ];
 
   return (
@@ -807,30 +906,177 @@ function ModuleSummaryStrip({
   );
 }
 
+function EcosystemArchitecture() {
+  return (
+    <section
+      className={styles.ecosystemArchitecture}
+      id="ecosystem-architecture"
+      aria-labelledby="ecosystem-architecture-title"
+    >
+      <header className={styles.architectureHeader}>
+        <h2 id="ecosystem-architecture-title">
+          Agentic AI ecosystem architecture
+        </h2>
+        <div className={styles.architectureLegend} aria-label="Diagram legend">
+          <span>Technical stack</span>
+          <span>Reusable assets</span>
+        </div>
+      </header>
+
+      <div className={styles.architectureMap}>
+        <div className={styles.architectureStack}>
+          <a
+            className={cn(styles.architectureLayer, styles.architectureAgent)}
+            href="#agent-infra"
+          >
+            <strong>Agent Infra</strong>
+            <span>Applications</span>
+            <span>Frameworks</span>
+            <span>Runtime</span>
+          </a>
+
+          <div className={styles.architectureConnector} aria-hidden="true">
+            <span />
+          </div>
+
+          <a
+            className={cn(styles.architectureLayer, styles.architectureModel)}
+            href="#model-infra"
+          >
+            <strong>Model Infra</strong>
+            <span>Access &amp; serving</span>
+            <span>Training</span>
+            <span>Data &amp; compute</span>
+          </a>
+
+          <div className={styles.architectureConnector} aria-hidden="true">
+            <span />
+          </div>
+
+          <a
+            className={cn(styles.architectureLayer, styles.architectureModels)}
+            href="#large-models"
+          >
+            <strong>Large Models</strong>
+            <span>Open weights</span>
+            <span>API models</span>
+            <span>Capability &amp; usage</span>
+          </a>
+        </div>
+
+        <a className={styles.architectureAssets} href="#awesome-list">
+          <span className={styles.assetsDirection} aria-hidden="true" />
+          <strong>Awesome × Agentic</strong>
+          <div>
+            <span>Discover</span>
+            <span>Reuse</span>
+            <span>Install</span>
+            <span>Operate</span>
+          </div>
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function EmbeddedLandscape({
+  id,
+  title,
+  detail,
+  src,
+  accent,
+}: {
+  id: string;
+  title: string;
+  detail: string;
+  src: string;
+  accent: "models" | "awesome";
+}) {
+  return (
+    <section
+      className={cn(
+        styles.landscapeModule,
+        styles.embeddedLandscapeModule,
+        accent === "models"
+          ? styles.largeModelsModule
+          : styles.awesomeLandscapeModule,
+      )}
+      id={id}
+    >
+      <header className={styles.embeddedModuleHeader}>
+        <div className={styles.moduleHeading}>
+          <h2>{title}</h2>
+          <p>{detail}</p>
+        </div>
+        <a
+          className={styles.canvasLink}
+          href={src}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open full canvas
+          <ArrowUpRightIcon aria-hidden="true" />
+        </a>
+      </header>
+
+      <div className={styles.embeddedLandscapeFrame}>
+        <iframe
+          src={src}
+          title={`${title} Landscape 2026`}
+          loading="lazy"
+        />
+      </div>
+    </section>
+  );
+}
+
 export default function LandscapeExplorer({
   projects,
   embedOnly,
   standalone,
   presentationFocus,
   presentationMode,
+  filterQuery,
 }: {
   projects: LandscapeProject[];
   embedOnly?: "agent" | "model";
   standalone?: boolean;
   presentationFocus?: string;
   presentationMode?: boolean;
+  filterQuery?: string;
 }) {
-  const [agentQuery, setAgentQuery] = useState("");
-  const [modelQuery, setModelQuery] = useState("");
+  const [infraQuery, setInfraQuery] = useState("");
   const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
+  const [focusedStage, setFocusedStage] = useState<{
+    module: "agent" | "model";
+    stage: string;
+  } | null>(null);
   const [shareOpen, setShareOpen] = useState(false);
   const [shareTarget, setShareTarget] = useState<"agent" | "model">(
     "agent",
   );
+  const [dialogScope, setDialogScope] = useState<"agent" | "model" | null>(
+    embedOnly ?? null,
+  );
   const agentSlideRef = useRef<HTMLElement>(null);
   const modelSlideRef = useRef<HTMLElement>(null);
-  const normalizedAgentQuery = agentQuery.trim().toLowerCase();
-  const normalizedModelQuery = modelQuery.trim().toLowerCase();
+  const [agentDialogHost, setAgentDialogHost] =
+    useState<HTMLDivElement | null>(null);
+  const [modelDialogHost, setModelDialogHost] =
+    useState<HTMLDivElement | null>(null);
+  const activeInfraQuery = filterQuery ?? infraQuery;
+  const normalizedInfraQuery = activeInfraQuery.trim().toLowerCase();
+
+  useEffect(() => {
+    if (!focusedStage || selectedRepo) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setFocusedStage(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [focusedStage, selectedRepo]);
 
   const selectedProject =
     projects.find((project) => project.repo === selectedRepo) ?? null;
@@ -883,17 +1129,16 @@ export default function LandscapeExplorer({
       (sum, project) => sum + project.stars,
       0,
     ),
-    newProjects: moduleProjects.filter(
-      (project) => project.landscapeAction === "add",
-    ).length,
+    newProjects: moduleProjects.filter((project) => project.trendSignal)
+      .length,
   });
   const agentSummary = summarizeModule(agentProjects);
   const modelSummary = summarizeModule(modelProjects);
   const agentMatchCount = agentProjects.filter((project) =>
-    matchesQuery(project, normalizedAgentQuery),
+    matchesQuery(project, normalizedInfraQuery),
   ).length;
   const modelMatchCount = modelProjects.filter((project) =>
-    matchesQuery(project, normalizedModelQuery),
+    matchesQuery(project, normalizedInfraQuery),
   ).length;
   const agentStages = STAGES.filter((stage) => stage.id !== "model");
   const agentStageStyle: CSSProperties = {
@@ -934,9 +1179,42 @@ export default function LandscapeExplorer({
       }
     >
       {!embedOnly ? (
-        <div className={styles.landscapeLead}>
-          <h1>Map the Infrastructure Behind Agentic AI</h1>
-        </div>
+        <>
+          <div className={styles.landscapeLead} id="landscape-home">
+            <h1>Map the Infrastructure Behind Agentic AI</h1>
+          </div>
+          <EcosystemArchitecture />
+
+          <div className={styles.sharedInfraSearchBar}>
+            <label className={cn(styles.search, styles.sharedInfraSearch)}>
+              <SearchIcon aria-hidden="true" />
+              <span className={styles.srOnly}>
+                Search Agent and Model Infra
+              </span>
+              <Input
+                value={infraQuery}
+                onChange={(event) => setInfraQuery(event.target.value)}
+                placeholder="Search Agent & Model Infra"
+              />
+              {infraQuery ? (
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  type="button"
+                  onClick={() => setInfraQuery("")}
+                  aria-label="Clear Infra search"
+                >
+                  <XIcon />
+                </Button>
+              ) : null}
+            </label>
+            <span className={styles.srOnly} aria-live="polite">
+              {normalizedInfraQuery
+                ? `${agentMatchCount} Agent Infra matches and ${modelMatchCount} Model Infra matches`
+                : `${agentProjects.length} Agent Infra projects and ${modelProjects.length} Model Infra projects`}
+            </span>
+          </div>
+        </>
       ) : null}
 
       {embedOnly !== "model" ? (
@@ -958,38 +1236,12 @@ export default function LandscapeExplorer({
                 <ModuleSummaryStrip summary={agentSummary} />
               </header>
 
-              <ModuleOpenRankChart
-                module="agent"
-                projects={agentProjects}
-                onSelect={setSelectedRepo}
-              />
-
-              <div className={styles.moduleToolbar}>
-                <label className={cn(styles.search, styles.moduleSearch)}>
-                  <SearchIcon aria-hidden="true" />
-                  <span className={styles.srOnly}>Search Agent Infra</span>
-                  <Input
-                    value={agentQuery}
-                    onChange={(event) => setAgentQuery(event.target.value)}
-                    placeholder="Search Agent Infra"
-                  />
-                  {agentQuery ? (
-                    <Button
-                      variant="ghost"
-                      size="icon-sm"
-                      type="button"
-                      onClick={() => setAgentQuery("")}
-                      aria-label="Clear Agent Infra search"
-                    >
-                      <XIcon />
-                    </Button>
-                  ) : null}
-                </label>
-                <span className={styles.srOnly} aria-live="polite">
-                  {normalizedAgentQuery
-                    ? `${agentMatchCount} Agent Infra matches`
-                    : `${agentProjects.length} Agent Infra projects`}
-                </span>
+              <div
+                className={cn(
+                  styles.moduleToolbar,
+                  styles.moduleActionsToolbar,
+                )}
+              >
                 <a
                   className={styles.canvasLink}
                   href="/embed/agent-infra"
@@ -1030,10 +1282,22 @@ export default function LandscapeExplorer({
                     </div>
                   </div>
                   <div className={styles.boardSource}>
-                    <strong>ANT OPEN SOURCE</strong>
+                    <div className={styles.boardBrands}>
+                      <strong>ANT OPEN SOURCE</strong>
+                      <strong>INCLUSION AI</strong>
+                    </div>
                     <span>
                       {agentProjects.length} projects · Jun OpenRank weighted
                     </span>
+                    {focusedStage?.module === "agent" ? (
+                      <button
+                        className={styles.resetStageView}
+                        type="button"
+                        onClick={() => setFocusedStage(null)}
+                      >
+                        Back to overview
+                      </button>
+                    ) : null}
                   </div>
                 </header>
 
@@ -1045,24 +1309,61 @@ export default function LandscapeExplorer({
                     className={cn(
                       styles.stageStack,
                       styles.agentStageStack,
+                      focusedStage?.module === "agent" &&
+                        styles.stageStackFocused,
                     )}
-                    style={agentStageStyle}
+                    style={
+                      focusedStage?.module === "agent"
+                        ? { gridTemplateRows: "minmax(0, 1fr)" }
+                        : agentStageStyle
+                    }
                   >
-                    {agentStages.map((stage) => (
-                      <StageSection
-                        key={stage.id}
-                        stage={stage}
-                        projects={projects}
-                        normalizedQuery={normalizedAgentQuery}
-                        selectedRepo={selectedRepo}
-                        presentationFocus={presentationFocus}
-                        rankScale={rankScale}
-                        onSelect={setSelectedRepo}
-                      />
-                    ))}
+                    {agentStages
+                      .filter(
+                        (stage) =>
+                          focusedStage?.module !== "agent" ||
+                          focusedStage.stage === stage.id,
+                      )
+                      .map((stage) => (
+                        <StageSection
+                          key={stage.id}
+                          stage={stage}
+                          projects={projects}
+                          normalizedQuery={normalizedInfraQuery}
+                          selectedRepo={selectedRepo}
+                          presentationFocus={presentationFocus}
+                          rankScale={rankScale}
+                          onSelect={(repo) => {
+                            setDialogScope("agent");
+                            setSelectedRepo(repo);
+                          }}
+                          focused={
+                            focusedStage?.module === "agent" &&
+                            focusedStage.stage === stage.id
+                          }
+                          onFocusStage={
+                            presentationMode
+                              ? undefined
+                              : (stageId) =>
+                                  setFocusedStage((current) =>
+                                    current?.module === "agent" &&
+                                    current.stage === stageId
+                                      ? null
+                                      : { module: "agent", stage: stageId },
+                                  )
+                          }
+                        />
+                      ))}
                   </div>
                 </div>
               </section>
+              <div
+                ref={setAgentDialogHost}
+                className={styles.landscapeDialogHost}
+                aria-hidden={
+                  !selectedProject || dialogScope !== "agent"
+                }
+              />
             </div>
           </FixedLandscapeFrame>
         </section>
@@ -1087,38 +1388,12 @@ export default function LandscapeExplorer({
                 <ModuleSummaryStrip summary={modelSummary} />
               </header>
 
-              <ModuleOpenRankChart
-                module="model"
-                projects={modelProjects}
-                onSelect={setSelectedRepo}
-              />
-
-              <div className={styles.moduleToolbar}>
-                <label className={cn(styles.search, styles.moduleSearch)}>
-                  <SearchIcon aria-hidden="true" />
-                  <span className={styles.srOnly}>Search Model Infra</span>
-                  <Input
-                    value={modelQuery}
-                    onChange={(event) => setModelQuery(event.target.value)}
-                    placeholder="Search Model Infra"
-                  />
-                  {modelQuery ? (
-                    <Button
-                      variant="ghost"
-                      size="icon-sm"
-                      type="button"
-                      onClick={() => setModelQuery("")}
-                      aria-label="Clear Model Infra search"
-                    >
-                      <XIcon />
-                    </Button>
-                  ) : null}
-                </label>
-                <span className={styles.srOnly} aria-live="polite">
-                  {normalizedModelQuery
-                    ? `${modelMatchCount} Model Infra matches`
-                    : `${modelProjects.length} Model Infra projects`}
-                </span>
+              <div
+                className={cn(
+                  styles.moduleToolbar,
+                  styles.moduleActionsToolbar,
+                )}
+              >
                 <a
                   className={styles.canvasLink}
                   href="/embed/model-infra"
@@ -1165,10 +1440,22 @@ export default function LandscapeExplorer({
                     </div>
                   </div>
                   <div className={styles.boardSource}>
-                    <strong>ANT OPEN SOURCE</strong>
+                    <div className={styles.boardBrands}>
+                      <strong>ANT OPEN SOURCE</strong>
+                      <strong>INCLUSION AI</strong>
+                    </div>
                     <span>
                       {modelProjects.length} projects · Jun OpenRank weighted
                     </span>
+                    {focusedStage?.module === "model" ? (
+                      <button
+                        className={styles.resetStageView}
+                        type="button"
+                        onClick={() => setFocusedStage(null)}
+                      >
+                        Back to overview
+                      </button>
+                    ) : null}
                   </div>
                 </header>
 
@@ -1183,38 +1470,109 @@ export default function LandscapeExplorer({
                     className={cn(
                       styles.stageStack,
                       styles.modelStageStack,
+                      focusedStage?.module === "model" &&
+                        styles.stageStackFocused,
                     )}
-                    style={modelStageStyle}
+                    style={
+                      focusedStage?.module === "model"
+                        ? { gridTemplateRows: "minmax(0, 1fr)" }
+                        : modelStageStyle
+                    }
                   >
-                    {MODEL_STAGES.map((definition) => (
+                    {MODEL_STAGES.filter(
+                      (definition) =>
+                        focusedStage?.module !== "model" ||
+                        focusedStage.stage === definition.label,
+                    ).map((definition) => (
                       <ModelStageSection
                         key={definition.label}
                         definition={definition}
                         projects={projects}
-                        normalizedQuery={normalizedModelQuery}
+                        normalizedQuery={normalizedInfraQuery}
                         selectedRepo={selectedRepo}
                         presentationFocus={presentationFocus}
                         rankScale={rankScale}
-                        onSelect={setSelectedRepo}
+                        onSelect={(repo) => {
+                          setDialogScope("model");
+                          setSelectedRepo(repo);
+                        }}
+                        focused={
+                          focusedStage?.module === "model" &&
+                          focusedStage.stage === definition.label
+                        }
+                        onFocusStage={
+                          presentationMode
+                            ? undefined
+                            : (stageLabel) =>
+                                setFocusedStage((current) =>
+                                  current?.module === "model" &&
+                                  current.stage === stageLabel
+                                    ? null
+                                    : { module: "model", stage: stageLabel },
+                                )
+                        }
                       />
                     ))}
                   </div>
                 </div>
               </section>
+              <div
+                ref={setModelDialogHost}
+                className={styles.landscapeDialogHost}
+                aria-hidden={
+                  !selectedProject || dialogScope !== "model"
+                }
+              />
             </div>
           </FixedLandscapeFrame>
         </section>
       ) : null}
 
-      {!embedOnly ? <EcosystemSignals projects={projects} /> : null}
+      {!embedOnly ? (
+        <>
+          <EmbeddedLandscape
+            id="large-models"
+            title="Large Models"
+            detail="Open weights · API access · usage · capability"
+            src="/keynote/large-models/index.html"
+            accent="models"
+          />
+          <EmbeddedLandscape
+            id="awesome-list"
+            title="Awesome × Agentic"
+            detail="Discover · reuse · install · operate"
+            src="/keynote/awesome/awesome_agentic_landscape_2026.html"
+            accent="awesome"
+          />
+          <EcosystemSignals projects={projects} />
+          <ProjectRanking
+            projects={projects}
+            onSelect={(repo) => {
+              setDialogScope(null);
+              setSelectedRepo(repo);
+            }}
+          />
+        </>
+      ) : null}
 
       {selectedProject ? (
         <ProjectInsightDialog
           key={selectedProject.repo}
           project={selectedProject}
           neighbors={selectedNeighbors}
-          onClose={() => setSelectedRepo(null)}
+          onClose={() => {
+            setSelectedRepo(null);
+            if (!embedOnly) setDialogScope(null);
+          }}
           onSelect={setSelectedRepo}
+          contained={Boolean(dialogScope)}
+          portalContainer={
+            dialogScope === "agent"
+              ? agentDialogHost
+              : dialogScope === "model"
+                ? modelDialogHost
+                : undefined
+          }
         />
       ) : null}
 

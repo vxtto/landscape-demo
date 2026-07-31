@@ -52,13 +52,17 @@ def decision(
     }
 
 
-ADD = {
+HISTORICAL_KEEP = {
     "lobehub/lobehub": decision(
         "Agent Infra",
         "Personal AI assistants",
         "80k+ stars、最近可用 OpenRank 仍在 60 左右，已经成为个人 agent 工作空间和长期运行入口的代表项目。",
         "产品同时覆盖聊天、知识库和多 agent 管理；主图只放在 Personal AI assistants，避免重复出现在 framework 或 chatbot。",
     ),
+}
+
+
+ADD = {
     "volcengine/openviking": decision(
         "Agent Infra",
         "Memory, knowledge & context",
@@ -516,7 +520,13 @@ def main() -> None:
         repo_key = normalize_repo(row["repo_name"])
         current = reference_by_id.get(row["repo_id"])
 
-        if repo_key in ADD:
+        if repo_key in HISTORICAL_KEEP:
+            # LobeHub already appeared in earlier landscapes as
+            # lobehub/lobe-chat. The stable GitHub repo_id is unchanged, so a
+            # repository rename or a temporary omission must not produce NEW.
+            row.update(HISTORICAL_KEEP[repo_key])
+            row["landscape_action"] = "keep"
+        elif repo_key in ADD:
             row.update(ADD[repo_key])
             row["landscape_action"] = "add"
         elif repo_key in REMOVE:
@@ -660,7 +670,7 @@ def main() -> None:
 
 当前 Vercel 版本有 122 个项目：Agent Infra 73 个，Model Infra 49 个。
 
-这轮建议落在 126 个：Agent Infra 74 个，Model Infra 52 个。分类结构继续沿用现有 25 个 section，没有新增大类。变化主要靠替换完成：新增 21 个，拿下 17 个。
+这轮建议落在 126 个：Agent Infra 74 个，Model Infra 52 个。分类结构继续沿用现有 25 个 section，没有新增大类。变化主要靠替换完成：新增 {len(additions)} 个，拿下 {len(removals)} 个。
 
 ## 版面密度变化
 

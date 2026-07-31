@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=3840, initial-scale=1">
   <title>Large Models Landscape 2026</title>
   <style>
+    @font-face {
+      font-family: "Alibaba PuHuiTi Landscape";
+      src: url("../../../public/fonts/AlibabaPuHuiTi-Regular.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 350 649;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Alibaba PuHuiTi Landscape";
+      src: url("../../../public/fonts/AlibabaPuHuiTi-Bold.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 650 799;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Alibaba PuHuiTi Landscape";
+      src: url("../../../public/fonts/AlibabaPuHuiTi-Heavy.woff2") format("woff2");
+      font-style: normal;
+      font-weight: 800 900;
+      font-display: swap;
+    }
     * { box-sizing: border-box; }
     html, body {
       width: 3840px;
@@ -13,7 +34,7 @@
       overflow: hidden;
       background: #f7f8fa;
       color: #111318;
-      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      font-family: "Alibaba PuHuiTi Landscape", "Alibaba PuHuiTi", "阿里巴巴普惠体", sans-serif;
       letter-spacing: 0;
     }
     body { position: relative; }
@@ -994,6 +1015,57 @@ footer > div:first-child {
 .passport-links a[hidden] {
   display: none;
 }
+
+/* This drawer is outside the transformed 3840 × 2160 artboard. Size it
+   against the real iframe viewport, so it remains a supporting panel. */
+.model-passport {
+  width: min(720px, 48vw);
+  height: 100dvh;
+  padding: 26px 32px 30px;
+  border-left-width: 3px;
+  box-shadow: -14px 0 0 rgb(17 19 24 / 12%);
+}
+
+.passport-close {
+  padding: 8px 11px;
+  border-width: 2px;
+  font-size: 11px;
+}
+
+.passport-logo { height: 36px; margin-top: 12px; }
+.passport-logo img { max-width: 190px; height: 32px; }
+.passport-logo .vendor-fallback { font-size: 20px; }
+.passport-header > p { margin-top: 12px; font-size: 11px; }
+.passport-header h2 { max-width: 620px; margin-top: 7px; font-size: 38px; line-height: 1; }
+.passport-badges { margin-top: 13px; gap: 7px; }
+.passport-badges span { padding: 5px 8px; border-width: 1px; font-size: 10px; }
+.passport-thesis { margin-top: 18px; padding: 12px 14px; border-left-width: 5px; font-size: 12px; line-height: 1.42; }
+.passport-lanes { margin-top: 16px; border-width: 2px; }
+.passport-lane { min-height: 188px; padding: 13px; border-right-width: 1px; }
+.passport-lane > span,
+.passport-evidence span,
+.passport-capabilities > span { font-size: 8px; }
+.passport-lane > strong { margin-top: 20px; font-size: 26px; }
+.passport-lane > small { margin-top: 6px; font-size: 9px; }
+.passport-lane > p { font-size: 9px; line-height: 1.4; }
+.usage-lane > i { height: 7px; margin-top: 11px; }
+.passport-evidence { margin-top: 15px; gap: 8px; }
+.passport-evidence article { min-height: 115px; padding: 12px; border-width: 1px; }
+.passport-evidence strong { margin-top: 12px; font-size: 20px; }
+.passport-evidence p { margin-top: 7px; font-size: 9px; line-height: 1.4; }
+.passport-specs { margin-top: 15px; border-top-width: 2px; border-left-width: 2px; }
+.passport-specs > div { min-height: 66px; padding: 10px 12px; border-right-width: 2px; border-bottom-width: 2px; }
+.passport-specs span { font-size: 8px; }
+.passport-specs strong { margin-top: 5px; font-size: 13px; }
+.passport-capabilities { margin-top: 15px; }
+.passport-capabilities > div { margin-top: 8px; }
+.passport-capabilities i { padding: 5px 7px; border-width: 1px; font-size: 9px; }
+.metric-glossary { margin-top: 16px; border-width: 2px; }
+.metric-glossary summary { padding: 11px 13px; font-size: 12px; }
+.metric-glossary > div { padding: 0 13px 13px; }
+.metric-glossary p { margin-top: 8px; font-size: 9px; line-height: 1.45; }
+.passport-links { margin-top: 14px; gap: 7px; }
+.passport-links a { padding: 8px 10px; border-width: 1px; font-size: 10px; }
 
 @media (prefers-reduced-motion: reduce) {
   .summary-item,

@@ -155,11 +155,19 @@ README 明确提供以下材料时，仓库更接近 direct：
 
 如果只用仓库名，项目历史会在改名那天被切断。Repo ID 是生态扫描中更可靠的身份键。
 
-## 这张图最值得讲的趋势
+## 台上可以切换的三个观察
 
 ### README 变成可执行入口
 
 26 个项目中有 19 个 direct consumability。README 仍然承担说明，但目录结构已经开始指向具体的 skill、hook、workflow 和配置文件。
+
+### Install 阶段 7 / 7 都是 direct
+
+沿使用路径看，Install 的 7 个项目全部达到 direct，Operate 也有 6 / 7。越接近安装与日常运行，知识越多地以配置、工具入口和固定流程出现。
+
+### 22 / 26 创建于 2025 年以后
+
+这个比例只描述本次编辑短名单，不代表 GitHub 全量。它说明 Agent-native 的知识资产仍在快速成形，后续版本需要持续复核。
 
 ## 数据限制
 
@@ -175,13 +183,17 @@ README 明确提供以下材料时，仓库更接近 direct：
 
 > 它不看框架或模型，而是看开源知识怎样被使用。传统 awesome list 主要帮人发现链接；现在有一批仓库开始把内容整理成 Agent 能直接加载的形式。
 
-再解释 19 / 26 的判断：
+第一次翻页解释 19 / 26：
 
-> 我们从 460 个候选里选了 26 个，其中 19 个被标记为 direct consumability。判断依据不是名字里有没有 awesome，也不是 star 高不高，而是 README 里是否真的提供 skill、instruction、hook、workflow 或 MCP 配置。
+> 我们从 460 个候选里选了 26 个，其中 19 个被标记为 direct consumability。判断直接落到仓库材料：README 里是否真的提供 skill、instruction、hook、workflow 或 MCP 配置。
 
-把核心观点说出来：
+第二次翻页放大 Install：
 
-> README 开始带有执行语义。过去文档主要告诉人怎么做，现在文档里的一部分结构会被 Agent 读取，并直接影响它下一步怎么做。README 没有消失，只是多了一类读者。
+> Install 阶段的 7 个项目全部是 direct；Operate 也有 6 / 7。到了安装和日常运行环节，清单、配置和工具入口已经普遍变成机器可执行的交付物。
+
+第三次翻页回到全图：
+
+> 26 个项目中有 22 个创建于 2025 年以后。这个比例只描述编辑短名单，但可以看出 Agent-native 的知识资产仍在快速成形。
 
 最后给结论加上边界：
 

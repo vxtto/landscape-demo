@@ -6,13 +6,13 @@
 
 Model Infra 沿模型生命周期组织项目：数据怎样进入训练，计算如何调度，模型如何微调和强化学习，推理如何部署，token 怎样经过 gateway、engine、cache 与硬件适配层。
 
-最终图中有 57 个项目：
+最终图中有 58 个项目：
 
 - 47 个保留；
-- 10 个新增；
+- 11 个新增；
 - 13 个 section；
 - `Serving · Inference` 从 6 个项目增加到 8 个；
-- 5 个 Model API gateway 被放在模型访问层。
+- 6 个 Model API gateway 被放在模型访问层。
 
 完整表格：[model_infra_landscape_projects.csv](../landscape-refresh/data/model_infra_landscape_projects.csv)
 
@@ -32,7 +32,8 @@ Model Infra 与 Agent Infra 共用一套候选扫描。6,118 个原始候选来�
 → 878 自动相关
 → 227 个 GitHub API 刷新对象
 → 222 个 README 复核后的机器候选
-→ 12 个 A 档 + 12 个 B 档编辑短名单
+→ 12 个 A 档 + 12 个 B 档初始短名单
+→ OmniRoute 复盘后补入 A 档
 ```
 
 详细解释和复核入口：
@@ -60,22 +61,15 @@ Model Infra 与 Agent Infra 共用一套候选扫描。6,118 个原始候选来�
 - MCP gateway：Agent 与工具服务的连接和治理；
 - agentic proxy：Agent 协议流量、策略与控制平面。
 
-新版把 5 个 Model API gateway 放回 Model Infra。这个调整让分类沿流量职责展开，也解释了为什么 Agent gateway 与 Model gateway 不应只因为名字相似就放在一起。
+新版把 6 个 Model API gateway 放回 Model Infra。这个调整让分类沿流量职责展开，也解释了为什么 Agent gateway 与 Model gateway 不应只因为名字相似就放在一起。
 
-相关前后计数见 [landscape_editorial_summary.json](../landscape-refresh/data/landscape_editorial_summary.json)。
+OmniRoute 是这次复盘补入的项目。它并没有被最初的扫描遗漏：候选池里有它，但绝对 Top-N 门槛没有把它送进 A/B 人工短名单。截至 2026-07-28，它有 32,706 stars，2—6 月 OpenRank 从 4.07 升到 39.04，候选池记录了 417 个可见 WatchEvent。这类项目今后走独立的高增速复核通道。
 
-## 这次最值得讲的变化
+当前计数见 [infra_landscape_source_summary.json](../landscape-refresh/data/infra_landscape_source_summary.json)；首轮前后差异仍保留在 [landscape_editorial_summary.json](../landscape-refresh/data/landscape_editorial_summary.json)。
 
-### Inference 从 6 个项目增加到 8 个
+## 台上只讲一个近期信号
 
-推理区的变化不是单纯增加 engine：
-
-- LMCache 让 KV cache 从引擎内部优化变成可持久化、跨引擎复用的独立层；
-- vLLM-Omni 把 serving 扩展到文本、图像、音频、视频与 action output；
-- vLLM-Ascend 补上 CUDA 之外的硬件与开发者社区；
-- vLLM、SGLang、TensorRT-LLM、llama.cpp 等继续表达核心引擎差异。
-
-Agent workload 往往包含长上下文、多轮执行和重复前缀，因此 cache、调度与恢复更容易成为系统瓶颈。
+Gateway 又热了，但职责已经分叉。OmniRoute 同时覆盖模型路由、配额 fallback、MCP 与 A2A；LiteLLM 更接近 model API gateway，AgentGateway 更接近 agentic proxy。项目之间有重叠，正好说明这一层不能再靠名字分类。
 
 ## 数据口径
 
@@ -93,17 +87,15 @@ Agent workload 往往包含长上下文、多轮执行和重复前缀，因此 c
 
 ## 给演讲者的讲法
 
-先交代读图方式：
+第一屏先看当前结构，然后只停在 gateway：
 
-> 这张图覆盖模型访问、训练、数据和计算。57 个项目里有 10 个是这次新加的。我们真正想指出的变化集中在 Serving · Inference。
+> Model Infra 现在有 58 个项目。OmniRoute 截至 7 月 28 日有 32,706 stars，2 月到 6 月 OpenRank 从 4.07 升到 39.04。它进入过 222 个机器候选，却被绝对 Top-N 门槛漏出了人工短名单。
 
-再解释 `6 → 8`：
+第二次翻页解释判断：
 
-> vLLM、SGLang 还是大家熟悉的推理引擎，但现在已经不能只看引擎本身。LMCache 在处理 KV cache 的跨请求和跨引擎复用；vLLM-Omni 把图像、音频和视频带进 serving；vLLM-Ascend 代表硬件适配也开始形成自己的协作面。
+> 我们把它补回来，也补了一条高增速复核通道。它与 LiteLLM、New API、AgentGateway 都有交叉；入图不是说它“独一无二”，而是它足以说明 gateway 的职责正在从模型 API 代理延伸到配额 fallback 和 agent 协议流量。
 
-把趋势落到 Agent workload：
-
-> Agent 把一次调用拉成连续几十步以后，缓存能不能复用、请求怎样排队、不同硬件怎样接入，会直接影响成本和延迟。OpenRank 只能描述协作活跃度，不能拿来证明哪个推理系统性能最好。
+OpenRank 只能描述协作活跃度，不能拿来证明哪个推理系统性能最好。
 
 最后接 Large Models：
 

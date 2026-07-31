@@ -67,12 +67,12 @@ const sharedInfraMethod: MethodStep[] = [
   {
     number: "04",
     title: "回到 GitHub 复核现在的项目",
-    body: "分别取 WatchEvent 前 100、OpenRank 前 100、GitHub 搜索前 80，再取并集。GitHub API 刷新名称、stars、许可证、最近 push、fork 和 archive 状态；最新 README 再做一次技术定位，留下 222 个机器候选。",
+    body: "分别取 WatchEvent 前 100、OpenRank 前 100、GitHub 搜索前 80，再取并集。GitHub API 刷新名称、stars、许可证、最近 push、fork 和 archive 状态；最新 README 再做一次技术定位，留下 222 个机器候选。OmniRoute 复盘暴露了绝对 Top-N 的盲区，因此人工复核又增加一条高增速通道。",
   },
   {
     number: "05",
     title: "最后由编辑判断决定版面",
-    body: "人工检查它是否补上结构缺口、是不是通用能力、是否和现有 logo 重复，以及数据能否支撑“现在就放进去”。扫描阶段得到 12 个 A 档与 12 个 B 档；最终主表记录 keep、add、remove、omit。",
+    body: "人工检查它是否补上结构缺口、是不是通用能力、是否和现有 logo 重复。新项目或高增长项目单独看近三个月证据；加入主图和标成 NEW / RISING 是两件事。主表分别记录编辑动作与趋势信号。",
   },
 ];
 
@@ -88,9 +88,9 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
     base: [1440, 810],
     metrics: [
       {
-        value: "69",
+        value: "74",
         label: "进入 Agent Infra",
-        note: "58 个保留，11 个新增",
+        note: "59 个保留，15 个新增",
       },
       {
         value: "3 → 5",
@@ -105,9 +105,9 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
     ],
     insight: {
       signal: "最值得讲的变化",
-      title: "协议开始成为一层基础设施",
-      body: "MCP 处理 agent 与工具的连接，A2A 处理 agent 之间的协作；AG-UI 和 A2UI 又把事件流与界面生成补进来。协议区只增加了两个项目，但它说明大家开始把接口约定当成独立的公共层。",
-      evidence: "Protocols & interoperability · 3 → 5",
+      title: "上下文开始长成独立的数据层",
+      body: "OpenViking 把 memory、RAG 和 skills 收进 context database。它在 2026 年 3—6 月的 OpenRank 从 35.96 升至 140.23；这比再多一个 agent framework 更值得关注：上下文正在从框架里的一个功能，变成可以单独演进的基础设施。",
+      evidence: "OpenViking · OpenRank 35.96 → 140.23",
     },
     methodIntro:
       "Agent Infra 与 Model Infra 共用一套候选发现管线。6,118 是高召回候选池，里面包含大量最终会被排除的教程、应用与弱相关仓库，不能解读成 6,118 个 Agentic AI 基础设施项目。",
@@ -131,7 +131,7 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
       {
         label: "Agent Infra 主表",
         href: `${repoBase}/landscape-refresh/data/agent_infra_landscape_projects.csv`,
-        note: "69 个项目及逐项选择理由",
+        note: "74 个项目及逐项选择理由",
       },
       {
         label: "人工复核池",
@@ -141,10 +141,10 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
     ],
     speakerTime: "约 2 分钟",
     speakerScript: [
-      "先让观众看整张图几秒，不要急着念项目。可以先说：这张图把 Agent 生态分成应用、框架和运行基础设施三层。我们这次保留了 58 个项目，新加了 11 个。数量不是重点，重点是版面往哪里长。",
-      "我会把视线带到 Protocols & interoperability。上一版这里有 3 个项目，这次是 5 个。MCP 主要处理 Agent 怎么接工具，A2A 处理 Agent 之间怎么协作；AG-UI 和 A2UI 开始处理 Agent 如何把过程和界面交给用户。它们解决的不是同一个问题，但共同点很清楚：生态正在补接口约定。",
-      "这件事对开放生态很重要。接口公开以后，工具、运行时和产品可以由不同社区实现，不必绑定在同一套框架里。我们今天看到的协议还很年轻，也可能继续合并或调整，所以这里不要讲成“标准已经定了”。更准确的说法是：大家已经意识到，Agent 之间需要一层公共语言。",
-      "讲完这一点就停。不要把 memory、sandbox 等每一块都解释一遍。下一张 Model Infra 可以这样接：Agent 这一侧开始补连接协议，模型这一侧则在补长链路运行需要的系统能力。",
+      "先看现在的结构。74 个项目里，Agentic coding 有 12 个，Code-first frameworks 有 10 个，最大的两个 section 都围绕 coding。代码仍是 Agent 生态最密集的入口。",
+      "第二个视角看上下文。OpenViking 把 memory、RAG 和 skills 放进 context database，3 月到 6 月 OpenRank 从 35.96 升到 140.23。上下文开始从框架内部功能变成独立数据层。",
+      "第三个视角看公共接口：MCP、A2A 之外，AG-UI 与 A2UI 把事件流和界面带进协议层。第四个视角看改进方式：SkillOpt 把 skill 文档当作可训练状态，用 rollout、评估和验证门更新。",
+      "图上的 NEW 和 RISING 只表达最近 90 天的新生或加速信号，不再等同于这版刚加入主图。下一张继续沿执行链路看 Model Infra。",
     ],
     fullNoteHref: `${repoBase}/landscape-notes/agent-infra.md`,
   },
@@ -159,9 +159,9 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
     base: [1440, 810],
     metrics: [
       {
-        value: "57",
+        value: "58",
         label: "进入 Model Infra",
-        note: "47 个保留，10 个新增",
+        note: "47 个保留，11 个新增",
       },
       {
         value: "6 → 8",
@@ -169,19 +169,19 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
         note: "KV cache、硬件插件与多模态 serving 增厚",
       },
       {
-        value: "5",
+        value: "6",
         label: "Model API gateways",
-        note: "从 Agent 产品层调整到模型访问层",
+        note: "OmniRoute 补入近期高增长信号",
       },
     ],
     insight: {
       signal: "最值得讲的变化",
-      title: "Inference 已经装不进一个方块",
-      body: "vLLM、SGLang 仍是核心引擎，LMCache 把 KV cache 变成可复用层，vLLM-Omni 扩展到多模态，vLLM-Ascend 则体现硬件适配。推理区从 6 个项目增到 8 个，内部职责也明显分开了。",
-      evidence: "Serving · Inference · 6 → 8",
+      title: "Gateway 又热了，但职责已经分叉",
+      body: "OmniRoute 截至 7 月 28 日有 32,706 stars，2—6 月 OpenRank 从 4.07 升至 39.04。它和 LiteLLM、AgentGateway 的重叠很明显，但也说明 gateway 正同时承担模型路由、配额 fallback 与 agent 协议流量；分类必须按职责，而不是按名字。",
+      evidence: "OmniRoute · OpenRank 4.07 → 39.04",
     },
     methodIntro:
-      "候选池与 Agent Infra 共用，但最后一轮的编辑问题不同：这个项目是否真正影响模型训练、数据、计算、推理或访问，而不是仅仅调用了一个模型 API。",
+      "候选池与 Agent Infra 共用，但最后一轮会确认项目是否真正影响模型训练、数据、计算、推理或访问；只调用模型 API 的应用不会因此进入 Model Infra。",
     methodSteps: [
       ...sharedInfraMethod.slice(0, 4),
       {
@@ -208,7 +208,7 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
       },
       {
         label: "版面决策摘要",
-        href: `${repoBase}/landscape-refresh/data/landscape_editorial_summary.json`,
+        href: `${repoBase}/landscape-refresh/data/infra_landscape_source_summary.json`,
         note: "旧版与新版 section counts",
       },
       {
@@ -219,10 +219,10 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
     ],
     speakerTime: "约 2 分钟",
     speakerScript: [
-      "这张图也不要从左到右逐格讲。先告诉观众，它覆盖模型访问、训练、数据和计算。57 个项目里有 10 个是这次新加的。我们真正想指出的变化集中在 Serving · Inference。",
-      "上一版 inference 有 6 个项目，这次是 8 个。vLLM、SGLang 还是大家熟悉的推理引擎，但现在已经不能只看引擎本身。LMCache 在处理 KV cache 的跨请求和跨引擎复用；vLLM-Omni 把图像、音频和视频带进 serving；vLLM-Ascend 代表硬件适配也开始形成自己的协作面。",
-      "所以这里可以说得很具体：Agent 把一次调用拉成连续几十步以后，缓存能不能复用、请求怎样排队、不同硬件怎样接入，会直接影响成本和延迟。OpenRank 只能告诉我们这些项目的协作活跃度，不能拿来证明哪个推理系统性能最好，这个边界最好当场说清楚。",
-      "收尾时不要再展开 gateway 或 post-training。直接把问题交给下一张图：基础设施在变复杂，但模型使用端到底更偏向开放权重还是闭源 API？我们用同一个完整月份的数据来看。",
+      "Model Infra 现在有 58 个项目。Serving · Inference 与 Compiler & accelerator 仍是两个最大的执行区，但这张图只讲一个近期信号：gateway 又热了。",
+      "OmniRoute 截至 7 月 28 日有 32,706 stars，2 月到 6 月 OpenRank 从 4.07 升到 39.04。它其实进过 222 个机器候选，但被绝对 Top-N 门槛漏出了人工短名单。这次补回主图，也补了一条高增速复核通道。",
+      "它与 LiteLLM、New API、AgentGateway 都有交叉。这里不把热度等同于独特性；我们用它说明 gateway 的职责正在从模型 API 代理扩展到配额 fallback、MCP 和 A2A 流量。",
+      "OpenRank 只能描述协作活跃度，不能证明哪个推理系统性能最好。接下来换一套口径，用完整月份的真实使用数据看模型端。",
     ],
     fullNoteHref: `${repoBase}/landscape-notes/model-infra.md`,
   },
@@ -316,9 +316,10 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
     speakerTime: "约 2 分钟",
     speakerScript: [
       "这张图先讲数据口径。我们取的是 2026 年 6 月 1 日到 30 日，一个完整自然月。OpenRouter 和 ZenMux 的原始 token 数不能直接相加，所以先在各自平台内部换成百分位，再各占 50%。",
-      "看结果，Top 50 里有 24 个开放权重模型，26 个没有公开权重，几乎对半。更有意思的是 Top 10：两边刚好各 5 个，综合第一还是 DeepSeek V4 Flash。至少在这一个月、这两个平台上，开放权重模型已经处在主流使用区，不是边缘选项。",
-      "这里一定不要顺手讲成“开放模型赢了”。这份数据只覆盖两个模型聚合平台，而且榜外模型会进入 other。它能说明使用格局已经混在一起，不能代表整个市场，更不能替代企业内部调用数据。",
-      "最后留一个问题给后面的许可证部分：同样叫开放权重，发布者提供的材料差异很大。有的只有权重，有的还有训练代码、数据说明和评测。使用量看不出这些差别，许可证也只能回答其中一部分。",
+      "Top 10 里开放权重与无公开权重各有 5 个。这个月、这两个平台上，两类模型都进入了主流使用区。数据覆盖有限，所以结论只落在这份样本上。",
+      "把 Top 50 按模型类型拆开，差异就出来了：13 个 Reasoning 模型中有 12 个开放权重；30 个 Multimodal / VLM 中有 22 个没有公开权重。开放程度和模型类型明显相关。",
+      "公开 AAI 能匹配到 8 个样本。使用排名第 1 的模型 AAI 为 40.3；AAI 最高的模型使用排名第 25。真实使用还受价格、延迟、渠道与产品适配影响，能力榜只是其中一个变量。",
+      "同样叫开放权重，发布材料仍有很大差别。有的只有权重，有的还有训练代码、数据说明和评测；这一层差异留到许可证部分继续讲。",
     ],
     fullNoteHref: `${repoBase}/landscape-notes/large-models.md`,
   },
@@ -412,9 +413,10 @@ export const landscapeViews: Record<LandscapeKey, LandscapeView> = {
     speakerTime: "约 2 分钟",
     speakerScript: [
       "这张图和前面三张的视角不一样。它不看框架或模型，而是看开源知识怎样被使用。传统 awesome list 主要帮人发现链接；现在有一批仓库开始把内容整理成 Agent 能直接加载的形式。",
-      "我们从 460 个候选里选了 26 个做这张图，其中 19 个被标记为 direct consumability。判断依据不是名字里有没有 awesome，也不是 star 高不高，而是 README 里是否真的提供 skill、instruction、hook、workflow 或 MCP 配置。比如有的仓库可以直接安装到 coding agent，有的把代码评审或规格驱动开发整理成可重复步骤。",
-      "所以最值得讲的一句话就是：README 开始带有执行语义。过去文档主要告诉人怎么做，现在文档里的一部分结构会被 Agent 读取，并直接影响它下一步怎么做。README 没有消失，只是多了一类读者。",
-      "这里也别讲成所有 awesome list 都会变成插件市场。我们的 26 个项目是编辑短名单，不是整个 GitHub 的普查。更稳妥的结论是：开源项目的贡献界面正在扩大，代码之外，instructions 和 workflow 也开始成为可复用资产。",
+      "从 460 个候选里选出的 26 个项目中，19 个达到 direct consumability。判断依据是仓库里确实提供 skill、instruction、hook、workflow 或 MCP 配置，Agent 可以直接读取或执行。",
+      "沿使用路径看，Install 阶段的 7 个项目全部是 direct；Operate 也有 6 / 7。到了安装和日常运行环节，知识已经更多地以配置、工具入口和固定流程出现。",
+      "这批项目很年轻，26 个里有 22 个创建于 2025 年以后。这个比例只描述编辑短名单，不代表整个 GitHub；它提示我们，Agent-native 的知识资产仍在快速成形。",
+      "README 依然负责解释项目，只是其中一部分内容现在还会直接影响 Agent 下一步怎么做。代码之外，instructions 和 workflow 也进入了可复用资产的范围。",
     ],
     fullNoteHref: `${repoBase}/landscape-notes/awesome-agentic.md`,
   },
