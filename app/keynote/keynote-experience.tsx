@@ -5,6 +5,7 @@ import {
   ArrowUpRightIcon,
   CircleHelpIcon,
   ExpandIcon,
+  MonitorPlayIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -42,8 +43,8 @@ import {
 import LandscapeExplorer from "../components/landscape-explorer";
 import LandscapeLogo from "../components/landscape-logo";
 
-type StackKey = "models" | "embodied" | "infra" | "industry";
-type CommunityKey = "discover" | "propose" | "review" | "ship" | "trust";
+export type StackKey = "models" | "embodied" | "infra" | "industry";
+export type CommunityKey = "discover" | "propose" | "review" | "ship" | "trust";
 type LicenseFilter = "all" | "license" | "framework" | "definition";
 
 type InclusionProject = {
@@ -62,7 +63,7 @@ const chapters = [
   ["community", "Community >>> Code"],
 ] as const;
 
-const stackData: Record<
+export const stackData: Record<
   StackKey,
   {
     label: string;
@@ -251,14 +252,14 @@ const stackData: Record<
   },
 };
 
-const inclusionServices = [
+export const inclusionServices = [
   ["通用服务", "LingGuang", "全模态 AI 助手"],
   ["金融服务", "MA XIAO CAI", "AI Financial Steward"],
   ["医疗服务", "AQ", "面向健康与医疗的可信助手"],
   ["生活服务", "Life Services", "支付、出行、家庭等真实场景"],
 ] as const;
 
-const communityData: Record<CommunityKey, [string, string]> = {
+export const communityData: Record<CommunityKey, [string, string]> = {
   discover: [
     "先让入口可见",
     "公开 roadmap、模型卡和清楚的任务说明，会让陌生贡献者知道当前问题在哪里，以及怎样开始。",
@@ -401,10 +402,16 @@ export default function KeynoteExperience({
             CommunityOverCode China
             <span>2026 keynote · 08.07</span>
           </p>
-          <Link className={styles.backLink} href="/">
-            <ArrowLeftIcon aria-hidden="true" />
-            返回生态图
-          </Link>
+          <div className={styles.headerActions}>
+            <Link className={styles.stageLink} href="/keynote/present">
+              <MonitorPlayIcon aria-hidden="true" />
+              演讲播放
+            </Link>
+            <Link className={styles.backLink} href="/">
+              <ArrowLeftIcon aria-hidden="true" />
+              返回生态图
+            </Link>
+          </div>
         </header>
 
         <section className={styles.hero} aria-labelledby="keynote-title">

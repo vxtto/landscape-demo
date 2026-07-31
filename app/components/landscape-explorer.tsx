@@ -200,9 +200,11 @@ const LANDSCAPE_CANVAS_HEIGHT = 810;
 function FixedLandscapeFrame({
   children,
   fitViewport,
+  allowUpscale,
 }: {
   children: ReactNode;
   fitViewport?: boolean;
+  allowUpscale?: boolean;
 }) {
   const viewportRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
@@ -217,7 +219,7 @@ function FixedLandscapeFrame({
         : 1;
       setScale(
         Math.min(
-          1,
+          allowUpscale ? Number.POSITIVE_INFINITY : 1,
           viewport.clientWidth / LANDSCAPE_CANVAS_WIDTH,
           heightScale,
         ),
@@ -233,7 +235,7 @@ function FixedLandscapeFrame({
       observer.disconnect();
       if (fitViewport) window.removeEventListener("resize", fit);
     };
-  }, [fitViewport]);
+  }, [allowUpscale, fitViewport]);
 
   return (
     <div ref={viewportRef} className={styles.boardViewport}>
@@ -475,6 +477,7 @@ function ZoneSection({
   zoneProjects,
   normalizedQuery,
   selectedRepo,
+  presentationFocus,
   rankScale,
   onSelect,
   style,
@@ -485,6 +488,7 @@ function ZoneSection({
   zoneProjects: LandscapeProject[];
   normalizedQuery: string;
   selectedRepo: string | null;
+  presentationFocus?: string;
   rankScale: (project: LandscapeProject) => number;
   onSelect: (repo: string) => void;
   style?: CSSProperties;
@@ -524,6 +528,12 @@ function ZoneSection({
   return (
     <section
       data-landscape-zone
+      data-presentation-focus={
+        presentationFocus === zone ? "true" : undefined
+      }
+      data-presentation-muted={
+        presentationFocus && presentationFocus !== zone ? "true" : undefined
+      }
       className={cn(styles.zone, className)}
       style={zoneStyle}
     >
@@ -562,6 +572,7 @@ function StageSection({
   projects,
   normalizedQuery,
   selectedRepo,
+  presentationFocus,
   rankScale,
   onSelect,
 }: {
@@ -569,6 +580,7 @@ function StageSection({
   projects: LandscapeProject[];
   normalizedQuery: string;
   selectedRepo: string | null;
+  presentationFocus?: string;
   rankScale: (project: LandscapeProject) => number;
   onSelect: (repo: string) => void;
 }) {
@@ -626,6 +638,7 @@ function StageSection({
               zoneProjects={zoneProjects}
               normalizedQuery={normalizedQuery}
               selectedRepo={selectedRepo}
+              presentationFocus={presentationFocus}
               rankScale={rankScale}
               onSelect={onSelect}
               style={zoneStyle}
@@ -646,6 +659,7 @@ function ModelStageSection({
   projects,
   normalizedQuery,
   selectedRepo,
+  presentationFocus,
   rankScale,
   onSelect,
 }: {
@@ -653,6 +667,7 @@ function ModelStageSection({
   projects: LandscapeProject[];
   normalizedQuery: string;
   selectedRepo: string | null;
+  presentationFocus?: string;
   rankScale: (project: LandscapeProject) => number;
   onSelect: (repo: string) => void;
 }) {
@@ -743,6 +758,7 @@ function ModelStageSection({
                     zoneProjects={zoneProjects}
                     normalizedQuery={normalizedQuery}
                     selectedRepo={selectedRepo}
+                    presentationFocus={presentationFocus}
                     rankScale={rankScale}
                     onSelect={onSelect}
                     aspectRatio={
@@ -795,10 +811,14 @@ export default function LandscapeExplorer({
   projects,
   embedOnly,
   standalone,
+  presentationFocus,
+  presentationMode,
 }: {
   projects: LandscapeProject[];
   embedOnly?: "agent" | "model";
   standalone?: boolean;
+  presentationFocus?: string;
+  presentationMode?: boolean;
 }) {
   const [agentQuery, setAgentQuery] = useState("");
   const [modelQuery, setModelQuery] = useState("");
@@ -995,7 +1015,10 @@ export default function LandscapeExplorer({
             </>
           ) : null}
 
-          <FixedLandscapeFrame fitViewport={standalone}>
+          <FixedLandscapeFrame
+            fitViewport={standalone || presentationMode}
+            allowUpscale={presentationMode}
+          >
             <div className={styles.landscapeBoard}>
               <section ref={agentSlideRef} className={styles.landscapeSlide}>
                 <header className={styles.boardMasthead}>
@@ -1032,6 +1055,7 @@ export default function LandscapeExplorer({
                         projects={projects}
                         normalizedQuery={normalizedAgentQuery}
                         selectedRepo={selectedRepo}
+                        presentationFocus={presentationFocus}
                         rankScale={rankScale}
                         onSelect={setSelectedRepo}
                       />
@@ -1120,7 +1144,10 @@ export default function LandscapeExplorer({
             </>
           ) : null}
 
-          <FixedLandscapeFrame fitViewport={standalone}>
+          <FixedLandscapeFrame
+            fitViewport={standalone || presentationMode}
+            allowUpscale={presentationMode}
+          >
             <div className={styles.landscapeBoard}>
               <section
                 ref={modelSlideRef}
@@ -1166,6 +1193,7 @@ export default function LandscapeExplorer({
                         projects={projects}
                         normalizedQuery={normalizedModelQuery}
                         selectedRepo={selectedRepo}
+                        presentationFocus={presentationFocus}
                         rankScale={rankScale}
                         onSelect={setSelectedRepo}
                       />

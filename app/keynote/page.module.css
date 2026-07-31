@@ -39,7 +39,8 @@
 }
 
 .brand,
-.backLink {
+.backLink,
+.stageLink {
   width: fit-content;
   display: inline-flex;
   align-items: center;
@@ -82,7 +83,15 @@
   font-weight: 500;
 }
 
-.backLink {
+.headerActions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.backLink,
+.stageLink {
   justify-self: end;
   gap: 7px;
   color: var(--quiet);
@@ -91,7 +100,8 @@
   transition: color 160ms ease, transform 160ms ease;
 }
 
-.backLink svg {
+.backLink svg,
+.stageLink svg {
   width: 14px;
   height: 14px;
 }
@@ -99,6 +109,20 @@
 .backLink:hover {
   color: var(--ink);
   transform: translateX(-2px);
+}
+
+.stageLink {
+  padding: 8px 11px;
+  border: 1px solid #d9d4ff;
+  border-radius: 999px;
+  background: var(--violet-soft);
+  color: #4c36b4;
+}
+
+.stageLink:hover {
+  border-color: var(--violet);
+  background: white;
+  color: var(--violet);
 }
 
 .hero {
@@ -2929,6 +2953,10 @@
     display: none;
   }
 
+  .headerActions {
+    gap: 8px;
+  }
+
   .hero {
     min-height: auto;
     grid-template-columns: 1fr;
@@ -3144,6 +3172,10 @@
   }
 
   .brand strong {
+    display: none;
+  }
+
+  .backLink {
     display: none;
   }
 
