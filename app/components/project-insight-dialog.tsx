@@ -253,7 +253,11 @@ export function ProjectInsightDialog({
   portalContainer?: HTMLElement | null;
 }) {
   return (
-    <Dialog open onOpenChange={(open) => !open && onClose()}>
+    <Dialog
+      open
+      modal={contained ? "trap-focus" : true}
+      onOpenChange={(open) => !open && onClose()}
+    >
       <DialogContent
         className={`${styles.insightDialog} ${
           contained ? styles.containedInsightDialog : ""
