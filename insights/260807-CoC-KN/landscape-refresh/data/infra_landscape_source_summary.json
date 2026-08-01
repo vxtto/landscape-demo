@@ -1,32 +1,32 @@
 {
-  "generated_at": "2026-07-28T16:37:48.392840+00:00",
+  "generated_at": "2026-07-31T14:44:30.607395+00:00",
   "source": "data/agentic-ai-projects.csv",
   "selection_rule": "landscape_action in {keep, add}",
-  "total_projects": 126,
+  "total_projects": 132,
   "layer_counts": {
-    "Agent Infra": 69,
-    "Model Infra": 57
+    "Agent Infra": 74,
+    "Model Infra": 58
   },
   "action_counts": {
-    "keep": 105,
-    "add": 21
+    "keep": 106,
+    "add": 26
   },
   "agent_section_counts": {
     "Personal AI assistants": 7,
     "Workflow & agent builders": 5,
     "Agentic coding": 12,
     "Protocols & interoperability": 5,
-    "Tool & browser use": 4,
+    "Tool & browser use": 6,
     "Chatbot workspaces": 3,
     "Memory, knowledge & context": 7,
     "Code-first frameworks": 10,
     "Development sandboxes": 4,
-    "Coding harnesses": 4,
+    "Coding harnesses": 6,
     "Multi-agent orchestration": 4,
-    "Observability & evaluation": 4
+    "Observability & evaluation": 5
   },
   "model_section_counts": {
-    "Model API gateways": 5,
+    "Model API gateways": 6,
     "Pre-Train · Robotics infra": 2,
     "Pre-Train · Compiler & accelerator": 8,
     "Data · Integration": 3,
@@ -42,7 +42,7 @@
   },
   "avatar_source": "https://github.com/{owner}.png?size=128",
   "avatar_status_counts": {
-    "downloaded": 113
+    "cached": 116
   },
   "openrank_window": "2026-06"
 }

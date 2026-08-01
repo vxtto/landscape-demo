@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title description">
+  <title id="title">蚂小财</title>
+  <desc id="description">蚂小财蓝色圆环与橙色金融数据柱标识</desc>
+  <defs>
+    <linearGradient id="ring" x1="20" y1="20" x2="78" y2="91" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2999ff"/>
+      <stop offset="1" stop-color="#4258ff"/>
+    </linearGradient>
+    <linearGradient id="bars" x1="29" y1="48" x2="74" y2="66" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffb21c"/>
+      <stop offset="1" stop-color="#ff8500"/>
+    </linearGradient>
+  </defs>
+  <path d="m27 30-7-10m49 10 7-10" fill="none" stroke="url(#ring)" stroke-width="9" stroke-linecap="round"/>
+  <path d="M26 31c-7 8-10 17-10 28 0 19 14 32 32 32s32-13 32-32c0-11-3-20-10-28" fill="none" stroke="url(#ring)" stroke-width="9" stroke-linecap="round"/>
+  <rect x="28" y="52" width="5" height="13" rx="2.5" fill="url(#bars)"/>
+  <rect x="36" y="49" width="5" height="17" rx="2.5" fill="url(#bars)"/>
+  <rect x="44" y="52" width="5" height="13" rx="2.5" fill="url(#bars)"/>
+  <rect x="52" y="48" width="5" height="18" rx="2.5" fill="url(#bars)"/>
+  <rect x="60" y="50" width="5" height="16" rx="2.5" fill="url(#bars)"/>
+  <rect x="68" y="52" width="5" height="13" rx="2.5" fill="url(#bars)"/>
+</svg>

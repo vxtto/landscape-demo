@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ArrowUpRightIcon } from "lucide-react";
+import { useState } from "react";
 import {
   CartesianGrid,
   Line,
@@ -10,11 +11,6 @@ import {
   YAxis,
 } from "recharts";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -73,13 +69,27 @@ const OPENRANK_CHART_CONFIG = {
   },
 } satisfies ChartConfig;
 
-function initials(value: string) {
-  return value
-    .split(/[\s./_-]+/)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
+function InsightProjectAvatar({ project }: { project: LandscapeProject }) {
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <span className={styles.insightProjectAvatar}>
+      {failed ? (
+        <span className={styles.insightProjectAvatarFallback}>
+          {project.name.slice(0, 2).toUpperCase()}
+        </span>
+      ) : (
+        <Image
+          src={projectLogoUrl(project.owner)}
+          width={88}
+          height={88}
+          unoptimized
+          alt={`${project.name} logo`}
+          onError={() => setFailed(true)}
+        />
+      )}
+    </span>
+  );
 }
 
 function formatDate(value: string) {
@@ -232,25 +242,31 @@ export function ProjectInsightDialog({
   neighbors,
   onClose,
   onSelect,
+  contained = false,
+  portalContainer,
 }: {
   project: LandscapeProject;
   neighbors: LandscapeProject[];
   onClose: () => void;
   onSelect: (repo: string) => void;
+  contained?: boolean;
+  portalContainer?: HTMLElement | null;
 }) {
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className={styles.insightDialog}>
+      <DialogContent
+        className={`${styles.insightDialog} ${
+          contained ? styles.containedInsightDialog : ""
+        }`}
+        portalContainer={portalContainer}
+        overlayClassName={
+          contained ? styles.containedInsightOverlay : undefined
+        }
+        style={{ translate: "none" }}
+      >
         <DialogHeader className={styles.insightHeader}>
           <div className={styles.insightIdentity}>
-            <Avatar className={styles.insightProjectAvatar}>
-              <AvatarImage
-                src={projectLogoUrl(project.owner)}
-                decoding="async"
-                alt={`${project.name} logo`}
-              />
-              <AvatarFallback>{initials(project.name)}</AvatarFallback>
-            </Avatar>
+            <InsightProjectAvatar project={project} />
             <div>
               <div className={styles.insightHeaderBadges}>
                 <Badge variant="secondary">{project.zone}</Badge>

@@ -17,11 +17,11 @@
 | 自动相关性过滤 | 878 | 哪些仓库确实与 Agent、Model Infra 或开放模型有关 |
 | GitHub 实时复核 | 227 | 项目现在是否仍有效，定位有没有变化 |
 | README 二次判断 | 222 | 项目的实际技术定位是否与简短描述一致 |
-| 人工编辑 | 24 | 哪些建议补入，哪些需要继续观察 |
+| 首轮人工编辑 | 24 | 哪些建议补入，哪些需要继续观察 |
 
-最终留下 12 个 A 档项目和 12 个 B 档项目。这里的 6,118 是高召回候选池，不是 6,118 个 Agentic AI 项目。
+首轮留下 12 个 A 档项目和 12 个 B 档项目。这里的 6,118 是高召回候选池，不是 6,118 个 Agentic AI 项目。
 
-2026-07-28 刷新完成后，这 24 个项目已经写入 `data/agentic-ai-projects.csv`，当前表共 251 个项目。A/B 档只属于扫描阶段的编辑过程，不再作为长期字段保留；主表改用 `landscape_action` 明确记录 keep、add、remove 和 omit。
+OmniRoute 暴露了首轮绝对 Top-N 的盲区。补上 90 天增速通道后，第二轮又加入 Spec Kit、Symphony、Lark CLI、SkillOpt 和 Firecrawl。当前主表共 257 个项目。A/B 档只属于扫描阶段的编辑过程；主表用 `landscape_action` 记录编辑决定，用 `trend_signal` 单独记录 NEW 或 RISING。
 
 ## 第一步先保证召回
 
@@ -84,6 +84,21 @@ Agent 关键词数量 × 4
 
 这一轮最后保留 222 个机器候选。
 
+## 第三步半：单独补扫最近 90 天
+
+首轮从 878 个项目里取 WatchEvent 前 100、OpenRank 前 100 和 GitHub 搜索前 80。这个入口擅长找绝对信号强的项目，却会漏掉历史很短、刚开始加速的仓库。OmniRoute 已经在 222 个机器候选里，但因为绝对排名没有进前三组，没进入人工短名单。
+
+补漏通道不再和绝对 Top-N 混成一个分数。它单独检查：
+
+- 2026-04-28 至 07-28 新建的仓库；
+- 2026-04 至 06 月 OpenRank 的增量和倍数变化；
+- 2026-05-01 至 07-28 可见 WatchEvent；
+- 官方 README 是否表明它是通用 infra、harness、runtime、gateway 或可复用工具层。
+
+这次重新读取原来的 222 条候选，再执行 12 组近期创建搜索。五个已补入项目从候选中排除后，GitHub 搜索产生 306 条跨 query 命中；按 repo ID 去重并与旧候选合并为 448 条，再按新生或加速条件保留 346 条高召回记录。346 仍不是入图名单，应用、教程、skill 合集和同质项目还要逐项排除。
+
+GitHub Trending 没有官方历史查询接口。这一轮把演讲者观察到的持续上榜项目当作人工发现线索，但不把“上榜几周”写成精确统计。后续更新应每日保存 Trending 快照，才能把持续时间变成可复核指标。
+
 ## 第四步由人决定全景图要表达什么
 
 机器分数只决定“值得看一眼”。进入主图还要检查下面几件事。
@@ -136,7 +151,7 @@ Koog 的 stars 不是最高，但它补上了 JVM/Kotlin Agent Framework。vLLM-
 >
 > 接下来机器帮我们读仓库名称、description、topics 和 README，把教程、合集和明显无关的项目先拿掉。6,118 变成 878，再通过 GitHub API 更新项目状态，最后留下 222 个值得人工看一眼的仓库。
 >
-> 最后的判断没有交给一个综合分。我们会看它有没有补上全景图的结构缺口，是不是通用基础设施，和现有项目有没有重复。最后得到 12 个建议补入项目和 12 个候补。
+> 最后的判断没有交给一个综合分。绝对信号之外，我们会再扫最近 90 天的新项目和加速项目，然后看它有没有补上结构缺口、是不是通用基础设施、和现有项目有没有重复。
 >
 > 所以这张图不是按 stars 排出来的。数据帮我们尽量别漏，最后还是要回答：这个项目有没有帮助我们看懂生态。
 
@@ -146,8 +161,9 @@ Koog 的 stars 不是最高，但它补上了 JVM/Kotlin Agent Framework。vLLM-
 
 ```text
 WatchEvent Top 2,500 ─┐
-OpenRank Top 4,000  ──┼─→ 6,118 → 878 → 222 → 12 + 12
-GitHub 定向搜索     ──┘     撒网    相关    复核    编辑
+OpenRank Top 4,000  ──┼─→ 6,118 → 878 → 222 ─┐
+GitHub 定向搜索     ──┘     撒网    相关    复核  ├→ 人工编辑
+90 天新生 / 加速复核 ────────────────────────┘
 ```
 
 页脚保留一句：
@@ -158,6 +174,8 @@ GitHub 定向搜索     ──┘     撒网    相关    复核    编辑
 
 - 扫描脚本：`analysis/scan_landscape_candidates.py`
 - 原始候选池：`data/candidate_pool.csv`
+- 90 天补漏脚本：`analysis/audit_recent_velocity_candidates.py`
+- 90 天高召回表：`data/recent_velocity_candidates.csv`
 - 数据质量检查：`data/data_quality_checks.csv`
 - A/B 档人工判断：`data/human_review_shortlist.csv`
 - 完整项目增补报告：`landscape_project_refresh_report.md`

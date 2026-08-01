@@ -11,8 +11,8 @@
     "Model Infra": 52
   },
   "action_counts": {
-    "add": 21,
-    "keep": 105,
+    "add": 20,
+    "keep": 106,
     "omit": 108,
     "remove": 17
   },
@@ -76,7 +76,6 @@
     "Model Infra / Serving · Inference": 8
   },
   "add_projects": [
-    "lobehub/lobehub",
     "FlowiseAI/Flowise",
     "docling-project/docling",
     "milvus-io/milvus",

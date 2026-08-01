@@ -5,8 +5,8 @@
   <path d="M13.7 37.8 21.5 30l6.5 4.6 11.1-12.4" fill="none" stroke="#f15bc8" stroke-width="5.9" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M13.7 43h27.4" fill="none" stroke="#7458ff" stroke-width="3.9" stroke-linecap="round"/>
   <circle cx="39.1" cy="22.2" r="4.2" fill="#fff"/>
-  <text x="68" y="25" fill="#141414" font-family="'Noto Sans SC', sans-serif" font-size="17" font-weight="760" letter-spacing="-0.5">Agentic AI</text>
-  <text x="68" y="44" fill="#141414" font-family="'Noto Sans SC', sans-serif" font-size="17" font-weight="760" letter-spacing="-0.5">Landscape</text>
+  <text x="68" y="25" fill="#141414" font-family="'Alibaba PuHuiTi', sans-serif" font-size="17" font-weight="760" letter-spacing="-0.5">Agentic AI</text>
+  <text x="68" y="44" fill="#141414" font-family="'Alibaba PuHuiTi', sans-serif" font-size="17" font-weight="760" letter-spacing="-0.5">Landscape</text>
   <path d="M184 42h112" stroke="#deded9"/>
-  <text x="296" y="34" fill="#70706e" font-family="'Noto Sans SC', sans-serif" font-size="7.5" font-weight="700" text-anchor="end" letter-spacing="1.1">OPEN SOURCE · 2026</text>
+  <text x="296" y="34" fill="#70706e" font-family="'Alibaba PuHuiTi', sans-serif" font-size="7.5" font-weight="700" text-anchor="end" letter-spacing="1.1">OPEN SOURCE · 2026</text>
 </svg>

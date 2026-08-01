@@ -5,6 +5,7 @@ import { getLandscapeProjects } from "@/lib/landscape-data";
 
 import LandscapeLogo from "./components/landscape-logo";
 import LandscapeExplorer from "./components/landscape-explorer";
+import FloatingLandscapeNav from "./components/floating-landscape-nav";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -12,6 +13,7 @@ export default function Home() {
 
   return (
     <main className={styles.page}>
+      <FloatingLandscapeNav />
       <div className={styles.appShell}>
         <header className={styles.siteHeader}>
           <a
@@ -23,9 +25,6 @@ export default function Home() {
             <strong>Agentic AI Landscape</strong>
           </a>
           <nav className={styles.headerNav} aria-label="Primary navigation">
-            <a href="#agent-infra">Agent Infra</a>
-            <a href="#model-infra">Model Infra</a>
-            <a href="#signals">Signals</a>
             <Link className={styles.keynoteLink} href="/keynote">
               <span>08.07</span>
               <strong>Keynote</strong>
@@ -47,8 +46,8 @@ export default function Home() {
           <div>
             <LandscapeLogo className={styles.footerMark} />
             <p>
-              A living map of the open-source Agentic AI ecosystem — Agent
-              Infra and Model Infra, viewed together.
+              Open-source projects across Agent Infra, Model Infra, Large
+              Models, and reusable agent assets.
             </p>
           </div>
           <p>

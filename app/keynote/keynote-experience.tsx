@@ -5,6 +5,9 @@ import {
   ArrowUpRightIcon,
   CircleHelpIcon,
   ExpandIcon,
+  MonitorPlayIcon,
+  SearchIcon,
+  XIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,8 +29,8 @@ import {
 import {
   type ApacheDomainKey,
   apacheBackbone,
-  apacheDomains,
 } from "./apache-ecosystem";
+import ApacheProjectAtlas from "./apache-project-atlas";
 import {
   apacheOpenMdwComparison,
   buildLicenseDistribution,
@@ -42,8 +45,8 @@ import {
 import LandscapeExplorer from "../components/landscape-explorer";
 import LandscapeLogo from "../components/landscape-logo";
 
-type StackKey = "models" | "embodied" | "infra" | "industry";
-type CommunityKey = "discover" | "propose" | "review" | "ship" | "trust";
+export type StackKey = "models" | "embodied" | "infra" | "industry";
+export type CommunityKey = "discover" | "propose" | "review" | "ship" | "trust";
 type LicenseFilter = "all" | "license" | "framework" | "definition";
 
 type InclusionProject = {
@@ -62,7 +65,7 @@ const chapters = [
   ["community", "Community >>> Code"],
 ] as const;
 
-const stackData: Record<
+export const stackData: Record<
   StackKey,
   {
     label: string;
@@ -74,7 +77,7 @@ const stackData: Record<
   }
 > = {
   models: {
-    label: "模型",
+    label: "基础模型",
     kicker: "FOUNDATION MODELS",
     title: "四条模型路线并行推进",
     projects: [
@@ -111,7 +114,7 @@ const stackData: Record<
     ask: "参与入口：复核评测、领域适配、推理优化、量化部署与模型行为研究。",
   },
   embodied: {
-    label: "具身",
+    label: "具身大脑",
     kicker: "EMBODIED INTELLIGENCE",
     title: "智能开始进入物理世界",
     projects: [
@@ -148,31 +151,75 @@ const stackData: Record<
     ask: "参与入口：空间数据、仿真环境、机器人适配、真实世界评测与部署。",
   },
   infra: {
-    label: "Infra",
-    kicker: "TRAINING · ALIGNMENT · AGENT RUNTIME",
-    title: "把模型训练、对齐和执行接成一条工程链路",
+    label: "Model Infra",
+    kicker: "AI LIBRARY · PRE-TRAIN · POST-TRAIN · INFERENCE",
+    title: "从训练到推理，把基础模型变成可运行系统",
     projects: [
       {
+        name: "cuLA",
+        role: "AI Library",
+        description: "以 CuTe DSL 与 CUTLASS 实现线性注意力 CUDA kernels。",
+        href: "https://github.com/inclusionAI/cuLA",
+        logo: "/keynote/inclusionai/cula.png",
+      },
+      {
+        name: "Humming",
+        role: "AI Library",
+        description: "面向模型训练和推理的高性能算子与系统组件。",
+        href: "https://github.com/inclusionAI/humming",
+        logo: "/keynote/inclusionai/inclusionai.png",
+      },
+      {
+        name: "DLRover",
+        role: "Pre-train",
+        description: "支撑大规模分布式训练的容错、弹性调度与 checkpoint。",
+        href: "https://github.com/intelligent-machine-learning/dlrover",
+        logo: "/keynote/inclusionai/inclusionai.png",
+      },
+      {
+        name: "ATorch",
+        role: "Pre-train",
+        description: "为大模型训练提供自动并行与性能优化能力。",
+        href: "https://github.com/intelligent-machine-learning/atorch",
+        logo: "/keynote/inclusionai/inclusionai.png",
+      },
+      {
         name: "AReaL",
-        role: "大规模异步 RL",
+        role: "Post-train · RL",
         description: "连接 foundation model 训练与 agentic applications 的强化学习系统。",
         href: "https://github.com/areal-project/AReaL",
         logo: "/keynote/inclusionai/areal.png",
       },
       {
         name: "AReno",
-        role: "单机 RL 后训练",
+        role: "Post-train · RL",
         description: "降低单节点规模化 RL post-training 的使用门槛。",
         href: "https://github.com/inclusionAI/AReno",
         logo: "/keynote/inclusionai/inclusionai.png",
       },
       {
-        name: "TwinFlow",
-        role: "生成模型训练",
-        description: "以 self-adversarial flows 支撑大模型少步生成训练。",
-        href: "https://github.com/inclusionAI/TwinFlow",
+        name: "dInfer",
+        role: "Inference",
+        description: "面向扩散语言模型的高效、可扩展推理框架。",
+        href: "https://github.com/inclusionAI/dInfer",
+        logo: "/keynote/inclusionai/dinfer.svg",
+      },
+      {
+        name: "dFactory",
+        role: "dLLM Fine-tuning",
+        description: "为扩散语言模型提供高效、可复用的微调工程链路。",
+        href: "https://github.com/inclusionAI/dFactory",
         logo: "/keynote/inclusionai/inclusionai.png",
       },
+    ],
+    body: "这一层对应 InclusionAI 架构图里的 AI Library、Pre Train、Post Train 和 DLLM：cuLA、Humming、DLRover、ATorch、AReaL、AReno、dInfer、dFactory。",
+    ask: "参与入口：算子、分布式训练、强化学习、微调、推理与系统效率。",
+  },
+  industry: {
+    label: "Agent Infra",
+    kicker: "AGENT RUNTIME · ENVIRONMENT · SEARCH · COORDINATION",
+    title: "把模型能力接入环境、工具和任务",
+    projects: [
       {
         name: "AWorld",
         role: "Agent Harness",
@@ -188,54 +235,10 @@ const stackData: Record<
         logo: "/keynote/inclusionai/inclusionai.png",
       },
       {
-        name: "dInfer",
-        role: "dLLM 推理",
-        description: "面向扩散语言模型的高效、可扩展推理框架。",
-        href: "https://github.com/inclusionAI/dInfer",
-        logo: "/keynote/inclusionai/dinfer.svg",
-      },
-      {
-        name: "cuLA",
-        role: "高性能 AI Library",
-        description: "以 CuTe DSL 与 CUTLASS 实现线性注意力 CUDA kernels。",
-        href: "https://github.com/inclusionAI/cuLA",
-        logo: "/keynote/inclusionai/cula.png",
-      },
-      {
         name: "Avernet",
-        role: "分布式 Agent 协同",
-        description: "让 agents 连接、协同、执行并持续演进的协调平台。",
+        role: "多 Agent 协同",
+        description: "让 agents 连接、协调、执行并持续演进。",
         href: "https://github.com/inclusionAI/Avernet",
-        logo: "/keynote/inclusionai/inclusionai.png",
-      },
-    ],
-    body: "这层保留原来最重要的参与逻辑：AReaL、AReno、TwinFlow 暴露训练与对齐问题；AWorld、AEnvironment、Avernet 把任务、工具、运行环境和多 Agent 协同开放出来；dInfer、cuLA 把新模型路线变成可运行的软件。",
-    ask: "参与入口：算法实现、分布式效率、环境与工具接口、任务集、观测和运行时可靠性。",
-  },
-  industry: {
-    label: "行业应用",
-    kicker: "HIGH-VALUE APPLICATIONS",
-    title: "真实场景会反过来改变技术栈",
-    projects: [
-      {
-        name: "MedResearcher-R1",
-        role: "医疗 Deep Research",
-        description: "面向医疗场景的知识增强轨迹合成与深度研究 agent。",
-        href: "https://github.com/AQ-MedAI/MedResearcher-R1",
-        logo: "/keynote/inclusionai/medresearcher.png",
-      },
-      {
-        name: "PulseMind",
-        role: "医疗多模态",
-        description: "把医学文本理解与视觉临床推理连接起来。",
-        href: "https://github.com/AQ-MedAI/PulseMind",
-        logo: "/keynote/inclusionai/aq-medai.png",
-      },
-      {
-        name: "UI-Venus",
-        role: "UI Agent",
-        description: "仅依赖截图完成 GUI 元素定位与界面导航。",
-        href: "https://github.com/inclusionAI/UI-Venus",
         logo: "/keynote/inclusionai/inclusionai.png",
       },
       {
@@ -246,19 +249,39 @@ const stackData: Record<
         logo: "/keynote/inclusionai/inclusionai.png",
       },
     ],
-    body: "AQ-MedAI、UI-Venus、ASearcher 都来自具体任务。医疗、界面操作和搜索会提出不同的数据、环境与评测要求。",
-    ask: "参与入口：行业任务定义、数据与 benchmark、专家反馈、可靠性和可复现评测。",
+    body: "AWorld、AEnvironment、Avernet 和 ASearcher 对应 Landscape 关注的 Agent Infra：运行时、环境、协作与搜索。",
+    ask: "参与入口：工具协议、运行环境、任务定义、协同、评测与可靠性。",
   },
 };
 
-const inclusionServices = [
-  ["通用服务", "LingGuang", "全模态 AI 助手"],
-  ["金融服务", "MA XIAO CAI", "AI Financial Steward"],
-  ["医疗服务", "AQ", "面向健康与医疗的可信助手"],
-  ["生活服务", "Life Services", "支付、出行、家庭等真实场景"],
+export const inclusionServices = [
+  {
+    domain: "通用服务",
+    name: "LingGuang",
+    description: "全模态 AI 助手",
+    logo: "/keynote/inclusionai/lingguang.png",
+  },
+  {
+    domain: "金融服务",
+    name: "MA XIAO CAI",
+    description: "AI Financial Steward",
+    logo: "/keynote/inclusionai/ma-xiao-cai.svg",
+  },
+  {
+    domain: "医疗服务",
+    name: "AQ",
+    description: "面向健康与医疗的可信助手",
+    logo: "/keynote/inclusionai/aq-medai.png",
+  },
+  {
+    domain: "生活服务",
+    name: "Life Services",
+    description: "支付、出行、家庭等真实场景",
+    logo: "/keynote/apache/assets/ant-group.png",
+  },
 ] as const;
 
-const communityData: Record<CommunityKey, [string, string]> = {
+export const communityData: Record<CommunityKey, [string, string]> = {
   discover: [
     "先让入口可见",
     "公开 roadmap、模型卡和清楚的任务说明，会让陌生贡献者知道当前问题在哪里，以及怎样开始。",
@@ -289,8 +312,8 @@ export default function KeynoteExperience({
   const rootRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const [activeChapter, setActiveChapter] = useState("landscape");
-  const [mode, setMode] = useState<"research" | "presentation">("research");
   const [landscape, setLandscape] = useState<LandscapeKey>("agent");
+  const [infraQuery, setInfraQuery] = useState("");
   const [frameScale, setFrameScale] = useState(1);
   const [frameLoaded, setFrameLoaded] = useState(false);
   const [apacheDomain, setApacheDomain] =
@@ -384,13 +407,7 @@ export default function KeynoteExperience({
   }
 
   return (
-    <main
-      ref={rootRef}
-      lang="zh-CN"
-      className={`${styles.page} ${
-        mode === "presentation" ? styles.presentationMode : ""
-      }`}
-    >
+    <main ref={rootRef} lang="zh-CN" className={styles.page}>
       <div className={styles.shell}>
         <header className={styles.header}>
           <Link className={styles.brand} href="/" aria-label="返回 Agentic AI Landscape">
@@ -401,10 +418,16 @@ export default function KeynoteExperience({
             CommunityOverCode China
             <span>2026 keynote · 08.07</span>
           </p>
-          <Link className={styles.backLink} href="/">
-            <ArrowLeftIcon aria-hidden="true" />
-            返回生态图
-          </Link>
+          <div className={styles.headerActions}>
+            <Link className={styles.stageLink} href="/keynote/present">
+              <MonitorPlayIcon aria-hidden="true" />
+              演讲播放
+            </Link>
+            <Link className={styles.backLink} href="/">
+              <ArrowLeftIcon aria-hidden="true" />
+              返回生态图
+            </Link>
+          </div>
         </header>
 
         <section className={styles.hero} aria-labelledby="keynote-title">
@@ -447,22 +470,6 @@ export default function KeynoteExperience({
               </a>
             ))}
           </div>
-          <div className={styles.modeSwitch} aria-label="页面密度">
-            <button
-              type="button"
-              className={mode === "research" ? styles.activeMode : ""}
-              onClick={() => setMode("research")}
-            >
-              研究视图
-            </button>
-            <button
-              type="button"
-              className={mode === "presentation" ? styles.activeMode : ""}
-              onClick={() => setMode("presentation")}
-            >
-              演讲视图
-            </button>
-          </div>
         </nav>
 
         <section className={styles.storySection} id="landscape">
@@ -479,7 +486,7 @@ export default function KeynoteExperience({
               ["原始候选集合", "6,118", "多源仓库 ID", 100],
               ["语义相关", "878", "README / topic / 描述筛选", 14.35],
               ["人工复核池", "222", "GitHub 信息刷新后", 3.63],
-              ["当前总览", "126", "live overview", 2.06],
+              ["当前总览", "132", "live overview", 2.06],
             ].map(([label, value, note, width]) => (
               <div className={styles.funnelRow} key={label as string}>
                 <span>{label}</span>
@@ -542,6 +549,29 @@ export default function KeynoteExperience({
                   </button>
                 ))}
               </div>
+              {landscape === "agent" || landscape === "model" ? (
+                <label className={styles.explorerSearch}>
+                  <SearchIcon aria-hidden="true" />
+                  <span className={styles.srOnly}>
+                    搜索 Agent Infra 和 Model Infra
+                  </span>
+                  <input
+                    type="search"
+                    value={infraQuery}
+                    onChange={(event) => setInfraQuery(event.target.value)}
+                    placeholder="Search Agent & Model Infra"
+                  />
+                  {infraQuery ? (
+                    <button
+                      type="button"
+                      onClick={() => setInfraQuery("")}
+                      aria-label="清除 Infra 搜索"
+                    >
+                      <XIcon aria-hidden="true" />
+                    </button>
+                  ) : null}
+                </label>
+              ) : null}
               <div className={styles.explorerActions}>
                 <a
                   href={
@@ -570,6 +600,7 @@ export default function KeynoteExperience({
                   <LandscapeExplorer
                     projects={projects}
                     embedOnly={landscape}
+                    filterQuery={infraQuery}
                   />
                 </div>
               ) : (
@@ -741,114 +772,10 @@ export default function KeynoteExperience({
             1,190+ members；这些对象不能互相替代。
           </p>
 
-          <div className={`${styles.apacheAtlas} ${styles.deepDive}`}>
-            <div className={styles.apacheAtlasHeading}>
-              <div>
-                <strong>APACHE PROJECT ATLAS</strong>
-                <span>项目领域 × Agentic landscape 入选</span>
-              </div>
-              <dl>
-                <div><dt>领域</dt><dd>7 个</dd></div>
-                <div><dt>分类</dt><dd>DOAP 多标签</dd></div>
-                <div><dt>数量</dt><dd>领域间有重叠</dd></div>
-                <div><dt>头部项目</dt><dd>主要 GitHub repo stars</dd></div>
-              </dl>
-            </div>
-
-            <div className={styles.apacheAtlasBody}>
-              <div
-                className={styles.apacheDomainTabs}
-                role="tablist"
-                aria-label="Apache 技术领域"
-              >
-                {(Object.keys(apacheDomains) as ApacheDomainKey[]).map((key) => (
-                  <button
-                    key={key}
-                    type="button"
-                    role="tab"
-                    aria-selected={apacheDomain === key}
-                    className={apacheDomain === key ? styles.activeDomain : ""}
-                    onClick={() => setApacheDomain(key)}
-                  >
-                    <strong>{apacheDomains[key].count}</strong>
-                    <span>{apacheDomains[key].label}</span>
-                  </button>
-                ))}
-              </div>
-
-              <article className={styles.apacheDomainDetail}>
-                <div className={styles.apacheDomainLead}>
-                  <div>
-                    <span>PROJECT RECORDS · MULTI-LABEL</span>
-                    <strong>{apacheDomains[apacheDomain].count}</strong>
-                  </div>
-                  <div className={styles.apacheDomainName}>
-                    <h3>{apacheDomains[apacheDomain].label}</h3>
-                    <div className={styles.apacheLabelCloud}>
-                      {apacheDomains[apacheDomain].officialLabels.map((label) => (
-                        <span key={label}>{label}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <p className={styles.apacheDomainDefinition}>
-                    {apacheDomains[apacheDomain].definition}
-                  </p>
-                </div>
-
-                <div className={styles.apacheHeadProjects}>
-                  <p>HEAD PROJECTS · GITHUB STARS SNAPSHOT</p>
-                  <div>
-                    {apacheDomains[apacheDomain].heads.map(([name, stars]) => (
-                      <span key={name}>
-                        <strong>{name}</strong>
-                        <small>★ {stars}</small>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className={styles.apacheLandscapeMatch}>
-                  <p>SELECTED INTO AGENTIC LANDSCAPE</p>
-                  {apacheDomains[apacheDomain].landscape.length ? (
-                    <div>
-                      {apacheDomains[apacheDomain].landscape.map((project) => (
-                        <span key={project}>
-                          <Image
-                            src="/project-logos/apache.png"
-                            alt=""
-                            width={18}
-                            height={18}
-                          />
-                          Apache {project}
-                        </span>
-                      ))}
-                    </div>
-                  ) : (
-                    <small>当前主图没有从这一官方分类直接入选的 ASF 项目。</small>
-                  )}
-                </div>
-              </article>
-            </div>
-
-            <div className={styles.apacheMetadataGap}>
-              <strong>46</strong>
-              <div>
-                <span>virtual project records without TLP DOAP categories</span>
-                <p>
-                  Paimon、Gravitino、Fory、Celeborn 等项目存在于目录，但没有可用于这次分类的项目 DOAP
-                  标签。这 46 条记录不计入领域统计，下方按照技术角色呈现相关项目。
-                </p>
-              </div>
-              <div className={styles.apacheSourceLinks}>
-                <a href="https://projects.apache.org/" target="_blank" rel="noreferrer">
-                  Projects Directory <ArrowUpRightIcon aria-hidden="true" />
-                </a>
-                <a href="https://github.com/apache" target="_blank" rel="noreferrer">
-                  GitHub apache org <ArrowUpRightIcon aria-hidden="true" />
-                </a>
-              </div>
-            </div>
-          </div>
+          <ApacheProjectAtlas
+            activeDomain={apacheDomain}
+            onDomainChange={setApacheDomain}
+          />
 
           <div className={styles.apacheBridgeLead} id="apache-backbone">
             <div className={styles.apacheBridgeSource}>
@@ -1031,11 +958,17 @@ export default function KeynoteExperience({
               <strong>模型和基础设施最后落到这些服务里</strong>
             </header>
             <div>
-              {inclusionServices.map(([domain, name, description]) => (
-                <article key={domain}>
-                  <span>{domain}</span>
-                  <strong>{name}</strong>
-                  <small>{description}</small>
+              {inclusionServices.map((service) => (
+                <article key={service.domain}>
+                  <Image
+                    src={service.logo}
+                    alt={`${service.name} logo`}
+                    width={56}
+                    height={56}
+                  />
+                  <span>{service.domain}</span>
+                  <strong>{service.name}</strong>
+                  <small>{service.description}</small>
                 </article>
               ))}
             </div>
@@ -1192,8 +1125,8 @@ export default function KeynoteExperience({
             </div>
             <div className={styles.licenseDistributionFoot}>
               <p>
-                全部 126 个项目中，Apache-2.0 为 60 个，MIT 为 33
-                个，两者合计 73.8%。
+                全部 132 个项目中，Apache-2.0 为 61 个，MIT 为 37
+                个，两者合计 74.2%。
               </p>
               <p>
                 NOASSERTION 表示 GitHub / SPDX 没有给出可确认的 SPDX
@@ -1334,8 +1267,8 @@ export default function KeynoteExperience({
           <details className={`${styles.speakerNote} ${styles.deepDive}`}>
             <summary>给演讲者的讲法 · 约 7 分钟</summary>
             <p>
-              先讲 126 个项目的仓库许可证。Apache-2.0 与 MIT 合计 93
-              个，占 73.8%；25 个 NOASSERTION
+              先讲 132 个项目的仓库许可证。Apache-2.0 与 MIT 合计 98
+              个，占 74.2%；25 个 NOASSERTION
               只表示 GitHub 没有给出可确认的 SPDX 标识。它不是“无许可证”的同义词，也没有经过逐仓法律审查。
             </p>
             <ol className={styles.speakerPrompts}>

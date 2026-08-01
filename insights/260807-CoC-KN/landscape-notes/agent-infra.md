@@ -8,10 +8,10 @@ Agent Infra 沿着一次任务的执行路径组织项目：用户从哪里进�
 
 这张图没有试图收集所有带有 “agent” 标签的仓库。它保留能表达通用技术结构的代表项目，同一家公司或同一产品谱系中高度重叠的仓库会主动去重。
 
-最终图中有 69 个项目：
+最终图中有 74 个项目：
 
-- 58 个从上一版保留；
-- 11 个新增；
+- 59 个从上一版保留；
+- 15 个新增；
 - 12 个 section；
 - 图中展示的 OpenRank 为 2026-06 Repo OpenRank。
 
@@ -89,6 +89,10 @@ Agent 关键词数量 × 4
 
 失效仓库、fork、归档项目、旧图已有项目以及 README 语义不匹配的项目被移除，最后留下 222 个机器候选。
 
+这一步有一个已经确认的盲区：`diegosouzapw/OmniRoute` 在 222 个机器候选中，但 WatchEvent 排名 247、OpenRank 排名 594，没有进入前三组绝对 Top-N，所以也没有进入最初的 A/B 人工短名单。它截至 7 月 28 日已有 32,706 stars，2—6 月 OpenRank 从 4.07 升到 39.04，候选池还记录了 417 个可见 WatchEvent。漏项不是相关性模型没识别出来，而是人工复核入口只看绝对排名。
+
+复盘后增加一条独立的高增速通道：最近三个月新出现，或 stars、WatchEvent、OpenRank 有明显增长的项目，即使绝对排名没有进入 Top-N，也会进入人工复核。GitHub Trending 没有官方历史接口；后续需要每日保存快照，不能在事后把“连续上榜数周”写成可复核的精确数据。
+
 ## 222 之后为什么还需要人工编辑
 
 机器分数只决定项目是否值得看一眼。进入主图还要回答：
@@ -99,17 +103,23 @@ Agent 关键词数量 × 4
 - 是否补上被忽略的语言、硬件或开发者生态；
 - 当前证据是否足以支持“现在就进入主图”。
 
-扫描阶段最终形成 12 个 A 档建议补入项目和 12 个 B 档观察项目。A/B 不是质量排名，只表达这次全景图的编辑决定。相关材料见：
+扫描阶段最初形成 12 个 A 档建议补入项目和 12 个 B 档观察项目；OmniRoute 复盘后补入。第二轮补漏又加入 Spec Kit、Symphony、Lark CLI、SkillOpt 和 Firecrawl。A/B 只属于当时的人工短名单，不是长期排名字段。相关材料见：
 
 - [人工复核短名单](../landscape-refresh/data/human_review_shortlist.csv)
 - [项目刷新报告](../landscape-refresh/landscape_project_refresh_report.md)
 - [编辑决定](../landscape-refresh/landscape_editorial_decisions.md)
 
-## 这次 Agent Infra 最值得讲的变化
+## 台上怎么切四个视角
 
-### 协议区从 3 个项目增加到 5 个
+第一步看结构：74 个项目里，Agentic coding 有 12 个，Code-first frameworks 有 10 个。代码仍是最密集的 Agent 入口。
 
-MCP 与 A2A 仍然是主干，但 AG-UI 和 A2UI 把 Agent 到用户界面的事件与生成式 UI 补进来。协议层现在覆盖工具连接、Agent 协作和人机交互。
+第二步看上下文：OpenViking 把 memory、RAG 和 skills 收进 context database。它在 2026 年 3—6 月的 OpenRank 从 35.96 升至 140.23。上下文开始从 framework 内部功能变成可以单独演进的数据层。
+
+第三步看接口：Protocols & interoperability 从 3 个项目增到 5 个。MCP、A2A 之外，AG-UI 与 A2UI 把事件流和界面也放进公共接口层。
+
+第四步看改进方式：SkillOpt 把 skill 文档当作可训练状态，通过 rollout、评估和验证门更新。它 5 月 8 日创建，截至 7 月 28 日有 15,238 stars，7 月 1—28 日有 45 名可见参与者。这里看到的是 Agent 改进开始走出模型权重空间。
+
+图上的 `NEW` 只给最近 90 天出现且证据足够的项目，`RISING` 只给有时间窗口增长证据的项目。`landscape_action=add` 只是编辑动作，不再自动显示成趋势标签。
 
 ## 数据限制
 
@@ -120,17 +130,21 @@ MCP 与 A2A 仍然是主干，但 AG-UI 和 A2UI 把 Agent 到用户界面的事
 
 ## 给演讲者的讲法
 
-先让观众看整张图几秒，不要急着念项目。可以先说：
+先让观众看整张图几秒：
 
-> 这张图把 Agent 生态分成应用、框架和运行基础设施三层。我们这次保留了 58 个项目，新加了 11 个。数量不是重点，重点是版面往哪里长。
+> 74 个项目里，Agentic coding 有 12 个，Code-first frameworks 有 10 个。最大的两个 section 都围绕 coding，代码仍是 Agent 生态最密集的入口。
 
-然后把视线带到 `Protocols & interoperability`：
+第二次翻页聚焦 `Memory, knowledge & context`：
 
-> 上一版这里有 3 个项目，这次是 5 个。MCP 主要处理 Agent 怎么接工具，A2A 处理 Agent 之间怎么协作；AG-UI 和 A2UI 开始处理 Agent 如何把过程和界面交给用户。它们解决的不是同一个问题，但共同点很清楚：生态正在补接口约定。
+> OpenViking 把 memory、RAG 和 skills 放进 context database。3 月到 6 月 OpenRank 从 35.96 升到 140.23。上下文开始成为独立的数据层。
 
-把开放生态的含义说具体：
+第三次翻页看协议，第四次翻页看 SkillOpt：
 
-> 接口公开以后，工具、运行时和产品可以由不同社区实现，不必绑定在同一套框架里。这些协议还很年轻，所以不要讲成“标准已经定了”。更准确的说法是：大家已经意识到，Agent 之间需要一层公共语言。
+> 公共接口从工具调用延伸到 Agent 协作、事件流和界面；另一边，skill 文档开始通过评估和验证持续更新。Agent 的开放协作对象已经不只代码和模型权重。
+
+如果观众问为什么有些本版新增项目没有 `NEW`，直接说明：
+
+> 加入主图是编辑动作；NEW 或 RISING 是时间窗口里的趋势判断。我们把两者拆开，旧项目的补录就不会被误讲成新趋势。
 
 最后直接接 Model Infra：
 

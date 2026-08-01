@@ -1,21 +1,21 @@
 # Landscape 许可证与模型开放度研究
 
 数据快照：2026-07-28  
-统计对象：Agent Infra 69 个项目、Model Infra 57 个项目，共 126 个唯一 GitHub 仓库。  
+统计对象：Agent Infra 74 个项目、Model Infra 58 个项目，共 132 个唯一 GitHub 仓库。  
 许可证字段：GitHub 仓库元数据中的 SPDX 标识。它适合做仓库层分布统计，不替代逐项目法律审查，也不能代表另行分发的模型权重、数据或文档所用条款。
 
-## 126 个项目的许可证分布
+## 132 个项目的许可证分布
 
 | SPDX 标识 | 全部项目 | 占比 | Agent Infra | Model Infra |
 | --- | ---: | ---: | ---: | ---: |
-| Apache-2.0 | 60 | 47.6% | 21 | 39 |
-| MIT | 33 | 26.2% | 24 | 9 |
-| NOASSERTION | 25 | 19.8% | 18 | 7 |
-| AGPL-3.0 | 6 | 4.8% | 5 | 1 |
+| Apache-2.0 | 61 | 46.2% | 22 | 39 |
+| MIT | 37 | 28.0% | 27 | 10 |
+| NOASSERTION | 25 | 18.9% | 18 | 7 |
+| AGPL-3.0 | 7 | 5.3% | 6 | 1 |
 | BSD-2-Clause | 1 | 0.8% | 1 | 0 |
 | BSD-3-Clause | 1 | 0.8% | 0 | 1 |
 
-Apache-2.0 与 MIT 合计 93 个，占全部项目的 73.8%；在 101 个有可识别 SPDX 标识的项目中占 92.1%。
+Apache-2.0 与 MIT 合计 98 个，占全部项目的 74.2%；在 107 个有可识别 SPDX 标识的项目中占 91.6%。
 
 `NOASSERTION` 沿用 SPDX 的原意：没有得出许可证结论、没有尝试得出结论，或刻意不提供信息。它不等于“没有许可证”。本次统计将其保留为未知状态。
 
@@ -26,6 +26,55 @@ python3 insights/260807-CoC-KN/license-and-openness/analysis/build_license_snaps
 ```
 
 输出文件：[license_distribution_2026-07-28.json](data/license_distribution_2026-07-28.json)
+
+## Hugging Face 文本生成模型仓库 Top 100
+
+快照日期：2026-07-31
+
+统计对象：Hugging Face Hub 中标注为 `text-generation`、按 Hub `downloads` 字段降序排列的前 100 个模型仓库。许可证来自模型卡 metadata 的 `license` tag。
+
+| 许可证标识 | 模型仓库数 | 占比 |
+| --- | ---: | ---: |
+| apache-2.0 | 57 | 57% |
+| mit | 18 | 18% |
+| other | 9 | 9% |
+| llama3.2 | 4 | 4% |
+| llama3.1 | 2 | 2% |
+| llama3 | 2 | 2% |
+| gemma | 2 | 2% |
+| apple-amlr | 1 | 1% |
+| 未标注 | 5 | 5% |
+
+合并后，Apache-2.0 与 MIT 占 75%；模型专用或其他条款占 20%；没有 `license` tag 的仓库占 5%。这说明软件许可证仍然覆盖大多数热门模型仓库，同时，Llama、Gemma 等模型专用条款已经形成清晰的一块。
+
+这里的单位是模型仓库，不是独立模型家族。Top 100 中可能包含微调、量化、测试仓库和同一模型家族的多个版本；`downloads` 是 Hub 提供的仓库热度字段，不代表能力排名。许可证 tag 也不能证明训练数据、代码和其他修改材料已经公开。
+
+复算（也可以传入已保存的 API 响应）：
+
+```bash
+python3 insights/260807-CoC-KN/license-and-openness/analysis/build_hf_top100_license_snapshot.py
+```
+
+输出文件：[hf_top100_text_generation_licenses_2026-07-31.json](data/hf_top100_text_generation_licenses_2026-07-31.json)
+
+## 从软件许可证到模型条款，发生了什么变化
+
+| 问题 | 开源软件 | 开放模型 |
+| --- | --- | --- |
+| 被许可的对象 | 源代码、目标代码、文档和衍生作品 | 权重、架构、代码、数据、文档可能由不同主体提供，并适用不同条款 |
+| 首要修改形式 | 源代码通常就是首要修改形式 | OSAID 1.0 将参数、完整训练和运行代码、数据说明纳入修改所需材料 |
+| 权利组合 | 版权与专利授权是核心 | 还可能涉及数据库权利、商业秘密以及训练数据和内容的第三方权利 |
+| 使用限制 | OSI 认可的软件许可证不得限制特定用途或领域 | 部分模型专用条款附带 acceptable-use 或领域限制；这类限制与 OSAID 的自由并不等价 |
+| 衍生与分发 | 主要围绕 Source、Object 与 Derivative Works | checkpoint、微调模型、adapter 和模型输出可能适用不同规则 |
+| 验证方式 | 能否从源码构建、修改和再分发 | 先核对法律权利，再核对材料是否足以研究、修改和复现 |
+
+因此，模型“开放”至少有三个相互独立的问题：
+
+1. **权利**：条款是否允许使用、研究、修改和分享。
+2. **材料**：权重之外，代码、数据说明、评测和文档交付到什么程度。
+3. **过程**：这些材料是否由可参与、可审查、可持续的社区维护。
+
+许可证回答第一个问题的一部分，无法自动补齐第二和第三个问题。
 
 ## Apache-2.0 与 OpenMDW-1.1
 
@@ -71,4 +120,6 @@ python3 insights/260807-CoC-KN/license-and-openness/analysis/build_license_snaps
 - [OpenMDW FAQ](https://openmdw.ai/faq/)
 - [Model Openness Framework Specification 1.0](https://lfaidata.foundation/wp-content/uploads/sites/3/2025/01/05_White_paper_MOF_Specification.pdf)
 - [Open Source AI Definition 1.0](https://opensource.org/ai/open-source-ai-definition)
+- [Hugging Face Hub API](https://huggingface.co/docs/hub/api)
+- [Hugging Face Model Card metadata](https://huggingface.co/docs/hub/model-cards)
 - [SPDX Package Information: concluded license and NOASSERTION](https://spdx.github.io/spdx-spec/v2.3/package-information/)

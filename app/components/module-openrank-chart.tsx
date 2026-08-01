@@ -210,8 +210,12 @@ export function ModuleOpenRankChart({
                           </AvatarFallback>
                         </Avatar>
                         <small>#{index + 1}</small>
-                        {project.landscapeAction === "add" ? (
-                          <b>NEW</b>
+                        {project.trendSignal ? (
+                          <b>
+                            {project.trendSignal === "new"
+                              ? "NEW"
+                              : "RISING"}
+                          </b>
                         ) : null}
                       </span>
                       <span

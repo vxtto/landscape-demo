@@ -392,7 +392,7 @@ export function getLandscapeProjects(): LandscapeProject[] {
       openIssues: numberOrZero(record.open_issues),
       license: record.license || "—",
       openrank: nullableNumber(record.openrank_2606),
-      participants: numberOrZero(record.participants_2607),
+      participants: nullableNumber(record.participants_2607),
       language: record.language || "—",
       createdAt: record.created_at,
       pushedAt: record.pushed_at,
@@ -402,6 +402,13 @@ export function getLandscapeProjects(): LandscapeProject[] {
         record.landscape_action.trim().toLowerCase() === "add"
           ? "add"
           : "keep",
+      trendSignal:
+        record.trend_signal?.trim().toLowerCase() === "new"
+          ? "new"
+          : record.trend_signal?.trim().toLowerCase() === "rising"
+            ? "rising"
+            : null,
+      trendSignalReason: record.trend_signal_reason ?? "",
       topics: record.topics.split(",").filter(Boolean),
       categories: [record.landscape_layer, record.landscape_section],
       trend: parseTrend(record.openrank_trend_2508_2607),

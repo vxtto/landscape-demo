@@ -139,10 +139,10 @@ export function EcosystemSignals({
   const totalStars = sum(projects, (project) => project.stars);
   const totalParticipants = sum(
     projects,
-    (project) => project.participants,
+    (project) => project.participants ?? 0,
   );
   const newProjects = projects.filter(
-    (project) => project.landscapeAction === "add",
+    (project) => project.trendSignal,
   ).length;
 
   const agentFieldTrend = MONTHS.map((month, index) => ({
@@ -229,7 +229,7 @@ export function EcosystemSignals({
       name: project.name,
       stars: project.stars,
       openrank: project.openrank,
-      participants: project.participants,
+      participants: project.participants ?? 0,
     }));
   const modelScatter = modelProjects
     .filter((project) => project.stars > 0 && (project.openrank ?? 0) > 0)
@@ -237,7 +237,7 @@ export function EcosystemSignals({
       name: project.name,
       stars: project.stars,
       openrank: project.openrank,
-      participants: project.participants,
+      participants: project.participants ?? 0,
     }));
 
   const snapshotMetrics = [
@@ -258,7 +258,7 @@ export function EcosystemSignals({
       value: NUMBER_FORMAT.format(totalOpenRank),
     },
     {
-      label: "New",
+      label: "Trend signals",
       value: newProjects.toLocaleString(),
     },
   ];
