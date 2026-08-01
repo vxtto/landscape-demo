@@ -29,6 +29,12 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // The Vercel project's "services" framework routes every path through a
+    // rewrite to the frontend service, which doesn't expose the built-in
+    // /_next/image optimization endpoint — every <Image> 404s in production.
+    // Unoptimized falls back to serving the source file directly, same as
+    // the plain <img> logos elsewhere already do.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
