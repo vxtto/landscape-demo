@@ -2,22 +2,76 @@
 
 import { ArrowUpRightIcon } from "lucide-react";
 import Image from "next/image";
+import { useMemo } from "react";
 
-import {
-  type ApacheDomainKey,
-  apacheDomains,
-} from "./apache-ecosystem";
+import type { Locale } from "../dictionaries";
+import { type ApacheDomainKey, getApacheDomains } from "./apache-ecosystem";
 import styles from "./page.module.css";
+
+const copy = {
+  en: {
+    atlasTitle: "APACHE PROJECT ATLAS",
+    atlasSubtitle: "Project domain × Agentic landscape inclusion",
+    domainLabel: "Domain",
+    domainValue: "7",
+    categoryLabel: "Category",
+    categoryValue: "DOAP multi-label",
+    countLabel: "Count",
+    countValue: "domains overlap",
+    headProjectLabel: "Top projects",
+    headProjectValue: "primary GitHub repo stars",
+    domainTabsLabel: "Apache technology domains",
+    projectRecords: "PROJECT RECORDS · MULTI-LABEL",
+    headProjectsHeading: "HEAD PROJECTS · GITHUB STARS SNAPSHOT",
+    selectedHeading: "SELECTED INTO AGENTIC LANDSCAPE",
+    noneSelected:
+      "No ASF project from this official category has been selected into the current landscape.",
+    gapCount: "46",
+    gapLabel: "virtual project records without TLP DOAP categories",
+    gapBody:
+      "Paimon, Gravitino, Fory, Celeborn, and others exist in the directory but have no project DOAP labels usable for this classification. These 46 records are excluded from the domain counts; related projects are grouped below by technical role instead.",
+    projectsDirectory: "Projects Directory",
+    githubOrg: "GitHub apache org",
+  },
+  zh: {
+    atlasTitle: "APACHE PROJECT ATLAS",
+    atlasSubtitle: "项目领域 × Agentic landscape 入选",
+    domainLabel: "领域",
+    domainValue: "7 个",
+    categoryLabel: "分类",
+    categoryValue: "DOAP 多标签",
+    countLabel: "数量",
+    countValue: "领域间有重叠",
+    headProjectLabel: "头部项目",
+    headProjectValue: "主要 GitHub repo stars",
+    domainTabsLabel: "Apache 技术领域",
+    projectRecords: "PROJECT RECORDS · MULTI-LABEL",
+    headProjectsHeading: "HEAD PROJECTS · GITHUB STARS SNAPSHOT",
+    selectedHeading: "SELECTED INTO AGENTIC LANDSCAPE",
+    noneSelected: "当前主图没有从这一官方分类直接入选的 ASF 项目。",
+    gapCount: "46",
+    gapLabel: "virtual project records without TLP DOAP categories",
+    gapBody:
+      "Paimon、Gravitino、Fory、Celeborn 等项目存在于目录，但没有可用于这次分类的项目 DOAP 标签。这 46 条记录不计入领域统计，下方按照技术角色呈现相关项目。",
+    projectsDirectory: "Projects Directory",
+    githubOrg: "GitHub apache org",
+  },
+} as const;
 
 export default function ApacheProjectAtlas({
   activeDomain,
   onDomainChange,
   stage = false,
+  lang = "zh",
 }: {
   activeDomain: ApacheDomainKey;
   onDomainChange?: (domain: ApacheDomainKey) => void;
   stage?: boolean;
+  lang?: Locale;
 }) {
+  const t = copy[lang];
+  const apacheDomains = useMemo(() => getApacheDomains(lang), [lang]);
+
   return (
     <div
       className={`${styles.apacheAtlas} ${styles.deepDive}`}
@@ -25,14 +79,14 @@ export default function ApacheProjectAtlas({
     >
       <div className={styles.apacheAtlasHeading}>
         <div>
-          <strong>APACHE PROJECT ATLAS</strong>
-          <span>项目领域 × Agentic landscape 入选</span>
+          <strong>{t.atlasTitle}</strong>
+          <span>{t.atlasSubtitle}</span>
         </div>
         <dl>
-          <div><dt>领域</dt><dd>7 个</dd></div>
-          <div><dt>分类</dt><dd>DOAP 多标签</dd></div>
-          <div><dt>数量</dt><dd>领域间有重叠</dd></div>
-          <div><dt>头部项目</dt><dd>主要 GitHub repo stars</dd></div>
+          <div><dt>{t.domainLabel}</dt><dd>{t.domainValue}</dd></div>
+          <div><dt>{t.categoryLabel}</dt><dd>{t.categoryValue}</dd></div>
+          <div><dt>{t.countLabel}</dt><dd>{t.countValue}</dd></div>
+          <div><dt>{t.headProjectLabel}</dt><dd>{t.headProjectValue}</dd></div>
         </dl>
       </div>
 
@@ -40,7 +94,7 @@ export default function ApacheProjectAtlas({
         <div
           className={styles.apacheDomainTabs}
           role="tablist"
-          aria-label="Apache 技术领域"
+          aria-label={t.domainTabsLabel}
         >
           {(Object.keys(apacheDomains) as ApacheDomainKey[]).map((key) => (
             <button
@@ -61,7 +115,7 @@ export default function ApacheProjectAtlas({
         <article className={styles.apacheDomainDetail} key={activeDomain}>
           <div className={styles.apacheDomainLead}>
             <div>
-              <span>PROJECT RECORDS · MULTI-LABEL</span>
+              <span>{t.projectRecords}</span>
               <strong>{apacheDomains[activeDomain].count}</strong>
             </div>
             <div className={styles.apacheDomainName}>
@@ -78,7 +132,7 @@ export default function ApacheProjectAtlas({
           </div>
 
           <div className={styles.apacheHeadProjects}>
-            <p>HEAD PROJECTS · GITHUB STARS SNAPSHOT</p>
+            <p>{t.headProjectsHeading}</p>
             <div>
               {apacheDomains[activeDomain].heads.map(([name, stars]) => (
                 <span key={name}>
@@ -90,7 +144,7 @@ export default function ApacheProjectAtlas({
           </div>
 
           <div className={styles.apacheLandscapeMatch}>
-            <p>SELECTED INTO AGENTIC LANDSCAPE</p>
+            <p>{t.selectedHeading}</p>
             {apacheDomains[activeDomain].landscape.length ? (
               <div>
                 {apacheDomains[activeDomain].landscape.map((project) => (
@@ -106,20 +160,17 @@ export default function ApacheProjectAtlas({
                 ))}
               </div>
             ) : (
-              <small>当前主图没有从这一官方分类直接入选的 ASF 项目。</small>
+              <small>{t.noneSelected}</small>
             )}
           </div>
         </article>
       </div>
 
       <div className={styles.apacheMetadataGap}>
-        <strong>46</strong>
+        <strong>{t.gapCount}</strong>
         <div>
-          <span>virtual project records without TLP DOAP categories</span>
-          <p>
-            Paimon、Gravitino、Fory、Celeborn 等项目存在于目录，但没有可用于这次分类的项目 DOAP
-            标签。这 46 条记录不计入领域统计，下方按照技术角色呈现相关项目。
-          </p>
+          <span>{t.gapLabel}</span>
+          <p>{t.gapBody}</p>
         </div>
         <div className={styles.apacheSourceLinks}>
           <a
@@ -128,7 +179,7 @@ export default function ApacheProjectAtlas({
             rel="noreferrer"
             tabIndex={stage ? -1 : undefined}
           >
-            Projects Directory <ArrowUpRightIcon aria-hidden="true" />
+            {t.projectsDirectory} <ArrowUpRightIcon aria-hidden="true" />
           </a>
           <a
             href="https://github.com/apache"
@@ -136,7 +187,7 @@ export default function ApacheProjectAtlas({
             rel="noreferrer"
             tabIndex={stage ? -1 : undefined}
           >
-            GitHub apache org <ArrowUpRightIcon aria-hidden="true" />
+            {t.githubOrg} <ArrowUpRightIcon aria-hidden="true" />
           </a>
         </div>
       </div>

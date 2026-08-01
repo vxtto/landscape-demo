@@ -59,6 +59,14 @@
   gap: 1.1cqw;
 }
 
+.stageHeaderRight {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.1cqw;
+  pointer-events: auto;
+  font-size: 0.68cqw;
+}
+
 .backLink {
   pointer-events: auto;
   padding: 0.54cqh 0.7cqw;

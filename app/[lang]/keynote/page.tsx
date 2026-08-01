@@ -27,5 +27,5 @@ export default async function KeynotePage({
 
   const projects = getLandscapeProjects();
 
-  return <KeynoteExperience projects={projects} />;
+  return <KeynoteExperience projects={projects} lang={lang} />;
 }

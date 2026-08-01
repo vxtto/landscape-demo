@@ -5,29 +5,48 @@ absent from `zh.json` falls back to its English value rather than rendering
 empty. Adding a locale is one entry in `../dictionaries.ts` plus a JSON file;
 it may start almost empty and fill in over time.
 
-## Why the two languages are lopsided
+## Site chrome vs. the keynote body
 
-The landscape UI was authored in English. The CommunityOverCode keynote was
-authored in Chinese. Neither has been translated, so right now:
+The landscape UI (`en.json`/`zh.json` — `header`, `footer`, `metadata`,
+`embed`, `localeSwitch`) is translated through this dictionary system, via
+`getDictionary()`.
 
-| Route | Renders |
+The CommunityOverCode keynote (`../keynote/*`) is a different shape: a large
+amount of authored copy — chapter prose, chart labels, speaker notes, and the
+slide-by-slide deck script — lives in plain data modules rather than JSON.
+Routing that much text through the dictionary would mean threading a `dict`
+prop with hundreds of leaf keys through deeply nested components for little
+benefit, so it uses a narrower, file-local convention instead: each
+translatable field is written as `{ en: string; zh: string }` and resolved
+with the `pick(lang, value)` / `resolveDeep(lang, value)` helpers in
+`../keynote/i18n.ts`. `keynote.title` and `keynote.description` (the page
+`<title>`/meta description) and `keynote.present.*` still live in this
+dictionary, since those are ordinary single-string metadata fields — only the
+page body uses the `{ en, zh }` convention.
+
+Where to find each piece:
+
+| File | What it holds |
 | --- | --- |
-| `/en` | English, complete |
-| `/zh` | Chinese chrome — **machine-drafted, needs review** |
-| `/en/keynote` | Chinese, via the `keynote._note` values in `en.json` |
-| `/zh/keynote` | Chinese, complete |
+| `../keynote/keynote-experience.tsx` | Section copy, speaker notes, and the `uiText` table for the research page |
+| `../keynote/landscape-story.ts` | Per-landscape narrative: metrics, insights, method steps, speaker scripts |
+| `../keynote/license-research.ts` | License/openness comparison tables and checklist copy |
+| `../keynote/apache-ecosystem.ts` | Apache domain descriptions and the Apache↔Ant backbone |
+| `../keynote/apache-project-atlas.tsx` | The Apache project atlas widget's own UI strings |
+| `../keynote/present/presentation.tsx` | The full slide deck: every scene's copy, speaker cues, and chart labels |
 
-`en.json` carrying Chinese under `keynote` is deliberate. It is the authored
-source for a talk that has no English version, and serving the real thing
-beats serving blanks. Replace those two values when an English keynote exists.
+Both `/keynote` and `/keynote/present` render a `LocaleSwitch` so a reader (or
+a presenter mid-talk) can toggle EN/ZH without leaving the page. The Chinese
+text is the original, authored version of the talk; the English text is a
+translation of it and should stay in sync when the Chinese copy changes.
 
-## What still needs a human
+## Reviewing the site chrome
 
-**Review of the Chinese chrome.** The `header`, `footer`, `metadata`, `embed`
-and `localeSwitch` values in `zh.json` were drafted by a model, not a native
-speaker, and have not been through the `de-ai-writing` skill that `AGENTS.md`
-requires for copy written on the author's behalf. Treat them as a starting
-point. Decisions worth a second look:
+The `header`, `footer`, `metadata`, `embed`, and `localeSwitch` values in
+`zh.json` were drafted by a model, not a native speaker, and have not been
+through the `de-ai-writing` skill that `AGENTS.md` requires for copy written
+on the author's behalf. Treat them as a starting point. Decisions worth a
+second look:
 
 - `Agent Infra` / `Model Infra` / `Agentic AI` were left in English, on the
   grounds that Chinese writing in this community uses them untranslated. If
@@ -39,20 +58,6 @@ point. Decisions worth a second look:
 - Nav labels are width-constrained; `生态信号` and `主题演讲` are four
   characters each to match the English labels' footprint.
 
-**The keynote body.** Only the page metadata is wired up. Roughly 8,000 CJK
-characters of talk content still live inline:
-
-| File | CJK chars |
-| --- | --- |
-| `../keynote/keynote-experience.tsx` | ~3,900 |
-| `../keynote/landscape-story.ts` | ~3,400 |
-| `../keynote/license-research.ts` | ~390 |
-| `../keynote/apache-ecosystem.ts` | ~370 |
-
-The three `.ts` files are already plain data modules, so they extract
-mechanically — keyed objects rather than prose surgery. `keynote-experience.tsx`
-is the awkward one: some strings sit in `const` blocks, others inline in JSX.
-
-Do not machine-translate the keynote. It is conference copy in the author's
-voice, and this repo's `AGENTS.md` requires her `de-ai-writing` skill for any
-copy written or revised on her behalf.
+The keynote body's English translation is similarly a first pass — read it
+against the Chinese before a live presentation and route any rewrite through
+`de-ai-writing` per `AGENTS.md`.
