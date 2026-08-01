@@ -21,6 +21,14 @@ NOTEBOOK_PATH = ROOT / "landscape_candidate_review.ipynb"
 
 DECISIONS = [
     {
+        "repo_name": "diegosouzapw/OmniRoute",
+        "decision": "A-建议补入",
+        "target_layer": "Model Infra",
+        "target_box": "Model API gateways",
+        "why": "截至 2026-07-28 有 32,706 stars；2–6 月 OpenRank 从 4.07 升至 39.04，且候选池记录了 417 个可见 WatchEvent。它补上近期 gateway 高增速信号。",
+        "caveat": "与 LiteLLM、New API 和 AgentGateway 有交叉；GitHub Trending 没有官方历史接口，不能把连续上榜周数写成已验证指标。",
+    },
+    {
         "repo_name": "volcengine/OpenViking",
         "decision": "A-建议补入",
         "target_layer": "Agent Infra",
@@ -308,7 +316,7 @@ def build_shortlist() -> pd.DataFrame:
 
 
 def render_chart(frame: pd.DataFrame) -> None:
-    plt.rcParams["font.sans-serif"] = ["PingFang SC", "Arial Unicode MS", "DejaVu Sans"]
+    plt.rcParams["font.sans-serif"] = ["Alibaba PuHuiTi", "阿里巴巴普惠体", "DejaVu Sans"]
     plt.rcParams["axes.unicode_minus"] = False
     a = frame[frame["decision"].str.startswith("A-")].copy()
     a = a.sort_values("stars_current", ascending=True)
@@ -385,7 +393,7 @@ def build_report(frame: pd.DataFrame) -> None:
 
 从当前 227 个仓库基线出发，扫描得到 {summary['raw_candidate_ids']:,} 个原始 repo id，经关键词、仓库状态、GitHub 元数据和人工结构复核后，建议 **A 档立即补入 {len(a)} 个项目**、**B 档候补观察 {len(b)} 个项目**。
 
-数据表已在 2026-07-28 完成刷新：24 个扫描短名单项目都已写入 `data/agentic-ai-projects.csv`，当前共 251 个项目。A/B 档只保留在这份扫描工作稿中；主表使用 `landscape_action` 记录最终的 keep、add、remove 和 omit 判断。
+数据表已在 2026-07-28 完成刷新：25 个扫描短名单项目都已写入 `data/agentic-ai-projects.csv`，当前共 252 个项目。A/B 档只保留在这份扫描工作稿中；主表使用 `landscape_action` 记录最终的 keep、add、remove 和 omit 判断。
 
 这轮补项最有价值的，是五个结构性缺口终于有了清晰的代表项目：
 
@@ -430,7 +438,7 @@ def build_report(frame: pd.DataFrame) -> None:
 
 ## 制图建议
 
-- 主图不要把 A 档 12 个 logo 全部等权塞入；按“新增小类”和“替换旧代表”处理。
+- 主图不要把 A 档 13 个 logo 全部等权塞入；按“新增小类”和“替换旧代表”处理。
 - 建议新增三个小类：`Agent–User / Agent–UI Protocols`、`Sandbox Orchestration`、`KV Cache / State Reuse`。
 - OpenViking 的 AGPL-3.0、A2UI 的 preview 状态、以及 vLLM-Ascend 的 plugin 身份应显式标注。
 - 演讲只点名 5–6 个项目，其余留在完整全景图和附录。

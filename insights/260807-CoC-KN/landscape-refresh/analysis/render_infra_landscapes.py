@@ -41,6 +41,11 @@ DISPLAY_OVERRIDES = {
     "TransformerEngine": "Transformer Engine",
     "flash-attention": "FlashAttention",
     "onnxruntime": "ONNX Runtime",
+    "spec-kit": "Spec Kit",
+    "symphony": "Symphony",
+    "cli": "Lark CLI",
+    "SkillOpt": "SkillOpt",
+    "firecrawl": "Firecrawl",
     "label-studio": "Label Studio",
     "LlamaFactory": "LLaMA Factory",
     "mcp-context-forge": "ContextForge",
@@ -222,8 +227,12 @@ def project_card(row: dict[str, Any]) -> str:
     repo = str(row["repo_name"])
     owner = owner_name(repo)
     avatar = f"assets/github-avatars/{avatar_filename(owner)}"
-    is_new = row["landscape_action"] == "add"
-    new_badge = '<span class="new-badge">NEW</span>' if is_new else ""
+    trend_signal = row.get("trend_signal", "").lower()
+    is_new = trend_signal in {"new", "rising"}
+    badge_label = "NEW" if trend_signal == "new" else "RISING"
+    new_badge = (
+        f'<span class="new-badge">{badge_label}</span>' if is_new else ""
+    )
     return f"""
       <article class="project-card{' new-project' if is_new else ''}">
         <img class="avatar" src="{html.escape(avatar)}" alt="">
@@ -307,7 +316,7 @@ def common_styles(accent: str) -> str:
       overflow: hidden;
       background: #ffffff;
       color: #111318;
-      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      font-family: "Alibaba PuHuiTi", "阿里巴巴普惠体", sans-serif;
       letter-spacing: 0;
     }}
     .canvas {{
@@ -754,8 +763,8 @@ def main() -> None:
     rows = read_selected_rows()
     agent_rows = [row for row in rows if row["landscape_layer"] == "Agent Infra"]
     model_rows = [row for row in rows if row["landscape_layer"] == "Model Infra"]
-    validate_layer(agent_rows, AGENT_GROUPS, 69)
-    validate_layer(model_rows, MODEL_GROUPS, 57)
+    validate_layer(agent_rows, AGENT_GROUPS, 74)
+    validate_layer(model_rows, MODEL_GROUPS, 58)
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     avatar_status = download_avatars(rows)

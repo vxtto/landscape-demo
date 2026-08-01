@@ -1,8 +1,10 @@
 # 2026-07 Landscape 项目取舍
 
+> 这份文件保留 7 月 28 日首轮编辑记录。OmniRoute 与最近 90 天补漏发生在它之后；当前结果为 Agent Infra 74 个、Model Infra 58 个，共 132 个。第二轮项目与理由见 [recent_velocity_review.md](recent_velocity_review.md)，当前计数见 [infra_landscape_source_summary.json](data/infra_landscape_source_summary.json)。
+
 当前 Vercel 版本有 122 个项目：Agent Infra 73 个，Model Infra 49 个。
 
-这轮建议落在 126 个：Agent Infra 74 个，Model Infra 52 个。分类结构继续沿用现有 25 个 section，没有新增大类。变化主要靠替换完成：新增 21 个，拿下 17 个。
+这轮建议落在 126 个：Agent Infra 74 个，Model Infra 52 个。分类结构继续沿用现有 25 个 section，没有新增大类。变化主要靠替换完成：新增 20 个，拿下 17 个。
 
 ## 版面密度变化
 
@@ -25,7 +27,6 @@
 
 | 项目 | Layer | Section | 判断 | 注意 |
 |---|---|---|---|---|
-| `lobehub/lobehub` | Agent Infra | Personal AI assistants | 80k+ stars、最近可用 OpenRank 仍在 60 左右，已经成为个人 agent 工作空间和长期运行入口的代表项目。 | 产品同时覆盖聊天、知识库和多 agent 管理；主图只放在 Personal AI assistants，避免重复出现在 framework 或 chatbot。 |
 | `FlowiseAI/Flowise` | Agent Infra | Workflow & agent builders | 54k+ stars 的可视化 agent builder，结构定位比 ComfyUI 更贴合通用 agent workflow。 | 与 Dify、Langflow 功能接近；该区维持五个 logo，不继续扩容。 |
 | `docling-project/docling` | Model Infra | Data · Integration | 文档解析和结构化已经成为 RAG 与 agent 数据准备的常见入口，当前 63k+ stars、最近可用 OpenRank 66.74。 | 它代表文档数据准备，不是通用 ETL；Data · Integration 区控制在三个项目。 |
 | `milvus-io/milvus` | Agent Infra | Memory, knowledge & context | 成熟向量数据库仍是 agent context 的重要底座；当前 45k+ stars、最近可用 OpenRank 68.34，社区信号稳定。 | 它是通用向量数据库，不应被描述成 agent memory framework；在图中承担底层检索基础设施的位置。 |
@@ -71,6 +72,7 @@
 
 ## 分类调整
 
+- LobeHub 早期以 `lobehub/lobe-chat` 出现在 landscape，仓库改名后仍沿用同一个 GitHub repo ID。本轮调整到 Personal AI assistants，不计为新增。
 - `farion1231/cc-switch` 从 Model API gateways 移到 Coding harnesses。它管理 coding agent 的配置和切换，并不是模型 API gateway。
 - Protocols & interoperability 继续保留原 section，补入 AG-UI 和 A2UI，不另建协议大类。
 - Memory, knowledge & context 维持七个项目，通过一进一出提高结构覆盖，不扩大版面。

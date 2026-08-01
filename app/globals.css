@@ -3,18 +3,50 @@
 @import "shadcn/tailwind.css";
 
 @font-face {
-  font-family: "Noto Sans SC Landscape";
-  src: url("/fonts/NotoSansSC-Landscape.woff2") format("woff2");
+  font-family: "Alibaba PuHuiTi Landscape";
+  src: url("/fonts/AlibabaPuHuiTi-Light.woff2") format("woff2");
   font-style: normal;
-  font-weight: 100 900;
+  font-weight: 100 349;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alibaba PuHuiTi Landscape";
+  src: url("/fonts/AlibabaPuHuiTi-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 350 449;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alibaba PuHuiTi Landscape";
+  src: url("/fonts/AlibabaPuHuiTi-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 450 649;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alibaba PuHuiTi Landscape";
+  src: url("/fonts/AlibabaPuHuiTi-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 650 799;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Alibaba PuHuiTi Landscape";
+  src: url("/fonts/AlibabaPuHuiTi-Heavy.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 800 900;
   font-display: swap;
 }
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-ui: "Noto Sans SC Landscape", "Noto Sans SC",
-    "Source Han Sans SC", sans-serif;
+  --font-ui: "Alibaba PuHuiTi Landscape", "Alibaba PuHuiTi",
+    "阿里巴巴普惠体", sans-serif;
   --font-code: var(--font-ui);
   --background: oklch(0.963 0.003 95);
   --foreground: oklch(0.2 0 0);

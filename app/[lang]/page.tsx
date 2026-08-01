@@ -6,6 +6,7 @@ import { getLandscapeProjects } from "@/lib/landscape-data";
 
 import LandscapeLogo from "../components/landscape-logo";
 import LandscapeExplorer from "../components/landscape-explorer";
+import FloatingLandscapeNav from "../components/floating-landscape-nav";
 import styles from "../page.module.css";
 import { LOCALES, getDictionary, hasLocale } from "./dictionaries";
 import LocaleSwitch from "./locale-switch";
@@ -19,6 +20,7 @@ export default async function Home({ params }: PageProps<"/[lang]">) {
 
   return (
     <main className={styles.page}>
+      <FloatingLandscapeNav />
       <div className={styles.appShell}>
         <header className={styles.siteHeader}>
           <a
